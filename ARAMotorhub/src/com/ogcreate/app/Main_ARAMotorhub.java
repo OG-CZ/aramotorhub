@@ -18,7 +18,7 @@ public class Main_ARAMotorhub extends Application {
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("ARA Motorhub");
 
-        Parent root = FXMLLoader.load(getClass().getResource("/resources/fxml/login_ara.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/resources/fxml/main_login_ara.fxml"));
         primaryStage.setScene(new Scene(root, 938.32, 609.23));
 
         primaryStage.setResizable(false);
