@@ -61,7 +61,6 @@ public class B1_SignUp_Controller {
         Parent newRoot = loader.load();
 
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-          
         Scene newScene = new Scene(newRoot);
         currentStage.setScene(newScene);
         currentStage.show();

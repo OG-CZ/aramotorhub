@@ -23,7 +23,7 @@
          <children>
             <AnchorPane layoutX="574.0" layoutY="1.0" prefHeight="609.0" prefWidth="364.0">
                <children>
-                  <ImageView layoutX="104.0" layoutY="290.0">
+                  <ImageView fitHeight="33.0" fitWidth="179.0" layoutX="93.0" layoutY="288.0">
                      <image>
                         <Image url="@../assets/ara_register_a.png" />
                      </image>
@@ -43,21 +43,21 @@
       </AnchorPane>
       <AnchorPane layoutX="364.0" layoutY="-1.0" prefHeight="610.0" prefWidth="210.0">
          <children>
-            <VBox layoutX="1.0" layoutY="185.0" prefHeight="270.0" prefWidth="208.0">
+            <VBox layoutX="1.0" layoutY="170.0" prefHeight="270.0" prefWidth="208.0">
                <children>
                   <Label text="Current Address">
                      <font>
                         <Font size="11.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="addressField" maxHeight="28.1" maxWidth="207.35" minHeight="28.1" minWidth="207.35" prefHeight="28.1" prefWidth="207.35" promptText="Enter here" style="-fx-background-radius: 5px;" />
+                  <TextField fx:id="addressField" maxHeight="26.0" maxWidth="207.35" minHeight="26.0" minWidth="207.35" prefHeight="26.0" prefWidth="207.35" promptText="Enter here" style="-fx-background-radius: 5px;" />
                   <Region maxHeight="10.0" maxWidth="208.0" minHeight="10.0" minWidth="208.0" prefHeight="10.0" prefWidth="208.0" />
                   <Label text="District">
                      <font>
                         <Font size="11.0" />
                      </font>
                   </Label>
-                  <SplitMenuButton fx:id="districtField" maxHeight="28.1" maxWidth="207.35" minHeight="28.1" minWidth="207.35" mnemonicParsing="false" prefHeight="28.1" prefWidth="207.35" style="-fx-background-radius: 5;" text="Sampaloc">
+                  <SplitMenuButton fx:id="districtField" maxHeight="26.0" maxWidth="207.35" minHeight="26.0" minWidth="207.35" mnemonicParsing="false" prefHeight="26.0" prefWidth="207.35" style="-fx-background-radius: 5;" text="Sampaloc">
                     <items>
                       <MenuItem mnemonicParsing="false" text="Sampaloc" />
                     </items>
@@ -68,7 +68,7 @@
                         <Font size="11.0" />
                      </font>
                   </Label>
-                  <SplitMenuButton fx:id="barangayField" layoutX="10.0" layoutY="81.0" maxHeight="28.1" maxWidth="207.35" minHeight="28.1" minWidth="207.35" prefHeight="28.1" prefWidth="207.35" style="-fx-background-radius: 5;" text="Select">
+                  <SplitMenuButton fx:id="barangayField" layoutX="10.0" layoutY="81.0" maxHeight="26.0" maxWidth="207.35" minHeight="26.0" minWidth="207.35" prefHeight="26.0" prefWidth="207.35" style="-fx-background-radius: 5;" text="Select">
                   <items>
                      <MenuItem mnemonicParsing="false" onAction="#handleBarangaySelect" text="Barangay 395" />
                      <MenuItem mnemonicParsing="false" onAction="#handleBarangaySelect" text="Barangay 396" />
@@ -84,12 +84,12 @@
                         <Font size="11.0" />
                      </font>
                   </Label>
-                  <PasswordField maxHeight="28.1" maxWidth="207.35" minHeight="28.1" minWidth="207.35" prefHeight="28.1" prefWidth="207.35" promptText="At least 8 characters" style="-fx-background-radius: 5px;" />
+                  <PasswordField maxHeight="28.261" maxWidth="207.35" minHeight="26.0" minWidth="207.35" prefHeight="26.0" prefWidth="207.35" promptText="At least 8 characters" style="-fx-background-radius: 5px;" />
                   <Region layoutX="10.0" layoutY="165.0" maxHeight="66.0" maxWidth="208.0" minHeight="10.0" minWidth="208.0" prefHeight="66.0" prefWidth="208.0" />
                   <Region layoutX="10.0" layoutY="39.0" prefHeight="30.0" prefWidth="208.0" />
                   <StackPane prefHeight="28.1" prefWidth="207.35" style="-fx-background-color: B7B710; -fx-background-radius: 5; ">
                      <children>
-                        <Button fx:id="submitButton" maxHeight="110.0" maxWidth="207.35" minHeight="28.1" minWidth="207.35" mnemonicParsing="false" onMouseClicked="#handleSubmitButtonClick" prefHeight="90.0" prefWidth="208.0" style="-fx-background-color: B7B710; -fx-background-radius: 5;" text="Submit" textFill="WHITE">
+                        <Button fx:id="submitButton" maxHeight="26.0" maxWidth="207.35" minHeight="26.0" minWidth="207.35" mnemonicParsing="false" onMouseClicked="#handleSubmitButtonClick" prefHeight="26.0" prefWidth="208.0" style="-fx-background-color: B7B710; -fx-background-radius: 5;" text="Submit" textFill="WHITE">
                            <font>
                               <Font size="10.69" />
                            </font>

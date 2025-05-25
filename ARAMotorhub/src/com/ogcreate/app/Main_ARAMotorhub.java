@@ -1,10 +1,10 @@
 package com.ogcreate.app;
 
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-
 import javafx.stage.Stage;
 
 public class Main_ARAMotorhub extends Application {
@@ -13,14 +13,15 @@ public class Main_ARAMotorhub extends Application {
         launch(args);
     }
 
-
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("ARA Motorhub");
 
         Parent root = FXMLLoader.load(getClass().getResource("/resources/fxml/main_login_ara.fxml"));
-        primaryStage.setScene(new Scene(root, 938.32, 609.23));
-
+        Scene scene = new Scene(root, 938.32, 609.23);
+        
+        scene.getStylesheets().add(getClass().getResource("/resources/css/style.css").toExternalForm());
+        primaryStage.setScene(scene);
         primaryStage.setResizable(false);
         primaryStage.show();
     }
