@@ -1,13 +1,18 @@
 package com.ogcreate.app.controllers;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.List;
+import java.util.ResourceBundle;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -20,9 +25,12 @@ public class B2_SignUp_Controller {
 
     @FXML
     private SplitMenuButton districtField;
+    private String selectedDistrict;
+
 
     @FXML
     private SplitMenuButton barangayField;
+    private String selectedBarangay;
 
 
     @FXML
@@ -52,6 +60,21 @@ public class B2_SignUp_Controller {
         System.out.println("submit clicked");
     }
 
+
+    @FXML
+    private void handleBarangaySelect(ActionEvent event) {
+        MenuItem selectedItem = (MenuItem) event.getSource();
+        barangayField.setText(selectedItem.getText());
+    }
+
+    public String getSelectedDistrict() {
+        return selectedDistrict;
+    }
+
+
+    public String getSelectedBarangay() {
+        return selectedBarangay;
+    }
 }
 
 

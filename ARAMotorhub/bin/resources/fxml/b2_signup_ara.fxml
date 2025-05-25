@@ -57,10 +57,9 @@
                         <Font size="11.0" />
                      </font>
                   </Label>
-                  <SplitMenuButton fx:id="districtField" maxHeight="28.1" maxWidth="207.35" minHeight="28.1" minWidth="207.35" mnemonicParsing="false" prefHeight="28.1" prefWidth="207.35" style="-fx-background-radius: 5;" text="Sampaloc">
+                  <SplitMenuButton fx:id="districtField"  maxHeight="28.1" maxWidth="207.35" minHeight="28.1" minWidth="207.35" mnemonicParsing="false" prefHeight="28.1" prefWidth="207.35" style="-fx-background-radius: 5;" text="Sampaloc">
                     <items>
-                      <MenuItem mnemonicParsing="false" text="Action 1" />
-                      <MenuItem mnemonicParsing="false" text="Action 2" />
+                      <MenuItem mnemonicParsing="false" text="Sampaloc" />
                     </items>
                   </SplitMenuButton>
                   <Region maxHeight="10.0" maxWidth="208.0" minHeight="10.0" minWidth="208.0" prefHeight="10.0" prefWidth="208.0" />
@@ -69,11 +68,15 @@
                         <Font size="11.0" />
                      </font>
                   </Label>
-                  <SplitMenuButton fx:id="barangayField" layoutX="10.0" layoutY="81.0" maxHeight="28.1" maxWidth="207.35" minHeight="28.1" minWidth="207.35" mnemonicParsing="false" prefHeight="28.1" prefWidth="207.35" style="-fx-background-radius: 5;" text="395">
-                     <items>
-                        <MenuItem mnemonicParsing="false" text="Action 1" />
-                        <MenuItem mnemonicParsing="false" text="Action 2" />
-                     </items>
+                  <SplitMenuButton fx:id="barangayField" layoutX="10.0" layoutY="81.0" maxHeight="28.1" maxWidth="207.35" minHeight="28.1" minWidth="207.35" prefHeight="28.1" prefWidth="207.35" style="-fx-background-radius: 5;">
+                  <items>
+                     <MenuItem mnemonicParsing="false" text="Barangay 395" onAction="#handleBarangaySelect"/>
+                     <MenuItem mnemonicParsing="false" text="Barangay 396" onAction="#handleBarangaySelect"/>
+                     <MenuItem mnemonicParsing="false" text="Barangay 397" onAction="#handleBarangaySelect"/>
+                     <MenuItem mnemonicParsing="false" text="Barangay 398" onAction="#handleBarangaySelect"/>
+                     <MenuItem mnemonicParsing="false" text="Barangay 399" onAction="#handleBarangaySelect"/>
+                     <MenuItem mnemonicParsing="false" text="Barangay 400" onAction="#handleBarangaySelect"/>
+                  </items>
                   </SplitMenuButton>
                   <Region maxHeight="10.0" maxWidth="208.0" minHeight="10.0" minWidth="208.0" prefHeight="10.0" prefWidth="208.0" />
                   <Label text="idk">
@@ -115,7 +118,7 @@
                   <Font size="8.0" />
                </font>
             </Label>
-            <Button fx:id="signInButton" onMouseClicked="#handleSignInButtonClick" layoutX="122.0" layoutY="474.0" mnemonicParsing="false" opacity="0.0" prefHeight="30.0" prefWidth="46.0" text="Button" />
+            <Button fx:id="signInButton" layoutX="122.0" layoutY="474.0" mnemonicParsing="false" onMouseClicked="#handleSignInButtonClick" opacity="0.0" prefHeight="30.0" prefWidth="46.0" text="Button" />
          </children>
       </AnchorPane>
    </children>
