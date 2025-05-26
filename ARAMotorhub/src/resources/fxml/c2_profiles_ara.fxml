@@ -1,6 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitMenuButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="609.23" prefWidth="938.32" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" />
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="609.23" prefWidth="938.32" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ogcreate.app.controllers.C2_Profiles_ARA">
+   <children>
+      <ImageView fitHeight="229.0" fitWidth="939.0" layoutY="78.0">
+         <image>
+            <Image url="@../assets/c2_background1.png" />
+         </image>
+      </ImageView>
+      <AnchorPane fx:id="anchorPaneFooter" layoutY="305.0" maxHeight="307.0" maxWidth="938.0" minHeight="300.0" minWidth="938.0" prefHeight="307.0" prefWidth="938.0" style="-fx-background-color: #EAEAEA;" stylesheets="@../css/style.css" />
+      <ImageView fitHeight="33.75" fitWidth="753.52" layoutX="33.75" layoutY="21.1">
+         <image>
+            <Image url="@../assets/c2_topmenu.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="araWhiteLogo" fitHeight="34.63" fitWidth="64.37" layoutX="841.0" layoutY="20.0">
+         <image>
+            <Image url="@../assets/logo_white.png" />
+         </image>
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color opacity="0.6000000238418579" />
+               </color>
+            </DropShadow>
+         </effect>
+      </ImageView>
+      <SplitMenuButton fx:id="categorySplitMenu" layoutX="106.0" layoutY="25.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="82.0" text="SplitMenuButton">
+        <items>
+          <MenuItem mnemonicParsing="false" text="Action 1" />
+          <MenuItem mnemonicParsing="false" text="Action 2" />
+        </items>
+         <font>
+            <Font size="9.0" />
+         </font>
+      </SplitMenuButton>
+      <TextField layoutX="192.0" layoutY="25.0" prefHeight="26.0" prefWidth="227.0" promptText="search " style="-fx-background-color: transparent; -fx-text-fill: white; -fx-prompt-text-fill: white;" />
+   </children>
+</AnchorPane>

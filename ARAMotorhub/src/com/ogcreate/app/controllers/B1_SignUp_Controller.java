@@ -56,18 +56,18 @@ public class B1_SignUp_Controller {
     void handleSignInButtonClick(MouseEvent event) {
         System.out.println("Sign in go back");
 
-        try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/main_login_ara.fxml"));
-        Parent newRoot = loader.load();
+            try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/main_login_ara.fxml"));
+            Parent newRoot = loader.load();
 
-        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene newScene = new Scene(newRoot);
-        currentStage.setScene(newScene);
-        currentStage.show();
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene newScene = new Scene(newRoot);
+            currentStage.setScene(newScene);
+            currentStage.show();
 
-    } catch (IOException e) {
-        e.printStackTrace();
-    }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

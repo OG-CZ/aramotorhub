@@ -1,11 +1,20 @@
 package com.ogcreate.app.controllers;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import javafx.fxml.Initializable;
+
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
 
 public class C1_Profiles_ARA implements Initializable {
 
@@ -33,16 +42,27 @@ public class C1_Profiles_ARA implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        categoryComboBox.setPromptText("Select category");
-
-
+        categoryComboBox.setPromptText("Category");
         categoryComboBox.getItems().addAll(
-            "Engine Parts",
-            "Suspension",
-            "Wheels",
-            "Oils",
-            "Bolts",
-            "Exterior"
+            "Engine Parts", "Suspension", "Wheels", "Oils", "Bolts", "Exterior"
         );
+    }
+
+    @FXML
+    void handleImageClick(MouseEvent event) {
+        System.out.println("Next home page clicked!");
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/c2_profiles_ara.fxml"));
+            Parent newRoot = loader.load();
+
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene newScene = new Scene(newRoot);
+            currentStage.setScene(newScene);
+            currentStage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
