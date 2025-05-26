@@ -25,11 +25,13 @@ public class Main_ARAMotorhub extends Application {
             Font.loadFont(getClass().getResourceAsStream("/resources/fonts/SF-Pro.ttf"), 12);
             Font.loadFont(getClass().getResourceAsStream("/resources/fonts/SF-Pro-Display-Medium.otf"), 12);
 
+            /* 
             Font loadedFont = Font.loadFont(getClass().getResourceAsStream("/resources/fonts/SF-Pro.ttf"), 12);
             System.out.println("Loaded font family: " + loadedFont.getFamily());
             Font loadedMediumFont = Font.loadFont(getClass().getResourceAsStream("/resources/fonts/SF-Pro-Display-Medium.otf"), 12);
             System.out.println("Loaded medium font family: " + loadedMediumFont.getFamily());
-
+            */
+            
             primaryStage.setScene(scene);
             primaryStage.setResizable(false);
             primaryStage.show();

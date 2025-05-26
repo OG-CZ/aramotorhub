@@ -98,9 +98,9 @@
                   <Image url="@../assets/logo_white.png" />
                </image>
             </ImageView>
-            <AnchorPane layoutX="593.0" layoutY="-3.0" prefHeight="33.75" prefWidth="214.33" style="-fx-background-color: #F0F4F7; -fx-background-radius: 0 0 15 15;">
+            <AnchorPane layoutX="593.0" layoutY="-3.0" prefHeight="42.0" prefWidth="200.0" style="-fx-background-color: #F0F4F7; -fx-background-radius: 0 0 15 15;">
                <children>
-                  <HBox layoutX="17.0" layoutY="11.5" prefHeight="10.0" prefWidth="180.0">
+                  <HBox layoutX="15.0" layoutY="17.0" prefHeight="18.0" prefWidth="170.0">
                      <children>
                         <Button fx:id="homeButton" alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-letter-spacing: 10px;" stylesheets="@../css/style.css" text="Home">
                            <font>
