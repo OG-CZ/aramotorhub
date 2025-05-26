@@ -15,6 +15,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.ogcreate.app.ARA_SettingsWindowHelper;
+
 
 public class C1_Profiles_ARA implements Initializable {
 
@@ -65,4 +67,10 @@ public class C1_Profiles_ARA implements Initializable {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    private void handleOpenSettings(javafx.event.ActionEvent event) {
+        ARA_SettingsWindowHelper.openSettings((Node) event.getSource());
+    }
+
 }

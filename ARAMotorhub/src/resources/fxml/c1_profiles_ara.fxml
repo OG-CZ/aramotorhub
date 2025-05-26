@@ -117,7 +117,7 @@
                               <Font name="Arial Rounded MT Bold" size="9.28" />
                            </font>
                         </Button>
-                        <Button fx:id="settingsButton" alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-letter-spacing: 10px;" stylesheets="@../css/style.css" text="Settings">
+                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleOpenSettings" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-letter-spacing: 10px;" stylesheets="@../css/style.css" text="Settings">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="9.28" />
                            </font>
@@ -188,9 +188,9 @@
                </children>
             </HBox>
             <Button fx:id="searchButton" layoutX="648.0" layoutY="351.0" mnemonicParsing="false" opacity="0.0" prefHeight="50.0" prefWidth="44.0" text="Button" />
-            <Button fx:id="profileButton2" layoutX="766.0" layoutY="61.0" mnemonicParsing="false" opacity="0.0" prefHeight="34.0" prefWidth="52.0" text="profile" />
+            <Button layoutX="766.0" layoutY="61.0" mnemonicParsing="false" onAction="#handleOpenSettings" opacity="0.0" prefHeight="34.0" prefWidth="52.0" text="profile" />
             <Button fx:id="shopButton2" layoutX="840.0" layoutY="51.0" mnemonicParsing="false" opacity="0.0" prefHeight="50.0" prefWidth="57.0" text="Shop" />
-            <Button fx:id="nextButton" layoutX="844.0" layoutY="515.0" mnemonicParsing="false" opacity="0.0" prefHeight="50.0" prefWidth="44.0" text="next" onMouseClicked="#handleImageClick" />
+            <Button fx:id="nextButton" layoutX="844.0" layoutY="515.0" mnemonicParsing="false" onMouseClicked="#handleImageClick" opacity="0.0" prefHeight="50.0" prefWidth="44.0" text="next" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="695.0" layoutY="183.66" prefHeight="76.0" prefWidth="238.0" style="-fx-background-color: #F0F4F7; -fx-background-radius: 15 0 0 15;">
