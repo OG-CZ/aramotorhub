@@ -2,6 +2,8 @@ package com.ogcreate.app.controllers;
 
 import java.io.IOException;
 
+import com.ogcreate.app.ARA_SettingsWindowHelper;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,22 +30,32 @@ public class Settings_LogOut {
     private Button logOutButton;
 
     @FXML
-    void handleLogOutButton(ActionEvent  event) {
-        System.out.println("handleLogOutButton triggered");
+    void handleLogOutButton(ActionEvent event) {
+        System.out.println("Logout clicked");
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        ARA_SettingsWindowHelper.logout(currentStage);
     }
 
+
+
+
+
+
+
+
+    // switching scene dont touch
     @FXML
-    void handleDeleteAccount(ActionEvent event) {
+    void switchToDeleteAccount(ActionEvent event) {
         loadFXMLScene("/resources/fxml/popout-setting-view/deleteaccount_ara.fxml", event);
     }
 
     @FXML
-    void handleEditProfile(ActionEvent event) {
+    void switchToEditProfile(ActionEvent event) {
         loadFXMLScene("/resources/fxml/popout-setting-view/editprofile_ara.fxml", event);
     }
 
     @FXML
-    void handleLogOut(ActionEvent event) {
+    void switchToLogOut(ActionEvent event) {
         loadFXMLScene("/resources/fxml/popout-setting-view/logout_ara.fxml", event);
     }
 

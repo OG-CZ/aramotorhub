@@ -112,7 +112,7 @@
                               <Font name="Arial Rounded MT Bold" size="9.28" />
                            </font>
                         </Button>
-                        <Button fx:id="profileButton" alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-letter-spacing: 10px;" stylesheets="@../css/style.css" text="Profile">
+                        <Button fx:id="profileButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleOpenSettings" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-letter-spacing: 10px;" stylesheets="@../css/style.css" text="Profile">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="9.28" />
                            </font>

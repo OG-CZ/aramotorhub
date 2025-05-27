@@ -5,18 +5,9 @@
             "type": "java",
             "name": "Main_ARAMotorhub",
             "request": "launch",
-            "mainClass": "Main_ARAMotorhub",
-            "projectName": "ARAMotorhub_b15a77b8",
-            "vmArgs": "--module-path \"C:/Program Files/Java/javafx-sdk-21.0.7/lib\" --add-modules javafx.controls,javafx.fxml -classpath \"${workspaceFolder}/src;${workspaceFolder}/resources\""
-
-        },
-        {
-            "type": "java",
-            "name": "Run Main_ARAMotorhub",
-            "request": "launch",
             "mainClass": "com.ogcreate.app.Main_ARAMotorhub",
             "projectName": "ARAMotorhub_b15a77b8",
-            "vmArgs": "--module-path \"C:/Program Files/Java/javafx-sdk-21.0.7/lib\" --add-modules javafx.controls,javafx.fxml -classpath \"${workspaceFolder}/src;${workspaceFolder}/resources\""
+            "vmArgs": "--module-path \"C:/Program Files/Java/javafx-sdk-21.0.7/lib\" --add-modules javafx.controls,javafx.fxml -Dprism.order=sw"
         }
     ]
 }

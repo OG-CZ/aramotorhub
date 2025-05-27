@@ -31,18 +31,20 @@ public class Settings_EditProfile {
         System.out.println("#handleSaveButton triggered");
     }
 
+
+    // switching scene dont touch
     @FXML
-    void handleDeleteAccount(ActionEvent event) {
+    void switchToDeleteAccount(ActionEvent event) {
         loadFXMLScene("/resources/fxml/popout-setting-view/deleteaccount_ara.fxml", event);
     }
 
     @FXML
-    void handleEditProfile(ActionEvent event) {
+    void switchToEditProfile(ActionEvent event) {
         loadFXMLScene("/resources/fxml/popout-setting-view/editprofile_ara.fxml", event);
     }
 
     @FXML
-    void handleLogOut(ActionEvent event) {
+    void switchToLogOut(ActionEvent event) {
         loadFXMLScene("/resources/fxml/popout-setting-view/logout_ara.fxml", event);
     }
 
