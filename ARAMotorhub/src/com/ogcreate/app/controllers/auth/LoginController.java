@@ -80,7 +80,7 @@ public class LoginController {
 
 
         try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/buyer/B01_HomePage.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/customer/B01_HomePage.fxml"));
         Parent newRoot = loader.load();
 
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
