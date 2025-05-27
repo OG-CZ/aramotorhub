@@ -9,6 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
@@ -23,8 +24,14 @@ public class Settings_LogOut {
     @FXML
     private HBox handleDeleteAccount;
 
-   @FXML
+
+    @FXML
     private Button logOutButton;
+
+    @FXML
+    void handleLogOutButton(ActionEvent  event) {
+        System.out.println("handleLogOutButton triggered");
+    }
 
     @FXML
     void handleDeleteAccount(ActionEvent event) {

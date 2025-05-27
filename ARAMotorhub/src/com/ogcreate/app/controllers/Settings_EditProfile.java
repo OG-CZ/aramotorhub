@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.scene.Node;
@@ -25,6 +26,11 @@ public class Settings_EditProfile {
 
     @FXML
     private Button logOutButton;
+
+    @FXML
+    void handleSaveButton(ActionEvent  event) {
+        System.out.println("#handleSaveButton triggered");
+    }
 
     @FXML
     void handleDeleteAccount(ActionEvent event) {

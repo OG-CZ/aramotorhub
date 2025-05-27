@@ -20,7 +20,7 @@ public class ARA_SettingsWindowHelper {
 
             Stage stage = new Stage();
             stage.setResizable(false);
-            stage.setTitle("Settings");
+            stage.setTitle("ARA Motorhub: Settings @_ogcreate!");
             stage.setScene(new Scene(root));
             stage.initModality(Modality.APPLICATION_MODAL); // Make it modal
             stage.initOwner(sourceNode.getScene().getWindow()); // Tie it to the caller window
