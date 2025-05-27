@@ -15,7 +15,7 @@ public class ARA_SettingsWindowHelper {
 
         System.out.println("Universal Settings Clicked!");
         try {
-            FXMLLoader loader = new FXMLLoader(ARA_SettingsWindowHelper.class.getResource("/resources/fxml/universal_settings_ara.fxml"));
+            FXMLLoader loader = new FXMLLoader(ARA_SettingsWindowHelper.class.getResource("/resources/fxml/popout-setting-view/editprofile_ara.fxml"));
             Parent root = loader.load();
 
             Stage stage = new Stage();

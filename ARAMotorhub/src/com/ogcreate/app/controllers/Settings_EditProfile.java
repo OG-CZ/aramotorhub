@@ -2,10 +2,17 @@ package com.ogcreate.app.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
+import javafx.scene.Node;
 
-public class Settings_EditProfile  {
+import java.io.IOException;
+
+public class Settings_EditProfile {
 
     @FXML
     private Button deleteAccButton;
@@ -21,17 +28,28 @@ public class Settings_EditProfile  {
 
     @FXML
     void handleDeleteAccount(ActionEvent event) {
-
+        loadFXMLScene("/resources/fxml/popout-setting-view/deleteaccount_ara.fxml", event);
     }
 
     @FXML
     void handleEditProfile(ActionEvent event) {
-
+        loadFXMLScene("/resources/fxml/popout-setting-view/editprofile_ara.fxml", event);
     }
 
     @FXML
     void handleLogOut(ActionEvent event) {
-
+        loadFXMLScene("/resources/fxml/popout-setting-view/logout_ara.fxml", event);
     }
 
+    private void loadFXMLScene(String fxmlPath, ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="483.5" maxWidth="838.75" minHeight="483.5" minWidth="838.75" prefHeight="483.5" prefWidth="838.75" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ogcreate.app.controllers.Settings_LogOut">
+<BorderPane fx:id="rootPane" maxHeight="483.5" maxWidth="838.75" minHeight="483.5" minWidth="838.75" prefHeight="483.5" prefWidth="838.75" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ogcreate.app.controllers.Settings_LogOut">
    <top>
-      <HBox fx:id="handleDeleteAccount" maxHeight="45.0" maxWidth="839.0" minHeight="45.0" minWidth="839.0" prefHeight="45.0" prefWidth="839.0" spacing="30.0" style="-fx-border-color: #D9D9D9; -fx-border-width: 0 0 2 0;" BorderPane.alignment="CENTER">
+      <HBox maxHeight="45.0" maxWidth="839.0" minHeight="45.0" minWidth="839.0" prefHeight="45.0" prefWidth="839.0" spacing="30.0" style="-fx-border-color: #D9D9D9; -fx-border-width: 0 0 2 0;" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="editProfileButton" mnemonicParsing="false" onAction="#handleEditProfile" opacity="0.8" prefHeight="36.0" prefWidth="81.0" stylesheets="@../../css/style.css" text="Edit Profile">
                <font>
