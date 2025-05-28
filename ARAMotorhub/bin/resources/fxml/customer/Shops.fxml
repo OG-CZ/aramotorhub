@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="609.23" prefWidth="938.32" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <HBox maxHeight="63.29" minHeight="63.29" prefHeight="63.29" prefWidth="200.0" style="-fx-background-color: white; -fx-border-color: #ccc; -fx-border-width: 0 0 1px 0;" BorderPane.alignment="CENTER">
+         <children>
+            <StackPane prefHeight="150.0" prefWidth="165.0">
+               <children>
+                  <ImageView fitHeight="37.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
+                     <image>
+                        <Image url="@../../assets/logo_white.png" />
+                     </image>
+                     <effect>
+                        <DropShadow>
+                           <color>
+                              <Color red="0.6899999976158142" green="0.6899999976158142" blue="0.07590000331401825" opacity="0.6000000238418579" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                     <StackPane.margin>
+                        <Insets />
+                     </StackPane.margin>
+                  </ImageView>
+               </children>
+            </StackPane>
+            <Separator maxHeight="-Infinity" orientation="VERTICAL" prefHeight="200.0" prefWidth="6.0">
+               <padding>
+                  <Insets bottom="18.0" top="18.0" />
+               </padding>
+            </Separator>
+            <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" prefHeight="24.07" prefWidth="208.86" style="-fx-border-color: #ccc; -fx-border-radius: 100;" HBox.hgrow="NEVER">
+               <HBox.margin>
+                  <Insets left="15.0" top="18.0" />
+               </HBox.margin>
+               <children>
+                  <TextField promptText="search" style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS">
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <ImageView fitHeight="12.55" fitWidth="12.56">
+                     <image>
+                        <Image url="@../../assets/d_searchicon.png" />
+                     </image>
+                  </ImageView>
+               </children>
+               <padding>
+                  <Insets left="5.0" right="7.0" />
+               </padding>
+            </HBox>
+            <AnchorPane stylesheets="@../../css/market.css" HBox.hgrow="ALWAYS">
+               <children>
+                  <ImageView fitHeight="40.5" fitWidth="254.83" layoutX="255.0" layoutY="12.0">
+                     <image>
+                        <Image url="@../../assets/d_tabicons.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </children>
+      </HBox>
+   </top>
+   <left>
+      <VBox maxHeight="1.7976931348623157E308" maxWidth="168.0" minHeight="546.0" minWidth="168.0" prefHeight="546.0" prefWidth="168.0" style="-fx-background-color: white; -fx-border-color: #ccc; -fx-border-width: 1px 0 0 0;" BorderPane.alignment="CENTER" />
+   </left>
+</BorderPane>

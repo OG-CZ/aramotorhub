@@ -1,4 +1,20 @@
- /*FIRST HOMEPAGE*/
+/* Login */
+
+.login_register.text-field:hover,
+.login_register.text-field:focused {
+    -fx-border-color: #B7B710;
+    -fx-border-width: 1px;
+    -fx-background-color: white;
+    -fx-focus-color: #B7B710;
+    -fx-faint-focus-color: transparent;
+    
+    /* Rounded corners */
+    -fx-background-radius: 6px;
+    -fx-border-radius: 6px;
+}
+
+
+/*FIRST HOMEPAGE*/
 
  /* Main ComboBox background transparent */
 .combo-box {

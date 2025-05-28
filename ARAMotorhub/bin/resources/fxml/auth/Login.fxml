@@ -32,7 +32,7 @@
       
                                                             <AnchorPane prefHeight="609.23" prefWidth="457.35">
                <children>
-                  <ImageView fitHeight="80.0" fitWidth="153.0" layoutX="153.0" layoutY="154.0">
+                  <ImageView fitHeight="80.0" fitWidth="153.0" layoutX="153.0" layoutY="141.0">
                      <image>
                         <Image url="@../../assets/logo.png" />
                      </image>
@@ -44,14 +44,14 @@
                               <Font size="11.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="emailField" maxHeight="26.0" maxWidth="207.35" minHeight="26.0" minWidth="207.35" prefHeight="26.0" prefWidth="207.35" promptText="Email" style="-fx-background-radius: 5px;" />
+                        <TextField fx:id="emailField" maxHeight="26.0" maxWidth="207.35" minHeight="26.0" minWidth="207.35" prefHeight="26.0" prefWidth="207.35" promptText="Email" style="-fx-background-radius: 5px;" styleClass="login_register" stylesheets="@../../css/style.css" />
                         <Region maxHeight="10.0" maxWidth="208.0" minHeight="10.0" minWidth="208.0" prefHeight="10.0" prefWidth="208.0" />
                         <Label text="Password">
                            <font>
                               <Font size="11.0" />
                            </font>
                         </Label>
-                        <PasswordField fx:id="passwordField" maxHeight="26.0" maxWidth="207.35" minHeight="26.0" minWidth="207.35" prefHeight="26.0" prefWidth="207.35" promptText="Password" style="-fx-background-radius: 5px;" />
+                        <PasswordField fx:id="passwordField" maxHeight="26.0" maxWidth="207.35" minHeight="26.0" minWidth="207.35" prefHeight="26.0" prefWidth="207.35" promptText="Password" style="-fx-background-radius: 5px;" styleClass="login_register" stylesheets="@../../css/style.css" />
                         <Region layoutX="10.0" layoutY="39.0" prefHeight="30.0" prefWidth="208.0" />
                         <StackPane prefHeight="28.1" prefWidth="207.35" style="-fx-background-color: B7B710; -fx-background-radius: 5; ">
                            <children>
@@ -96,6 +96,11 @@
       <ImageView fitHeight="95.0" fitWidth="295.0" layoutX="643.0" layoutY="64.0">
          <image>
             <Image url="@../../assets/ara_login_c.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="pictureButton" layoutX="605.0" layoutY="577.0">
+         <image>
+            <Image url="@../../assets/ara_login_button_a.png" />
          </image>
       </ImageView>
    </children>

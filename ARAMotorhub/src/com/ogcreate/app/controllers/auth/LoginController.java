@@ -59,7 +59,7 @@ public class LoginController {
         System.out.println("signup pressed");
 
         try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/auth/RegisterFirst.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/auth/RegisterStep1.fxml"));
         Parent newRoot = loader.load();
 
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -80,7 +80,7 @@ public class LoginController {
 
 
         try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/customer/B01_HomePage.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/customer/HomeMain.fxml"));
         Parent newRoot = loader.load();
 
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();

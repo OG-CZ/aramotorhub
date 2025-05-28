@@ -1,0 +1,13 @@
+.hover-box {
+    -fx-background-color: white; /* default background */
+}
+
+.hover-box:hover {
+    -fx-background-color: #F3F3F3;
+    -fx-cursor: hand; /* optional, changes cursor on hover */
+}
+
+#top-pane {
+  -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.75), 10, 0.5, 0, 1);
+  /* -fx-z-index doesn't exist in JavaFX, so ignore this */
+}

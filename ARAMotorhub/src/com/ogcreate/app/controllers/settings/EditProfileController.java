@@ -6,7 +6,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.HBox;
+import javafx.scene.control.SplitMenuButton;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.scene.Node;
 
@@ -15,21 +16,29 @@ import java.io.IOException;
 public class EditProfileController {
 
     @FXML
+    private SplitMenuButton barangayField;
+
+    @FXML
     private Button deleteAccButton;
+
+    @FXML
+    private SplitMenuButton districtField;
 
     @FXML
     private Button editProfileButton;
 
     @FXML
-    private HBox handleDeleteAccount;
+    private Button logOutButton;
 
     @FXML
-    private Button logOutButton;
+    private BorderPane rootPane;
+
 
     @FXML
     void handleSaveButton(ActionEvent  event) {
         System.out.println("#handleSaveButton triggered");
     }
+
 
 
     // switching scene dont touch
