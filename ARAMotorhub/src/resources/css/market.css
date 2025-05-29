@@ -7,7 +7,7 @@
     -fx-cursor: hand; /* optional, changes cursor on hover */
 }
 
-#top-pane {
-  -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.75), 10, 0.5, 0, 1);
-  /* -fx-z-index doesn't exist in JavaFX, so ignore this */
-}
+
+
+
+

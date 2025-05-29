@@ -60,4 +60,21 @@ public class HomeNextController implements Initializable {
             e.printStackTrace();
         }
     }
+
+
+    @FXML
+    public void handleShopClick(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/customer/Shop.fxml"));
+            Parent newRoot = loader.load();
+
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene newScene = new Scene(newRoot);
+            currentStage.setScene(newScene);
+            currentStage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

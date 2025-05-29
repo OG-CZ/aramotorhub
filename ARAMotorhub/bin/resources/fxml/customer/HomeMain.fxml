@@ -102,7 +102,7 @@
                <children>
                   <HBox layoutX="15.0" layoutY="17.0" prefHeight="18.0" prefWidth="170.0">
                      <children>
-                        <Button fx:id="shopButton" alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-letter-spacing: 10px;" stylesheets="@../../css/style.css" text="Shop">
+                        <Button fx:id="shopButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleShopClick" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-letter-spacing: 10px;" stylesheets="@../../css/style.css" text="Shop">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="9.28" />
                            </font>
