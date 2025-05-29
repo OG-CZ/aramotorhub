@@ -10,24 +10,24 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxWidth="1.7976931348623157E308" prefHeight="125.0" prefWidth="705.0" style="-fx-border-color: #D9D9D9; -fx-border-width: 1px;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ogcreate.app.controllers.customer.ShopCardLayoutController">
+<HBox maxWidth="1.7976931348623157E308" prefHeight="125.0" prefWidth="705.0" style="-fx-border-color: #D9D9D9; -fx-border-width: 1px 1.5px 0.5px 1px;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ogcreate.app.controllers.customer.ShopCardLayoutController">
    <children>
       <ImageView fitHeight="125.0" fitWidth="183.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
          <image>
             <Image url="@../../assets/d_shopspic.png" />
          </image>
       </ImageView>
-      <Separator orientation="VERTICAL" prefHeight="200.0" />
+      <Separator opacity="0.0" orientation="VERTICAL" prefHeight="200.0" />
       <VBox alignment="CENTER_LEFT">
          <children>
             <Label fx:id="shopName" text="Store shops" textFill="#0095ff">
                <font>
-                  <Font name="Berlin Sans FB" size="32.0" />
+                  <Font name="Berlin Sans FB" size="24.0" />
                </font>
             </Label>
             <Label fx:id="shopDistance" text="2km Away">
                <font>
-                  <Font name="Arial Rounded MT Bold" size="12.0" />
+                  <Font name="Arial Rounded MT Bold" size="10.0" />
                </font>
             </Label>
          </children>

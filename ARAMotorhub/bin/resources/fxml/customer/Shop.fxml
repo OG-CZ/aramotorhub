@@ -281,12 +281,15 @@
                      <children>
                         <AnchorPane layoutY="98.0" prefHeight="28.0" prefWidth="640.0" style="-fx-background-color: white; -fx-border-color: #9BA1A6 transparent #9BA1A6 transparent;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                            <children>
-                              <HBox layoutX="11.0" layoutY="7.0" spacing="110.0">
+                              <HBox layoutX="11.0" layoutY="6.0" spacing="110.0">
                                  <children>
                                     <Label text="Showing n to n of max(n)">
                                        <font>
                                           <Font name="Arial" size="9.0" />
                                        </font>
+                                       <HBox.margin>
+                                          <Insets top="1.3" />
+                                       </HBox.margin>
                                     </Label>
                                     <HBox spacing="5.0">
                                        <children>
@@ -300,12 +303,15 @@
                                                 <Image url="@../../assets/d_button3.png" />
                                              </image>
                                              <HBox.margin>
-                                                <Insets bottom="2.5" left="2.5" right="2.5" top="3.0" />
+                                                <Insets bottom="2.5" left="2.5" right="2.5" top="1.5" />
                                              </HBox.margin>
                                           </ImageView>
                                        </children>
+                                       <HBox.margin>
+                                          <Insets top="1.3" />
+                                       </HBox.margin>
                                     </HBox>
-                                    <HBox>
+                                    <HBox spacing="5.0">
                                        <children>
                                           <Label text="Sort by: Best Selling ">
                                              <font>
@@ -317,10 +323,13 @@
                                                 <Image url="@../../assets/d_button3.png" />
                                              </image>
                                              <HBox.margin>
-                                                <Insets bottom="2.5" left="2.5" right="2.5" top="3.0" />
+                                                <Insets bottom="2.5" right="2.5" top="1.5" />
                                              </HBox.margin>
                                           </ImageView>
                                        </children>
+                                       <HBox.margin>
+                                          <Insets top="1.3" />
+                                       </HBox.margin>
                                     </HBox>
                                     <HBox spacing="5.0">
                                        <children>
@@ -329,12 +338,12 @@
                                                 <Font name="Arial" size="9.0" />
                                              </font>
                                              <HBox.margin>
-                                                <Insets top="1.0" />
+                                                <Insets top="1.3" />
                                              </HBox.margin>
                                           </Label>
                                           <ImageView fitHeight="12.0" fitWidth="12.0">
                                              <image>
-                                                <Image url="@../../assets/d_button1.png" />
+                                                <Image url="@../../assets/d_buttonblue2.png" />
                                              </image>
                                              <HBox.margin>
                                                 <Insets top="1.5" />
@@ -342,7 +351,7 @@
                                           </ImageView>
                                           <ImageView fitHeight="12.0" fitWidth="12.0">
                                              <image>
-                                                <Image url="@../../assets/d_button2.png" />
+                                                <Image url="@../../assets/d_buttonblack2.png" />
                                              </image>
                                              <HBox.margin>
                                                 <Insets top="1.5" />
@@ -363,17 +372,16 @@
                               </Label>
                               <Label text="Stores around your area are ready. Find the nearest one and request the parts you need. Availability may vary depending on location.">
                                  <font>
-                                    <Font name="Arial" size="11.0" />
+                                    <Font name="Arial" size="10.0" />
                                  </font>
                               </Label>
                            </children>
                         </VBox>
                      </children>
                   </AnchorPane>
-                  <Region prefHeight="17.0" prefWidth="770.0" />
-                  <ScrollPane prefHeight="340.0" prefWidth="770.0" style="-fx-background-color: transparent; -fx-background-insets: 0; -fx-padding: 0; -fx-border-color: transparent; -fx-focus-color: 0; -fx-faint-focus-color: transparent; -fx-border-color: #9BA1A6;">
+                  <ScrollPane prefHeight="368.0" prefWidth="721.0" style="-fx-background-color: transparent; -fx-padding: 0; -fx-focus-color: 0; -fx-faint-focus-color: transparent; -fx-border-color: transparent #9BA1A6 #9BA1A6 #9BA1A6;">
                      <content>
-                        <VBox fx:id="shopCardLayout" maxHeight="1.7976931348623157E308" prefHeight="600.0" prefWidth="703.0" />
+                        <VBox fx:id="shopCardLayout" maxHeight="1.7976931348623157E308" prefHeight="600.0" prefWidth="705.0" />
                      </content>
                      <VBox.margin>
                         <Insets left="25.0" right="25.0" />
