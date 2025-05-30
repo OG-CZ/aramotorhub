@@ -364,12 +364,12 @@
                         </AnchorPane>
                         <VBox layoutX="24.0" layoutY="23.0" spacing="5.0">
                            <children>
-                              <Label text="Nearest Shops" textFill="#0095ff">
+                              <Label text="Pre-Order" textFill="#0095ff">
                                  <font>
                                     <Font name="Berlin Sans FB" size="32.0" />
                                  </font>
                               </Label>
-                              <Label text="Stores around your area are ready. Find the nearest one and request the parts you need. Availability may vary depending on location.">
+                              <Label text="Limited release. Order now and get it delivered to your door step. Delivery may take longer than usual.">
                                  <font>
                                     <Font name="Arial" size="10.0" />
                                  </font>
