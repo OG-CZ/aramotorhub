@@ -12,14 +12,16 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="609.23" prefWidth="938.32" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ogcreate.app.controllers.customer.ShopsController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="609.23" prefWidth="938.32" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ogcreate.app.controllers.customer.ProductsController">
    <top>
       <HBox alignment="CENTER" maxHeight="63.29" minHeight="63.29" prefHeight="63.29" prefWidth="200.0" style="-fx-background-color: white; -fx-border-width: 0 0 1px 0;" BorderPane.alignment="CENTER">
          <children>
@@ -130,44 +132,41 @@
                   </Label>
                   <HBox alignment="CENTER_LEFT" prefHeight="32.06" prefWidth="200.0" styleClass="hover-box" stylesheets="@../../css/market.css">
                      <children>
-                        <Label text="Shops">
+                        <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleShopsClick" prefHeight="27.0" prefWidth="199.0" style="-fx-background-color: transparent;" text="Shops">
                            <font>
                               <Font name="Berlin Sans FB" size="15.0" />
                            </font>
-                           <padding>
-                              <Insets left="40.0" />
-                           </padding>
-                        </Label>
+                           <HBox.margin>
+                              <Insets left="30.0" />
+                           </HBox.margin>
+                        </Button>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="52.0" prefHeight="32.06" prefWidth="200.0" styleClass="hover-box" stylesheets="@../../css/market.css">
+                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="52.0" prefHeight="32.06" prefWidth="200.0" style="-fx-background-color: #D9D9D9;" styleClass="hover-box" stylesheets="@../../css/market.css">
                      <children>
-                        <Label text="Products">
+                        <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="27.0" prefWidth="146.0" style="-fx-background-color: transparent;" text="Products">
                            <font>
                               <Font name="Berlin Sans FB" size="15.0" />
                            </font>
-                           <padding>
-                              <Insets left="40.0" />
-                           </padding>
-                        </Label>
+                           <HBox.margin>
+                              <Insets left="30.0" />
+                           </HBox.margin>
+                        </Button>
                      </children>
                   </HBox>
                   <VBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="168.0" styleClass="hover-box" stylesheets="@../../css/market.css" VBox.vgrow="ALWAYS">
                      <children>
-                        <Label text="Categories">
+                        <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="27.0" prefWidth="273.0" style="-fx-background-color: transparent;" text="Categories">
                            <font>
                               <Font name="Berlin Sans FB" size="15.0" />
                            </font>
-                           <padding>
-                              <Insets left="40.0" />
-                           </padding>
                            <VBox.margin>
-                              <Insets />
+                              <Insets bottom="-5.0" left="27.5" />
                            </VBox.margin>
-                        </Label>
-                        <ComboBox maxHeight="25.66" maxWidth="148.07" minHeight="25.66" minWidth="148.07" prefHeight="25.66" prefWidth="148.07" promptText="Category" style="-fx-background-color: #ffffff; -fx-border-color: #ccc; -fx-background-radius: 5px; -fx-border-radius: 5px;">
+                        </Button>
+                        <ComboBox maxHeight="25.66" maxWidth="148.07" minHeight="25.66" minWidth="148.07" prefHeight="25.66" prefWidth="148.07" promptText="Category" style="-fx-background-color: #ffffff; -fx-border-color: #ccc; -fx-background-radius: 5px; -fx-border-radius: 5px; -fx-opacity: 0.8;">
                            <VBox.margin>
-                              <Insets left="10.0" top="7.5" />
+                              <Insets bottom="8.0" left="10.0" top="7.5" />
                            </VBox.margin>
                         </ComboBox>
                      </children>
@@ -191,38 +190,38 @@
                   </VBox>
                   <VBox alignment="CENTER_LEFT" prefHeight="32.06" prefWidth="168.0" styleClass="hover-box" stylesheets="@../../css/market.css">
                      <children>
-                        <Label text="Profile">
+                        <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="27.0" prefWidth="153.0" style="-fx-background-color: transparent;" text="Profile">
                            <font>
                               <Font name="Berlin Sans FB" size="15.0" />
                            </font>
-                           <padding>
-                              <Insets left="40.0" />
-                           </padding>
-                        </Label>
+                           <VBox.margin>
+                              <Insets left="30.0" />
+                           </VBox.margin>
+                        </Button>
                      </children>
                   </VBox>
                   <VBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="51.0" prefHeight="32.06" prefWidth="100.0" styleClass="hover-box" stylesheets="@../../css/market.css">
                      <children>
-                        <Label text="Cart">
+                        <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="27.0" prefWidth="169.0" style="-fx-background-color: transparent;" text="Cart">
                            <font>
                               <Font name="Berlin Sans FB" size="15.0" />
                            </font>
-                           <padding>
-                              <Insets left="40.0" />
-                           </padding>
-                        </Label>
+                           <VBox.margin>
+                              <Insets left="30.0" />
+                           </VBox.margin>
+                        </Button>
                      </children>
                   </VBox>
                   <VBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="84.0" prefHeight="32.06" prefWidth="168.0" styleClass="hover-box" stylesheets="@../../css/market.css" VBox.vgrow="ALWAYS">
                      <children>
-                        <Label text="Favorite">
+                        <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="27.0" prefWidth="164.0" style="-fx-background-color: transparent;" text="Shops">
                            <font>
                               <Font name="Berlin Sans FB" size="15.0" />
                            </font>
-                           <padding>
-                              <Insets left="40.0" />
-                           </padding>
-                        </Label>
+                           <VBox.margin>
+                              <Insets left="30.0" />
+                           </VBox.margin>
+                        </Button>
                      </children>
                      <padding>
                         <Insets bottom="6.0" />
@@ -271,7 +270,7 @@
             <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: transparent transparent transparent #D9D9D9; -fx-border-width: 1px; -fx-background-color: rgba(206, 206, 206, 0.2);">
                <children>
                   <Region prefHeight="35.0" prefWidth="770.0" />
-                  <AnchorPane minHeight="124.88" prefHeight="124.88" prefWidth="200.0" style="-fx-background-color: #D9D9D9; -fx-border-color: #9BA1A6;">
+                  <AnchorPane minHeight="124.88" prefHeight="126.0" prefWidth="128.0" style="-fx-background-color: #D9D9D9; -fx-border-color: #9BA1A6 #9BA1A6 transparent  #9BA1A6;">
                      <VBox.margin>
                         <Insets left="25.0" right="25.0" />
                      </VBox.margin>
@@ -279,14 +278,17 @@
                         <Insets />
                      </opaqueInsets>
                      <children>
-                        <AnchorPane layoutY="98.0" prefHeight="28.0" prefWidth="640.0" style="-fx-background-color: white; -fx-border-color: #9BA1A6 transparent #9BA1A6 transparent;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                        <AnchorPane layoutY="98.0" prefHeight="28.0" prefWidth="640.0" style="-fx-background-color: white; -fx-border-color: #9BA1A6 transparent transparent transparent;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                            <children>
-                              <HBox layoutX="11.0" layoutY="7.0" spacing="110.0">
+                              <HBox layoutX="11.0" layoutY="6.0" spacing="110.0">
                                  <children>
                                     <Label text="Showing n to n of max(n)">
                                        <font>
                                           <Font name="Arial" size="9.0" />
                                        </font>
+                                       <HBox.margin>
+                                          <Insets top="1.3" />
+                                       </HBox.margin>
                                     </Label>
                                     <HBox spacing="5.0">
                                        <children>
@@ -300,12 +302,15 @@
                                                 <Image url="@../../assets/d_button3.png" />
                                              </image>
                                              <HBox.margin>
-                                                <Insets bottom="2.5" left="2.5" right="2.5" top="3.0" />
+                                                <Insets bottom="2.5" left="2.5" right="2.5" top="1.5" />
                                              </HBox.margin>
                                           </ImageView>
                                        </children>
+                                       <HBox.margin>
+                                          <Insets top="1.3" />
+                                       </HBox.margin>
                                     </HBox>
-                                    <HBox>
+                                    <HBox spacing="5.0">
                                        <children>
                                           <Label text="Sort by: Best Selling ">
                                              <font>
@@ -317,10 +322,13 @@
                                                 <Image url="@../../assets/d_button3.png" />
                                              </image>
                                              <HBox.margin>
-                                                <Insets bottom="2.5" left="2.5" right="2.5" top="3.0" />
+                                                <Insets bottom="2.5" right="2.5" top="1.5" />
                                              </HBox.margin>
                                           </ImageView>
                                        </children>
+                                       <HBox.margin>
+                                          <Insets top="1.3" />
+                                       </HBox.margin>
                                     </HBox>
                                     <HBox spacing="5.0">
                                        <children>
@@ -329,12 +337,12 @@
                                                 <Font name="Arial" size="9.0" />
                                              </font>
                                              <HBox.margin>
-                                                <Insets top="1.0" />
+                                                <Insets top="1.3" />
                                              </HBox.margin>
                                           </Label>
                                           <ImageView fitHeight="12.0" fitWidth="12.0">
                                              <image>
-                                                <Image url="@../../assets/d_button1.png" />
+                                                <Image url="@../../assets/d_buttonblue2.png" />
                                              </image>
                                              <HBox.margin>
                                                 <Insets top="1.5" />
@@ -342,7 +350,7 @@
                                           </ImageView>
                                           <ImageView fitHeight="12.0" fitWidth="12.0">
                                              <image>
-                                                <Image url="@../../assets/d_button2.png" />
+                                                <Image url="@../../assets/d_buttonblack2.png" />
                                              </image>
                                              <HBox.margin>
                                                 <Insets top="1.5" />
@@ -356,28 +364,34 @@
                         </AnchorPane>
                         <VBox layoutX="24.0" layoutY="23.0" spacing="5.0">
                            <children>
-                              <Label text="Store shops" textFill="#0095ff">
+                              <Label text="Nearest Shops" textFill="#0095ff">
                                  <font>
                                     <Font name="Berlin Sans FB" size="32.0" />
                                  </font>
                               </Label>
                               <Label text="Stores around your area are ready. Find the nearest one and request the parts you need. Availability may vary depending on location.">
                                  <font>
-                                    <Font name="Arial" size="11.0" />
+                                    <Font name="Arial" size="10.0" />
                                  </font>
                               </Label>
                            </children>
                         </VBox>
                      </children>
                   </AnchorPane>
-                  <Region prefHeight="17.0" prefWidth="770.0" />
-                  <ScrollPane prefHeight="340.0" prefWidth="770.0">
-                     <content>
-                        <VBox fx:id="shopsCardLayout" maxHeight="1.7976931348623157E308" prefHeight="600.0" prefWidth="703.0" />
-                     </content>
+                  <ScrollPane fx:id="scrollPane" prefHeight="365.0" prefWidth="721.0" style="-fx-background-color: transparent; -fx-padding: 0; -fx-focus-color: 0; -fx-faint-focus-color: transparent; -fx-border-color: #9BA1A6 #9BA1A6 transparent  #9BA1A6;">
                      <VBox.margin>
                         <Insets left="25.0" right="25.0" />
                      </VBox.margin>
+                     <content>
+                        <GridPane fx:id="productsContainer" prefHeight="0.0" prefWidth="0.0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <padding>
+                              <Insets top="-10.5" />
+                           </padding>
+                        </GridPane>
+                     </content>
                   </ScrollPane>
                </children></VBox>
          </children>

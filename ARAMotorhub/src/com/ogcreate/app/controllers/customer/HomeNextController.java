@@ -65,7 +65,7 @@ public class HomeNextController implements Initializable {
     @FXML
     public void handleShopClick(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/customer/Shop.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/customer/Shops.fxml"));
             Parent newRoot = loader.load();
 
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
