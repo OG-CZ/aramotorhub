@@ -154,12 +154,12 @@
                   </HBox>
                   <VBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="168.0" styleClass="hover-box" stylesheets="@../../css/market.css" VBox.vgrow="ALWAYS">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="90.0" style="-fx-background-color: transparent;" text="Categories">
+                        <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="27.0" prefWidth="198.0" style="-fx-background-color: transparent;" text="Categories">
                            <font>
                               <Font name="Berlin Sans FB" size="15.0" />
                            </font>
                            <VBox.margin>
-                              <Insets bottom="-5.0" left="27.5" />
+                              <Insets bottom="-5.0" left="29.0" />
                            </VBox.margin>
                         </Button>
                         <ComboBox maxHeight="25.66" maxWidth="148.07" minHeight="25.66" minWidth="148.07" prefHeight="25.66" prefWidth="148.07" promptText="Category" style="-fx-background-color: #ffffff; -fx-border-color: #ccc; -fx-background-radius: 5px; -fx-border-radius: 5px; -fx-opacity: 0.8;">
