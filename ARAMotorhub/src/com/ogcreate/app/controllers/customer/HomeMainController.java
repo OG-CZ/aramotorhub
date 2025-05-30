@@ -65,6 +65,8 @@ public class HomeMainController implements Initializable {
         categoryComboBox.getItems().addAll(
             "Engine Parts", "Suspension", "Wheels", "Oils", "Bolts", "Exterior"
         );
+        
+
     }
 
     @FXML

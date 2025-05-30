@@ -1,0 +1,17 @@
+@font-face {
+    font-family: "SF Pro Display Medium";
+    src: url("/src/resources/fonts/SF-Pro-Display-Medium.otf");
+}
+
+@font-face {
+    font-family: "SF Pro";
+    src: url("/src/resources/fonts/SF-Pro.ttf");
+}
+
+.label {
+    -fx-font-family: "SF Pro";
+}
+
+.sfpro.button {
+    -fx-font-family: "SF Pro Display Medium";
+}

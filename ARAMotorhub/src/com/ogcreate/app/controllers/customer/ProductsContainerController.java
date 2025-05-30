@@ -21,6 +21,11 @@ public class ProductsContainerController {
     @FXML
     private Label storeName;
 
+    @FXML
+    public void handleCartClick(ActionEvent event) {
+        System.out.println("handleCartClick triggered");
+    }
+
     public void setData(Products product) {
         productName.setText(product.getProductName());
         productPrice.setText(product.getProductPrice());

@@ -129,7 +129,30 @@ public class ShopsController implements Initializable {
                 e.printStackTrace();
             }
         }
+
+    @FXML
+    void handleFavoriteClick(ActionEvent event) {
+        System.out.println("handleFavoriteClick triggered");
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/customer/Favorite.fxml"));
+            Parent newRoot = loader.load();
+
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene newScene = new Scene(newRoot);
+            currentStage.setScene(newScene);
+            currentStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
+
+    @FXML
+    private void handleCartClick(ActionEvent event) {
+        System.out.println("handleCartClick triggered");
+    }
+}
 
 
 

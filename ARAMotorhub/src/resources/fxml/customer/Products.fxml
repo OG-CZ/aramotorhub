@@ -178,7 +178,7 @@
                   <Separator prefWidth="200.0" />
                   <VBox alignment="CENTER_LEFT" prefHeight="44.0" prefWidth="100.0">
                      <children>
-                        <Label prefHeight="44.0" prefWidth="182.0" text="Label" VBox.vgrow="ALWAYS">
+                        <Label prefHeight="44.0" prefWidth="182.0" text="View" VBox.vgrow="ALWAYS">
                            <font>
                               <Font name="Berlin Sans FB" size="15.0" />
                            </font>
@@ -202,7 +202,7 @@
                   </VBox>
                   <VBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="51.0" prefHeight="32.06" prefWidth="100.0" styleClass="hover-box" stylesheets="@../../css/market.css">
                      <children>
-                        <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="27.0" prefWidth="169.0" style="-fx-background-color: transparent;" text="Cart">
+                        <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleCartClick" prefHeight="27.0" prefWidth="169.0" style="-fx-background-color: transparent;" text="Cart">
                            <font>
                               <Font name="Berlin Sans FB" size="15.0" />
                            </font>
@@ -214,7 +214,7 @@
                   </VBox>
                   <VBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="84.0" prefHeight="32.06" prefWidth="168.0" styleClass="hover-box" stylesheets="@../../css/market.css" VBox.vgrow="ALWAYS">
                      <children>
-                        <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="27.0" prefWidth="164.0" style="-fx-background-color: transparent;" text="Shops">
+                        <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleFavoriteClick" prefHeight="27.0" prefWidth="164.0" style="-fx-background-color: transparent;" text="Favorite">
                            <font>
                               <Font name="Berlin Sans FB" size="15.0" />
                            </font>
