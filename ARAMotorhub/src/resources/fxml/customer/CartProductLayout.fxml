@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="383.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <StackPane prefHeight="80.0" prefWidth="80.0">
+         <children>
+            <Label alignment="CENTER" prefHeight="63.0" prefWidth="60.0" style="-fx-background-color: #d9d9d9; -fx-background-radius: 10;" text="Ip">
+               <font>
+                  <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </StackPane>
+      <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0">
+         <children>
+            <Label text="Item Product 1">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label text="Store Name">
+               <font>
+                  <Font name="Arial" size="10.0" />
+               </font>
+            </Label>
+            <Label text="Adress">
+               <font>
+                  <Font name="Arial" size="10.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <StackPane alignment="CENTER_RIGHT" prefHeight="80.0" prefWidth="105.0">
+         <children>
+            <Spinner prefHeight="27.0" prefWidth="53.0" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-focus-color: transparent; -fx-faint-focus-color: transparent;" />
+         </children>
+      </StackPane>
+      <StackPane prefHeight="80.0" prefWidth="60.0">
+         <children>
+            <Label text="100">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </StackPane>
+      <StackPane alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="37.0">
+         <children>
+            <ImageView fitHeight="22.0" fitWidth="22.0">
+               <image>
+                  <Image url="@../../assets/f_trashpic.png" />
+               </image>
+            </ImageView>
+         </children>
+      </StackPane>
+   </children>
+</HBox>

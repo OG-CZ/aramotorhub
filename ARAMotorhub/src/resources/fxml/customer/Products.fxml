@@ -378,7 +378,7 @@
                         </VBox>
                      </children>
                   </AnchorPane>
-                  <ScrollPane fx:id="scrollPane" prefHeight="365.0" prefWidth="721.0" style="-fx-background-color: transparent; -fx-padding: 0; -fx-focus-color: 0; -fx-faint-focus-color: transparent; -fx-border-color: #9BA1A6 #9BA1A6 transparent  #9BA1A6;">
+                  <ScrollPane fx:id="scrollPane" prefHeight="365.0" prefWidth="721.0" style="-fx-background-color: transparent; -fx-padding: 0; -fx-focus-color: 0; -fx-faint-focus-color: transparent; -fx-border-color: #9BA1A6;">
                      <VBox.margin>
                         <Insets left="25.0" right="25.0" />
                      </VBox.margin>

@@ -142,7 +142,7 @@
                         </Button>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="52.0" prefHeight="32.06" prefWidth="200.0" style="-fx-background-color: #D9D9D9;" styleClass="hover-box" stylesheets="@../../css/market.css">
+                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="52.0" prefHeight="32.06" prefWidth="200.0" styleClass="hover-box" stylesheets="@../../css/market.css">
                      <children>
                         <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="27.0" prefWidth="146.0" style="-fx-background-color: transparent;" text="Products">
                            <font>
@@ -154,7 +154,7 @@
                         </Button>
                      </children>
                   </HBox>
-                  <VBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="168.0" styleClass="hover-box" stylesheets="@../../css/market.css" VBox.vgrow="ALWAYS">
+                  <VBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="168.0" style="-fx-background-color: #D9D9D9;" styleClass="hover-box" stylesheets="@../../css/market.css" VBox.vgrow="ALWAYS">
                      <children>
                         <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="27.0" prefWidth="273.0" style="-fx-background-color: transparent;" text="Categories">
                            <font>
@@ -164,7 +164,7 @@
                               <Insets bottom="-5.0" left="29.0" />
                            </VBox.margin>
                         </Button>
-                        <ComboBox maxHeight="25.66" maxWidth="148.07" minHeight="25.66" minWidth="148.07" prefHeight="25.66" prefWidth="148.07" promptText="Category" style="-fx-background-color: #ffffff; -fx-border-color: #ccc; -fx-background-radius: 5px; -fx-border-radius: 5px; -fx-opacity: 0.8;">
+                        <ComboBox maxHeight="25.66" maxWidth="148.07" minHeight="0.0" minWidth="148.07" prefHeight="25.66" prefWidth="149.0" promptText="Category" style="-fx-background-color: #ffffff; -fx-background-radius: 5px; -fx-border-radius: 5px; -fx-opacity: 0.8;">
                            <VBox.margin>
                               <Insets bottom="8.0" left="10.0" top="7.5" />
                            </VBox.margin>
@@ -364,11 +364,20 @@
                         </AnchorPane>
                         <VBox layoutX="24.0" layoutY="23.0" spacing="5.0">
                            <children>
-                              <Label text="Pre-Order" textFill="#0095ff">
-                                 <font>
-                                    <Font name="Berlin Sans FB" size="32.0" />
-                                 </font>
-                              </Label>
+                              <HBox>
+                                 <children>
+                                    <Label text="Products for " textFill="#0095ff">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="32.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="&quot;Motor&quot;" textFill="#0095ff">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="32.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
                               <Label text="Limited release. Order now and get it delivered to your door step. Delivery may take longer than usual.">
                                  <font>
                                     <Font name="Arial" size="10.0" />
