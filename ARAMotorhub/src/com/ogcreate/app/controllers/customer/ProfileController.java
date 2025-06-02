@@ -1,4 +1,4 @@
-package com.ogcreate.app.controllers;
+package com.ogcreate.app.controllers.customer;
 
 import java.io.IOException;
 
@@ -12,71 +12,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class FavoriteController {
+public class ProfileController {
 
-    @FXML
-    void handleHomeButton(ActionEvent event) {
-        System.out.println("handleHomeButton triggered");
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/customer/HomeMain.fxml"));
-            Parent newRoot = loader.load();
-
-            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Scene newScene = new Scene(newRoot);
-            currentStage.setScene(newScene);
-            currentStage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
-    void handleLogOutButton(ActionEvent event) {
-        System.out.println("Logout clicked");
-        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        SettingsWindowHelper.logout(currentStage);
-    }
-
-    @FXML
-    private void handleOpenSettings(ActionEvent event) {
-        SettingsWindowHelper.openSettings((Node) event.getSource());
-    }
-
-    @FXML
-    void handleShopsClick(ActionEvent event) {
-        System.out.println("handleShopsClick triggered");
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/customer/Shops.fxml"));
-            Parent newRoot = loader.load();
-
-            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Scene newScene = new Scene(newRoot);
-            currentStage.setScene(newScene);
-            currentStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
-    private void handleProductsClick(ActionEvent event) {
-    System.out.println("handleProductsClick triggered");
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/customer/Products.fxml"));
-                Parent newRoot = loader.load();
-
-                Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                Scene newScene = new Scene(newRoot);
-                currentStage.setScene(newScene);
-                currentStage.show();
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-        
     @FXML 
     void handleCartClick(ActionEvent event) {
         System.out.println("handleCartClick triggered");
@@ -95,11 +32,56 @@ public class FavoriteController {
     }
 
     @FXML
-    private void handleProfileClick(ActionEvent event) {
-        System.out.println("handleProfileClick triggered");
+    void handleHomeButton(ActionEvent event) {
+        System.out.println("handleHomeButton triggered");
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/customer/HomeMain.fxml"));
+            Parent newRoot = loader.load();
 
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene newScene = new Scene(newRoot);
+            currentStage.setScene(newScene);
+            currentStage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+   @FXML
+    void handleLogOutButton(ActionEvent event) {
+        System.out.println("Logout clicked");
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        SettingsWindowHelper.logout(currentStage);
+    }
+
+    @FXML
+    private void handleOpenSettings(ActionEvent event) {
+        SettingsWindowHelper.openSettings((Node) event.getSource());
+    }
+
+     @FXML
+    private void handleProductsClick(ActionEvent event) {
+    System.out.println("handleProductsClick triggered");
             try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/customer/Profile.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/customer/Products.fxml"));
+                Parent newRoot = loader.load();
+
+                Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Scene newScene = new Scene(newRoot);
+                currentStage.setScene(newScene);
+                currentStage.show();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        
+    @FXML
+    void handleShopsClick(ActionEvent event) {
+        System.out.println("handleShopsClick triggered");
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/customer/Shops.fxml"));
             Parent newRoot = loader.load();
 
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -109,5 +91,27 @@ public class FavoriteController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    void handleFavoriteClick(ActionEvent event) {
+        System.out.println("handleFavoriteClick triggered");
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/customer/Favorite.fxml"));
+            Parent newRoot = loader.load();
+
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene newScene = new Scene(newRoot);
+            currentStage.setScene(newScene);
+            currentStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void handleProfileClick(ActionEvent event) {
+        System.out.println("handleProfileClick triggered");
     }
 }

@@ -119,7 +119,7 @@
          <children>
             <VBox maxWidth="180.0" minHeight="180.0" prefHeight="180.0" prefWidth="168.0">
                <children>
-                  <Label prefHeight="44.0" prefWidth="182.0" text="Label">
+                  <Label prefHeight="44.0" prefWidth="182.0" text="Browse">
                      <font>
                         <Font name="Berlin Sans FB" size="15.0" />
                      </font>
@@ -266,7 +266,7 @@
             </ImageView>
             <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: transparent transparent transparent #D9D9D9; -fx-border-width: 1px; -fx-background-color: rgba(206, 206, 206, 0.2);">
                <children>
-                  <Region prefHeight="35.0" prefWidth="200.0" />
+                  <Region prefHeight="35.0" prefWidth="770.0" />
                   <HBox prefHeight="106.0" prefWidth="770.0">
                      <children>
                         <StackPane prefHeight="150.0" prefWidth="200.0">
@@ -280,34 +280,41 @@
                         </StackPane>
                         <VBox prefHeight="164.0" prefWidth="226.0">
                            <children>
-                              <Label text="John Doe Dragonov">
-                                 <font>
-                                    <Font name="Arial Rounded MT Bold" size="18.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="10.0" layoutY="10.0" text="Customer Account">
-                                 <font>
-                                    <Font name="Arial Rounded MT Bold" size="11.0" />
-                                 </font>
-                                 <padding>
-                                    <Insets bottom="20.0" />
-                                 </padding>
-                              </Label>
-                              <Label text="123 Adress Street City Country">
-                                 <font>
-                                    <Font name="Arial" size="12.0" />
-                                 </font>
-                              </Label>
-                              <Label text="09123456789+">
-                                 <font>
-                                    <Font name="Arial" size="12.0" />
-                                 </font>
-                              </Label>
-                              <Label text="followogcreate@instagram.com">
-                                 <font>
-                                    <Font name="Arial" size="12.0" />
-                                 </font>
-                              </Label>
+                              <VBox alignment="CENTER_LEFT" prefHeight="164.0" prefWidth="226.0">
+                                 <children>
+                                    <Label text="John Doe Dragonov">
+                                       <font>
+                                          <Font name="Arial Rounded MT Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="10.0" layoutY="10.0" text="Customer Account">
+                                       <font>
+                                          <Font name="Arial Rounded MT Bold" size="11.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets bottom="15.0" />
+                                       </padding>
+                                    </Label>
+                                    <Label text="123 Adress Street City Country">
+                                       <font>
+                                          <Font name="Arial" size="10.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="09123456789+">
+                                       <font>
+                                          <Font name="Arial" size="10.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="followogcreate@instagram.com">
+                                       <font>
+                                          <Font name="Arial" size="10.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets bottom="15.0" />
+                                 </opaqueInsets>
+                              </VBox>
                            </children>
                            <opaqueInsets>
                               <Insets bottom="15.0" />
@@ -315,14 +322,24 @@
                         </VBox>
                         <StackPane alignment="TOP_RIGHT" prefHeight="164.0" prefWidth="0.0" HBox.hgrow="ALWAYS">
                            <children>
-                              <VBox alignment="TOP_RIGHT" spacing="10.0">
+                              <VBox alignment="TOP_RIGHT" spacing="14.0">
                                  <StackPane.margin>
                                     <Insets />
                                  </StackPane.margin>
                                  <children>
-                                    <Button mnemonicParsing="false" onAction="#handleSaveButton" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: #F4F4F4; -fx-border-color: rgba(0, 0, 0, 0.5); -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6;" text="Edit Profile" textFill="#0000007f">
+                                    <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: #F4F4F4; -fx-border-color: rgba(0, 0, 0, 0.8); -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6;" text="Edit Profile">
                                        <font>
-                                          <Font size="10.0" />
+                                          <Font name="Arial Bold" size="9.0" />
+                                       </font>
+                                    </Button>
+                                    <Button layoutX="244.0" layoutY="51.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: #F4F4F4; -fx-border-color: rgba(0, 0, 0, 0.8); -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6;" text="Iventory">
+                                       <font>
+                                          <Font name="Arial Bold" size="9.0" />
+                                       </font>
+                                    </Button>
+                                    <Button layoutX="244.0" layoutY="91.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: #F4F4F4; -fx-border-color: rgba(0, 0, 0, 0.8); -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6;" text="Dashboard">
+                                       <font>
+                                          <Font name="Arial Bold" size="9.0" />
                                        </font>
                                     </Button>
                                  </children>
@@ -340,6 +357,19 @@
                         </StackPane>
                      </children>
                   </HBox>
+                  <Region layoutX="11.0" layoutY="11.0" prefHeight="20.0" prefWidth="770.0" />
+                  <StackPane prefHeight="150.0" prefWidth="770.0">
+                     <children>
+                        <HBox prefWidth="545.0" style="-fx-background-color: #d9d9d9; -fx-border-color: #9BA1A6; -fx-background-radius: 3; -fx-border-radius: 3;">
+                           <StackPane.margin>
+                              <Insets bottom="5.0" left="25.0" right="25.0" top="5.0" />
+                           </StackPane.margin>
+                           <children>
+                              <VBox prefHeight="139.0" prefWidth="138.0" style="-fx-border-color: #9BA1A6;" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </StackPane>
                </children></VBox>
          </children>
       </StackPane>

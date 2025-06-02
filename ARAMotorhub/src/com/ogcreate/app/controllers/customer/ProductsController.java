@@ -161,5 +161,35 @@ public class ProductsController implements Initializable {
     @FXML 
     void handleCartClick(ActionEvent event) {
         System.out.println("handleCartClick triggered");
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/customer/Cart.fxml"));
+            Parent newRoot = loader.load();
+
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene newScene = new Scene(newRoot);
+            currentStage.setScene(newScene);
+            currentStage.show();
+        } catch (IOException e) {
+        e.printStackTrace();
+        }        
     }
+
+    @FXML
+    private void handleProfileClick(ActionEvent event) {
+        System.out.println("handleProfileClick triggered");
+
+            try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/customer/Profile.fxml"));
+            Parent newRoot = loader.load();
+
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene newScene = new Scene(newRoot);
+            currentStage.setScene(newScene);
+            currentStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
 }

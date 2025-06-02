@@ -48,5 +48,6 @@
       <Button layoutX="512.0" layoutY="21.0" mnemonicParsing="false" onAction="#handleShopClick" opacity="0.0" prefHeight="35.0" prefWidth="40.0" text="shop" />
       <Button layoutX="460.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleGoBackButton" opacity="0.0" text="go back" />
       <Button layoutX="34.0" layoutY="202.0" mnemonicParsing="false" onAction="#handleShopClick" opacity="0.0" prefHeight="35.0" prefWidth="77.0" text="shop" />
+      <Button layoutX="748.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleCartButton" opacity="0.0" prefHeight="26.0" prefWidth="33.0" text="cartButton" />
    </children>
 </AnchorPane>

@@ -18,7 +18,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="609.23" prefWidth="938.32" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ogcreate.app.controllers.CartController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="609.23" prefWidth="938.32" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ogcreate.app.controllers.customer.CartController">
    <top>
       <HBox alignment="CENTER" maxHeight="63.29" minHeight="63.29" prefHeight="63.29" prefWidth="200.0" style="-fx-background-color: white; -fx-border-width: 0 0 1px 0;" BorderPane.alignment="CENTER">
          <children>
@@ -77,7 +77,7 @@
                                     <Font name="Arial" size="10.0" />
                                  </font>
                               </Button>
-                              <Button mnemonicParsing="false" style="-fx-background-color: transparent;" text="Shop">
+                              <Button mnemonicParsing="false" onAction="#handleProductsClick" style="-fx-background-color: transparent;" text="Shop">
                                  <font>
                                     <Font name="Arial" size="10.0" />
                                  </font>
@@ -101,7 +101,7 @@
                         </ImageView>
                      </children>
                   </HBox>
-                  <Button layoutX="475.0" layoutY="2.0" mnemonicParsing="false" onAction="#handleOpenSettings" opacity="0.0" prefHeight="59.0" prefWidth="52.0" text="Profile Icon" />
+                  <Button layoutX="475.0" layoutY="2.0" mnemonicParsing="false" onAction="#handleProfileClick" opacity="0.0" prefHeight="59.0" prefWidth="52.0" text="Profile Icon" />
                </children>
             </AnchorPane>
          </children>
@@ -119,7 +119,7 @@
          <children>
             <VBox maxWidth="180.0" minHeight="180.0" prefHeight="180.0" prefWidth="168.0">
                <children>
-                  <Label prefHeight="44.0" prefWidth="182.0" text="Label">
+                  <Label prefHeight="44.0" prefWidth="182.0" text="Browse">
                      <font>
                         <Font name="Berlin Sans FB" size="15.0" />
                      </font>
@@ -187,7 +187,7 @@
                   </VBox>
                   <VBox alignment="CENTER_LEFT" prefHeight="32.06" prefWidth="168.0" styleClass="hover-box" stylesheets="@../../css/market.css">
                      <children>
-                        <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="27.0" prefWidth="155.0" style="-fx-background-color: transparent;" text="Profile">
+                        <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleProfileClick" prefHeight="27.0" prefWidth="155.0" style="-fx-background-color: transparent;" text="Profile">
                            <font>
                               <Font name="Berlin Sans FB" size="15.0" />
                            </font>
@@ -197,7 +197,7 @@
                         </Button>
                      </children>
                   </VBox>
-                  <VBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="51.0" prefHeight="32.06" prefWidth="100.0" styleClass="hover-box" stylesheets="@../../css/market.css">
+                  <VBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="51.0" prefHeight="32.06" prefWidth="100.0" style="-fx-background-color: #D9D9D9;" styleClass="hover-box" stylesheets="@../../css/market.css">
                      <children>
                         <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="27.0" prefWidth="150.0" style="-fx-background-color: transparent;" text="Cart">
                            <font>
@@ -209,9 +209,9 @@
                         </Button>
                      </children>
                   </VBox>
-                  <VBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="84.0" prefHeight="32.06" prefWidth="168.0" style="-fx-background-color: #D9D9D9;" styleClass="hover-box" stylesheets="@../../css/market.css" VBox.vgrow="ALWAYS">
+                  <VBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="84.0" prefHeight="32.06" prefWidth="168.0" styleClass="hover-box" stylesheets="@../../css/market.css" VBox.vgrow="ALWAYS">
                      <children>
-                        <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="27.0" prefWidth="164.0" style="-fx-background-color: transparent;" text="Favorite">
+                        <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleFavoriteClick" prefHeight="27.0" prefWidth="164.0" style="-fx-background-color: transparent;" text="Favorite">
                            <font>
                               <Font name="Berlin Sans FB" size="15.0" />
                            </font>
@@ -281,11 +281,12 @@
                                     <TextField layoutX="485.0" layoutY="261.0" prefHeight="26.0" prefWidth="214.0" />
                                     <TextField layoutX="484.0" layoutY="260.0" prefHeight="26.0" prefWidth="215.15" />
                                     <Button layoutX="485.0" layoutY="420.0" mnemonicParsing="false" onAction="#handleCheckoutClick" opacity="0.0" prefHeight="37.0" prefWidth="214.0" text="checkout" />
-                                    <ScrollPane layoutX="62.0" layoutY="143.0" prefHeight="328.0" prefWidth="399.0" style="-fx-background-color: transparent; -fx-background-insets: 0; -fx-padding: 0;" stylesheets="@../../css/scroll-pane.css">
+                                    <ScrollPane layoutX="62.0" layoutY="145.0" prefHeight="328.0" prefWidth="405.0" style="-fx-background-color: transparent; -fx-background-insets: 0; -fx-padding: 0;" stylesheets="@../../css/scroll-pane.css">
                                        <content>
-                                          <VBox prefHeight="800.0" prefWidth="383.0" style="-fx-background-color: transparent; -fx-padding: 0;" />
+                                          <VBox fx:id="vboxCartProducts" prefHeight="992.0" prefWidth="380.0" spacing="5.0" style="-fx-background-color: transparent; -fx-padding: 0;" />
                                        </content>
                                     </ScrollPane>
+                                    <Button layoutX="50.0" layoutY="73.0" mnemonicParsing="false" onAction="#handleProductsClick" opacity="0.0" text="Button" />
                                  </children>
                               </AnchorPane>
                            </children>

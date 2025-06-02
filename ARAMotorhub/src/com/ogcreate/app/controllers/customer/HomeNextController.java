@@ -38,6 +38,23 @@ public class HomeNextController implements Initializable {
         );
     }
 
+    
+    @FXML
+    private void handleCartButton(ActionEvent event) {
+        System.out.println("handleCartButton triggered");
+            try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/customer/Cart.fxml"));
+            Parent newRoot = loader.load();
+
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene newScene = new Scene(newRoot);
+            currentStage.setScene(newScene);
+            currentStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     @FXML
     private void handleOpenSettings(javafx.event.ActionEvent event) {
         SettingsWindowHelper.openSettings((Node) event.getSource());
@@ -60,7 +77,6 @@ public class HomeNextController implements Initializable {
             e.printStackTrace();
         }
     }
-
 
     @FXML
     public void handleShopClick(ActionEvent event) {
