@@ -44,18 +44,18 @@
                               <Font size="11.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="emailField" maxHeight="26.0" maxWidth="207.35" minHeight="26.0" minWidth="207.35" prefHeight="26.0" prefWidth="207.35" promptText="Email" style="-fx-background-radius: 5px;" styleClass="login_register" stylesheets="@../../css/style.css" />
+                        <TextField fx:id="emailField" maxHeight="27.0" maxWidth="207.35" minHeight="27.0" minWidth="207.35" prefHeight="27.0" prefWidth="207.35" promptText="Email" style="-fx-background-radius: 5px;" />
                         <Region maxHeight="10.0" maxWidth="208.0" minHeight="10.0" minWidth="208.0" prefHeight="10.0" prefWidth="208.0" />
                         <Label text="Password">
                            <font>
                               <Font size="11.0" />
                            </font>
                         </Label>
-                        <PasswordField fx:id="passwordField" maxHeight="26.0" maxWidth="207.35" minHeight="26.0" minWidth="207.35" prefHeight="26.0" prefWidth="207.35" promptText="Password" style="-fx-background-radius: 5px;" styleClass="login_register" stylesheets="@../../css/style.css" />
+                        <PasswordField fx:id="passwordField" maxHeight="27.0" maxWidth="207.35" minHeight="27.0" minWidth="207.35" prefHeight="27.0" prefWidth="208.0" promptText="Password" style="-fx-background-radius: 5px;" />
                         <Region layoutX="10.0" layoutY="39.0" prefHeight="30.0" prefWidth="208.0" />
                         <StackPane prefHeight="28.1" prefWidth="207.35" style="-fx-background-color: B7B710; -fx-background-radius: 5; ">
                            <children>
-                              <Button fx:id="signinButton" maxHeight="26.0" maxWidth="207.35" minHeight="26.0" minWidth="207.35" mnemonicParsing="false" onMouseClicked="#handleSignInClick" prefHeight="26.0" prefWidth="207.35" style="-fx-background-color: B7B710; -fx-background-radius: 5;" text="Sign in" textFill="WHITE">
+                              <Button fx:id="signInButton" mnemonicParsing="false" onAction="#handleSignInClick" prefHeight="27.0" prefWidth="207.35" style="-fx-background-color: B7B710; -fx-background-radius: 5;" text="Sign in" textFill="WHITE">
                                  <font>
                                     <Font size="10.69" />
                                  </font>

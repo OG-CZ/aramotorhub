@@ -2,16 +2,20 @@ package com.ogcreate.app.controllers.auth;
 
 import java.io.IOException;
 
+import com.ogcreate.app.database.AuthService;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -24,39 +28,54 @@ public class RegisterStep2Controller {
     private SplitMenuButton districtField;
     private String selectedDistrict;
 
-
     @FXML
     private SplitMenuButton barangayField;
     private String selectedBarangay;
 
-
     @FXML
     private Button submitButton;
 
-    @FXML
-    void handleSignInButtonClick(MouseEvent event) {
-    System.out.println("Sign in go back");
+    private Alert alert;
+    private final AuthService authentication = new AuthService();
 
-            try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/auth/Login.fxml"));
-            Parent newRoot = loader.load();
+    private void showAlert(String title, String message) {
+        alert = new Alert(Alert.AlertType.INFORMATION);
 
-            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            
-            Scene newScene = new Scene(newRoot);
-            currentStage.setScene(newScene);
-            currentStage.show();
+        alert.setTitle(title);
+        alert.setContentText(message);
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image(this.getClass().getResource("/resources/assets/z_favicon.png").toString()));
+        alert.showAndWait();
     }
 
     @FXML
     void handleSubmitButtonClick(MouseEvent event) {
         System.out.println("submit clicked");
-    }
 
+        if (authentication.Submit(true)) {
+            showAlert("Operation Successfull", "You may proceed to Login.");
+
+            if (!alert.isShowing()) {
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/auth/Login.fxml"));
+                    Parent newRoot = loader.load();
+
+                    Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+                    Scene newScene = new Scene(newRoot);
+                    currentStage.setScene(newScene);
+                    currentStage.show();
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            return;
+        }
+
+    }
 
     @FXML
     private void handleBarangaySelect(ActionEvent event) {
@@ -68,10 +87,28 @@ public class RegisterStep2Controller {
         return selectedDistrict;
     }
 
-
     public String getSelectedBarangay() {
         return selectedBarangay;
     }
+
+
+
+        @FXML
+    void handleSignInButtonClick(MouseEvent event) {
+        System.out.println("Sign in go back");
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/auth/Login.fxml"));
+            Parent newRoot = loader.load();
+
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            Scene newScene = new Scene(newRoot);
+            currentStage.setScene(newScene);
+            currentStage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
-
-

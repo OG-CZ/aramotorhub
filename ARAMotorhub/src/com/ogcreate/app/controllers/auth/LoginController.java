@@ -2,13 +2,17 @@ package com.ogcreate.app.controllers.auth;
 
 import java.io.IOException;
 
+import com.ogcreate.app.database.AuthService;
+
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -27,7 +31,6 @@ public class LoginController {
 
     @FXML
     private TextField emailField;
-
     @FXML
     private PasswordField passwordField;
 
@@ -41,7 +44,7 @@ public class LoginController {
     private Pane dummyFocus;
 
     @FXML
-    private Pane backgroundPane2;    
+    private Pane backgroundPane2;
     @FXML
     private Pane backgroundPane3;
     @FXML
@@ -53,47 +56,98 @@ public class LoginController {
     @FXML
     private Button siginButton;
 
-    // this is the signup button below 
+    private final AuthService authentication = new AuthService();
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+
+        alert.setTitle(title);
+        alert.setContentText(message);
+
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image(this.getClass().getResource("/resources/assets/z_favicon.png").toString()));
+        alert.showAndWait();
+    }
+
+    // this is the sign in button
+    @FXML
+    private void handleSignInClick(ActionEvent event) {
+        System.out.println("signin pressed");
+
+        String email = emailField.getText();
+        String password = passwordField.getText();
+
+        try {
+
+            if (email.isEmpty() || password.isEmpty()) {
+                showAlert("Error", "Please enter both email and password.");
+                return;
+            }
+
+            if (authentication.Customer(emailField.getText(), passwordField.getText())) {
+                try {
+                    FXMLLoader loader = new FXMLLoader(
+                            getClass().getResource("/resources/fxml/customer/HomeMain.fxml"));
+                    Parent newRoot = loader.load();
+
+                    Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+                    Scene newScene = new Scene(newRoot);
+                    currentStage.setScene(newScene);
+                    currentStage.show();
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                return;
+            }
+
+            if (authentication.Store(emailField.getText(), passwordField.getText())) {
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/store/Profile.fxml"));
+                    Parent newRoot = loader.load();
+
+                    Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+                    Scene newScene = new Scene(newRoot);
+                    currentStage.setScene(newScene);
+                    currentStage.show();
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                return;
+            }
+
+            if (authentication.Admin(null, null)) {
+
+            }
+
+        } catch (Exception e) {
+            showAlert("Error", "Invalid email or password. Please check and try again.");
+        }
+
+    }
+
+    // this is the signup button below
     @FXML
     private void handleSignUpClick(MouseEvent event) {
         System.out.println("signup pressed");
 
         try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/auth/RegisterStep1.fxml"));
-        Parent newRoot = loader.load();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/auth/RegisterStep1.fxml"));
+            Parent newRoot = loader.load();
 
-        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-          
-        Scene newScene = new Scene(newRoot);
-        currentStage.setScene(newScene);
-        currentStage.show();
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-    } catch (IOException e) {
-        e.printStackTrace();
-    }
-    }
-
-    // this is the sign in button
-    @FXML
-    private void handleSignInClick(MouseEvent event) {
-        System.out.println("signin pressed");
-
-
-        try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/customer/HomeMain.fxml"));
-        Parent newRoot = loader.load();
-
-        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-          
-        Scene newScene = new Scene(newRoot);
-        currentStage.setScene(newScene);
-        currentStage.show();
+            Scene newScene = new Scene(newRoot);
+            currentStage.setScene(newScene);
+            currentStage.show();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
 
     @FXML
     private void handleBackgroundClick(MouseEvent event) {
@@ -106,8 +160,8 @@ public class LoginController {
 
         {
             String imagePath = isFirstButton
-                ? "resources/assets/ara_login_button_a.png"
-                : "resources/assets/ara_login_button_b.png";
+                    ? "resources/assets/ara_login_button_a.png"
+                    : "resources/assets/ara_login_button_b.png";
 
             Image image = new Image(getClass().getClassLoader().getResourceAsStream(imagePath));
 
@@ -145,35 +199,33 @@ public class LoginController {
         fadeOut.play();
     }
 
-        @FXML
-        public void initialize() {
+    @FXML
+    public void initialize() {
 
-        Glow glow = new Glow(0.8);  
-    
+        Glow glow = new Glow(0.8);
+
         signupButton.addEventHandler(MouseEvent.MOUSE_PRESSED, e -> signupButton.setEffect(glow));
-        signupButton.addEventHandler(MouseEvent.MOUSE_RELEASED, e -> signupButton.setEffect(null));    
+        signupButton.addEventHandler(MouseEvent.MOUSE_RELEASED, e -> signupButton.setEffect(null));
 
         dummyFocus.setFocusTraversable(true);
-        backgroundPane2.setFocusTraversable(true); 
-        backgroundPane3.setFocusTraversable(true); 
-        backgroundPane4.setFocusTraversable(true); 
+        backgroundPane2.setFocusTraversable(true);
+        backgroundPane3.setFocusTraversable(true);
+        backgroundPane4.setFocusTraversable(true);
         Platform.runLater(dummyFocus::requestFocus);
 
+        emailField.textProperty().addListener((obs, oldText, newText) -> {
+            if (newText.isEmpty()) {
+                emailField.setStyle("-fx-border-color: gray; -fx-border-radius: 5;"); // default color when empty
+            } else {
+                emailField.setStyle("-fx-border-color: #B7B710; -fx-border-radius: 5;"); // color when typing
+            }
+        });
 
-
-            emailField.textProperty().addListener((obs, oldText, newText) -> {
-                if (newText.isEmpty()) {
-                    emailField.setStyle("-fx-border-color: gray; -fx-border-radius: 5;"); // default color when empty
-                } else {
-                    emailField.setStyle("-fx-border-color: #B7B710; -fx-border-radius: 5;"); // color when typing
-                }
-            });
-
-            passwordField.textProperty().addListener((obs, oldText, newText) -> {
-                if (newText.isEmpty()) {
-                    passwordField.setStyle("-fx-border-color: gray; -fx-border-radius: 5;");
-                } else {
-                    passwordField.setStyle("-fx-border-color: #B7B710; -fx-border-radius: 5;");
+        passwordField.textProperty().addListener((obs, oldText, newText) -> {
+            if (newText.isEmpty()) {
+                passwordField.setStyle("-fx-border-color: gray; -fx-border-radius: 5;");
+            } else {
+                passwordField.setStyle("-fx-border-color: #B7B710; -fx-border-radius: 5;");
             }
         });
     }

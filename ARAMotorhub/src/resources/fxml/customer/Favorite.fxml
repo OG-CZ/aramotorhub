@@ -264,7 +264,7 @@
                   <Image url="@../../assets/d_bgPane.png" />
                </image>
             </ImageView>
-            <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: transparent transparent transparent #D9D9D9; -fx-border-width: 1px; -fx-background-color: rgba(206, 206, 206, 0.2);">
+            <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: transparent transparent transparent #D9D9D9; -fx-border-width: 1px; -fx-background-color: rgba(206, 206, 206, 0.3);">
                <children>
                   <StackPane prefHeight="544.0" prefWidth="770.0">
                      <children>

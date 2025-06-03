@@ -2,6 +2,7 @@ package com.ogcreate.app.controllers.auth;
 
 import java.io.IOException;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -25,16 +26,14 @@ public class RegisterStep1Controller {
     private TextField lastNameField;
 
     @FXML
-    private Button nextButton;
-
-    @FXML
     private Button signInButton;
 
     @FXML
     private PasswordField userPasswordField;
 
+   
     @FXML
-    void handleNextButtonClick(MouseEvent event) {
+    void handleNextButtonClick(ActionEvent event) {
         System.out.println("Next Clicked");
 
         try {

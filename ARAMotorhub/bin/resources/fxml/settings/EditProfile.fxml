@@ -7,6 +7,8 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitMenuButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -34,7 +36,7 @@
             </Button>
          </children>
          <padding>
-            <Insets left="15.0" top="15.0" />
+            <Insets left="20.0" top="20.0" />
          </padding>
          <BorderPane.margin>
             <Insets />
@@ -44,7 +46,7 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
-            <Group layoutX="162.0" layoutY="100.0">
+            <Group layoutX="163.0" layoutY="129.0">
                <children>
                   <VBox spacing="5.0">
                      <children>
@@ -117,14 +119,12 @@
                   </VBox>
                </children>
             </Group>
-            <Button layoutX="384.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleSaveButton" prefHeight="28.88" prefWidth="71.72" style="-fx-background-color: transparent; -fx-border-color: rgba(0, 0, 0, 0.5); -fx-border-width: 0.5; -fx-border-radius: 6;" text="Save" textFill="#0000007f" />
-            <Group layoutX="389.0" layoutY="32.0" />
-            <Group layoutX="388.0" layoutY="32.0">
-               <children>
-                  <AnchorPane prefHeight="56.0" prefWidth="56.0" style="-fx-background-radius: 100; -fx-background-color: #D9D9D9;" />
-                  <AnchorPane layoutX="42.0" layoutY="17.0" prefHeight="21.0" prefWidth="21.0" style="-fx-background-radius: 100; -fx-background-color: black; -fx-border-color: white; -fx-border-width: 2; -fx-border-radius: 100;" />
-               </children>
-            </Group>
+            <Button layoutX="384.0" layoutY="362.0" mnemonicParsing="false" onAction="#handleSaveButton" prefHeight="28.88" prefWidth="71.72" style="-fx-background-color: transparent; -fx-border-color: rgba(0, 0, 0, 0.35); -fx-border-width: 1; -fx-border-radius: 5;" text="Save" textFill="#0000007f" />
+            <ImageView fitHeight="73.0" fitWidth="120.0" layoutX="360.0" layoutY="31.0">
+               <image>
+                  <Image url="@../../assets/logo.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </center>

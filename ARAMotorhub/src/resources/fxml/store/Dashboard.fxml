@@ -19,7 +19,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="609.23" prefWidth="938.32" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ogcreate.app.controllers.store.ProfileController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="609.23" prefWidth="938.32" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ogcreate.app.controllers.FavoriteController">
    <top>
       <HBox alignment="CENTER" maxHeight="63.29" minHeight="63.29" prefHeight="63.29" prefWidth="200.0" style="-fx-background-color: white; -fx-border-width: 0 0 1px 0;" BorderPane.alignment="CENTER">
          <children>
@@ -186,7 +186,7 @@
                         </Label>
                      </children>
                   </VBox>
-                  <VBox alignment="CENTER_LEFT" prefHeight="32.06" prefWidth="168.0" style="-fx-background-color: #d9d9d9;" styleClass="hover-box" stylesheets="@../../css/market.css">
+                  <VBox alignment="CENTER_LEFT" prefHeight="32.06" prefWidth="168.0" styleClass="hover-box" stylesheets="@../../css/market.css">
                      <children>
                         <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleProfileClick" prefHeight="27.0" prefWidth="155.0" style="-fx-background-color: transparent;" text="Profile">
                            <font>
@@ -198,7 +198,7 @@
                         </Button>
                      </children>
                   </VBox>
-                  <VBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="51.0" prefHeight="32.06" prefWidth="100.0" styleClass="hover-box" stylesheets="@../../css/market.css">
+                  <VBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="51.0" prefHeight="32.06" prefWidth="100.0" style="-fx-background-color: #d9d9d9;" styleClass="hover-box" stylesheets="@../../css/market.css">
                      <children>
                         <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleCartClick" prefHeight="27.0" prefWidth="150.0" style="-fx-background-color: transparent;" text="Dashboard">
                            <font>
@@ -212,7 +212,7 @@
                   </VBox>
                   <VBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="123.0" prefHeight="43.0" prefWidth="168.0" styleClass="hover-box" stylesheets="@../../css/market.css">
                      <children>
-                        <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleCartClick" prefHeight="27.0" prefWidth="150.0" style="-fx-background-color: transparent;" text="Inventory">
+                        <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleCartClick" prefHeight="27.0" prefWidth="150.0" style="-fx-background-color: transparent;" text="Favorite">
                            <font>
                               <Font name="Berlin Sans FB" size="15.0" />
                            </font>
@@ -261,121 +261,183 @@
    <center>
       <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="543.0" fitWidth="771.0" opacity="0.0">
-               <image>
-                  <Image url="@../../assets/d_bgPane.png" />
-               </image>
-            </ImageView>
-            <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: rgba(206, 206, 206, 0.2);">
+            <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-border-width: 1px; -fx-background-color: rgba(206, 206, 206, 0.2);">
                <children>
                   <StackPane prefHeight="544.0" prefWidth="770.0">
                      <children>
-                        <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: transparent transparent transparent #D9D9D9; -fx-border-width: 1px; -fx-background-color: rgba(206, 206, 206, 0.2);">
+                        <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: transparent transparent transparent #D9D9D9; -fx-border-width: 1px;">
                            <children>
                               <Region prefHeight="35.0" prefWidth="770.0" />
-                              <HBox prefHeight="106.0" prefWidth="770.0">
+                              <StackPane prefHeight="22.0" prefWidth="769.0">
                                  <children>
-                                    <StackPane prefHeight="150.0" prefWidth="200.0">
-                                       <children>
-                                          <ImageView fitHeight="102.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../../assets/d_shopspic.png" />
-                                             </image>
-                                          </ImageView>
-                                       </children>
-                                    </StackPane>
-                                    <VBox prefHeight="164.0" prefWidth="226.0">
-                                       <children>
-                                          <VBox alignment="CENTER_LEFT" prefHeight="164.0" prefWidth="226.0">
-                                             <children>
-                                                <Label text="John Doe Dragonov">
-                                                   <font>
-                                                      <Font name="Arial Rounded MT Bold" size="18.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label layoutX="10.0" layoutY="10.0" text="Seller Account">
-                                                   <font>
-                                                      <Font name="Arial Rounded MT Bold" size="11.0" />
-                                                   </font>
-                                                   <padding>
-                                                      <Insets bottom="15.0" />
-                                                   </padding>
-                                                </Label>
-                                                <Label text="123 Adress Street City Country">
-                                                   <font>
-                                                      <Font name="Arial" size="10.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label text="09123456789+">
-                                                   <font>
-                                                      <Font name="Arial" size="10.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label text="followogcreate@instagram.com">
-                                                   <font>
-                                                      <Font name="Arial" size="10.0" />
-                                                   </font>
-                                                </Label>
-                                             </children>
-                                             <opaqueInsets>
-                                                <Insets bottom="15.0" />
-                                             </opaqueInsets>
-                                          </VBox>
-                                       </children>
-                                       <opaqueInsets>
-                                          <Insets bottom="15.0" />
-                                       </opaqueInsets>
-                                    </VBox>
-                                    <StackPane alignment="TOP_RIGHT" prefHeight="164.0" prefWidth="0.0" HBox.hgrow="ALWAYS">
-                                       <children>
-                                          <VBox alignment="TOP_RIGHT" spacing="14.0">
-                                             <StackPane.margin>
-                                                <Insets />
-                                             </StackPane.margin>
-                                             <children>
-                                                <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: #F4F4F4; -fx-border-color: rgba(0, 0, 0, 0.8); -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6;" text="Edit Profile">
-                                                   <font>
-                                                      <Font name="Arial Bold" size="9.0" />
-                                                   </font>
-                                                </Button>
-                                                <Button layoutX="244.0" layoutY="51.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: #F4F4F4; -fx-border-color: rgba(0, 0, 0, 0.8); -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6;" text="Iventory">
-                                                   <font>
-                                                      <Font name="Arial Bold" size="9.0" />
-                                                   </font>
-                                                </Button>
-                                                <Button layoutX="244.0" layoutY="91.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: #F4F4F4; -fx-border-color: rgba(0, 0, 0, 0.8); -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6;" text="Dashboard">
-                                                   <font>
-                                                      <Font name="Arial Bold" size="9.0" />
-                                                   </font>
-                                                </Button>
-                                             </children>
-                                          </VBox>
-                                       </children>
-                                       <HBox.margin>
-                                          <Insets />
-                                       </HBox.margin>
-                                       <opaqueInsets>
-                                          <Insets />
-                                       </opaqueInsets>
-                                       <padding>
-                                          <Insets right="25.0" />
-                                       </padding>
-                                    </StackPane>
-                                 </children>
-                              </HBox>
-                              <Region layoutX="11.0" layoutY="11.0" prefHeight="20.0" prefWidth="770.0" />
-                              <StackPane prefHeight="150.0" prefWidth="770.0">
-                                 <children>
-                                    <HBox prefWidth="545.0" style="-fx-background-color: #d9d9d9; -fx-border-color: #9BA1A6; -fx-background-radius: 3; -fx-border-radius: 3;">
-                                       <StackPane.margin>
-                                          <Insets bottom="5.0" left="25.0" right="25.0" top="5.0" />
-                                       </StackPane.margin>
-                                       <children>
-                                          <VBox prefHeight="139.0" prefWidth="138.0" style="-fx-border-color: #9BA1A6;" />
-                                       </children>
-                                    </HBox>
+                                    <Label prefHeight="38.0" prefWidth="130.0" text="Dashboard">
+                                       <font>
+                                          <Font name="Arial Rounded MT Bold" size="24.0" />
+                                       </font>
+                                    </Label>
                                  </children>
                               </StackPane>
+                              <Region layoutX="11.0" layoutY="11.0" prefHeight="15.0" prefWidth="769.0" />
+                              <HBox prefHeight="90.0" prefWidth="200.0" spacing="10.0">
+                                 <children>
+                                    <StackPane maxHeight="90.0" minHeight="90.0" prefHeight="90.0" prefWidth="194.0" style="-fx-background-color: #96AFE5; -fx-background-radius: 9;">
+                                       <children>
+                                          <HBox prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                                   <children>
+                                                      <ImageView fitHeight="55.0" fitWidth="55.0">
+                                                         <image>
+                                                            <Image url="@../../assets/h_totalrevenue.png" />
+                                                         </image>
+                                                         <HBox.margin>
+                                                            <Insets />
+                                                         </HBox.margin>
+                                                      </ImageView>
+                                                   </children>
+                                                </HBox>
+                                                <VBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="213.0">
+                                                   <children>
+                                                      <HBox alignment="CENTER_LEFT">
+                                                         <children>
+                                                            <Label text="₱">
+                                                               <font>
+                                                                  <Font name="Arial Rounded MT Bold" size="18.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <Label prefHeight="18.0" prefWidth="80.0" text="42,000" HBox.hgrow="ALWAYS">
+                                                               <font>
+                                                                  <Font name="Arial Rounded MT Bold" size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                      </HBox>
+                                                      <Label text="Today Revenue">
+                                                         <font>
+                                                            <Font name="Arial Rounded MT Bold" size="8.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="10.0" layoutY="10.0" maxHeight="90.0" minHeight="90.0" prefHeight="90.0" prefWidth="200.0" style="-fx-background-color: #D5F0E1; -fx-background-radius: 9;">
+                                       <children>
+                                          <HBox prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                                   <children>
+                                                      <ImageView fitHeight="55.0" fitWidth="55.0">
+                                                         <image>
+                                                            <Image url="@../../assets/h_totalcompleteorder.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </children>
+                                                </HBox>
+                                                <VBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="213.0">
+                                                   <children>
+                                                      <HBox alignment="CENTER_LEFT">
+                                                         <children>
+                                                            <Label prefHeight="18.0" prefWidth="80.0" text="83" HBox.hgrow="ALWAYS">
+                                                               <font>
+                                                                  <Font name="Arial Rounded MT Bold" size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                      </HBox>
+                                                      <Label text="Totay Complete ">
+                                                         <font>
+                                                            <Font name="Arial Rounded MT Bold" size="8.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label layoutX="10.0" layoutY="66.0" text="Order">
+                                                         <font>
+                                                            <Font name="Arial Rounded MT Bold" size="8.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="210.0" layoutY="10.0" maxHeight="90.0" minHeight="90.0" prefHeight="90.0" prefWidth="200.0" style="-fx-background-color: #FFF2DB; -fx-background-radius: 9;">
+                                       <children>
+                                          <HBox prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                                   <children>
+                                                      <ImageView fitHeight="55.0" fitWidth="55.0">
+                                                         <image>
+                                                            <Image url="@../../assets/h_pendingorder.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </children>
+                                                </HBox>
+                                                <VBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="213.0">
+                                                   <children>
+                                                      <HBox alignment="CENTER_LEFT">
+                                                         <children>
+                                                            <Label prefHeight="18.0" prefWidth="80.0" text="3" HBox.hgrow="ALWAYS">
+                                                               <font>
+                                                                  <Font name="Arial Rounded MT Bold" size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                      </HBox>
+                                                      <Label text="Pending Order">
+                                                         <font>
+                                                            <Font name="Arial Rounded MT Bold" size="8.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="410.0" layoutY="10.0" maxHeight="90.0" minHeight="90.0" prefHeight="90.0" prefWidth="200.0" style="-fx-background-color: #ECD9FB; -fx-background-radius: 9;">
+                                       <children>
+                                          <HBox prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                                   <children>
+                                                      <ImageView fitHeight="55.0" fitWidth="55.0">
+                                                         <image>
+                                                            <Image url="@../../assets/h_todaycustomere.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </children>
+                                                </HBox>
+                                                <VBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="213.0">
+                                                   <children>
+                                                      <HBox alignment="CENTER_LEFT">
+                                                         <children>
+                                                            <Label prefHeight="18.0" prefWidth="80.0" text="123" HBox.hgrow="ALWAYS">
+                                                               <font>
+                                                                  <Font name="Arial Rounded MT Bold" size="14.0" />
+                                                               </font>
+                                                            </Label>
+                                                         </children>
+                                                      </HBox>
+                                                      <Label text="Today Customer">
+                                                         <font>
+                                                            <Font name="Arial Rounded MT Bold" size="8.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </StackPane>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="20.0" right="20.0" />
+                                 </VBox.margin>
+                              </HBox>
                            </children>
                         </VBox>
                      </children>
