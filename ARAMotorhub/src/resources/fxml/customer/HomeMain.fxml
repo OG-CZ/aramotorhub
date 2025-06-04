@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="609.23" prefWidth="938.32" style="-fx-background-color: #F0F4F7;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ogcreate.app.controllers.customer.HomeMainController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="609.23" prefWidth="938.32" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ogcreate.app.controllers.customer.HomeMainController">
    <children>
       <Group layoutX="5.909999847412109" layoutY="5.909999847412109">
          <children>
@@ -28,7 +28,7 @@
          <children>
             <Group layoutX="33.0" layoutY="514.0">
                <children>
-                  <HBox>
+                  <HBox prefHeight="50.0" prefWidth="386.0">
                      <children>
                         <AnchorPane maxHeight="48.11" maxWidth="48.11" minHeight="48.11" minWidth="48.11" prefHeight="48.11" prefWidth="48.11" style="-fx-background-color: rgba(255, 255, 255, 0.2); -fx-border-color: rgba(255, 255, 255, 1); -fx-border-width: 0.5px; -fx-background-radius: 100; -fx-border-radius: 100;">
                            <children>
@@ -98,28 +98,28 @@
                   <Image url="@../../assets/logo_white.png" />
                </image>
             </ImageView>
-            <AnchorPane layoutX="593.0" layoutY="-3.0" prefHeight="42.0" prefWidth="200.0" style="-fx-background-color: #F0F4F7; -fx-background-radius: 0 0 15 15;">
+            <AnchorPane layoutX="593.0" layoutY="-3.0" prefHeight="42.0" prefWidth="200.0" style="-fx-background-color: white; -fx-background-radius: 0 0 15 15;">
                <children>
-                  <HBox layoutX="15.0" layoutY="17.0" prefHeight="18.0" prefWidth="170.0">
+                  <HBox alignment="CENTER" layoutX="15.0" layoutY="17.0" prefHeight="18.0" prefWidth="170.0">
                      <children>
-                        <Button fx:id="homeButton" alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-letter-spacing: 10px;" stylesheets="@../../css/style.css" text="Home">
+                        <Button fx:id="homeButton" alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-letter-spacing: 10px;" stylesheets="@../../css/style.css" text="Home" textFill="#000000e5">
                            <font>
-                              <Font name="Arial Rounded MT Bold" size="9.28" />
+                              <Font name="Arial" size="9.5" />
                            </font>
                         </Button>
-                        <Button fx:id="shopButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleShopClick" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-letter-spacing: 10px;" stylesheets="@../../css/style.css" text="Shop">
+                        <Button fx:id="shopButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleShopClick" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-letter-spacing: 10px;" stylesheets="@../../css/style.css" text="Shop" textFill="#000000e5">
                            <font>
-                              <Font name="Arial Rounded MT Bold" size="9.28" />
+                              <Font name="Arial" size="9.5" />
                            </font>
                         </Button>
-                        <Button fx:id="profileButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleOpenSettings" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-letter-spacing: 10px;" stylesheets="@../../css/style.css" text="Profile">
+                        <Button fx:id="profileButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleOpenSettings" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-letter-spacing: 10px;" stylesheets="@../../css/style.css" text="Profile" textFill="#000000e5">
                            <font>
-                              <Font name="Arial Rounded MT Bold" size="9.28" />
+                              <Font name="Arial" size="9.5" />
                            </font>
                         </Button>
-                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleOpenSettings" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-letter-spacing: 10px;" stylesheets="@../../css/style.css" text="Settings">
+                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleOpenSettings" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-letter-spacing: 10px;" stylesheets="@../../css/style.css" text="Settings" textFill="#000000e5">
                            <font>
-                              <Font name="Arial Rounded MT Bold" size="9.28" />
+                              <Font name="Arial" size="9.5" />
                            </font>
                         </Button>
                      </children>
@@ -131,18 +131,23 @@
                   <Image url="@../../assets/c1_shop_icons.png" />
                </image>
             </ImageView>
-            <AnchorPane layoutX="249.0" layoutY="354.0" maxHeight="46.41" maxWidth="443.84" minHeight="46.41" minWidth="443.84" prefHeight="46.41" prefWidth="443.84" style="-fx-background-color: rgba(255, 255, 255, 0.4); -fx-border-color: rgba(255, 255, 255, 1); -fx-border-width: 0.5px; -fx-background-radius: 100; -fx-border-radius: 100;">
+            <AnchorPane layoutX="249.0" layoutY="354.0">
                <children>
-                  <ImageView fitHeight="19.41" fitWidth="294.03" layoutX="135.0" layoutY="14.0">
-                     <image>
-                        <Image url="@../../assets/c1_searchbar_icons.png" />
-                     </image>
-                  </ImageView>
-                  <TextField layoutX="147.0" layoutY="10.0" prefHeight="26.0" prefWidth="260.0" promptText="search parts here..." style="-fx-background-color: transparent; -fx-text-fill: #ffffff; -fx-prompt-text-fill: #ffffff;" stylesheets="@../../css/style.css">
-                     <font>
-                        <Font name="Arial" size="13.0" />
-                     </font></TextField>
-                  <ComboBox fx:id="categoryComboBox" layoutX="14.0" layoutY="11.0" prefHeight="26.0" prefWidth="114.0" stylesheets="@../../css/style.css" />
+                  <AnchorPane maxHeight="46.41" maxWidth="443.84" minHeight="46.41" minWidth="443.84" prefHeight="46.41" prefWidth="443.84" style="-fx-background-color: rgba(255, 255, 255, 0.3); -fx-border-color: rgba(255, 255, 255, 1); -fx-border-width: 0.5px; -fx-background-radius: 100; -fx-border-radius: 100;">
+                     <children>
+                        <ImageView fitHeight="19.41" fitWidth="294.03" layoutX="135.0" layoutY="14.0">
+                           <image>
+                              <Image url="@../../assets/c1_searchbar_icons.png" />
+                           </image>
+                        </ImageView>
+                        <TextField layoutX="147.0" layoutY="10.0" prefHeight="26.0" prefWidth="260.0" promptText="search parts here..." style="-fx-background-color: transparent; -fx-text-fill: #ffffff; -fx-prompt-text-fill: #ffffff;" stylesheets="@../../css/style.css">
+                           <font>
+                              <Font name="Arial" size="13.0" />
+                           </font>
+                        </TextField>
+                        <ComboBox fx:id="categoryComboBox" layoutX="14.0" layoutY="11.0" prefHeight="26.0" prefWidth="114.0" stylesheets="@../../css/style.css" />
+                     </children>
+                  </AnchorPane>
                </children>
             </AnchorPane>
             <AnchorPane layoutX="842.0" layoutY="515.0" maxHeight="48.11" maxWidth="48.11" minHeight="48.11" minWidth="48.11" prefHeight="48.11" prefWidth="48.11" style="-fx-border-color: rgba(255, 255, 255, 1); -fx-border-width: 0.5px; -fx-background-radius: 100; -fx-border-radius: 100;">
@@ -156,33 +161,33 @@
             </AnchorPane>
             <HBox layoutX="186.0" layoutY="64.0">
                <children>
-                  <Button fx:id="wheelsButton" alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-letter-spacing: 10px;" text="Wheels" textFill="WHITE">
+                  <Button fx:id="wheelsButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-letter-spacing: 10px;" text="Wheels" textAlignment="CENTER" textFill="WHITE">
                      <font>
-                        <Font name="Arial" size="12.0" />
+                        <Font name="Arial Rounded MT Bold" size="12.0" />
                      </font>
                   </Button>
                   <Region layoutX="290.0" layoutY="10.0" minWidth="20.0" prefHeight="27.0" prefWidth="20.0" />
-                  <Button fx:id="oilsButton" alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-letter-spacing: 10px;" text="Oils" textFill="WHITE">
+                  <Button fx:id="oilsButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-letter-spacing: 10px;" text="Oils" textAlignment="CENTER" textFill="WHITE">
                      <font>
-                        <Font name="Arial" size="12.0" />
+                        <Font name="Arial Rounded MT Bold" size="12.0" />
                      </font>
                   </Button>
                   <Region layoutX="67.0" layoutY="10.0" minWidth="20.0" prefHeight="27.0" prefWidth="20.0" />
-                  <Button fx:id="boltsButton" alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-letter-spacing: 10px;" text="Bolts" textFill="WHITE">
+                  <Button fx:id="boltsButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-letter-spacing: 10px;" text="Bolts" textAlignment="CENTER" textFill="WHITE">
                      <font>
-                        <Font name="Arial" size="12.0" />
+                        <Font name="Arial Rounded MT Bold" size="12.0" />
                      </font>
                   </Button>
                   <Region layoutX="267.0" layoutY="10.0" minWidth="20.0" prefHeight="27.0" prefWidth="20.0" />
-                  <Button fx:id="suspensionBolts" alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-letter-spacing: 10px;" text="Suspension" textFill="WHITE">
+                  <Button fx:id="suspensionBolts" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-letter-spacing: 10px;" text="Suspension" textAlignment="CENTER" textFill="WHITE">
                      <font>
-                        <Font name="Arial" size="12.0" />
+                        <Font name="Arial Rounded MT Bold" size="12.0" />
                      </font>
                   </Button>
                   <Region layoutX="124.0" layoutY="10.0" minWidth="20.0" prefHeight="27.0" prefWidth="20.0" />
-                  <Button fx:id="exteriorBolts" alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-letter-spacing: 10px;" text="Exteriors" textFill="WHITE">
+                  <Button fx:id="exteriorBolts" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-letter-spacing: 10px;" text="Exteriors" textAlignment="CENTER" textFill="WHITE">
                      <font>
-                        <Font name="Arial" size="12.0" />
+                        <Font name="Arial Rounded MT Bold" size="12.0" />
                      </font>
                   </Button>
                </children>
@@ -193,10 +198,10 @@
             <Button fx:id="nextButton" layoutX="844.0" layoutY="515.0" mnemonicParsing="false" onMouseClicked="#handleImageClick" opacity="0.0" prefHeight="50.0" prefWidth="44.0" text="next" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="695.0" layoutY="183.66" prefHeight="76.0" prefWidth="238.0" style="-fx-background-color: #F0F4F7; -fx-background-radius: 15 0 0 15;">
+      <AnchorPane layoutX="726.0" layoutY="189.0" prefHeight="76.0" prefWidth="207.0" style="-fx-background-color: white; -fx-background-radius: 15 0 0 15;">
          <children>
             <Group layoutX="14.0" layoutY="19.0" />
-            <ImageView fitHeight="36.0" fitWidth="200.0" layoutX="19.0" layoutY="20.0">
+            <ImageView fitHeight="31.0" fitWidth="170.0" layoutX="19.0" layoutY="23.0">
                <image>
                   <Image url="@../../assets/c1_tagline.png" />
                </image>

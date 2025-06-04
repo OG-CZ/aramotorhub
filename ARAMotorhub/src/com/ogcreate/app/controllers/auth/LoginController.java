@@ -80,14 +80,14 @@ public class LoginController {
         try {
 
             if (email.isEmpty() || password.isEmpty()) {
-                showAlert("Error", "Please enter both email and password.");
+                showAlert("ARA Motorhub", "Please enter both email and password.");
                 return;
             }
 
             if (authentication.Customer(emailField.getText(), passwordField.getText())) {
                 try {
                     FXMLLoader loader = new FXMLLoader(
-                            getClass().getResource("/resources/fxml/customer/HomeMain.fxml"));
+                    getClass().getResource("/resources/fxml/customer/HomeMain.fxml"));
                     Parent newRoot = loader.load();
 
                     Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -124,7 +124,7 @@ public class LoginController {
             }
 
         } catch (Exception e) {
-            showAlert("Error", "Invalid email or password. Please check and try again.");
+            showAlert("ARA Motorhub", "Invalid email or password. Please check and try again.");
         }
 
     }

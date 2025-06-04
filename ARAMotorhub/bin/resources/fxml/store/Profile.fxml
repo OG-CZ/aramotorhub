@@ -171,7 +171,7 @@
                   </VBox>
                </children>
             </VBox>
-            <VBox layoutX="10.0" layoutY="11.0" maxHeight="242.0" minHeight="155.0" prefHeight="157.0" prefWidth="168.0">
+            <VBox maxHeight="242.0" minHeight="155.0" prefHeight="157.0" prefWidth="168.0">
                <children>
                   <Separator prefWidth="200.0" />
                   <VBox alignment="CENTER_LEFT" prefHeight="44.0" prefWidth="100.0">
@@ -200,7 +200,7 @@
                   </VBox>
                   <VBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="51.0" prefHeight="32.06" prefWidth="100.0" styleClass="hover-box" stylesheets="@../../css/market.css">
                      <children>
-                        <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleCartClick" prefHeight="27.0" prefWidth="150.0" style="-fx-background-color: transparent;" text="Dashboard">
+                        <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleDashboardClick" prefHeight="27.0" prefWidth="150.0" style="-fx-background-color: transparent;" text="Dashboard">
                            <font>
                               <Font name="Berlin Sans FB" size="15.0" />
                            </font>
@@ -212,7 +212,7 @@
                   </VBox>
                   <VBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="123.0" prefHeight="43.0" prefWidth="168.0" styleClass="hover-box" stylesheets="@../../css/market.css">
                      <children>
-                        <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleCartClick" prefHeight="27.0" prefWidth="150.0" style="-fx-background-color: transparent;" text="Inventory">
+                        <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleInventoryClick" prefHeight="27.0" prefWidth="150.0" style="-fx-background-color: transparent;" text="Inventory">
                            <font>
                               <Font name="Berlin Sans FB" size="15.0" />
                            </font>
@@ -226,9 +226,9 @@
             </VBox>
             <VBox layoutX="10.0" layoutY="211.0" maxHeight="1.7976931348623157E308" prefWidth="168.0" VBox.vgrow="ALWAYS">
                <children>
-                  <AnchorPane prefHeight="200.0" prefWidth="168.0" VBox.vgrow="ALWAYS">
+                  <AnchorPane prefHeight="162.0" prefWidth="168.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <Group layoutX="41.0" layoutY="159.0">
+                        <Group layoutX="41.0" layoutY="161.0">
                            <children>
                               <HBox alignment="CENTER" layoutX="3.0" layoutY="5.0">
                                  <children>
@@ -333,19 +333,19 @@
                                                 <Insets />
                                              </StackPane.margin>
                                              <children>
-                                                <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: #F4F4F4; -fx-border-color: rgba(0, 0, 0, 0.8); -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6;" text="Edit Profile">
+                                                <Button mnemonicParsing="false" onAction="#handleOpenSettings" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: transparent; -fx-border-color: rgba(0, 0, 0, 0.5); -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6;" text="Edit Profile" textFill="#00000080">
                                                    <font>
-                                                      <Font name="Arial Bold" size="9.0" />
+                                                      <Font name="Arial Bold" size="8.5" />
                                                    </font>
                                                 </Button>
-                                                <Button layoutX="244.0" layoutY="51.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: #F4F4F4; -fx-border-color: rgba(0, 0, 0, 0.8); -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6;" text="Iventory">
+                                                <Button layoutX="244.0" layoutY="51.0" mnemonicParsing="false" onAction="#handleInventoryClick" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: transparent; -fx-border-color: rgba(0, 0, 0, 0.5); -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6;" text="Inventory" textFill="#00000080">
                                                    <font>
-                                                      <Font name="Arial Bold" size="9.0" />
+                                                      <Font name="Arial Bold" size="8.5" />
                                                    </font>
                                                 </Button>
-                                                <Button layoutX="244.0" layoutY="91.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: #F4F4F4; -fx-border-color: rgba(0, 0, 0, 0.8); -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6;" text="Dashboard">
+                                                <Button layoutX="244.0" layoutY="91.0" mnemonicParsing="false" onAction="#handleDashboardClick" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: transparent; -fx-border-color: rgba(0, 0, 0, 0.5); -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6;" text="Dashboard" textFill="#00000080">
                                                    <font>
-                                                      <Font name="Arial Bold" size="9.0" />
+                                                      <Font name="Arial Bold" size="8.5" />
                                                    </font>
                                                 </Button>
                                              </children>
@@ -364,14 +364,22 @@
                                  </children>
                               </HBox>
                               <Region layoutX="11.0" layoutY="11.0" prefHeight="20.0" prefWidth="770.0" />
-                              <StackPane prefHeight="150.0" prefWidth="770.0">
+                              <StackPane prefHeight="146.0" prefWidth="770.0">
                                  <children>
-                                    <HBox prefWidth="545.0" style="-fx-background-color: #d9d9d9; -fx-border-color: #9BA1A6; -fx-background-radius: 3; -fx-border-radius: 3;">
+                                    <HBox prefWidth="721.0" spacing="10.0" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-background-radius: 3; -fx-border-radius: 3;">
                                        <StackPane.margin>
                                           <Insets bottom="5.0" left="25.0" right="25.0" top="5.0" />
                                        </StackPane.margin>
                                        <children>
-                                          <VBox prefHeight="139.0" prefWidth="138.0" style="-fx-border-color: #9BA1A6;" />
+                                          <VBox alignment="CENTER" prefHeight="139.0" prefWidth="138.0" style="-fx-border-color: #9BA1A6;" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <Button alignment="CENTER" mnemonicParsing="false" text="Button" />
+                                             </children></VBox>
+                                          <VBox layoutX="11.0" layoutY="11.0" prefHeight="139.0" prefWidth="138.0" style="-fx-border-color: #9BA1A6;" HBox.hgrow="ALWAYS" />
+                                          <VBox layoutX="149.0" layoutY="11.0" prefHeight="139.0" prefWidth="138.0" style="-fx-border-color: #9BA1A6;" HBox.hgrow="ALWAYS" />
+                                          <VBox layoutX="288.0" layoutY="11.0" prefHeight="139.0" prefWidth="138.0" style="-fx-border-color: #9BA1A6;" HBox.hgrow="ALWAYS" />
+                                          <VBox layoutX="426.0" layoutY="11.0" prefHeight="139.0" prefWidth="138.0" style="-fx-border-color: #9BA1A6;" HBox.hgrow="ALWAYS" />
+                                          <VBox layoutX="595.0" layoutY="11.0" prefHeight="139.0" prefWidth="138.0" style="-fx-border-color: #9BA1A6;" />
                                        </children>
                                     </HBox>
                                  </children>

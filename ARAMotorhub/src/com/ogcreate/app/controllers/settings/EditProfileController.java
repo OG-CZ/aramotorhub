@@ -5,9 +5,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.SplitMenuButton;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.scene.Node;
 
@@ -30,13 +32,31 @@ public class EditProfileController {
     @FXML
     private Button logOutButton;
 
-    @FXML
-    private BorderPane rootPane;
+    private Alert alert;
+
+    private void showAlert(String title, String message) {
+        alert = new Alert(Alert.AlertType.CONFIRMATION);
+
+        alert.setTitle(title);
+        alert.setContentText(message);
+
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image(this.getClass().getResource("/resources/assets/z_favicon.png").toString()));
+        alert.showAndWait();
+    }
 
 
     @FXML
     void handleSaveButton(ActionEvent  event) {
         System.out.println("#handleSaveButton triggered");
+
+        showAlert("ARA Motorhub", "Do you want to save the changes to your profile information?");
+
+        if (alert.getResult().equals(ButtonType.OK)) {
+            System.out.println("confirmed to edit account triggered");
+            return;
+        }
+
     }
 
 

@@ -54,7 +54,7 @@ public class RegisterStep2Controller {
         System.out.println("submit clicked");
 
         if (authentication.Submit(true)) {
-            showAlert("Operation Successfull", "You may proceed to Login.");
+            showAlert("ARA Motorhub", "You may proceed to log in.");
 
             if (!alert.isShowing()) {
                 try {

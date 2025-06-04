@@ -20,7 +20,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="609.23" prefWidth="938.32" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ogcreate.app.controllers.">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="609.23" prefWidth="938.32" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ogcreate.app.controllers.store.InventoryController">
    <top>
       <HBox alignment="CENTER" maxHeight="63.29" minHeight="63.29" prefHeight="63.29" prefWidth="200.0" style="-fx-background-color: white; -fx-border-width: 0 0 1px 0;" BorderPane.alignment="CENTER">
          <children>
@@ -201,7 +201,7 @@
                   </VBox>
                   <VBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="51.0" prefHeight="32.06" prefWidth="100.0" styleClass="hover-box" stylesheets="@../../css/market.css">
                      <children>
-                        <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleCartClick" prefHeight="27.0" prefWidth="150.0" style="-fx-background-color: transparent;" text="Dashboard">
+                        <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleDashboardClick" prefHeight="27.0" prefWidth="150.0" style="-fx-background-color: transparent;" text="Dashboard">
                            <font>
                               <Font name="Berlin Sans FB" size="15.0" />
                            </font>
@@ -213,7 +213,7 @@
                   </VBox>
                   <VBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="123.0" prefHeight="43.0" prefWidth="168.0" style="-fx-background-color: #d9d9d9;" styleClass="hover-box" stylesheets="@../../css/market.css">
                      <children>
-                        <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleCartClick" prefHeight="27.0" prefWidth="150.0" style="-fx-background-color: transparent;" text="Inventory">
+                        <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="27.0" prefWidth="150.0" style="-fx-background-color: transparent;" text="Inventory">
                            <font>
                               <Font name="Berlin Sans FB" size="15.0" />
                            </font>
