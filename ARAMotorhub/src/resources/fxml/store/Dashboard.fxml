@@ -171,7 +171,7 @@
                   </VBox>
                </children>
             </VBox>
-            <VBox layoutX="10.0" layoutY="11.0" maxHeight="242.0" minHeight="155.0" prefHeight="157.0" prefWidth="168.0">
+            <VBox prefHeight="155.0" prefWidth="168.0">
                <children>
                   <Separator prefWidth="200.0" />
                   <VBox alignment="CENTER_LEFT" prefHeight="44.0" prefWidth="100.0">
@@ -210,25 +210,29 @@
                         </Button>
                      </children>
                   </VBox>
-                  <VBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="123.0" prefHeight="43.0" prefWidth="168.0" styleClass="hover-box" stylesheets="@../../css/market.css">
+                  <VBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="84.0" prefHeight="32.06" prefWidth="168.0" styleClass="hover-box" stylesheets="@../../css/market.css" VBox.vgrow="ALWAYS">
                      <children>
-                        <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleInventoryClick" prefHeight="27.0" prefWidth="150.0" style="-fx-background-color: transparent;" text="Inventory">
+                        <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleInventoryClick" prefHeight="27.0" prefWidth="164.0" style="-fx-background-color: transparent;" text="Inventory">
                            <font>
                               <Font name="Berlin Sans FB" size="15.0" />
                            </font>
                            <VBox.margin>
-                              <Insets bottom="7.5" left="30.0" />
+                              <Insets left="30.0" />
                            </VBox.margin>
                         </Button>
                      </children>
+                     <padding>
+                        <Insets bottom="6.0" />
+                     </padding>
                   </VBox>
+                  <Separator layoutX="10.0" layoutY="10.0" prefWidth="200.0" />
                </children>
             </VBox>
             <VBox layoutX="10.0" layoutY="211.0" maxHeight="1.7976931348623157E308" prefWidth="168.0" VBox.vgrow="ALWAYS">
                <children>
                   <AnchorPane prefHeight="200.0" prefWidth="168.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <Group layoutX="41.0" layoutY="159.0">
+                        <Group layoutX="41.0" layoutY="161.0">
                            <children>
                               <HBox alignment="CENTER" layoutX="3.0" layoutY="5.0">
                                  <children>
@@ -250,7 +254,6 @@
                               <Button mnemonicParsing="false" onAction="#handleLogOutButton" opacity="0.0" prefHeight="34.0" prefWidth="86.0" text="Log out" />
                            </children>
                         </Group>
-                        <Separator layoutX="-14.0" layoutY="-2.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
                      </children>
                   </AnchorPane>
                </children>

@@ -10,27 +10,36 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class ProfileController {
+public class ShopsController {
 
     @FXML
-    void handleProfileClick(ActionEvent event) {
-        System.out.println("handleProfileClick");
-
-    }
+    private VBox shopCardLayout;
 
     @FXML
     void handleHomeButton(ActionEvent event) {
-        System.out.println("handleHomeButton");
+
     }
 
     @FXML
-    void handleShopsClick(ActionEvent event) {
-        System.out.println("handleShopsClick");
+    void handleLogOutButton(ActionEvent event) {
+        System.out.println("handleLogOutButton");
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        SettingsWindowHelper.logout(currentStage);
+    }
 
-         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/store/Shops.fxml"));
+    @FXML
+    void handleOpenSettings(ActionEvent event) {
+        SettingsWindowHelper.openSettings((Node) event.getSource());
+    }
+
+    @FXML
+    void handleProductsClick(ActionEvent event) {
+        System.out.println("handleProductsClick");
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/store/Products.fxml"));
             Parent newRoot = loader.load();
 
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -42,13 +51,13 @@ public class ProfileController {
         }
     }
 
-
     @FXML
-    void handleInventoryClick(ActionEvent event) {
-        System.out.println("handleCartClick");
+    void handleProfileClick(ActionEvent event) {
+
+        System.out.println("handleProfileClick");
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/store/Inventory.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/store/Profile.fxml"));
             Parent newRoot = loader.load();
 
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -58,6 +67,7 @@ public class ProfileController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
     @FXML
@@ -80,22 +90,11 @@ public class ProfileController {
     }
 
     @FXML
-    void handleLogOutButton(ActionEvent event) {
-        System.out.println("handleLogOutButton");
-        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        SettingsWindowHelper.logout(currentStage);
-    }
+    void handleInventoryClick(ActionEvent event) {
+        System.out.println("handleCartClick");
 
-    @FXML
-    void handleOpenSettings(ActionEvent event) {
-        SettingsWindowHelper.openSettings((Node) event.getSource());
-    }
-
-    @FXML
-    void handleProductsClick(ActionEvent event) {
-        System.out.println("handleProductsClick");
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/store/Products.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/store/Inventory.fxml"));
             Parent newRoot = loader.load();
 
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();

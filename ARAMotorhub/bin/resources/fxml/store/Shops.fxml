@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
@@ -19,7 +19,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="609.23" prefWidth="938.32" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ogcreate.app.controllers.store.ProfileController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="609.23" prefWidth="938.32" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ogcreate.app.controllers.store.ShopsController">
    <top>
       <HBox alignment="CENTER" maxHeight="63.29" minHeight="63.29" prefHeight="63.29" prefWidth="200.0" style="-fx-background-color: white; -fx-border-width: 0 0 1px 0;" BorderPane.alignment="CENTER">
          <children>
@@ -128,9 +128,9 @@
                         <Insets left="15.0" />
                      </VBox.margin>
                   </Label>
-                  <HBox alignment="CENTER_LEFT" prefHeight="32.06" prefWidth="200.0" styleClass="hover-box" stylesheets="@../../css/market.css">
+                  <HBox alignment="CENTER_LEFT" prefHeight="32.06" prefWidth="200.0" style="-fx-background-color: #D9D9D9;" styleClass="hover-box" stylesheets="@../../css/market.css">
                      <children>
-                        <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleShopsClick" prefHeight="27.0" prefWidth="134.0" style="-fx-background-color: transparent;" text="Shops">
+                        <Button mnemonicParsing="false" style="-fx-background-color: transparent;" text="Shops">
                            <font>
                               <Font name="Berlin Sans FB" size="15.0" />
                            </font>
@@ -142,7 +142,7 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="52.0" prefHeight="32.06" prefWidth="200.0" styleClass="hover-box" stylesheets="@../../css/market.css">
                      <children>
-                        <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleProductsClick" prefHeight="27.0" prefWidth="151.0" style="-fx-background-color: transparent;" text="Products">
+                        <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleProductsClick" prefHeight="27.0" prefWidth="178.0" style="-fx-background-color: transparent;" text="Products">
                            <font>
                               <Font name="Berlin Sans FB" size="15.0" />
                            </font>
@@ -171,7 +171,7 @@
                   </VBox>
                </children>
             </VBox>
-            <VBox prefHeight="155.0" prefWidth="168.0">
+            <VBox layoutX="10.0" layoutY="11.0" maxHeight="155.0" minHeight="155.0" prefHeight="155.0" prefWidth="168.0">
                <children>
                   <Separator prefWidth="200.0" />
                   <VBox alignment="CENTER_LEFT" prefHeight="44.0" prefWidth="100.0">
@@ -186,7 +186,7 @@
                         </Label>
                      </children>
                   </VBox>
-                  <VBox alignment="CENTER_LEFT" prefHeight="32.06" prefWidth="168.0" style="-fx-background-color: #d9d9d9;" styleClass="hover-box" stylesheets="@../../css/market.css">
+                  <VBox alignment="CENTER_LEFT" prefHeight="32.06" prefWidth="168.0" styleClass="hover-box" stylesheets="@../../css/market.css">
                      <children>
                         <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleProfileClick" prefHeight="27.0" prefWidth="155.0" style="-fx-background-color: transparent;" text="Profile">
                            <font>
@@ -230,30 +230,26 @@
             </VBox>
             <VBox layoutX="10.0" layoutY="211.0" maxHeight="1.7976931348623157E308" prefWidth="168.0" VBox.vgrow="ALWAYS">
                <children>
-                  <AnchorPane prefHeight="79.0" prefWidth="168.0" VBox.vgrow="ALWAYS">
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <Group layoutX="41.0" layoutY="161.0">
+                        <HBox alignment="CENTER" layoutX="46.0" layoutY="172.0">
                            <children>
-                              <HBox alignment="CENTER" layoutX="3.0" layoutY="5.0">
-                                 <children>
-                                    <ImageView fitHeight="24.0" fitWidth="24.0">
-                                       <image>
-                                          <Image url="@../../assets/d_logout.png" />
-                                       </image>
-                                    </ImageView>
-                                    <Label alignment="CENTER" text="Log Out">
-                                       <font>
-                                          <Font name="Berlin Sans FB" size="14.0" />
-                                       </font>
-                                       <padding>
-                                          <Insets left="5.0" />
-                                       </padding>
-                                    </Label>
-                                 </children>
-                              </HBox>
-                              <Button mnemonicParsing="false" onAction="#handleLogOutButton" opacity="0.0" prefHeight="34.0" prefWidth="86.0" text="Log out" />
+                              <ImageView fitHeight="24.0" fitWidth="24.0">
+                                 <image>
+                                    <Image url="@../../assets/d_logout.png" />
+                                 </image>
+                              </ImageView>
+                              <Label alignment="CENTER" text="Log Out">
+                                 <font>
+                                    <Font name="Berlin Sans FB" size="14.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets left="5.0" />
+                                 </padding>
+                              </Label>
                            </children>
-                        </Group>
+                        </HBox>
+                        <Button layoutX="43.0" layoutY="167.0" mnemonicParsing="false" onAction="#handleLogOutButton" opacity="0.0" prefHeight="34.0" prefWidth="86.0" text="Log out" />
                      </children>
                   </AnchorPane>
                </children>
@@ -264,133 +260,130 @@
    <center>
       <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="543.0" fitWidth="771.0" opacity="0.0">
+            <ImageView fitHeight="543.0" fitWidth="771.0">
                <image>
                   <Image url="@../../assets/d_bgPane.png" />
                </image>
             </ImageView>
-            <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: rgba(206, 206, 206, 0.2);">
+            <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: transparent transparent transparent #D9D9D9; -fx-border-width: 1px; -fx-background-color: rgba(206, 206, 206, 0.2);">
                <children>
-                  <StackPane prefHeight="544.0" prefWidth="770.0">
+                  <Region prefHeight="35.0" prefWidth="770.0" />
+                  <AnchorPane minHeight="124.88" prefHeight="124.88" prefWidth="200.0" style="-fx-background-color: #D9D9D9; -fx-border-color: #9BA1A6;">
+                     <VBox.margin>
+                        <Insets left="25.0" right="25.0" />
+                     </VBox.margin>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
                      <children>
-                        <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: transparent transparent transparent #D9D9D9; -fx-border-width: 1px; -fx-background-color: rgba(206, 206, 206, 0.2);">
+                        <AnchorPane layoutY="98.0" prefHeight="28.0" prefWidth="640.0" style="-fx-background-color: white; -fx-border-color: #9BA1A6 transparent transparent transparent;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                            <children>
-                              <Region prefHeight="35.0" prefWidth="770.0" />
-                              <HBox prefHeight="106.0" prefWidth="770.0">
+                              <HBox layoutX="11.0" layoutY="6.0" spacing="110.0">
                                  <children>
-                                    <StackPane prefHeight="150.0" prefWidth="200.0">
+                                    <Label text="Showing n to n of max(n)">
+                                       <font>
+                                          <Font name="Arial" size="9.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets top="1.3" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <HBox spacing="5.0">
                                        <children>
-                                          <ImageView fitHeight="102.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                                          <Label text="Display:  48 per page">
+                                             <font>
+                                                <Font name="Arial" size="9.0" />
+                                             </font>
+                                          </Label>
+                                          <ImageView fitHeight="8.0" fitWidth="11.0">
                                              <image>
-                                                <Image url="@../../assets/d_shopspic.png" />
+                                                <Image url="@../../assets/d_button3.png" />
                                              </image>
+                                             <HBox.margin>
+                                                <Insets bottom="2.5" left="2.5" right="2.5" top="1.5" />
+                                             </HBox.margin>
                                           </ImageView>
                                        </children>
-                                    </StackPane>
-                                    <VBox prefHeight="164.0" prefWidth="226.0">
+                                       <HBox.margin>
+                                          <Insets top="1.3" />
+                                       </HBox.margin>
+                                    </HBox>
+                                    <HBox spacing="5.0">
                                        <children>
-                                          <VBox alignment="CENTER_LEFT" prefHeight="164.0" prefWidth="226.0">
-                                             <children>
-                                                <Label text="John Doe Dragonov">
-                                                   <font>
-                                                      <Font name="Arial Rounded MT Bold" size="18.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label layoutX="10.0" layoutY="10.0" text="Seller Account">
-                                                   <font>
-                                                      <Font name="Arial Rounded MT Bold" size="11.0" />
-                                                   </font>
-                                                   <padding>
-                                                      <Insets bottom="15.0" />
-                                                   </padding>
-                                                </Label>
-                                                <Label text="123 Adress Street City Country">
-                                                   <font>
-                                                      <Font name="Arial" size="10.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label text="09123456789+">
-                                                   <font>
-                                                      <Font name="Arial" size="10.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label text="followogcreate@instagram.com">
-                                                   <font>
-                                                      <Font name="Arial" size="10.0" />
-                                                   </font>
-                                                </Label>
-                                             </children>
-                                             <opaqueInsets>
-                                                <Insets bottom="15.0" />
-                                             </opaqueInsets>
-                                          </VBox>
-                                       </children>
-                                       <opaqueInsets>
-                                          <Insets bottom="15.0" />
-                                       </opaqueInsets>
-                                    </VBox>
-                                    <StackPane alignment="TOP_RIGHT" prefHeight="164.0" prefWidth="0.0" HBox.hgrow="ALWAYS">
-                                       <children>
-                                          <VBox alignment="TOP_RIGHT" spacing="14.0">
-                                             <StackPane.margin>
-                                                <Insets />
-                                             </StackPane.margin>
-                                             <children>
-                                                <Button mnemonicParsing="false" onAction="#handleOpenSettings" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: transparent; -fx-border-color: rgba(0, 0, 0, 0.5); -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6;" text="Edit Profile" textFill="#00000080">
-                                                   <font>
-                                                      <Font name="Arial Bold" size="8.5" />
-                                                   </font>
-                                                </Button>
-                                                <Button layoutX="244.0" layoutY="51.0" mnemonicParsing="false" onAction="#handleInventoryClick" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: transparent; -fx-border-color: rgba(0, 0, 0, 0.5); -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6;" text="Inventory" textFill="#00000080">
-                                                   <font>
-                                                      <Font name="Arial Bold" size="8.5" />
-                                                   </font>
-                                                </Button>
-                                                <Button layoutX="244.0" layoutY="91.0" mnemonicParsing="false" onAction="#handleDashboardClick" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: transparent; -fx-border-color: rgba(0, 0, 0, 0.5); -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6;" text="Dashboard" textFill="#00000080">
-                                                   <font>
-                                                      <Font name="Arial Bold" size="8.5" />
-                                                   </font>
-                                                </Button>
-                                             </children>
-                                          </VBox>
+                                          <Label text="Sort by: Best Selling ">
+                                             <font>
+                                                <Font name="Arial" size="9.0" />
+                                             </font>
+                                          </Label>
+                                          <ImageView fitHeight="8.0" fitWidth="11.0">
+                                             <image>
+                                                <Image url="@../../assets/d_button3.png" />
+                                             </image>
+                                             <HBox.margin>
+                                                <Insets bottom="2.5" right="2.5" top="1.5" />
+                                             </HBox.margin>
+                                          </ImageView>
                                        </children>
                                        <HBox.margin>
-                                          <Insets />
+                                          <Insets top="1.3" />
                                        </HBox.margin>
-                                       <opaqueInsets>
-                                          <Insets />
-                                       </opaqueInsets>
-                                       <padding>
-                                          <Insets right="25.0" />
-                                       </padding>
-                                    </StackPane>
-                                 </children>
-                              </HBox>
-                              <Region layoutX="11.0" layoutY="11.0" prefHeight="20.0" prefWidth="770.0" />
-                              <StackPane prefHeight="146.0" prefWidth="770.0">
-                                 <children>
-                                    <HBox prefWidth="721.0" spacing="10.0" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-background-radius: 3; -fx-border-radius: 3;">
-                                       <StackPane.margin>
-                                          <Insets bottom="5.0" left="25.0" right="25.0" top="5.0" />
-                                       </StackPane.margin>
+                                    </HBox>
+                                    <HBox spacing="5.0">
                                        <children>
-                                          <VBox alignment="CENTER" prefHeight="139.0" prefWidth="138.0" style="-fx-border-color: #9BA1A6;" HBox.hgrow="ALWAYS">
-                                             <children>
-                                                <Button alignment="CENTER" mnemonicParsing="false" text="Button" />
-                                             </children></VBox>
-                                          <VBox layoutX="11.0" layoutY="11.0" prefHeight="139.0" prefWidth="138.0" style="-fx-border-color: #9BA1A6;" HBox.hgrow="ALWAYS" />
-                                          <VBox layoutX="149.0" layoutY="11.0" prefHeight="139.0" prefWidth="138.0" style="-fx-border-color: #9BA1A6;" HBox.hgrow="ALWAYS" />
-                                          <VBox layoutX="288.0" layoutY="11.0" prefHeight="139.0" prefWidth="138.0" style="-fx-border-color: #9BA1A6;" HBox.hgrow="ALWAYS" />
-                                          <VBox layoutX="426.0" layoutY="11.0" prefHeight="139.0" prefWidth="138.0" style="-fx-border-color: #9BA1A6;" HBox.hgrow="ALWAYS" />
-                                          <VBox layoutX="595.0" layoutY="11.0" prefHeight="139.0" prefWidth="138.0" style="-fx-border-color: #9BA1A6;" />
+                                          <Label alignment="CENTER" text="View:">
+                                             <font>
+                                                <Font name="Arial" size="9.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets top="1.3" />
+                                             </HBox.margin>
+                                          </Label>
+                                          <ImageView fitHeight="12.0" fitWidth="12.0">
+                                             <image>
+                                                <Image url="@../../assets/d_buttonblue2.png" />
+                                             </image>
+                                             <HBox.margin>
+                                                <Insets top="1.5" />
+                                             </HBox.margin>
+                                          </ImageView>
+                                          <ImageView fitHeight="12.0" fitWidth="12.0">
+                                             <image>
+                                                <Image url="@../../assets/d_buttonblack2.png" />
+                                             </image>
+                                             <HBox.margin>
+                                                <Insets top="1.5" />
+                                             </HBox.margin>
+                                          </ImageView>
                                        </children>
                                     </HBox>
                                  </children>
-                              </StackPane>
+                              </HBox>
+                           </children>
+                        </AnchorPane>
+                        <VBox layoutX="24.0" layoutY="23.0" spacing="5.0">
+                           <children>
+                              <Label text="Nearest Shops" textFill="#0095ff">
+                                 <font>
+                                    <Font name="Berlin Sans FB" size="32.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Stores around your area are ready. Find the nearest one and request the parts you need. Availability may vary depending on location.">
+                                 <font>
+                                    <Font name="Arial" size="10.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </VBox>
                      </children>
-                  </StackPane>
+                  </AnchorPane>
+                  <ScrollPane prefHeight="368.0" prefWidth="721.0" style="-fx-background-color: transparent; -fx-padding: 0; -fx-focus-color: 0; -fx-faint-focus-color: transparent; -fx-border-color: #9BA1A6;">
+                     <content>
+                        <VBox fx:id="shopCardLayout" maxHeight="1.7976931348623157E308" prefHeight="600.0" prefWidth="705.0" />
+                     </content>
+                     <VBox.margin>
+                        <Insets left="25.0" right="25.0" />
+                     </VBox.margin>
+                  </ScrollPane>
                </children></VBox>
          </children>
       </StackPane>
