@@ -1,5 +1,9 @@
 package com.ogcreate.app;
 
+import java.sql.Connection;
+
+import com.ogcreate.app.database.DatabaseConnection;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,8 +15,11 @@ import javafx.scene.text.Font;
 
 public class ARAMotorhub extends Application {
     public static void main(String[] args) {
+        Connection conn = DatabaseConnection.connect();
+        
         System.out.println("Hello, World!");
         launch(args);
+        System.out.println("conn: " + conn);
     }
 
         @Override

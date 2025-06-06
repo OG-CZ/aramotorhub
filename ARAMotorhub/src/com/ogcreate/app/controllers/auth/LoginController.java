@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import com.ogcreate.app.database.AuthService;
 
+
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -71,63 +72,49 @@ public class LoginController {
 
     // this is the sign in button
     @FXML
-    private void handleSignInClick(ActionEvent event) {
-        System.out.println("signin pressed");
+private void handleSignInClick(ActionEvent event) {
+    String email = emailField.getText();
+    String password = passwordField.getText();
 
-        String email = emailField.getText();
-        String password = passwordField.getText();
+    if (email.isEmpty() || password.isEmpty()) {
+        showAlert("ARA Motorhub", "Please enter both email and password.");
+        return;
+    }
 
-        try {
+    String role = authentication.login(email, password);
 
-            if (email.isEmpty() || password.isEmpty()) {
-                showAlert("ARA Motorhub", "Please enter both email and password.");
+    if (role == null) {
+        showAlert("ARA Motorhub", "Invalid email or password.");
+        return;
+    }
+
+    try {
+        FXMLLoader loader;
+        switch (role.toLowerCase()) {
+            case "customer":
+                loader = new FXMLLoader(getClass().getResource("/resources/fxml/customer/HomeMain.fxml"));
+                break;
+            case "store":
+                loader = new FXMLLoader(getClass().getResource("/resources/fxml/store/Profile.fxml"));
+                break;
+            case "admin":
+                loader = new FXMLLoader(getClass().getResource("/resources/fxml/admin/Dashboard.fxml")); // adjust if needed
+                break;
+            default:
+                showAlert("ARA Motorhub", "Unrecognized role.");
                 return;
-            }
-
-            if (authentication.Customer(emailField.getText(), passwordField.getText())) {
-                try {
-                    FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/resources/fxml/customer/HomeMain.fxml"));
-                    Parent newRoot = loader.load();
-
-                    Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-                    Scene newScene = new Scene(newRoot);
-                    currentStage.setScene(newScene);
-                    currentStage.show();
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                return;
-            }
-
-            if (authentication.Store(emailField.getText(), passwordField.getText())) {
-                try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/store/Profile.fxml"));
-                    Parent newRoot = loader.load();
-
-                    Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-                    Scene newScene = new Scene(newRoot);
-                    currentStage.setScene(newScene);
-                    currentStage.show();
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                return;
-            }
-
-            if (authentication.Admin(null, null)) {
-
-            }
-
-        } catch (Exception e) {
-            showAlert("ARA Motorhub", "Invalid email or password. Please check and try again.");
         }
 
+        Parent newRoot = loader.load();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(newRoot));
+        stage.show();
+
+    } catch (IOException e) {
+        e.printStackTrace();
+        showAlert("ARA Motorhub", "Failed to load the dashboard.");
     }
+}
 
     // this is the signup button below
     @FXML

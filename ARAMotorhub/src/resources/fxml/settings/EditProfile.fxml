@@ -89,7 +89,7 @@
                               <Font name="Arial" size="12.0" />
                            </font>
                         </Label>
-                        <SplitMenuButton fx:id="districtField" cacheShape="false" maxHeight="28.88" maxWidth="250.61" minHeight="28.88" minWidth="250.61" mnemonicParsing="false" prefHeight="28.88" prefWidth="250.61" style="-fx-background-radius: 5;" text="Sampaloc">
+                        <SplitMenuButton fx:id="districtField" cacheShape="false" maxHeight="28.88" maxWidth="250.61" minHeight="28.88" minWidth="250.61" mnemonicParsing="false" prefHeight="28.88" prefWidth="250.61" style="-fx-background-radius: 5;" text="Sampaloc" textFill="#00000080">
                            <items>
                               <MenuItem mnemonicParsing="false" text="Sampaloc" />
                            </items>
@@ -99,7 +99,7 @@
                               <Font name="Arial" size="12.0" />
                            </font>
                         </Label>
-                        <SplitMenuButton fx:id="barangayField" maxHeight="28.88" maxWidth="250.61" minHeight="28.88" minWidth="250.61" prefHeight="28.88" prefWidth="250.61" style="-fx-background-radius: 5;" text="Select">
+                        <SplitMenuButton fx:id="barangayField" maxHeight="28.88" maxWidth="250.61" minHeight="28.88" minWidth="250.61" prefHeight="28.88" prefWidth="250.61" style="-fx-background-radius: 5;" text="Select" textFill="#00000080">
                            <items>
                               <MenuItem mnemonicParsing="false" text="Barangay 395" />
                               <MenuItem mnemonicParsing="false" text="Barangay 396" />
@@ -109,12 +109,17 @@
                               <MenuItem mnemonicParsing="false" text="Barangay 400" />
                            </items>
                         </SplitMenuButton>
-                        <Label layoutX="10.0" layoutY="67.0" text="idkkkkkk pa" textFill="#00000080">
+                        <Label layoutX="10.0" layoutY="67.0" text="Role" textFill="#00000080">
                            <font>
                               <Font name="Arial" size="12.0" />
                            </font>
                         </Label>
-                        <TextField prefHeight="28.88" prefWidth="250.61" style="-fx-background-radius: 5;" />
+                        <SplitMenuButton fx:id="roleFieldMenu" layoutX="10.0" layoutY="139.0" maxHeight="28.88" maxWidth="250.61" minHeight="28.88" minWidth="250.61" prefHeight="28.88" prefWidth="250.61" style="-fx-background-radius: 5;" text="Select" textFill="#00000080">
+                           <items>
+                              <MenuItem disable="true" mnemonicParsing="false" text="Customer" />
+                              <MenuItem disable="true" mnemonicParsing="false" text="Store" />
+                           </items>
+                        </SplitMenuButton>
                      </children>
                   </VBox>
                </children>

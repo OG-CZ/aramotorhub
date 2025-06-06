@@ -36,7 +36,11 @@ public class RegisterStep2Controller {
     private Button submitButton;
 
     private Alert alert;
-    private final AuthService authentication = new AuthService();
+    private AuthService authService;
+
+    public void setAuthService(AuthService authService) {
+        this.authService = authService;
+    }
 
     private void showAlert(String title, String message) {
         alert = new Alert(Alert.AlertType.INFORMATION);
@@ -53,27 +57,31 @@ public class RegisterStep2Controller {
     void handleSubmitButtonClick(MouseEvent event) {
         System.out.println("submit clicked");
 
-        if (authentication.Submit(true)) {
-            showAlert("ARA Motorhub", "You may proceed to log in.");
-
-            if (!alert.isShowing()) {
-                try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/auth/Login.fxml"));
-                    Parent newRoot = loader.load();
-
-                    Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-                    Scene newScene = new Scene(newRoot);
-                    currentStage.setScene(newScene);
-                    currentStage.show();
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-
+        if (addressField.getText().matches("^.{10,}$")) {
+            showAlert("ARA Motorhub", "Invalid address");
             return;
         }
+
+
+        showAlert("ARA Motorhub", "You may proceed to log in.");
+
+        if (!alert.isShowing()) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/auth/Login.fxml"));
+                Parent newRoot = loader.load();
+
+                Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+                Scene newScene = new Scene(newRoot);
+                currentStage.setScene(newScene);
+                currentStage.show();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return;
 
     }
 
@@ -91,9 +99,7 @@ public class RegisterStep2Controller {
         return selectedBarangay;
     }
 
-
-
-        @FXML
+    @FXML
     void handleSignInButtonClick(MouseEvent event) {
         System.out.println("Sign in go back");
 

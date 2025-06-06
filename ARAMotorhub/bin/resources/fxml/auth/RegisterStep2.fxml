@@ -3,7 +3,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.SplitMenuButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -50,14 +49,14 @@
                         <Font size="11.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="addressField" maxHeight="26.0" maxWidth="207.35" minHeight="26.0" minWidth="207.35" prefHeight="26.0" prefWidth="207.35" promptText="Enter here" style="-fx-background-radius: 5px;" />
+                  <TextField maxHeight="26.0" maxWidth="207.35" minHeight="26.0" minWidth="207.35" onAction="#addressField" prefHeight="26.0" prefWidth="207.35" promptText="Enter here" style="-fx-background-radius: 5px;" />
                   <Region maxHeight="10.0" maxWidth="208.0" minHeight="10.0" minWidth="208.0" prefHeight="10.0" prefWidth="208.0" />
                   <Label text="District">
                      <font>
                         <Font size="11.0" />
                      </font>
                   </Label>
-                  <SplitMenuButton fx:id="districtField" maxHeight="26.0" maxWidth="207.35" minHeight="26.0" minWidth="207.35" mnemonicParsing="false" prefHeight="26.0" prefWidth="207.35" style="-fx-background-radius: 5;" text="Sampaloc">
+                  <SplitMenuButton fx:id="districtFieldMenu" maxHeight="26.0" maxWidth="207.35" minHeight="26.0" minWidth="207.35" mnemonicParsing="false" prefHeight="26.0" prefWidth="207.35" style="-fx-background-radius: 5;" text="Sampaloc">
                     <items>
                       <MenuItem mnemonicParsing="false" text="Sampaloc" />
                     </items>
@@ -68,7 +67,7 @@
                         <Font size="11.0" />
                      </font>
                   </Label>
-                  <SplitMenuButton fx:id="barangayField" layoutX="10.0" layoutY="81.0" maxHeight="26.0" maxWidth="207.35" minHeight="26.0" minWidth="207.35" prefHeight="26.0" prefWidth="207.35" style="-fx-background-radius: 5;" text="Select">
+                  <SplitMenuButton fx:id="barangayFieldMenu" layoutX="10.0" layoutY="81.0" maxHeight="26.0" maxWidth="207.35" minHeight="26.0" minWidth="207.35" prefHeight="26.0" prefWidth="207.35" style="-fx-background-radius: 5;" text="Select">
                   <items>
                      <MenuItem mnemonicParsing="false" text="Barangay 395" />
                      <MenuItem mnemonicParsing="false" text="Barangay 396" />
@@ -79,12 +78,17 @@
                   </items>
                   </SplitMenuButton>
                   <Region maxHeight="10.0" maxWidth="208.0" minHeight="10.0" minWidth="208.0" prefHeight="10.0" prefWidth="208.0" />
-                  <Label text="idk">
+                  <Label text="Role">
                      <font>
                         <Font size="11.0" />
                      </font>
                   </Label>
-                  <PasswordField maxHeight="28.261" maxWidth="207.35" minHeight="26.0" minWidth="207.35" prefHeight="26.0" prefWidth="207.35" promptText="At least 8 characters" style="-fx-background-radius: 5px;" />
+                  <SplitMenuButton fx:id="roleFieldMenu" maxHeight="26.0" maxWidth="207.35" minHeight="26.0" minWidth="207.35" prefHeight="26.0" prefWidth="207.35" style="-fx-background-radius: 5;" text="Select">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Customer" />
+                        <MenuItem mnemonicParsing="false" text="Store" />
+                     </items>
+                  </SplitMenuButton>
                   <Region layoutX="10.0" layoutY="165.0" maxHeight="66.0" maxWidth="208.0" minHeight="10.0" minWidth="208.0" prefHeight="66.0" prefWidth="208.0" />
                   <Region layoutX="10.0" layoutY="39.0" prefHeight="30.0" prefWidth="208.0" />
                   <StackPane prefHeight="28.1" prefWidth="207.35" style="-fx-background-color: B7B710; -fx-background-radius: 5; ">

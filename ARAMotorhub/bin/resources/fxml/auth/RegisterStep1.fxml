@@ -66,7 +66,7 @@
                         <Font size="11.0" />
                      </font>
                   </Label>
-                  <PasswordField fx:id="userPasswordField" maxHeight="26.0" maxWidth="207.35" minHeight="26.0" minWidth="207.35" prefHeight="26.0" prefWidth="207.35" promptText="At least 8 characters" style="-fx-background-radius: 5px;" />
+                  <PasswordField fx:id="passwordField" maxHeight="26.0" maxWidth="207.35" minHeight="26.0" minWidth="207.35" prefHeight="26.0" prefWidth="207.35" promptText="At least 8 characters" style="-fx-background-radius: 5px;" />
                   <Region layoutX="10.0" layoutY="165.0" maxHeight="66.0" maxWidth="208.0" minHeight="10.0" minWidth="208.0" prefHeight="66.0" prefWidth="208.0" />
                   <Region layoutX="10.0" layoutY="39.0" prefHeight="30.0" prefWidth="208.0" />
                   <StackPane prefHeight="28.1" prefWidth="207.35" style="-fx-background-color: B7B710; -fx-background-radius: 5; ">

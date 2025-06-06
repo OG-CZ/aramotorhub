@@ -20,7 +20,8 @@
             "c:\\Program Files\\Java\\javafx-sdk-21.0.7\\lib\\javafx.media.jar",
             "c:\\Program Files\\Java\\javafx-sdk-21.0.7\\lib\\javafx.swing.jar",
             "c:\\Program Files\\Java\\javafx-sdk-21.0.7\\lib\\javafx.web.jar",
-            "c:\\Program Files\\Java\\javafx-sdk-21.0.7\\lib\\javafx-swt.jar"
+            "c:\\Program Files\\Java\\javafx-sdk-21.0.7\\lib\\javafx-swt.jar",
+            "c:\\Program Files\\Java\\mysql-connector-j-9.3.0\\mysql-connector-j-9.3.0.jar"
         ],
         "exclude": [
             "c:\\Program Files\\Java\\javafx-sdk-21.0.7\\lib\\javafx-swt.jar",
