@@ -63,10 +63,11 @@ public class RegisterStep1Controller {
             return;
         }
 
-        if (!passwordField.getText().matches("^.{5,}$")) {
-            showAlert("ARA Motorhub", "Password must be at least 5 characters.");
+        if (!passwordField.getText().matches("^.{4,25}$")) {
+            showAlert("ARA Motorhub", "Password must be at least 4 characters and maximum of 25 characters");
             return;
         }
+
 
         
         AuthService authService = new AuthService();
@@ -79,11 +80,10 @@ public class RegisterStep1Controller {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/auth/RegisterStep2.fxml"));
             Parent newRoot = loader.load();
 
-                    // Get Step 2 controller instance
-            RegisterStep2Controller step2Controller = loader.getController();
 
-            // Pass the AuthService object to Step 2 controller
-            step2Controller.setAuthService(authService);
+                RegisterStep2Controller controller = loader.getController();
+                controller.setAuthService(authService);  
+
 
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Scene newScene = new Scene(newRoot);

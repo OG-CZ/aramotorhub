@@ -3,6 +3,7 @@ package com.ogcreate.app.controllers.auth;
 import java.io.IOException;
 
 import com.ogcreate.app.database.AuthService;
+import com.ogcreate.app.database.DatabaseConnection;
 
 
 import javafx.animation.FadeTransition;
@@ -76,6 +77,7 @@ private void handleSignInClick(ActionEvent event) {
     String email = emailField.getText();
     String password = passwordField.getText();
 
+    
     if (email.isEmpty() || password.isEmpty()) {
         showAlert("ARA Motorhub", "Please enter both email and password.");
         return;

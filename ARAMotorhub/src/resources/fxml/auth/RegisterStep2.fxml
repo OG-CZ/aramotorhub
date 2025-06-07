@@ -49,14 +49,14 @@
                         <Font size="11.0" />
                      </font>
                   </Label>
-                  <TextField maxHeight="26.0" maxWidth="207.35" minHeight="26.0" minWidth="207.35" onAction="#addressField" prefHeight="26.0" prefWidth="207.35" promptText="Enter here" style="-fx-background-radius: 5px;" />
+                  <TextField fx:id="addressField" maxHeight="26.0" maxWidth="207.35" minHeight="26.0" minWidth="207.35" prefHeight="26.0" prefWidth="207.35" promptText="Enter here" style="-fx-background-radius: 5px;" />
                   <Region maxHeight="10.0" maxWidth="208.0" minHeight="10.0" minWidth="208.0" prefHeight="10.0" prefWidth="208.0" />
                   <Label text="District">
                      <font>
                         <Font size="11.0" />
                      </font>
                   </Label>
-                  <SplitMenuButton fx:id="districtFieldMenu" maxHeight="26.0" maxWidth="207.35" minHeight="26.0" minWidth="207.35" mnemonicParsing="false" prefHeight="26.0" prefWidth="207.35" style="-fx-background-radius: 5;" text="Sampaloc">
+                  <SplitMenuButton fx:id="districtFieldMenu" maxHeight="26.0" maxWidth="207.35" minHeight="26.0" minWidth="207.35" mnemonicParsing="false" prefHeight="26.0" prefWidth="207.35" style="-fx-background-radius: 5;" text="Select">
                     <items>
                       <MenuItem mnemonicParsing="false" text="Sampaloc" />
                     </items>
