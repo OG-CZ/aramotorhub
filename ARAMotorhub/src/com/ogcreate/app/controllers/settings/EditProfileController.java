@@ -22,7 +22,7 @@ import com.ogcreate.app.database.UserSession;
 public class EditProfileController {
 
     @FXML
-    private TextField firstNameField, LastNameField, addressField, emailField, passwordField;
+    private TextField firstNameField, lastNameField, addressField, emailField, passwordField;
 
     @FXML
     private Button deleteAccButton;
@@ -46,7 +46,7 @@ public class EditProfileController {
         }
 
         firstNameField.setText(currentUser.getFirstName());
-        LastNameField.setText(currentUser.getLastName());
+        lastNameField.setText(currentUser.getLastName());
         addressField.setText(currentUser.getAddress());
         emailField.setText(currentUser.getAddress());
         passwordField.setText(currentUser.getPassword());
@@ -54,6 +54,8 @@ public class EditProfileController {
        // roleFieldMenu.setText(currentUser.getRole());
        // barangayFieldMenu.setText(currentUser.getBarangay());
 
+      // System.out.println(currentUser.getRole() + " " + currentUser.getBarangay() + " " + currentUser.getDistrict());
+    
     }
 
     private void showAlert(String title, String message) {

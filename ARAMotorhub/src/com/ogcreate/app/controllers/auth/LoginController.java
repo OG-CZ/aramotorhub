@@ -89,7 +89,6 @@ public class LoginController {
         }
 
         UserSession.setCurrentUser(loggedInUser);
-
         String role = loggedInUser.getRole();
 
         try {
