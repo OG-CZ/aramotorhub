@@ -9,22 +9,26 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.SplitMenuButton;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.scene.Node;
 
 import java.io.IOException;
 
+import com.ogcreate.app.database.User;
+import com.ogcreate.app.database.UserSession;
+
 public class EditProfileController {
 
     @FXML
-    private SplitMenuButton barangayField;
+    private TextField firstNameField, LastNameField, addressField, emailField, passwordField;
 
     @FXML
     private Button deleteAccButton;
 
     @FXML
-    private SplitMenuButton districtField;
+    private SplitMenuButton barangayFieldMenu, roleFieldMenu;
 
     @FXML
     private Button editProfileButton;
@@ -33,6 +37,24 @@ public class EditProfileController {
     private Button logOutButton;
 
     private Alert alert;
+    User currentUser = UserSession.getCurrentUser();
+
+    @FXML
+    public void initialize() {
+        if (currentUser != null) {
+            System.out.println("Welcome, " + currentUser.getFirstName());
+        }
+
+        firstNameField.setText(currentUser.getFirstName());
+        LastNameField.setText(currentUser.getLastName());
+        addressField.setText(currentUser.getAddress());
+        emailField.setText(currentUser.getAddress());
+        passwordField.setText(currentUser.getPassword());
+
+       // roleFieldMenu.setText(currentUser.getRole());
+       // barangayFieldMenu.setText(currentUser.getBarangay());
+
+    }
 
     private void showAlert(String title, String message) {
         alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -45,9 +67,8 @@ public class EditProfileController {
         alert.showAndWait();
     }
 
-
     @FXML
-    void handleSaveButton(ActionEvent  event) {
+    void handleSaveButton(ActionEvent event) {
         System.out.println("#handleSaveButton triggered");
 
         showAlert("ARA Motorhub", "Do you want to save the changes to your profile information?");
@@ -58,8 +79,6 @@ public class EditProfileController {
         }
 
     }
-
-
 
     // switching scene dont touch
     @FXML

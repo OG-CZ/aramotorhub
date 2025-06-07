@@ -42,37 +42,41 @@ public class AuthService {
         this.address = address;
     }
 
-    public String login(String email, String password) {
-        String role = null;
+    public User loginAndGetUser(String email, String password) {
+        User user = null;
 
-        try (Connection conn = DatabaseConnection.connect()) {
-            String sql = "SELECT user_id FROM user WHERE email = ? AND password = ?";
-            PreparedStatement stmt = conn.prepareStatement(sql);
+        String sql = "SELECT user_id, email, password, first_name, last_name, address, district, barangay, role "
+                + "FROM user WHERE email = ? AND password = ?";
+
+        try (Connection conn = DatabaseConnection.connect();
+                PreparedStatement stmt = conn.prepareStatement(sql)) {
+
             stmt.setString(1, email);
             stmt.setString(2, password);
 
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-                String userId = rs.getString("user_id");
+                int dbUserId = rs.getInt("user_id");
+                String dbEmail = rs.getString("email");
+                String dbPassword = rs.getString("password");
+                String dbFirstName = rs.getString("first_name");
+                String dbLastName = rs.getString("last_name");
+                String dbAddress = rs.getString("address");
+                String dbDistrict = rs.getString("district");
+                String dbBarangay = rs.getString("barangay");
+                String dbRole = rs.getString("role");
 
-                if (userId.endsWith("CST")) {
-                    role = "customer";
-                } else if (userId.endsWith("SLR")) {
-                    role = "store";
-                } else if (userId.endsWith("ADM")) {
-                    role = "admin";
-                }
+                user = new User(dbUserId, dbEmail, dbPassword, dbFirstName, dbLastName, dbAddress, dbDistrict,
+                        dbBarangay, dbRole);
             }
-
             rs.close();
-            stmt.close();
 
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return role;
+        return user;
     }
 
     public boolean Submit(boolean value) {
