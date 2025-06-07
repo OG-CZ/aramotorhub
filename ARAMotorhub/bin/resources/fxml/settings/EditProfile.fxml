@@ -55,25 +55,25 @@
                               <Font name="Arial" size="12.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="firstNameField" prefHeight="28.88" prefWidth="250.61" style="-fx-background-radius: 5;" />
+                        <TextField fx:id="firstNameField" prefHeight="28.88" prefWidth="250.61" style="-fx-background-radius: 5; -fx-text-fill: rgba(0, 0, 0, 0.5);" />
                         <Label text="Last Name" textFill="#00000080">
                            <font>
                               <Font name="Arial" size="12.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="lastNameField" prefHeight="28.88" prefWidth="250.61" style="-fx-background-radius: 5;" />
+                        <TextField fx:id="lastNameField" prefHeight="28.88" prefWidth="250.61" style="-fx-background-radius: 5; -fx-text-fill: rgba(0, 0, 0, 0.5);" />
                         <Label layoutX="10.0" layoutY="158.0" text="Email" textFill="#00000080">
                            <font>
                               <Font name="Arial" size="12.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="emailField" prefHeight="28.88" prefWidth="250.61" style="-fx-background-radius: 5;" />
+                        <TextField fx:id="emailField" prefHeight="28.88" prefWidth="250.61" style="-fx-background-radius: 5; -fx-text-fill: rgba(0, 0, 0, 0.5);" />
                         <Label layoutX="10.0" layoutY="67.0" text="Password" textFill="#00000080">
                            <font>
                               <Font name="Arial" size="12.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="passwordField" prefHeight="28.88" prefWidth="250.61" style="-fx-background-radius: 5;" />
+                        <TextField fx:id="passwordField" prefHeight="28.88" prefWidth="250.61" style="-fx-background-radius: 5; -fx-text-fill: rgba(0, 0, 0, 0.5);" />
                      </children>
                   </VBox>
                   <VBox layoutX="263.0" spacing="5.0">
@@ -83,7 +83,7 @@
                               <Font name="Arial" size="12.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="addressField" prefHeight="28.88" prefWidth="250.61" style="-fx-background-radius: 5;" />
+                        <TextField fx:id="addressField" prefHeight="28.88" prefWidth="250.61" style="-fx-background-radius: 5; -fx-text-fill: rgba(0, 0, 0, 0.5);" />
                         <Label text="District" textFill="#00000080">
                            <font>
                               <Font name="Arial" size="12.0" />
@@ -91,10 +91,10 @@
                         </Label>
                         <SplitMenuButton cacheShape="false" maxHeight="28.88" maxWidth="250.61" minHeight="28.88" minWidth="250.61" mnemonicParsing="false" prefHeight="28.88" prefWidth="250.61" style="-fx-background-radius: 5;" text="Sampaloc" textFill="#00000080">
                            <items>
-                              <MenuItem mnemonicParsing="false" text="Sampaloc" />
+                              <MenuItem disable="true" mnemonicParsing="false" text="Sampaloc" />
                            </items>
                         </SplitMenuButton>
-                        <Label layoutX="10.0" layoutY="158.0" text="City" textFill="#00000080">
+                        <Label layoutX="10.0" layoutY="158.0" text="Barangay" textFill="#00000080">
                            <font>
                               <Font name="Arial" size="12.0" />
                            </font>

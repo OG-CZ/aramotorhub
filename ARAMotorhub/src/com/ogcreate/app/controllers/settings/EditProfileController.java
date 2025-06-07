@@ -16,7 +16,9 @@ import javafx.scene.Node;
 
 import java.io.IOException;
 
+import com.ogcreate.app.database.AuthService;
 import com.ogcreate.app.database.User;
+import com.ogcreate.app.database.UserService;
 import com.ogcreate.app.database.UserSession;
 
 public class EditProfileController {
@@ -36,6 +38,9 @@ public class EditProfileController {
     @FXML
     private Button logOutButton;
 
+    private String selectedBarangay;
+
+
     private Alert alert;
     User currentUser = UserSession.getCurrentUser();
 
@@ -48,38 +53,72 @@ public class EditProfileController {
         firstNameField.setText(currentUser.getFirstName());
         lastNameField.setText(currentUser.getLastName());
         addressField.setText(currentUser.getAddress());
-        emailField.setText(currentUser.getAddress());
+        emailField.setText(currentUser.getEmail());
         passwordField.setText(currentUser.getPassword());
 
-       // roleFieldMenu.setText(currentUser.getRole());
-       // barangayFieldMenu.setText(currentUser.getBarangay());
+        roleFieldMenu.setText(currentUser.getRole());
+        barangayFieldMenu.setText(currentUser.getBarangay());
 
-      // System.out.println(currentUser.getRole() + " " + currentUser.getBarangay() + " " + currentUser.getDistrict());
-    
-    }
+        // System.out.println(currentUser.getRole() + " " + currentUser.getBarangay() +
+        // " " + currentUser.getDistrict());
 
-    private void showAlert(String title, String message) {
-        alert = new Alert(Alert.AlertType.CONFIRMATION);
+        barangayFieldMenu.getItems().forEach(item -> {
+        item.setOnAction(e -> {
+            selectedBarangay = item.getText();
+            barangayFieldMenu.setText(selectedBarangay);
+        });
+    });
+        selectedBarangay = barangayFieldMenu.getText();
 
-        alert.setTitle(title);
-        alert.setContentText(message);
 
-        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-        stage.getIcons().add(new Image(this.getClass().getResource("/resources/assets/z_favicon.png").toString()));
-        alert.showAndWait();
     }
 
     @FXML
     void handleSaveButton(ActionEvent event) {
         System.out.println("#handleSaveButton triggered");
 
-        showAlert("ARA Motorhub", "Do you want to save the changes to your profile information?");
+        alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("ARA Motorhub");
+        alert.setHeaderText(null);
+        alert.setContentText("Do you want to save the changes to your profile information?");
 
-        if (alert.getResult().equals(ButtonType.OK)) {
-            System.out.println("confirmed to edit account triggered");
-            return;
-        }
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image(this.getClass().getResource("/resources/assets/z_favicon.png").toString()));
 
+        alert.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                System.out.println("Confirmed to edit account triggered");
+
+                currentUser.setFirstName(firstNameField.getText());
+                currentUser.setLastName(lastNameField.getText());
+                currentUser.setAddress(addressField.getText());
+                currentUser.setEmail(emailField.getText());
+                currentUser.setPassword(passwordField.getText());
+                currentUser.setRole(roleFieldMenu.getText());
+                currentUser.setBarangay(barangayFieldMenu.getText());
+
+                UserService userService = new UserService();
+                boolean success = userService.updateUser(currentUser);
+
+                if (success) {
+                    UserSession.setCurrentUser(currentUser);
+
+                    Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+                    successAlert.setTitle("Success");
+                    successAlert.setHeaderText(null);
+                    successAlert.setContentText("Your profile has been updated successfully!");
+                    successAlert.showAndWait();
+                } else {
+                    Alert failAlert = new Alert(Alert.AlertType.ERROR);
+                    failAlert.setTitle("Error");
+                    failAlert.setHeaderText(null);
+                    failAlert.setContentText("Failed to update profile. Please try again.");
+                    failAlert.showAndWait();
+                }
+            } else {
+                System.out.println("Edit cancelled.");
+            }
+        });
     }
 
     // switching scene dont touch

@@ -14,4 +14,6 @@ public class UserSession {
     public static void clearSession() {
         currentUser = null;
     }
+    
 }
+
