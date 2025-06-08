@@ -21,7 +21,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="609.23" prefWidth="938.32" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ogcreate.app.controllers.customer.ProductsController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="609.23" prefWidth="938.32" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ogcreate.app.controllers.customer.CategoriesController">
    <top>
       <HBox alignment="CENTER" maxHeight="63.29" minHeight="63.29" prefHeight="63.29" prefWidth="200.0" style="-fx-background-color: white; -fx-border-width: 0 0 1px 0;" BorderPane.alignment="CENTER">
          <children>
@@ -80,7 +80,7 @@
                                     <Font name="Arial" size="10.0" />
                                  </font>
                               </Button>
-                              <Button mnemonicParsing="false" style="-fx-background-color: transparent;" text="Shop">
+                              <Button mnemonicParsing="false" onAction="#handleShopsClick" style="-fx-background-color: transparent;" text="Shop">
                                  <font>
                                     <Font name="Arial" size="10.0" />
                                  </font>
@@ -144,7 +144,7 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="52.0" prefHeight="32.06" prefWidth="200.0" styleClass="hover-box" stylesheets="@../../css/market.css">
                      <children>
-                        <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="27.0" prefWidth="146.0" style="-fx-background-color: transparent;" text="Products">
+                        <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleProductsClick" prefHeight="27.0" prefWidth="146.0" style="-fx-background-color: transparent;" text="Products">
                            <font>
                               <Font name="Berlin Sans FB" size="15.0" />
                            </font>
@@ -164,7 +164,7 @@
                               <Insets bottom="-5.0" left="29.0" />
                            </VBox.margin>
                         </Button>
-                        <ComboBox maxHeight="25.66" maxWidth="148.07" minHeight="0.0" minWidth="148.07" prefHeight="25.66" prefWidth="149.0" promptText="Category" style="-fx-background-color: #ffffff; -fx-background-radius: 5px; -fx-border-radius: 5px; -fx-opacity: 0.8;">
+                        <ComboBox fx:id="categoryComboBox" maxHeight="25.66" maxWidth="148.07" minHeight="0.0" minWidth="148.07" prefHeight="25.66" prefWidth="149.0" promptText="Category" style="-fx-border-color: rgba(0,0,0,0.5); -fx-background-color: #ffffff; -fx-focus-color: transparent; -fx-faint-focus-color: transparent; -fx-background-radius: 5px; -fx-border-radius: 5px; -fx-opacity: 0.8;">
                            <VBox.margin>
                               <Insets bottom="8.0" left="10.0" top="7.5" />
                            </VBox.margin>
@@ -371,7 +371,17 @@
                                           <Font name="Berlin Sans FB" size="32.0" />
                                        </font>
                                     </Label>
-                                    <Label text="&quot;Motor&quot;" textFill="#0095ff">
+                                    <Label text="&quot;" textFill="#0095ff">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="32.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="categoryResult" layoutX="179.0" layoutY="10.0" text="Motor" textFill="#0095ff">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="32.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="278.0" layoutY="10.0" text="&quot;" textFill="#0095ff">
                                        <font>
                                           <Font name="Berlin Sans FB" size="32.0" />
                                        </font>

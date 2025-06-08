@@ -20,11 +20,15 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class CartController {
+
+    @FXML
+    private ComboBox<String> categoryComboBox;
 
     @FXML
     private VBox vboxCartProducts;
@@ -257,6 +261,42 @@ public class CartController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        // ComboBox category logic
+        try (Connection conn = DatabaseConnection.connect();
+             PreparedStatement stmt = conn.prepareStatement("SELECT name FROM category");
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                categoryComboBox.getItems().add(rs.getString("name"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        categoryComboBox.setOnAction(event -> {
+            String selectedCategory = categoryComboBox.getValue();
+            if (selectedCategory != null && !selectedCategory.isEmpty()) {
+                openCategoriesPage(selectedCategory);
+            }
+        });
+    }
+
+    private void openCategoriesPage(String category) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/customer/Categories.fxml"));
+            Parent newRoot = loader.load();
+
+            CategoriesController controller = loader.getController();
+            controller.setSelectedCategory(category);
+
+            Stage currentStage = (Stage) categoryComboBox.getScene().getWindow();
+            currentStage.setScene(new Scene(newRoot));
+            currentStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void recalculateTotalPrice() {
@@ -271,21 +311,19 @@ public class CartController {
         numberFormat.setMinimumFractionDigits(2);
         numberFormat.setMaximumFractionDigits(2);
         labelTotalPrice.setText(numberFormat.format(totalPrice));
-
     }
 
     private void addCartItem(String productName, String initials, String price, String storeName, String storeAddress,
-            int quantity, int productId, int cartId) {
+                             int quantity, int productId, int cartId) {
         try {
-            FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/resources/fxml/customer/CartProductContainer.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/customer/CartProductContainer.fxml"));
             Node node = loader.load();
 
             CartProductContainerController controller = loader.getController();
             controller.setProductDetails(productName, initials, price, storeName, storeAddress, quantity,
                     productId, cartId, this::recalculateTotalPrice);
 
-            node.setUserData(loader); // Store loader for later access
+            node.setUserData(loader);
             vboxCartProducts.getChildren().add(node);
         } catch (IOException e) {
             e.printStackTrace();

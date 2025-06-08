@@ -77,6 +77,26 @@ public class HomeMainController implements Initializable {
         }
     }
 
+    @FXML
+    void handleCategoryClick(ActionEvent event) {
+        String categoryName = "Helmets"; // Or get this from button text or id
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/customer/Categories.fxml"));
+            Parent root = loader.load();
+
+            CategoriesController controller = loader.getController();
+            controller.setSelectedCategory(categoryName); // 🚨 REQUIRED
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         categoryComboBox.setPromptText("Category");
@@ -101,6 +121,33 @@ public class HomeMainController implements Initializable {
             conn.close();
 
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // Listener: When an item is selected, open Categories.fxml
+        categoryComboBox.setOnAction(event -> {
+            String selectedCategory = categoryComboBox.getValue();
+            if (selectedCategory != null && !selectedCategory.isEmpty()) {
+                openCategoriesPage(selectedCategory);
+            }
+        });
+    }
+
+    private void openCategoriesPage(String category) {
+        System.out.println("Opening category: " + category);
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/customer/Categories.fxml"));
+            Parent newRoot = loader.load();
+
+            // ✅ Set category in controller
+            CategoriesController controller = loader.getController();
+            controller.setSelectedCategory(category);
+
+            Stage currentStage = (Stage) categoryComboBox.getScene().getWindow();
+            Scene newScene = new Scene(newRoot);
+            currentStage.setScene(newScene);
+            currentStage.show();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -128,7 +175,7 @@ public class HomeMainController implements Initializable {
         SettingsWindowHelper.openSettings((Node) event.getSource());
     }
 
-        @FXML
+    @FXML
     private void handleProfileClick(ActionEvent event) {
         System.out.println("handleProfileClick triggered");
 

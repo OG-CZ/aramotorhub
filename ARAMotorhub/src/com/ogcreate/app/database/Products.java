@@ -1,5 +1,9 @@
 package com.ogcreate.app.database;
 
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Products {
 
     private int productId;
@@ -49,4 +53,38 @@ public class Products {
     public void setSellerId(int sellerId) {
         this.sellerId = sellerId;
     }
+
+    // --- DB Fetch Method ---
+    public static List<Products> getProductsByCategory(String categoryName) {
+    List<Products> productsList = new ArrayList<>();
+    String sql = "SELECT DISTINCT p.product_id, p.name, p.price, p.seller_id, u.first_name, u.last_name " +
+                 "FROM product p " +
+                 "JOIN category c ON p.category_id = c.category_id " +
+                 "JOIN user u ON p.seller_id = u.user_id " +
+                 "WHERE c.name = ? AND p.status = 'AVAILABLE'";
+
+    try (Connection conn = DatabaseConnection.connect();
+         PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+        stmt.setString(1, categoryName);
+        ResultSet rs = stmt.executeQuery();
+
+        while (rs.next()) {
+            Products p = new Products();
+            p.setProductId(rs.getInt("product_id"));
+            p.setProductName(rs.getString("name"));
+            p.setProductPrice(rs.getString("price"));
+            String sellerName = rs.getString("first_name") + " " + rs.getString("last_name");
+            p.setStoreName(sellerName.trim());
+            p.setSellerId(rs.getInt("seller_id"));
+            productsList.add(p);
+        }
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    return productsList;
+}
+
 }

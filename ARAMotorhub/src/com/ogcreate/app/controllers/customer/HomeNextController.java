@@ -2,9 +2,13 @@ package com.ogcreate.app.controllers.customer;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ResourceBundle;
 
 import com.ogcreate.app.SettingsWindowHelper;
+import com.ogcreate.app.database.DatabaseConnection;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -27,22 +31,67 @@ public class HomeNextController implements Initializable {
     private ImageView araWhiteLogo;
 
     @FXML
-    private ComboBox<String> categoryComboBox2;
+    private ComboBox<String> categoryComboBox;
 
-     @Override
+    @Override
     public void initialize(URL location, ResourceBundle resources) {
+        categoryComboBox.setPromptText("Category");
 
-        categoryComboBox2.setPromptText("Category");
-        categoryComboBox2.getItems().addAll(
-            "Engine Parts", "Suspension", "Wheels", "Oils", "Bolts", "Exterior"
-        );
+        try {
+            Connection conn = DatabaseConnection.connect();
+            if (conn == null) {
+                System.out.println("Database connection failed.");
+                return;
+            }
+
+            String query = "SELECT name FROM category";
+            PreparedStatement stmt = conn.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                categoryComboBox.getItems().add(rs.getString("name"));
+            }
+
+            rs.close();
+            stmt.close();
+            conn.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // Listener: When an item is selected, open Categories.fxml
+        categoryComboBox.setOnAction(event -> {
+            String selectedCategory = categoryComboBox.getValue();
+            if (selectedCategory != null && !selectedCategory.isEmpty()) {
+                openCategoriesPage(selectedCategory);
+            }
+        });
     }
 
-    
+    private void openCategoriesPage(String category) {
+        System.out.println("Opening category: " + category);
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/customer/Categories.fxml"));
+            Parent newRoot = loader.load();
+
+            // Pass selected category to controller
+            CategoriesController controller = loader.getController();
+            controller.setSelectedCategory(category);
+
+            Stage currentStage = (Stage) categoryComboBox.getScene().getWindow();
+            Scene newScene = new Scene(newRoot);
+            currentStage.setScene(newScene);
+            currentStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     @FXML
     private void handleCartButton(ActionEvent event) {
         System.out.println("handleCartButton triggered");
-            try {
+        try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/customer/Cart.fxml"));
             Parent newRoot = loader.load();
 
@@ -56,7 +105,7 @@ public class HomeNextController implements Initializable {
     }
 
     @FXML
-    private void handleOpenSettings(javafx.event.ActionEvent event) {
+    private void handleOpenSettings(ActionEvent event) {
         SettingsWindowHelper.openSettings((Node) event.getSource());
     }
 
@@ -89,6 +138,19 @@ public class HomeNextController implements Initializable {
             currentStage.setScene(newScene);
             currentStage.show();
 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void handleProfileClick(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/customer/Profile.fxml"));
+            Parent newRoot = loader.load();
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            currentStage.setScene(new Scene(newRoot));
+            currentStage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }

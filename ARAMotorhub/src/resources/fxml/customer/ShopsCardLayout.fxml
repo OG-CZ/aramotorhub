@@ -10,13 +10,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxWidth="1.7976931348623157E308" prefHeight="125.0" prefWidth="705.0"
-   style="-fx-border-color: #D9D9D9 transparent #D9D9D9 transparent; -fx-border-width: 1px 1.5px 0.5px 1px;"
-   xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
-   fx:controller="com.ogcreate.app.controllers.customer.ShopsCardLayoutController">
+<HBox maxWidth="1.7976931348623157E308" prefHeight="125.0" prefWidth="705.0" style="-fx-border-color: #D9D9D9 transparent #D9D9D9 transparent; -fx-border-width: 1px 1.5px 0.5px 1px;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ogcreate.app.controllers.customer.ShopsCardLayoutController">
    <children>
-      <ImageView fitHeight="125.0" fitWidth="183.0" pickOnBounds="true" preserveRatio="true"
-         HBox.hgrow="ALWAYS">
+      <ImageView fitHeight="125.0" fitWidth="183.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
          <image>
             <Image url="@../../assets/d_shopspic.png" />
          </image>
@@ -29,11 +25,20 @@
                   <Font name="Berlin Sans FB" size="24.0" />
                </font>
             </Label>
-            <Label fx:id="shopDistance" text="2km Away">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="10.0" />
-               </font>
-            </Label>
+            <HBox>
+               <children>
+                  <Label fx:id="shopDistance" text="2">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="10.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" text="KM Away">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="10.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
          </children>
          <HBox.margin>
             <Insets left="20.0" />
@@ -41,11 +46,7 @@
       </VBox>
       <VBox alignment="CENTER_RIGHT" prefHeight="126.0" prefWidth="139.0" HBox.hgrow="ALWAYS">
          <children>
-            <Button fx:id="quickViewButton" alignment="CENTER" contentDisplay="CENTER"
-               mnemonicParsing="false"
-               prefHeight="26.0" prefWidth="98.0"
-               style="-fx-background-color: black; -fx-background-radius: 0;"
-               text="Quick view" textFill="WHITE" VBox.vgrow="ALWAYS">
+            <Button fx:id="quickViewButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="26.0" prefWidth="98.0" style="-fx-background-color: black; -fx-background-radius: 0;" text="Quick view" textFill="WHITE" VBox.vgrow="ALWAYS">
                <font>
                   <Font name="Arial Bold" size="10.0" />
                </font>

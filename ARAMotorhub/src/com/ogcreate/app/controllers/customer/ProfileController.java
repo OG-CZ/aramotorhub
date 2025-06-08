@@ -1,25 +1,24 @@
 package com.ogcreate.app.controllers.customer;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.net.URL;
+import java.sql.*;
+import java.util.ResourceBundle;
 
 import com.ogcreate.app.SettingsWindowHelper;
 import com.ogcreate.app.database.DatabaseConnection;
 import com.ogcreate.app.database.UserSession;
 
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
+import javafx.fxml.*;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
-public class ProfileController {
+public class ProfileController implements Initializable {
 
     @FXML
     private Label addressLabel;
@@ -34,8 +33,12 @@ public class ProfileController {
     private Label firstLastNameLabel;
 
     @FXML
-    public void initialize() {
+    private ComboBox<String> categoryComboBox;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
         loadUserProfile();
+        loadCategoriesIntoComboBox();
     }
 
     private void loadUserProfile() {
@@ -66,7 +69,46 @@ public class ProfileController {
         }
     }
 
-    // --- NAVIGATION HANDLERS BELOW ---
+    private void loadCategoriesIntoComboBox() {
+        categoryComboBox.setPromptText("Category");
+
+        try (Connection conn = DatabaseConnection.connect();
+             PreparedStatement stmt = conn.prepareStatement("SELECT name FROM category");
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                categoryComboBox.getItems().add(rs.getString("name"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        categoryComboBox.setOnAction(event -> {
+            String selectedCategory = categoryComboBox.getValue();
+            if (selectedCategory != null && !selectedCategory.isEmpty()) {
+                openCategoriesPage(selectedCategory);
+            }
+        });
+    }
+
+    private void openCategoriesPage(String category) {
+        System.out.println("Opening category: " + category);
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/customer/Categories.fxml"));
+            Parent newRoot = loader.load();
+
+            CategoriesController controller = loader.getController();
+            controller.setSelectedCategory(category);
+
+            Stage currentStage = (Stage) categoryComboBox.getScene().getWindow();
+            currentStage.setScene(new Scene(newRoot));
+            currentStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // --- Navigation Handlers ---
 
     @FXML
     void handleCartClick(ActionEvent event) {

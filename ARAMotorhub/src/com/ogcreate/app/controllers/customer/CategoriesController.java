@@ -1,0 +1,199 @@
+// CategoriesController.java
+package com.ogcreate.app.controllers.customer;
+
+import com.ogcreate.app.SettingsWindowHelper;
+import com.ogcreate.app.database.Products;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.List;
+import java.util.ResourceBundle;
+
+public class CategoriesController implements Initializable {
+
+    private String selectedCategory;
+
+    @FXML
+    private ComboBox<String> categoryComboBox;
+
+    @FXML
+    private Label categoryResult;
+    @FXML
+    private GridPane productsContainer;
+
+    private static final int TOTAL_WIDTH = 705;
+    private static final int COLUMN_COUNT = 5;
+    private static final int COLUMN_WIDTH = TOTAL_WIDTH / COLUMN_COUNT;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        categoryComboBox.setPromptText("Category");
+
+        try {
+            var conn = com.ogcreate.app.database.DatabaseConnection.connect();
+            if (conn == null) {
+                System.out.println("Database connection failed.");
+                return;
+            }
+
+            var stmt = conn.prepareStatement("SELECT name FROM category");
+            var rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                categoryComboBox.getItems().add(rs.getString("name"));
+            }
+
+            rs.close();
+            stmt.close();
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // Add listener
+        categoryComboBox.setOnAction(event -> {
+            String selectedCategory = categoryComboBox.getValue();
+            if (selectedCategory != null && !selectedCategory.isEmpty()) {
+                openCategoriesPage(selectedCategory);
+            }
+        });
+    }
+
+    private void openCategoriesPage(String category) {
+        System.out.println("Opening category: " + category);
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/customer/Categories.fxml"));
+            Parent newRoot = loader.load();
+
+            CategoriesController controller = loader.getController();
+            controller.setSelectedCategory(category);
+
+            Stage currentStage = (Stage) categoryComboBox.getScene().getWindow();
+            Scene newScene = new Scene(newRoot);
+            currentStage.setScene(newScene);
+            currentStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void setSelectedCategory(String category) {
+        this.selectedCategory = category;
+        System.out.println("Category set: " + category);
+
+        if (categoryResult != null) {
+            categoryResult.setText(category);
+        }
+
+        loadProductsForCategory();
+    }
+
+    public void loadProductsForCategory() {
+        List<Products> productList = Products.getProductsByCategory(selectedCategory);
+        System.out.println("Products found: " + productList.size());
+
+        productsContainer.getColumnConstraints().clear();
+        for (int i = 0; i < COLUMN_COUNT; i++) {
+            ColumnConstraints column = new ColumnConstraints(COLUMN_WIDTH);
+            productsContainer.getColumnConstraints().add(column);
+        }
+
+        productsContainer.setHgap(0);
+        productsContainer.setVgap(0);
+
+        int column = 0;
+        int row = 1;
+
+        try {
+            for (Products product : productList) {
+                FXMLLoader fxmlLoader = new FXMLLoader(
+                        getClass().getResource("/resources/fxml/customer/ProductsContainer.fxml"));
+                VBox productBox = fxmlLoader.load();
+
+                productBox.setPrefWidth(COLUMN_WIDTH);
+
+                ProductsContainerController controller = fxmlLoader.getController();
+                controller.setData(product);
+
+                if (column == COLUMN_COUNT) {
+                    column = 0;
+                    ++row;
+                }
+
+                productsContainer.add(productBox, column++, row);
+                GridPane.setMargin(productBox, new Insets(0));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Navigation Handlers
+    @FXML
+    void handleCartClick(ActionEvent event) {
+        navigateTo(event, "/resources/fxml/customer/Cart.fxml");
+    }
+
+    @FXML
+    void handleFavoriteClick(ActionEvent event) {
+        navigateTo(event, "/resources/fxml/customer/Favorites.fxml");
+    }
+
+    @FXML
+    void handleProductsClick(ActionEvent event) {
+        navigateTo(event, "/resources/fxml/customer/Products.fxml");
+    }
+
+    @FXML
+    void handleHomeButton(ActionEvent event) {
+        navigateTo(event, "/resources/fxml/customer/HomeMain.fxml");
+    }
+
+    @FXML
+    void handleLogOutButton(ActionEvent event) {
+        System.out.println("Logout clicked");
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        SettingsWindowHelper.logout(currentStage);
+    }
+
+    @FXML
+    void handleOpenSettings(ActionEvent event) {
+        SettingsWindowHelper.openSettings((Node) event.getSource());
+    }
+
+    @FXML
+    void handleProfileClick(ActionEvent event) {
+        navigateTo(event, "/resources/fxml/customer/Profile.fxml");
+    }
+
+    @FXML
+    void handleShopsClick(ActionEvent event) {
+        navigateTo(event, "/resources/fxml/customer/Shops.fxml");
+    }
+
+    private void navigateTo(ActionEvent event, String fxmlPath) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+            Parent newRoot = loader.load();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(newRoot));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}

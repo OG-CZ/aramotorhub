@@ -24,10 +24,10 @@ public class ShopsCardLayoutController {
     @FXML
     private Button quickViewButton;
 
-    private Shops currentShop; // <---- Add this field here
+    private Shops currentShop; 
 
     public void setData(Shops shop) {
-        this.currentShop = shop; // save current shop for use in other methods
+        this.currentShop = shop; 
         shopName.setText(shop.getShopName());
         shopDistance.setText(shop.getShopDistance());
     }
@@ -65,4 +65,6 @@ public class ShopsCardLayoutController {
             e.printStackTrace();
         }
     }
+
+    
 }

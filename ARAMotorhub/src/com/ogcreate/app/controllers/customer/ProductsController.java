@@ -6,11 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.ResourceBundle;
-import java.util.Set;
+import java.util.*;
 
 import com.ogcreate.app.SettingsWindowHelper;
 import com.ogcreate.app.database.DatabaseConnection;
@@ -24,6 +20,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
@@ -35,6 +32,9 @@ public class ProductsController implements Initializable {
     private GridPane productsContainer;
 
     @FXML
+    private ComboBox<String> categoryComboBox;
+
+    @FXML
     private List<Products> showProducts;
 
     private static final int TOTAL_WIDTH = 705;
@@ -43,10 +43,30 @@ public class ProductsController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // Load real products from the database
+        // 🔁 Load categories into ComboBox
+        categoryComboBox.setPromptText("Category");
+
+        try (Connection conn = DatabaseConnection.connect();
+             PreparedStatement stmt = conn.prepareStatement("SELECT name FROM category");
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                categoryComboBox.getItems().add(rs.getString("name"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        categoryComboBox.setOnAction(event -> {
+            String selectedCategory = categoryComboBox.getValue();
+            if (selectedCategory != null && !selectedCategory.isEmpty()) {
+                openCategoriesPage(selectedCategory);
+            }
+        });
+
+        // 🔁 Load products
         showProducts = getAllAvailableProducts();
 
-        // Your existing layout code here...
         productsContainer.getColumnConstraints().clear();
         for (int i = 0; i < COLUMN_COUNT; i++) {
             ColumnConstraints column = new ColumnConstraints();
@@ -88,20 +108,36 @@ public class ProductsController implements Initializable {
         }
     }
 
+    private void openCategoriesPage(String category) {
+        System.out.println("Opening category: " + category);
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/customer/Categories.fxml"));
+            Parent newRoot = loader.load();
+
+            CategoriesController controller = loader.getController();
+            controller.setSelectedCategory(category);
+
+            Stage currentStage = (Stage) categoryComboBox.getScene().getWindow();
+            currentStage.setScene(new Scene(newRoot));
+            currentStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public List<Products> getAllAvailableProducts() {
         List<Products> productsList = new ArrayList<>();
         String sql = "SELECT DISTINCT p.product_id, p.name, p.price, p.seller_id, u.first_name, u.last_name " +
-             "FROM product p " +
-             "JOIN user u ON p.seller_id = u.user_id " +
-             "WHERE p.status = 'AVAILABLE' " +
-             "ORDER BY p.name ASC";
-
+                     "FROM product p " +
+                     "JOIN user u ON p.seller_id = u.user_id " +
+                     "WHERE p.status = 'AVAILABLE' " +
+                     "ORDER BY p.name ASC";
 
         Set<String> productNamesSet = new HashSet<>();
 
         try (Connection conn = DatabaseConnection.connect();
-                PreparedStatement stmt = conn.prepareStatement(sql);
-                ResultSet rs = stmt.executeQuery()) {
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
                 String productName = rs.getString("name");
@@ -109,14 +145,13 @@ public class ProductsController implements Initializable {
                     productNamesSet.add(productName);
 
                     Products p = new Products();
-                    p.setProductId(rs.getInt("product_id")); // 🔥 This is the fix
-                    p.setProductName(rs.getString("name"));
+                    p.setProductId(rs.getInt("product_id"));
+                    p.setProductName(productName);
                     p.setProductPrice(rs.getString("price"));
                     String sellerName = rs.getString("first_name") + " " + rs.getString("last_name");
                     p.setStoreName(sellerName.trim());
                     p.setSellerId(rs.getInt("seller_id"));
                     productsList.add(p);
-
                 }
             }
 
@@ -129,14 +164,11 @@ public class ProductsController implements Initializable {
 
     @FXML
     void handleShopsClick(ActionEvent event) {
-        System.out.println("handleShopsClick triggered");
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/customer/Shops.fxml"));
             Parent newRoot = loader.load();
-
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Scene newScene = new Scene(newRoot);
-            currentStage.setScene(newScene);
+            currentStage.setScene(new Scene(newRoot));
             currentStage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -145,15 +177,11 @@ public class ProductsController implements Initializable {
 
     @FXML
     void handleFavoriteClick(ActionEvent event) {
-        System.out.println("handleFavoriteClick triggered");
-
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/customer/Favorite.fxml"));
             Parent newRoot = loader.load();
-
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Scene newScene = new Scene(newRoot);
-            currentStage.setScene(newScene);
+            currentStage.setScene(new Scene(newRoot));
             currentStage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -162,16 +190,12 @@ public class ProductsController implements Initializable {
 
     @FXML
     void handleHomeButton(ActionEvent event) {
-        System.out.println("handleHomeButton triggered");
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/customer/HomeMain.fxml"));
             Parent newRoot = loader.load();
-
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Scene newScene = new Scene(newRoot);
-            currentStage.setScene(newScene);
+            currentStage.setScene(new Scene(newRoot));
             currentStage.show();
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -184,22 +208,17 @@ public class ProductsController implements Initializable {
 
     @FXML
     void handleLogOutButton(ActionEvent event) {
-        System.out.println("Logout clicked");
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         SettingsWindowHelper.logout(currentStage);
     }
 
     @FXML
     void handleCartClick(ActionEvent event) {
-        System.out.println("handleCartClick triggered");
-
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/customer/Cart.fxml"));
             Parent newRoot = loader.load();
-
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Scene newScene = new Scene(newRoot);
-            currentStage.setScene(newScene);
+            currentStage.setScene(new Scene(newRoot));
             currentStage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -208,19 +227,14 @@ public class ProductsController implements Initializable {
 
     @FXML
     private void handleProfileClick(ActionEvent event) {
-        System.out.println("handleProfileClick triggered");
-
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/customer/Profile.fxml"));
             Parent newRoot = loader.load();
-
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Scene newScene = new Scene(newRoot);
-            currentStage.setScene(newScene);
+            currentStage.setScene(new Scene(newRoot));
             currentStage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
 }
