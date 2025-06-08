@@ -134,10 +134,9 @@ public class AuthService {
             e.printStackTrace();
         }
 
-        return generatedUserId; // You can return it or do whatever you want with it
+        return generatedUserId; 
     }
 
-    // Helper to return suffix based on role string, example:
     private String getRoleSuffix(String role) {
         switch (role.toUpperCase()) {
             case "CUSTOMER":

@@ -16,7 +16,6 @@ import javafx.scene.Node;
 
 import java.io.IOException;
 
-import com.ogcreate.app.database.AuthService;
 import com.ogcreate.app.database.User;
 import com.ogcreate.app.database.UserService;
 import com.ogcreate.app.database.UserSession;
@@ -79,9 +78,8 @@ public class EditProfileController {
 
         alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("ARA Motorhub");
-        alert.setHeaderText(null);
+       // alert.setHeaderText(null);
         alert.setContentText("Do you want to save the changes to your profile information?");
-
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
         stage.getIcons().add(new Image(this.getClass().getResource("/resources/assets/z_favicon.png").toString()));
 

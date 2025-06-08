@@ -4,7 +4,7 @@ public class User {
 
     int userId;
     String email, password, firstName, lastName, address, district, barangay, role;
-    
+
     public User(int userId, String email, String password, String firstName, String lastName, String address,
             String district, String barangay, String role) {
         this.userId = userId;
@@ -90,6 +90,4 @@ public class User {
         this.role = role;
     }
 
-    
-    
 }

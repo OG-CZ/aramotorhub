@@ -49,6 +49,8 @@ public class RegisterStep2Controller {
 
         alert.setTitle(title);
         alert.setContentText(message);
+                alert.setHeaderText(null);
+
 
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
         stage.getIcons().add(new Image(this.getClass().getResource("/resources/assets/z_favicon.png").toString()));
@@ -104,7 +106,7 @@ public class RegisterStep2Controller {
         authService.showNewUser();
         authService.registerNewUser();
 
-        showAlert("ARA Motorhub", "You may proceed to log in.");
+        showAlert("ARA Motorhub", "Your profile has been updated successfully!");
 
         if (!alert.isShowing()) {
             try {

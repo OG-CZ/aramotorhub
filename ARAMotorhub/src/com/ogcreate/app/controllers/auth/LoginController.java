@@ -82,7 +82,7 @@ public class LoginController {
         }
 
         User loggedInUser = authentication.loginAndGetUser(email, password);
-        
+
         if (loggedInUser == null) {
             showAlert("ARA Motorhub", "Invalid email or password.");
             return;

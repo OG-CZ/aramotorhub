@@ -3,6 +3,9 @@ package com.ogcreate.app.controllers.settings;
 import java.io.IOException;
 
 import com.ogcreate.app.SettingsWindowHelper;
+import com.ogcreate.app.database.User;
+import com.ogcreate.app.database.UserService;
+import com.ogcreate.app.database.UserSession;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -32,10 +35,10 @@ public class DeleteAccountController {
     private Button logOutButton;
 
     private Alert alert;
+    User currentUser = UserSession.getCurrentUser();
 
-    private void showAlert(String title, String message) {
+    void showAlert(String title, String message) {
         alert = new Alert(Alert.AlertType.CONFIRMATION);
-
         alert.setTitle(title);
         alert.setContentText(message);
 
@@ -46,17 +49,49 @@ public class DeleteAccountController {
 
     @FXML
     void handleDelAccButton(ActionEvent event) {
-        System.out.println("handleDelAccButton triggered");
-
-        showAlert("ARA Motorhub", "Are you sure you want to delete your account?");
-
-        if (alert.getResult().equals(ButtonType.OK)) {
-            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            SettingsWindowHelper.logout(currentStage);
+        if (currentUser == null) {
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+            errorAlert.setTitle("ARA Motorhub");
+            errorAlert.setContentText("No logged in user found. Please log in again.");
+            errorAlert.showAndWait();
             return;
         }
-    }
 
+        Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmAlert.setTitle("ARA Motorhub");
+        confirmAlert.setContentText("Pressing OK will permanently delete your account and all associated data");
+        Stage stage = (Stage) confirmAlert.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image(this.getClass().getResource("/resources/assets/z_favicon.png").toString()));
+
+        confirmAlert.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                UserService userService = new UserService();
+                boolean deleted = userService.deleteUser(currentUser.getUserId());
+
+                if (deleted) {
+
+                    Alert infoAlert = new Alert(Alert.AlertType.INFORMATION);
+                    infoAlert.setTitle("ARA Motorhub");
+                    infoAlert.setContentText("Account deleted successfully.");
+                    infoAlert.setHeaderText(null);
+                    Stage infoStage = (Stage) infoAlert.getDialogPane().getScene().getWindow();
+                    infoStage.getIcons()
+                            .add(new Image(this.getClass().getResource("/resources/assets/z_favicon.png").toString()));
+                    infoAlert.showAndWait();
+                    SettingsWindowHelper.logout((Stage) ((Node) event.getSource()).getScene().getWindow());
+                } else {
+                    Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                    errorAlert.setTitle("ARA Motorhub");
+                    errorAlert.setContentText("Failed to delete account. Please try again.");
+                    errorAlert.setHeaderText(null);
+                    Stage errorStage = (Stage) errorAlert.getDialogPane().getScene().getWindow();
+                    errorStage.getIcons()
+                            .add(new Image(this.getClass().getResource("/resources/assets/z_favicon.png").toString()));
+                    errorAlert.showAndWait();
+                }
+            }
+        });
+    }
 
     // switching scene dont touch
     @FXML
