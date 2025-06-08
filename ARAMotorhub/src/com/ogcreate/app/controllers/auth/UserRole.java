@@ -2,7 +2,7 @@ package com.ogcreate.app.controllers.auth;
 
 public enum UserRole {
     CUSTOMER("Customer"),
-    STORE("Store");
+    STORE("Seller");
 
     private final String displayName;
 

@@ -10,7 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import javafx.scene.text.Font;
+// import javafx.scene.text.Font;
 
 
 public class ARAMotorhub extends Application {
@@ -29,10 +29,11 @@ public class ARAMotorhub extends Application {
 
             Parent root = FXMLLoader.load(getClass().getResource("/resources/fxml/auth/Login.fxml"));
             Scene scene = new Scene(root, 938.32, 609.23);
+            
             scene.getRoot().setStyle("-fx-font-smoothing-type: lcd;");
 
-            Font.loadFont(getClass().getResourceAsStream("/resources/fonts/SF-Pro.ttf"), 12);
-            Font.loadFont(getClass().getResourceAsStream("/resources/fonts/SF-Pro-Display-Medium.otf"), 12);
+        //    Font.loadFont(getClass().getResourceAsStream("/resources/fonts/SF-Pro.ttf"), 12);
+           // Font.loadFont(getClass().getResourceAsStream("/resources/fonts/SF-Pro-Display-Medium.otf"), 12);
 
             /* 
             Font loadedFont = Font.loadFont(getClass().getResourceAsStream("/resources/fonts/SF-Pro.ttf"), 12);

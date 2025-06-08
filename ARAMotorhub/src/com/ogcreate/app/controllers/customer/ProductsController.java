@@ -2,11 +2,18 @@ package com.ogcreate.app.controllers.customer;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Set;
 
 import com.ogcreate.app.SettingsWindowHelper;
+import com.ogcreate.app.database.DatabaseConnection;
 import com.ogcreate.app.database.Products;
 
 import javafx.event.ActionEvent;
@@ -36,10 +43,10 @@ public class ProductsController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        // Load real products from the database
+        showProducts = getAllAvailableProducts();
 
-        showProducts = new ArrayList<>(products());
-
-        // Set column constraints to fix width
+        // Your existing layout code here...
         productsContainer.getColumnConstraints().clear();
         for (int i = 0; i < COLUMN_COUNT; i++) {
             ColumnConstraints column = new ColumnConstraints();
@@ -61,7 +68,6 @@ public class ProductsController implements Initializable {
                 fxmlLoader.setLocation(getClass().getResource("/resources/fxml/customer/ProductsContainer.fxml"));
                 VBox productBox = fxmlLoader.load();
 
-                // Force the product container to have fixed width
                 productBox.setPrefWidth(COLUMN_WIDTH);
                 productBox.setMaxWidth(COLUMN_WIDTH);
                 productBox.setMinWidth(COLUMN_WIDTH);
@@ -82,18 +88,42 @@ public class ProductsController implements Initializable {
         }
     }
 
-    private List<Products> products() {
-        List<Products> ls = new ArrayList<>();
+    public List<Products> getAllAvailableProducts() {
+        List<Products> productsList = new ArrayList<>();
+        String sql = "SELECT DISTINCT p.product_id, p.name, p.price, u.first_name, u.last_name " +
+                "FROM product p " +
+                "JOIN user u ON p.seller_id = u.user_id " +
+                "WHERE p.status = 'AVAILABLE' " +
+                "ORDER BY p.name ASC";
 
-        for (int i = 0; i <= 20; i++) {
-            Products product = new Products();
-            product.setStoreName("Store " + ((i % 5) + 1));
-            product.setProductPrice(String.valueOf(100 + (i * 10)));
-            product.setProductName("Product " + i);
-            ls.add(product);
+        // Use a Set to track product names and avoid duplicates
+        Set<String> productNamesSet = new HashSet<>();
+
+        try (Connection conn = DatabaseConnection.connect();
+                PreparedStatement stmt = conn.prepareStatement(sql);
+                ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                String productName = rs.getString("name");
+                if (!productNamesSet.contains(productName)) {
+                    productNamesSet.add(productName);
+
+                    Products p = new Products();
+                    p.setProductId(rs.getInt("product_id")); // 🔥 This is the fix
+                    p.setProductName(rs.getString("name"));
+                    p.setProductPrice(rs.getString("price"));
+                    String sellerName = rs.getString("first_name") + " " + rs.getString("last_name");
+                    p.setStoreName(sellerName.trim());
+                    productsList.add(p);
+
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
 
-        return ls;
+        return productsList;
     }
 
     @FXML
@@ -158,7 +188,7 @@ public class ProductsController implements Initializable {
         SettingsWindowHelper.logout(currentStage);
     }
 
-    @FXML 
+    @FXML
     void handleCartClick(ActionEvent event) {
         System.out.println("handleCartClick triggered");
 
@@ -171,15 +201,15 @@ public class ProductsController implements Initializable {
             currentStage.setScene(newScene);
             currentStage.show();
         } catch (IOException e) {
-        e.printStackTrace();
-        }        
+            e.printStackTrace();
+        }
     }
 
     @FXML
     private void handleProfileClick(ActionEvent event) {
         System.out.println("handleProfileClick triggered");
 
-            try {
+        try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/customer/Profile.fxml"));
             Parent newRoot = loader.load();
 
@@ -191,5 +221,5 @@ public class ProductsController implements Initializable {
             e.printStackTrace();
         }
     }
-    
+
 }

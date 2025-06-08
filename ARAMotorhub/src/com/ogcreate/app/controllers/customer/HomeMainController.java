@@ -14,10 +14,13 @@ import javafx.fxml.Initializable;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ResourceBundle;
 
 import com.ogcreate.app.SettingsWindowHelper;
-
+import com.ogcreate.app.database.DatabaseConnection;
 
 public class HomeMainController implements Initializable {
 
@@ -42,14 +45,10 @@ public class HomeMainController implements Initializable {
     @FXML
     private Button wheelsButton;
 
-
-    
-
-
     @FXML
     private void handleCartButton(ActionEvent event) {
         System.out.println("handleCartButton triggered");
-            try {
+        try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/customer/Cart.fxml"));
             Parent newRoot = loader.load();
 
@@ -80,13 +79,30 @@ public class HomeMainController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
         categoryComboBox.setPromptText("Category");
-        categoryComboBox.getItems().addAll(
-            "Engine Parts", "Suspension", "Wheels", "Oils", "Bolts", "Exterior"
-        );
-        
 
+        try {
+            Connection conn = DatabaseConnection.connect(); // Use your reusable method
+            if (conn == null) {
+                System.out.println("Database connection failed.");
+                return;
+            }
+
+            String query = "SELECT name FROM category";
+            PreparedStatement stmt = conn.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                categoryComboBox.getItems().add(rs.getString("name"));
+            }
+
+            rs.close();
+            stmt.close();
+            conn.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML

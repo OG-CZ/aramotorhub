@@ -49,7 +49,7 @@ public class RegisterStep2Controller {
 
         alert.setTitle(title);
         alert.setContentText(message);
-                alert.setHeaderText(null);
+        alert.setHeaderText(null);
 
 
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();

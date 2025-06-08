@@ -75,7 +75,7 @@
                                           <Font name="Arial" size="18.0" />
                                        </font>
                                     </Label>
-                                    <Spinner prefHeight="42.0" prefWidth="98.0" />
+                                    <Spinner fx:id="spinnerQuantity" prefHeight="42.0" prefWidth="98.0" />
                                  </children>
                               </HBox>
                               <Separator layoutX="-5.6" layoutY="-3.0" prefHeight="6.0" prefWidth="368.0" AnchorPane.leftAnchor="-6.0" AnchorPane.rightAnchor="0.0" />

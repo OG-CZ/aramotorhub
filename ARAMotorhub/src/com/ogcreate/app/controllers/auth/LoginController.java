@@ -97,7 +97,7 @@ public class LoginController {
                 case "customer":
                     loader = new FXMLLoader(getClass().getResource("/resources/fxml/customer/HomeMain.fxml"));
                     break;
-                case "store":
+                case "seller":
                     loader = new FXMLLoader(getClass().getResource("/resources/fxml/store/Profile.fxml"));
                     break;
                 case "admin":
@@ -202,20 +202,22 @@ public class LoginController {
         backgroundPane4.setFocusTraversable(true);
         Platform.runLater(dummyFocus::requestFocus);
 
+        
         emailField.textProperty().addListener((obs, oldText, newText) -> {
             if (newText.isEmpty()) {
-                emailField.setStyle("-fx-border-color: gray; -fx-border-radius: 5;"); // default color when empty
+                emailField.setStyle("-fx-border-color: rgba(0,0,0,0.05); -fx-border-radius: 5; -fx-background-radius: 5; -fx-focus-color: #B7B710; -fx-faint-focus-color: transparent;"); // default color when empty
             } else {
-                emailField.setStyle("-fx-border-color: #B7B710; -fx-border-radius: 5;"); // color when typing
+                emailField.setStyle("-fx-border-color: #B7B710; -fx-border-radius: 5; -fx-background-radius: 5; -fx-focus-color: #B7B710; -fx-faint-focus-color: transparent;"); // color when typing
             }
         });
 
         passwordField.textProperty().addListener((obs, oldText, newText) -> {
             if (newText.isEmpty()) {
-                passwordField.setStyle("-fx-border-color: gray; -fx-border-radius: 5;");
+               passwordField.setStyle("-fx-border-color: rgba(0,0,0,0.05); -fx-border-radius: 5; -fx-background-radius: 5; -fx-focus-color: #B7B710; -fx-faint-focus-color: transparent;");
             } else {
-                passwordField.setStyle("-fx-border-color: #B7B710; -fx-border-radius: 5;");
+                passwordField.setStyle("-fx-border-color: #B7B710; -fx-border-radius: 5; -fx-background-radius: 5; -fx-focus-color: #B7B710; -fx-faint-focus-color: transparent;");
             }
-        });
+        }); 
+        
     }
 }

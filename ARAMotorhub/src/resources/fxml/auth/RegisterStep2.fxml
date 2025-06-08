@@ -86,7 +86,7 @@
                   <SplitMenuButton fx:id="roleFieldMenu" maxHeight="26.0" maxWidth="207.35" minHeight="26.0" minWidth="207.35" prefHeight="26.0" prefWidth="207.35" style="-fx-background-radius: 5;" text="Select">
                      <items>
                         <MenuItem mnemonicParsing="false" text="Customer" />
-                        <MenuItem mnemonicParsing="false" text="Store" />
+                        <MenuItem mnemonicParsing="false" text="Seller" />
                      </items>
                   </SplitMenuButton>
                   <Region layoutX="10.0" layoutY="165.0" maxHeight="66.0" maxWidth="208.0" minHeight="10.0" minWidth="208.0" prefHeight="66.0" prefWidth="208.0" />

@@ -141,7 +141,7 @@ public class AuthService {
         switch (role.toUpperCase()) {
             case "CUSTOMER":
                 return "CST";
-            case "STORE":
+            case "SELLER":
                 return "SLR";
             case "ADMIN":
                 return "ADM";

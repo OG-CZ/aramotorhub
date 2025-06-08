@@ -78,7 +78,7 @@
                                     <Font name="Arial" size="10.0" />
                                  </font>
                               </Button>
-                              <Button mnemonicParsing="false" style="-fx-background-color: transparent;" text="Shop">
+                              <Button mnemonicParsing="false" onAction="#handleShopsClick" style="-fx-background-color: transparent;" text="Shop">
                                  <font>
                                     <Font name="Arial" size="10.0" />
                                  </font>
@@ -102,7 +102,7 @@
                         </ImageView>
                      </children>
                   </HBox>
-                  <Button layoutX="475.0" layoutY="2.0" mnemonicParsing="false" onAction="#handleProfileClick" opacity="0.0" prefHeight="59.0" prefWidth="52.0" text="Profile Icon" />
+                  <Button layoutX="475.0" layoutY="2.0" mnemonicParsing="false" onAction="#handleOpenSettings" opacity="0.0" prefHeight="59.0" prefWidth="52.0" text="Profile Icon" />
                </children>
             </AnchorPane>
          </children>
@@ -162,7 +162,7 @@
                               <Insets bottom="-5.0" left="29.0" />
                            </VBox.margin>
                         </Button>
-                        <ComboBox maxHeight="25.66" maxWidth="148.07" minHeight="25.66" minWidth="148.07" prefHeight="25.66" prefWidth="148.07" promptText="Category" style="-fx-background-color: #ffffff; -fx-border-color: #ccc; -fx-background-radius: 5px; -fx-border-radius: 5px; -fx-opacity: 0.8;">
+                        <ComboBox fx:id="categoryComboBox" maxHeight="25.66" maxWidth="148.07" minHeight="25.66" minWidth="148.07" prefHeight="25.66" prefWidth="148.07" promptText="Category" style="-fx-background-color: #ffffff; -fx-border-color: #ccc; -fx-background-radius: 5px; -fx-border-radius: 5px; -fx-opacity: 0.8;">
                            <VBox.margin>
                               <Insets bottom="8.0" left="10.0" top="7.5" />
                            </VBox.margin>
@@ -309,7 +309,7 @@
                                                       <Font name="Arial" size="10.0" />
                                                    </font>
                                                 </Label>
-                                                <Label text="09123456789+">
+                                                <Label fx:id="sellerBarangay" text="Barangay ">
                                                    <font>
                                                       <Font name="Arial" size="10.0" />
                                                    </font>

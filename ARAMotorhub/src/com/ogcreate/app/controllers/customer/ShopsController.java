@@ -2,11 +2,17 @@ package com.ogcreate.app.controllers.customer;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
 import com.ogcreate.app.SettingsWindowHelper;
+import com.ogcreate.app.database.Shops;
+import com.ogcreate.app.database.DatabaseConnection;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,21 +25,19 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-
-import com.ogcreate.app.database.Shops;
-
 public class ShopsController implements Initializable {
 
     @FXML
     private VBox shopCardLayout;
+
     private List<Shops> nearestShop;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        nearestShop = new ArrayList<>(nearestShop());
-    
+        nearestShop = fetchShopsFromDB();
+
         try {
-                for (int i = 0; i < nearestShop().size(); i++) {
+            for (int i = 0; i < nearestShop.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/resources/fxml/customer/ShopsCardLayout.fxml"));
 
@@ -42,64 +46,63 @@ public class ShopsController implements Initializable {
                 shopCardLayoutController.setData(nearestShop.get(i));
                 shopCardLayout.getChildren().add(cardBox);
             }
-        } catch (IOException e) { 
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
-                    
-    private List<Shops> nearestShop() {
-        List<Shops> ls = new ArrayList<>();
 
-        Shops shop1 = new Shops();
-        shop1.setShopName("Store 1");
-        shop1.setShopDistance("1 km");
-        ls.add(shop1);
+    private List<Shops> fetchShopsFromDB() {
+        List<Shops> shopsList = new ArrayList<>();
 
-        Shops shop2 = new Shops();
-        shop2.setShopName("Store 2");
-        shop2.setShopDistance("2 km");
-        ls.add(shop2);
+        // Query only sellers with non-null first_name and last_name
+        String sql = "SELECT user_id, first_name, last_name, email, address, barangay \r\n" + //
+                "FROM user \r\n" + //
+                "WHERE role = 'SELLER' AND first_name IS NOT NULL AND last_name IS NOT NULL AND first_name <> '' AND last_name <> '';\r\n"
+                + //
+                "";
 
+        try (Connection conn = DatabaseConnection.connect();
+                PreparedStatement ps = conn.prepareStatement(sql);
+                ResultSet rs = ps.executeQuery()) {
 
-        Shops shop3 = new Shops();
-        shop3.setShopName("Store 3");
-        shop3.setShopDistance("3 km");
-        ls.add(shop3);
+            while (rs.next()) {
+                Shops shop = new Shops();
 
-        Shops Shop4 = new Shops();
-        Shop4.setShopName("Store 4");
-        Shop4.setShopDistance("4 km");
-        ls.add(Shop4);
+                String shopName = rs.getString("first_name") + " " + rs.getString("last_name");
+                shop.setShopName(shopName);
 
-        Shops shop5 = new Shops();
-        shop5.setShopName("Store 5");
-        shop5.setShopDistance("5 km");
-        ls.add(shop5);
+                shop.setShopEmail(rs.getString("email"));
+                shop.setShopAddress(rs.getString("address"));
+                shop.setShopBarangay(rs.getString("barangay"));
 
-        Shops shop6 = new Shops();
-        shop6.setShopName("Store 6");
-        shop6.setShopDistance("6 km");
-        ls.add(shop6);
+                shop.setShopDistance("N/A"); // or calculate if you have logic
 
-        return ls;
+                shopsList.add(shop);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return shopsList;
     }
 
     @FXML
     void handleHomeButton(ActionEvent event) {
-    System.out.println("handleHomeButton triggered");
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/customer/HomeMain.fxml"));
-                Parent newRoot = loader.load();
+        System.out.println("handleHomeButton triggered");
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/customer/HomeMain.fxml"));
+            Parent newRoot = loader.load();
 
-                Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                Scene newScene = new Scene(newRoot);
-                currentStage.setScene(newScene);
-                currentStage.show();
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene newScene = new Scene(newRoot);
+            currentStage.setScene(newScene);
+            currentStage.show();
 
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+    }
 
     @FXML
     private void handleOpenSettings(javafx.event.ActionEvent event) {
@@ -115,20 +118,20 @@ public class ShopsController implements Initializable {
 
     @FXML
     private void handleProductsClick(ActionEvent event) {
-    System.out.println("handleProductsClick triggered");
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/customer/Products.fxml"));
-                Parent newRoot = loader.load();
+        System.out.println("handleProductsClick triggered");
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/customer/Products.fxml"));
+            Parent newRoot = loader.load();
 
-                Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                Scene newScene = new Scene(newRoot);
-                currentStage.setScene(newScene);
-                currentStage.show();
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene newScene = new Scene(newRoot);
+            currentStage.setScene(newScene);
+            currentStage.show();
 
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+    }
 
     @FXML
     void handleFavoriteClick(ActionEvent event) {
@@ -147,7 +150,6 @@ public class ShopsController implements Initializable {
         }
     }
 
-
     @FXML
     private void handleCartClick(ActionEvent event) {
         System.out.println("handleCartClick triggered");
@@ -161,8 +163,8 @@ public class ShopsController implements Initializable {
             currentStage.setScene(newScene);
             currentStage.show();
         } catch (IOException e) {
-        e.printStackTrace();
-        }        
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -181,10 +183,4 @@ public class ShopsController implements Initializable {
             e.printStackTrace();
         }
     }
-    
 }
-
-
-
-
-

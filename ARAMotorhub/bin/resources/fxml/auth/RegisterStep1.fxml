@@ -40,14 +40,14 @@
          <children>
             <VBox layoutX="1.0" layoutY="170.0" prefHeight="270.0" prefWidth="208.0">
                <children>
-                  <Label text="First name">
+                  <Label text="First Name">
                      <font>
                         <Font size="11.0" />
                      </font>
                   </Label>
                   <TextField fx:id="firstNameField" maxHeight="26.0" maxWidth="207.35" minHeight="26.0" minWidth="207.35" prefHeight="26.0" prefWidth="207.35" promptText="Enter your first name" style="-fx-background-radius: 5px;" />
                   <Region maxHeight="10.0" maxWidth="208.0" minHeight="10.0" minWidth="208.0" prefHeight="10.0" prefWidth="208.0" />
-                  <Label text="Last name">
+                  <Label text="Last Name">
                      <font>
                         <Font size="11.0" />
                      </font>
@@ -66,7 +66,7 @@
                         <Font size="11.0" />
                      </font>
                   </Label>
-                  <PasswordField fx:id="passwordField" maxHeight="26.0" maxWidth="207.35" minHeight="26.0" minWidth="207.35" prefHeight="26.0" prefWidth="207.35" promptText="At least 8 characters" style="-fx-background-radius: 5px;" />
+                  <PasswordField fx:id="passwordField" maxHeight="26.0" maxWidth="207.35" minHeight="26.0" minWidth="207.35" prefHeight="26.0" prefWidth="207.35" promptText="At least 4 characters" style="-fx-background-radius: 5px;" />
                   <Region layoutX="10.0" layoutY="165.0" maxHeight="66.0" maxWidth="208.0" minHeight="10.0" minWidth="208.0" prefHeight="66.0" prefWidth="208.0" />
                   <Region layoutX="10.0" layoutY="39.0" prefHeight="30.0" prefWidth="208.0" />
                   <StackPane prefHeight="28.1" prefWidth="207.35" style="-fx-background-color: B7B710; -fx-background-radius: 5; ">
