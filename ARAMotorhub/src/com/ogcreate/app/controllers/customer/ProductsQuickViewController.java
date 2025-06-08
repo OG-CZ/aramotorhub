@@ -1,5 +1,6 @@
 package com.ogcreate.app.controllers.customer;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,10 +8,15 @@ import java.sql.SQLException;
 
 import com.ogcreate.app.database.DatabaseConnection;
 import com.ogcreate.app.database.Products;
+import com.ogcreate.app.database.Shops;
 import com.ogcreate.app.database.UserSession;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
@@ -103,16 +109,50 @@ public class ProductsQuickViewController {
             stage.getIcons().add(new Image(this.getClass().getResource("/resources/assets/z_favicon.png").toString()));
             alert.showAndWait();
 
-            System.out.println("✅ Product added/updated in cart successfully!");
+            System.out.println("Product added/updated in cart successfully!");
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("❌ Error adding to cart.");
+            System.out.println("Error adding to cart.");
         }
     }
 
     @FXML
     void handleViewShop(ActionEvent event) {
-        // Optional: implement shop view
+        if (selectedProduct == null)
+            return;
+
+        int sellerId = selectedProduct.getSellerId();
+
+        try (Connection conn = DatabaseConnection.connect()) {
+            String sql = "SELECT first_name, last_name, email, address, barangay FROM user WHERE user_id = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, sellerId);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                Shops shop = new Shops();
+                shop.setShopName(rs.getString("first_name") + " " + rs.getString("last_name"));
+                shop.setShopEmail(rs.getString("email"));
+                shop.setShopAddress(rs.getString("address"));
+                shop.setShopBarangay(rs.getString("barangay"));
+
+                FXMLLoader loader = new FXMLLoader(
+                        getClass().getResource("/resources/fxml/customer/ShopsQuickView.fxml"));
+                Parent shopRoot = loader.load();
+
+                ShopsQuickViewController controller = loader.getController();
+                controller.setShopDetails(shop);
+
+                Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                currentStage.setScene(new Scene(shopRoot));
+                currentStage.show();
+            } else {
+                System.out.println(" Seller not found with ID: " + sellerId);
+            }
+
+        } catch (IOException | SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void setProductData(Products product) {

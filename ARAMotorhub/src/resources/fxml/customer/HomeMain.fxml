@@ -112,7 +112,7 @@
                               <Font name="Arial" size="9.5" />
                            </font>
                         </Button>
-                        <Button fx:id="profileButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleOpenSettings" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-letter-spacing: 10px;" stylesheets="@../../css/style.css" text="Profile" textFill="#000000e5">
+                        <Button fx:id="profileButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleProfileClick" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-letter-spacing: 10px;" stylesheets="@../../css/style.css" text="Profile" textFill="#000000e5">
                            <font>
                               <Font name="Arial" size="9.5" />
                            </font>

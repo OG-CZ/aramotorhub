@@ -128,4 +128,21 @@ public class HomeMainController implements Initializable {
         SettingsWindowHelper.openSettings((Node) event.getSource());
     }
 
+        @FXML
+    private void handleProfileClick(ActionEvent event) {
+        System.out.println("handleProfileClick triggered");
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/customer/Profile.fxml"));
+            Parent newRoot = loader.load();
+
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene newScene = new Scene(newRoot);
+            currentStage.setScene(newScene);
+            currentStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

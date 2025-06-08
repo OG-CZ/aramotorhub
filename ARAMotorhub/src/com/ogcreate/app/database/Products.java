@@ -6,10 +6,15 @@ public class Products {
     private String productPrice;
     private String productName;
     private String storeName;
+    private int sellerId;
 
     // --- Getters ---
     public int getProductId() {
         return productId;
+    }
+
+    public int getSellerId() {
+        return sellerId;
     }
 
     public String getProductName() {
@@ -19,7 +24,7 @@ public class Products {
     public String getProductPrice() {
         return productPrice;
     }
-    
+
     public String getStoreName() {
         return storeName;
     }
@@ -39,5 +44,9 @@ public class Products {
 
     public void setStoreName(String storeName) {
         this.storeName = storeName;
+    }
+
+    public void setSellerId(int sellerId) {
+        this.sellerId = sellerId;
     }
 }

@@ -90,13 +90,13 @@ public class ProductsController implements Initializable {
 
     public List<Products> getAllAvailableProducts() {
         List<Products> productsList = new ArrayList<>();
-        String sql = "SELECT DISTINCT p.product_id, p.name, p.price, u.first_name, u.last_name " +
-                "FROM product p " +
-                "JOIN user u ON p.seller_id = u.user_id " +
-                "WHERE p.status = 'AVAILABLE' " +
-                "ORDER BY p.name ASC";
+        String sql = "SELECT DISTINCT p.product_id, p.name, p.price, p.seller_id, u.first_name, u.last_name " +
+             "FROM product p " +
+             "JOIN user u ON p.seller_id = u.user_id " +
+             "WHERE p.status = 'AVAILABLE' " +
+             "ORDER BY p.name ASC";
 
-        // Use a Set to track product names and avoid duplicates
+
         Set<String> productNamesSet = new HashSet<>();
 
         try (Connection conn = DatabaseConnection.connect();
@@ -114,6 +114,7 @@ public class ProductsController implements Initializable {
                     p.setProductPrice(rs.getString("price"));
                     String sellerName = rs.getString("first_name") + " " + rs.getString("last_name");
                     p.setStoreName(sellerName.trim());
+                    p.setSellerId(rs.getInt("seller_id"));
                     productsList.add(p);
 
                 }

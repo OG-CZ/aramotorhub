@@ -80,12 +80,12 @@
                                     <Font name="Arial" size="10.0" />
                                  </font>
                               </Button>
-                              <Button mnemonicParsing="false" style="-fx-background-color: transparent;" text="Shop">
+                              <Button mnemonicParsing="false" onAction="#handleShopsClick" style="-fx-background-color: transparent;" text="Shop">
                                  <font>
                                     <Font name="Arial" size="10.0" />
                                  </font>
                               </Button>
-                              <Button mnemonicParsing="false" onAction="#handleOpenSettings" style="-fx-background-color: transparent;" text="Profile">
+                              <Button mnemonicParsing="false" onAction="#handleProfileClick" style="-fx-background-color: transparent;" text="Profile">
                                  <font>
                                     <Font name="Arial" size="10.0" />
                                  </font>

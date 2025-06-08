@@ -82,7 +82,7 @@
                                     <Font name="Arial" size="10.0" />
                                  </font>
                               </Button>
-                              <Button mnemonicParsing="false" onAction="#handleOpenSettings" style="-fx-background-color: transparent;" text="Profile">
+                              <Button mnemonicParsing="false" onAction="#handleProfileClick" style="-fx-background-color: transparent;" text="Profile">
                                  <font>
                                     <Font name="Arial" size="10.0" />
                                  </font>
@@ -101,7 +101,7 @@
                         </ImageView>
                      </children>
                   </HBox>
-                  <Button layoutX="475.0" layoutY="2.0" mnemonicParsing="false" onAction="#handleOpenSettings" opacity="0.0" prefHeight="59.0" prefWidth="52.0" text="Profile Icon" />
+                  <Button layoutX="475.0" layoutY="2.0" mnemonicParsing="false" onAction="#handleProfileClick" opacity="0.0" prefHeight="59.0" prefWidth="52.0" text="Profile Icon" />
                </children>
             </AnchorPane>
          </children>
@@ -280,7 +280,7 @@
                         </StackPane>
                         <VBox alignment="CENTER_LEFT" prefHeight="164.0" prefWidth="226.0">
                            <children>
-                              <Label text="John Doe Dragonov">
+                              <Label fx:id="firstLastNameLabel" text="John Doe Dragonov">
                                  <font>
                                     <Font name="Arial Rounded MT Bold" size="18.0" />
                                  </font>
@@ -293,17 +293,17 @@
                                     <Insets bottom="15.0" />
                                  </padding>
                               </Label>
-                              <Label text="123 Adress Street City Country">
+                              <Label fx:id="addressLabel" text="123 Adress Street City Country">
                                  <font>
                                     <Font name="Arial" size="10.0" />
                                  </font>
                               </Label>
-                              <Label text="09123456789+">
+                              <Label fx:id="barangayLabel" text="barangay">
                                  <font>
                                     <Font name="Arial" size="10.0" />
                                  </font>
                               </Label>
-                              <Label text="followogcreate@instagram.com">
+                              <Label fx:id="emailLabel" text="followogcreate@instagram.com">
                                  <font>
                                     <Font name="Arial" size="10.0" />
                                  </font>

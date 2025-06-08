@@ -1,6 +1,8 @@
-package com.ogcreate.app.controllers;
+package com.ogcreate.app.controllers.customer;
 
 import java.io.IOException;
+import java.net.URI;
+import java.awt.Desktop;
 
 import com.ogcreate.app.SettingsWindowHelper;
 
@@ -107,6 +109,21 @@ public class FavoriteController {
             currentStage.setScene(newScene);
             currentStage.show();
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    
+    @FXML
+    void handleOGCREATE(ActionEvent event) {
+        try {
+            URI uri = new URI("https://www.instagram.com/_ogcreate/");
+            if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
+                Desktop.getDesktop().browse(uri);
+            } else {
+                System.out.println("Desktop browsing not supported.");
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

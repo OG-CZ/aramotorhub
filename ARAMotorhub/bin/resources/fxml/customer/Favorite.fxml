@@ -18,7 +18,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="609.23" prefWidth="938.32" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ogcreate.app.controllers.FavoriteController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="609.23" prefWidth="938.32" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ogcreate.app.controllers.customer.FavoriteController">
    <top>
       <HBox alignment="CENTER" maxHeight="63.29" minHeight="63.29" prefHeight="63.29" prefWidth="200.0" style="-fx-background-color: white; -fx-border-width: 0 0 1px 0;" BorderPane.alignment="CENTER">
          <children>
@@ -77,12 +77,12 @@
                                     <Font name="Arial" size="10.0" />
                                  </font>
                               </Button>
-                              <Button mnemonicParsing="false" style="-fx-background-color: transparent;" text="Shop">
+                              <Button mnemonicParsing="false" onAction="#handleShopsClick" style="-fx-background-color: transparent;" text="Shop">
                                  <font>
                                     <Font name="Arial" size="10.0" />
                                  </font>
                               </Button>
-                              <Button mnemonicParsing="false" onAction="#handleOpenSettings" style="-fx-background-color: transparent;" text="Profile">
+                              <Button mnemonicParsing="false" onAction="#handleProfileClick" style="-fx-background-color: transparent;" text="Profile">
                                  <font>
                                     <Font name="Arial" size="10.0" />
                                  </font>
@@ -310,6 +310,7 @@
                      </children>
                   </StackPane>
                </children></VBox>
+            <Button mnemonicParsing="false" onAction="#handleOGCREATE" opacity="0.0" prefHeight="478.0" prefWidth="712.0" text="Button" />
          </children>
       </StackPane>
    </center>
