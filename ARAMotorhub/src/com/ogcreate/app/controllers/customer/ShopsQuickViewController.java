@@ -99,7 +99,7 @@ public class ShopsQuickViewController {
     void handleProductsClick(ActionEvent event) {
         System.out.println("handleProductsClick triggered");
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/customer/Products.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/st0re/Products.fxml"));
             Parent newRoot = loader.load();
 
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();

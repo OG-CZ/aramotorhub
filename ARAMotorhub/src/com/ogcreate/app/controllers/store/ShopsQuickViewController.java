@@ -8,6 +8,7 @@ import java.sql.SQLException;
 
 import com.ogcreate.app.SettingsWindowHelper;
 import com.ogcreate.app.database.DatabaseConnection;
+import com.ogcreate.app.database.Shops;
 import com.ogcreate.app.database.User;
 import com.ogcreate.app.database.UserSession;
 
@@ -21,14 +22,11 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
-public class ProfileController {
+public class ShopsQuickViewController {
 
     @FXML
-    private Label firstLastNameLabel;
-    @FXML
-    private Label emailLabel;
-    @FXML
     private Label addressLabel;
+
     @FXML
     private Label barangayLabel;
 
@@ -36,13 +34,75 @@ public class ProfileController {
     private ComboBox<String> categoryComboBox;
 
     @FXML
-    private Label labelCategory1, labelCategory2, labelCategory3, labelCategory4;
+    private Label emailLabel;
+
     @FXML
-    private Label labelCategory5, labelCategory6, labelCategory7, labelCategory8;
+    private Label firstLastNameLabel;
+
     @FXML
-    private Label labelCategoryItem1, labelCategoryItem2, labelCategoryItem3, labelCategoryItem4;
+    private Label labelCategory1;
+
     @FXML
-    private Label labelCategoryItem5, labelCategoryItem6, labelCategoryItem7, labelCategoryItem8;
+    private Label labelCategory2;
+
+    @FXML
+    private Label labelCategory3;
+
+    @FXML
+    private Label labelCategory4;
+
+    @FXML
+    private Label labelCategory5;
+
+    @FXML
+    private Label labelCategory6;
+
+    @FXML
+    private Label labelCategory7;
+
+    @FXML
+    private Label labelCategory8;
+
+    @FXML
+    private Label labelCategoryItem1;
+
+    @FXML
+    private Label labelCategoryItem2;
+
+    @FXML
+    private Label labelCategoryItem3;
+
+    @FXML
+    private Label labelCategoryItem4;
+
+    @FXML
+    private Label labelCategoryItem5;
+
+    @FXML
+    private Label labelCategoryItem6;
+
+    @FXML
+    private Label labelCategoryItem7;
+
+    @FXML
+    private Label labelCategoryItem8;
+
+    @FXML
+    private Label sellerAddress;
+
+    @FXML
+    private Label sellerEmail;
+
+    @FXML
+    private Label sellerName;
+
+    @FXML
+    private Label sellerBarangay;
+
+    @FXML
+    void handleCategoryEngine(ActionEvent event) {
+        System.out.println("handleCategoryEngine");
+    }
 
     @FXML
     void handleCategoryBolts(ActionEvent event) {
@@ -70,11 +130,6 @@ public class ProfileController {
     }
 
     @FXML
-    void handleCategoryEngine(ActionEvent event) {
-        System.out.println("handleCategoryEngine");
-    }
-
-    @FXML
     void handleCategoryTransmission(ActionEvent event) {
         System.out.println("handleCategoryTransmission");
     }
@@ -86,8 +141,9 @@ public class ProfileController {
 
     @FXML
     public void initialize() {
-        loadCategoryData();
         setupCategoryComboBox();
+        System.out.println("labelCategory1: " + labelCategory1);
+        System.out.println("labelCategoryItem1: " + labelCategoryItem1);
 
     }
 
@@ -107,7 +163,7 @@ public class ProfileController {
         }
 
         categoryComboBox.setOnAction(event -> {
-            String selectedCategory = categoryComboBox.getValue();
+            String selectedCategory = (String) categoryComboBox.getValue();
             if (selectedCategory != null) {
                 openCategoryView(selectedCategory);
             }
@@ -120,7 +176,7 @@ public class ProfileController {
             Parent root = loader.load();
 
             CategoriesController controller = loader.getController();
-            controller.setSelectedCategory(categoryName);
+            controller.setSelectedCategory(categoryName); // This must exist in CategoriesController
 
             Stage stage = (Stage) categoryComboBox.getScene().getWindow();
             stage.setScene(new Scene(root));
@@ -131,7 +187,23 @@ public class ProfileController {
         }
     }
 
-    private void loadCategoryData() {
+    public void setShopDetails(Shops shop) {
+        sellerName.setText(shop.getShopName() != null ? shop.getShopName() : "N/A");
+        sellerEmail.setText(shop.getShopEmail() != null ? shop.getShopEmail() : "N/A");
+        sellerAddress.setText(shop.getShopAddress() != null ? shop.getShopAddress() : "N/A");
+        sellerBarangay.setText(shop.getShopBarangay() != null ? shop.getShopBarangay() : "N/A");
+
+        loadCategoryDataForShop(shop.getShopId());
+    }
+
+    public void loadCategoryDataForShop(int sellerId) {
+        User currentUser = UserSession.getCurrentUser();
+        if (currentUser == null) {
+            System.err.println("No user is logged in.");
+            return;
+        }
+        System.out.println("Logged in user ID: " + currentUser.getUserId());
+
         String query = """
                 SELECT c.name AS category_name, COUNT(p.product_id) AS product_count
                 FROM category c
@@ -139,24 +211,20 @@ public class ProfileController {
                 WHERE p.seller_id = ? AND p.status = 'AVAILABLE'
                 GROUP BY c.category_id, c.name
                 ORDER BY c.category_id ASC
-                ;
+                LIMIT 8;
                 """;
 
         try (Connection conn = DatabaseConnection.connect();
                 PreparedStatement stmt = conn.prepareStatement(query)) {
 
-            User currentUser = UserSession.getCurrentUser();
-            if (currentUser == null) {
-                System.err.println("No user is logged in.");
-                return;
-            }
-
-            int sellerId = currentUser.getUserId();
+            sellerId = currentUser.getUserId();
             stmt.setInt(1, sellerId);
             ResultSet rs = stmt.executeQuery();
 
+            boolean foundAny = false;
             int index = 1;
             while (rs.next() && index <= 8) {
+                foundAny = true;
                 String category = rs.getString("category_name");
                 int productCount = rs.getInt("product_count");
 
@@ -197,6 +265,10 @@ public class ProfileController {
                 index++;
             }
 
+            if (!foundAny) {
+                System.out.println("No categories found for seller " + sellerId);
+            }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -204,18 +276,17 @@ public class ProfileController {
 
     @FXML
     void handleDashboardClick(ActionEvent event) {
-        loadScene(event, "/resources/fxml/store/Dashboard.fxml");
-    }
-
-    @FXML
-    void handleHomeButton(ActionEvent event) {
-        System.out.println("handleHomeButton");
-        // Implement as needed
+        loadScene("/resources/fxml/store/Dashboard.fxml", event);
     }
 
     @FXML
     void handleInventoryClick(ActionEvent event) {
-        loadScene(event, "/resources/fxml/store/Inventory.fxml");
+        loadScene("/resources/fxml/store/Inventory.fxml", event);
+    }
+
+    @FXML
+    void handleHomeButton(ActionEvent event) {
+        loadScene("/resources/fxml/store/Profile.fxml", event);
     }
 
     @FXML
@@ -231,20 +302,22 @@ public class ProfileController {
 
     @FXML
     void handleProductsClick(ActionEvent event) {
-        loadScene(event, "/resources/fxml/store/Products.fxml");
+        loadScene("/resources/fxml/store/Products.fxml", event);
     }
 
     @FXML
     void handleProfileClick(ActionEvent event) {
-        System.out.println("handleProfileClick");
+        loadScene("/resources/fxml/store/Profile.fxml", event);
+
     }
 
     @FXML
     void handleShopsClick(ActionEvent event) {
-        loadScene(event, "/resources/fxml/store/Shops.fxml");
+        loadScene("/resources/fxml/store/Shops.fxml", event);
     }
 
-    private void loadScene(ActionEvent event, String fxmlPath) {
+    // ✅ Shared helper for loading scenes
+    private void loadScene(String fxmlPath, ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
             Parent newRoot = loader.load();

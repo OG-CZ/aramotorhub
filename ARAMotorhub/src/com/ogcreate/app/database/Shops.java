@@ -2,6 +2,16 @@ package com.ogcreate.app.database;
 
 public class Shops {
 
+    private int shopId;
+
+    public int getShopId() {
+        return shopId;
+    }
+
+    public void setShopId(int shopId) {
+        this.shopId = shopId;
+    }
+
     private String shopDistance;
     private String shopName;
     private String shopEmail;

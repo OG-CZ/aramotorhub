@@ -163,7 +163,7 @@
                               <Insets bottom="-5.0" left="29.0" />
                            </VBox.margin>
                         </Button>
-                        <ComboBox maxHeight="25.66" maxWidth="148.07" minHeight="25.66" minWidth="148.07" prefHeight="25.66" prefWidth="148.07" promptText="Category" style="-fx-background-color: #ffffff; -fx-border-color: #ccc; -fx-background-radius: 5px; -fx-border-radius: 5px; -fx-opacity: 0.8;">
+                        <ComboBox fx:id="categoryComboBox" maxHeight="25.66" maxWidth="148.07" minHeight="25.66" minWidth="148.07" prefHeight="25.66" prefWidth="148.07" promptText="Category" style="-fx-background-color: #ffffff; -fx-border-color: #ccc; -fx-background-radius: 5px; -fx-border-radius: 5px; -fx-opacity: 0.8;">
                            <VBox.margin>
                               <Insets bottom="8.0" left="10.0" top="7.5" />
                            </VBox.margin>
@@ -263,7 +263,7 @@
       </VBox>
    </left>
    <center>
-      <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: rgba(206, 206, 206, 0.3);" BorderPane.alignment="CENTER">
          <children>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
@@ -271,7 +271,7 @@
                      <children>
                         <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: transparent transparent transparent #D9D9D9; -fx-border-width: 1px;">
                            <children>
-                              <Region prefHeight="35.0" prefWidth="770.0" />
+                              <Region prefHeight="25.0" prefWidth="770.0" />
                               <StackPane prefHeight="22.0" prefWidth="769.0">
                                  <children>
                                     <Label alignment="CENTER" prefHeight="38.0" prefWidth="130.0" text="Inventory">

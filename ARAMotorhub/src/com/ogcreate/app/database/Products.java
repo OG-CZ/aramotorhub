@@ -54,7 +54,6 @@ public class Products {
         this.sellerId = sellerId;
     }
 
-    // --- DB Fetch Method ---
     public static List<Products> getProductsByCategory(String categoryName) {
     List<Products> productsList = new ArrayList<>();
     String sql = "SELECT DISTINCT p.product_id, p.name, p.price, p.seller_id, u.first_name, u.last_name " +
@@ -86,5 +85,50 @@ public class Products {
 
     return productsList;
 }
+
+public static List<Products> getProductsByCategory(String category, int limit) {
+    List<Products> list = new ArrayList<>();
+
+    String sql = """
+        SELECT
+            p.product_id,
+            p.name AS product_name,
+            p.price,
+            u.first_name,
+            u.last_name
+        FROM product p
+        JOIN user u ON p.seller_id = u.user_id
+        JOIN category c ON p.category_id = c.category_id
+        WHERE c.name = ?
+        ORDER BY p.name ASC
+        LIMIT ?
+    """;
+
+    try (Connection conn = DatabaseConnection.connect();
+         PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+        stmt.setString(1, category);
+        stmt.setInt(2, limit);
+
+        ResultSet rs = stmt.executeQuery();
+        while (rs.next()) {
+            Products p = new Products();
+            p.setProductId(rs.getInt("product_id"));
+            p.setProductName(rs.getString("product_name"));
+            p.setProductPrice(rs.getString("price"));
+
+            String storeName = rs.getString("first_name") + " " + rs.getString("last_name");
+            p.setStoreName(storeName);
+
+            list.add(p);
+        }
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    return list;
+}
+
 
 }

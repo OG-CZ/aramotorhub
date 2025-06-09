@@ -37,7 +37,7 @@ public class ShopsController implements Initializable {
     private void openCategoriesPage(String category) {
         System.out.println("Opening category: " + category);
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/customer/Categories.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/store/Categories.fxml"));
             Parent newRoot = loader.load();
 
             CategoriesController controller = loader.getController();

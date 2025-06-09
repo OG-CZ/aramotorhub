@@ -266,7 +266,7 @@
             </ImageView>
             <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: transparent transparent transparent #D9D9D9; -fx-border-width: 1px; -fx-background-color: rgba(206, 206, 206, 0.2);">
                <children>
-                  <Region prefHeight="35.0" prefWidth="200.0" />
+                  <Region prefHeight="25.0" prefWidth="200.0" />
                   <HBox prefHeight="106.0" prefWidth="770.0">
                      <children>
                         <StackPane prefHeight="150.0" prefWidth="200.0">
@@ -320,7 +320,7 @@
                                     <Insets />
                                  </StackPane.margin>
                                  <children>
-                                    <Button mnemonicParsing="false" onAction="#handleOpenSettings" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: #F4F4F4; -fx-border-color: rgba(0, 0, 0, 0.8); -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6;" text="Edit Profile">
+                                    <Button mnemonicParsing="false" onAction="#handleOpenSettings" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: #F4F4F4; -fx-border-color: rgba(0, 0, 0, 0.5); -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6;" text="Edit Profile">
                                        <font>
                                           <Font name="Arial Bold" size="9.0" />
                                        </font>

@@ -64,7 +64,6 @@ public class CategoriesController implements Initializable {
             e.printStackTrace();
         }
 
-        // Add listener
         categoryComboBox.setOnAction(event -> {
             String selectedCategory = categoryComboBox.getValue();
             if (selectedCategory != null && !selectedCategory.isEmpty()) {
@@ -106,17 +105,19 @@ public class CategoriesController implements Initializable {
         List<Products> productList = Products.getProductsByCategory(selectedCategory);
         System.out.println("Products found: " + productList.size());
 
+        productsContainer.getChildren().clear();
         productsContainer.getColumnConstraints().clear();
+
         for (int i = 0; i < COLUMN_COUNT; i++) {
             ColumnConstraints column = new ColumnConstraints(COLUMN_WIDTH);
             productsContainer.getColumnConstraints().add(column);
         }
 
-        productsContainer.setHgap(0);
-        productsContainer.setVgap(0);
+        productsContainer.setHgap(10);
+        productsContainer.setVgap(15);
 
         int column = 0;
-        int row = 1;
+        int row = 0;
 
         try {
             for (Products product : productList) {
@@ -125,21 +126,25 @@ public class CategoriesController implements Initializable {
                 VBox productBox = fxmlLoader.load();
 
                 productBox.setPrefWidth(COLUMN_WIDTH);
+                productBox.setMinWidth(COLUMN_WIDTH);
+                productBox.setMaxWidth(COLUMN_WIDTH);
 
                 ProductsContainerController controller = fxmlLoader.getController();
                 controller.setData(product);
 
-                if (column == COLUMN_COUNT) {
-                    column = 0;
-                    ++row;
-                }
+                productsContainer.add(productBox, column, row);
+                GridPane.setMargin(productBox, new Insets(10));
 
-                productsContainer.add(productBox, column++, row);
-                GridPane.setMargin(productBox, new Insets(0));
+                column++;
+                if (column >= COLUMN_COUNT) {
+                    column = 0;
+                    row++;
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
     // Navigation Handlers

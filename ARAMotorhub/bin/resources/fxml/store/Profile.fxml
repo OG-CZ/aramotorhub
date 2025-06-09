@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
@@ -262,20 +263,20 @@
       </VBox>
    </left>
    <center>
-      <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: rgba(206, 206, 206, 0.3);" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="543.0" fitWidth="771.0" opacity="0.0">
+            <ImageView fitHeight="545.0" fitWidth="771.0">
                <image>
                   <Image url="@../../assets/d_bgPane.png" />
                </image>
             </ImageView>
-            <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: rgba(206, 206, 206, 0.2);">
+            <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
                   <StackPane prefHeight="544.0" prefWidth="770.0">
                      <children>
-                        <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: transparent transparent transparent #D9D9D9; -fx-border-width: 1px; -fx-background-color: rgba(206, 206, 206, 0.2);">
+                        <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: transparent transparent transparent #D9D9D9; -fx-border-width: 1px;">
                            <children>
-                              <Region prefHeight="35.0" prefWidth="770.0" />
+                              <Region prefHeight="25.0" prefWidth="770.0" />
                               <HBox prefHeight="106.0" prefWidth="770.0">
                                  <children>
                                     <StackPane prefHeight="150.0" prefWidth="200.0">
@@ -291,7 +292,7 @@
                                        <children>
                                           <VBox alignment="CENTER_LEFT" prefHeight="164.0" prefWidth="226.0">
                                              <children>
-                                                <Label text="John Doe Dragonov">
+                                                <Label fx:id="firstLastNameLabel" text="John Doe Dragonov">
                                                    <font>
                                                       <Font name="Arial Rounded MT Bold" size="18.0" />
                                                    </font>
@@ -304,17 +305,17 @@
                                                       <Insets bottom="15.0" />
                                                    </padding>
                                                 </Label>
-                                                <Label text="123 Adress Street City Country">
+                                                <Label fx:id="addressLabel" text="123 Adress Street City Country">
                                                    <font>
                                                       <Font name="Arial" size="10.0" />
                                                    </font>
                                                 </Label>
-                                                <Label fx:id="sellerBarangay" text="Barangay ">
+                                                <Label fx:id="barangayLabel" text="Barangay ">
                                                    <font>
                                                       <Font name="Arial" size="10.0" />
                                                    </font>
                                                 </Label>
-                                                <Label text="followogcreate@instagram.com">
+                                                <Label fx:id="emailLabel" text="followogcreate@instagram.com">
                                                    <font>
                                                       <Font name="Arial" size="10.0" />
                                                    </font>
@@ -336,19 +337,19 @@
                                                 <Insets />
                                              </StackPane.margin>
                                              <children>
-                                                <Button mnemonicParsing="false" onAction="#handleOpenSettings" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: transparent; -fx-border-color: rgba(0, 0, 0, 0.5); -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6;" text="Edit Profile" textFill="#00000080">
+                                                <Button mnemonicParsing="false" onAction="#handleOpenSettings" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: transparent; -fx-border-color: rgba(0, 0, 0, 0.5); -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6;" text="Edit Profile">
                                                    <font>
-                                                      <Font name="Arial Bold" size="8.5" />
+                                                      <Font name="Arial Bold" size="9.0" />
                                                    </font>
                                                 </Button>
-                                                <Button layoutX="244.0" layoutY="51.0" mnemonicParsing="false" onAction="#handleInventoryClick" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: transparent; -fx-border-color: rgba(0, 0, 0, 0.5); -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6;" text="Inventory" textFill="#00000080">
+                                                <Button layoutX="244.0" layoutY="51.0" mnemonicParsing="false" onAction="#handleInventoryClick" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: transparent; -fx-border-color: rgba(0, 0, 0, 0.5); -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6;" text="Inventory">
                                                    <font>
-                                                      <Font name="Arial Bold" size="8.5" />
+                                                      <Font name="Arial Bold" size="9.0" />
                                                    </font>
                                                 </Button>
-                                                <Button layoutX="244.0" layoutY="91.0" mnemonicParsing="false" onAction="#handleDashboardClick" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: transparent; -fx-border-color: rgba(0, 0, 0, 0.5); -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6;" text="Dashboard" textFill="#00000080">
+                                                <Button layoutX="244.0" layoutY="91.0" mnemonicParsing="false" onAction="#handleDashboardClick" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: transparent; -fx-border-color: rgba(0, 0, 0, 0.5); -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6;" text="Dashboard">
                                                    <font>
-                                                      <Font name="Arial Bold" size="8.5" />
+                                                      <Font name="Arial Bold" size="9.0" />
                                                    </font>
                                                 </Button>
                                              </children>
@@ -366,27 +367,178 @@
                                     </StackPane>
                                  </children>
                               </HBox>
-                              <Region layoutX="11.0" layoutY="11.0" prefHeight="20.0" prefWidth="770.0" />
-                              <StackPane prefHeight="146.0" prefWidth="770.0">
-                                 <children>
-                                    <HBox prefWidth="721.0" spacing="10.0" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-background-radius: 3; -fx-border-radius: 3;">
-                                       <StackPane.margin>
-                                          <Insets bottom="5.0" left="25.0" right="25.0" top="5.0" />
-                                       </StackPane.margin>
+                              <Region layoutX="11.0" layoutY="11.0" prefHeight="10.0" prefWidth="770.0" />
+                              <Label text="Category">
+                                 <VBox.margin>
+                                    <Insets bottom="2.0" left="28.0" />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font name="Berlin Sans FB" size="14.0" />
+                                 </font>
+                              </Label>
+                              <ScrollPane prefHeight="132.0" prefWidth="730.0" stylesheets="@../../css/scroll-pane.css">
+                                 <content>
+                                    <HBox prefHeight="110.0" prefWidth="1890.0" spacing="12.0">
                                        <children>
-                                          <VBox alignment="CENTER" prefHeight="139.0" prefWidth="138.0" style="-fx-border-color: #9BA1A6;" HBox.hgrow="ALWAYS">
+                                          <StackPane prefHeight="135.0" prefWidth="234.0" style="-fx-background-color: #0095FF; -fx-background-radius: 12.5;">
                                              <children>
-                                                <Button alignment="CENTER" mnemonicParsing="false" text="Button" />
-                                             </children></VBox>
-                                          <VBox layoutX="11.0" layoutY="11.0" prefHeight="139.0" prefWidth="138.0" style="-fx-border-color: #9BA1A6;" HBox.hgrow="ALWAYS" />
-                                          <VBox layoutX="149.0" layoutY="11.0" prefHeight="139.0" prefWidth="138.0" style="-fx-border-color: #9BA1A6;" HBox.hgrow="ALWAYS" />
-                                          <VBox layoutX="288.0" layoutY="11.0" prefHeight="139.0" prefWidth="138.0" style="-fx-border-color: #9BA1A6;" HBox.hgrow="ALWAYS" />
-                                          <VBox layoutX="426.0" layoutY="11.0" prefHeight="139.0" prefWidth="138.0" style="-fx-border-color: #9BA1A6;" HBox.hgrow="ALWAYS" />
-                                          <VBox layoutX="595.0" layoutY="11.0" prefHeight="139.0" prefWidth="138.0" style="-fx-border-color: #9BA1A6;" />
+                                                <VBox alignment="CENTER" spacing="2.5">
+                                                   <children>
+                                                      <Label fx:id="labelCategory1" text="Engine Part" textFill="WHITE">
+                                                         <font>
+                                                            <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label fx:id="labelCategoryItem1" text="0 Item" textFill="WHITE">
+                                                         <font>
+                                                            <Font name="Arial" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </VBox>
+                                                <Button mnemonicParsing="false" onAction="#handleCategoryEngine" opacity="0.0" prefHeight="110.0" prefWidth="206.0" text="Engine" />
+                                             </children>
+                                          </StackPane>
+                                          <StackPane layoutX="10.0" layoutY="10.0" prefHeight="135.0" prefWidth="234.0" style="-fx-background-color: #0095FF; -fx-background-radius: 12.5;">
+                                             <children>
+                                                <VBox alignment="CENTER" spacing="2.5">
+                                                   <children>
+                                                      <Label fx:id="labelCategory2" text="Suspension" textFill="WHITE">
+                                                         <font>
+                                                            <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label fx:id="labelCategoryItem2" text="0 Item" textFill="WHITE">
+                                                         <font>
+                                                            <Font name="Arial" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </VBox>
+                                                <Button mnemonicParsing="false" onAction="#handleCategorySuspension" opacity="0.0" prefHeight="110.0" prefWidth="206.0" text="Suspension" />
+                                             </children>
+                                          </StackPane>
+                                          <StackPane layoutX="244.0" layoutY="10.0" prefHeight="135.0" prefWidth="234.0" style="-fx-background-color: #0095FF; -fx-background-radius: 12.5;">
+                                             <children>
+                                                <VBox alignment="CENTER" spacing="2.5">
+                                                   <children>
+                                                      <Label fx:id="labelCategory3" text="Wheels" textFill="WHITE">
+                                                         <font>
+                                                            <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label fx:id="labelCategoryItem3" text="0 Item" textFill="WHITE">
+                                                         <font>
+                                                            <Font name="Arial" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </VBox>
+                                                <Button mnemonicParsing="false" onAction="#handleCategoryWheels" opacity="0.0" prefHeight="109.0" prefWidth="206.0" text="wheels" />
+                                             </children>
+                                          </StackPane>
+                                          <StackPane layoutX="479.0" layoutY="10.0" prefHeight="135.0" prefWidth="234.0" style="-fx-background-color: #0095FF; -fx-background-radius: 12.5;">
+                                             <children>
+                                                <VBox alignment="CENTER" spacing="2.5">
+                                                   <children>
+                                                      <Label fx:id="labelCategory4" text="Oil" textFill="WHITE">
+                                                         <font>
+                                                            <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label fx:id="labelCategoryItem4" text="0 Item" textFill="WHITE">
+                                                         <font>
+                                                            <Font name="Arial" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </VBox>
+                                                <Button mnemonicParsing="false" onAction="#handleCategoryOil" opacity="0.0" prefHeight="109.0" prefWidth="206.0" text="oils" />
+                                             </children>
+                                          </StackPane>
+                                          <StackPane layoutX="713.0" layoutY="10.0" prefHeight="135.0" prefWidth="234.0" style="-fx-background-color: #0095FF; -fx-background-radius: 12.5;">
+                                             <children>
+                                                <VBox alignment="CENTER" spacing="2.5">
+                                                   <children>
+                                                      <Label fx:id="labelCategory5" text="Bolts" textFill="WHITE">
+                                                         <font>
+                                                            <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label fx:id="labelCategoryItem5" text="0 Item" textFill="WHITE">
+                                                         <font>
+                                                            <Font name="Arial" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </VBox>
+                                                <Button mnemonicParsing="false" onAction="#handleCategoryBolts" opacity="0.0" prefHeight="109.0" prefWidth="206.0" text="bolts" />
+                                             </children>
+                                          </StackPane>
+                                          <StackPane layoutX="810.0" layoutY="10.0" prefHeight="135.0" prefWidth="234.0" style="-fx-background-color: #0095FF; -fx-background-radius: 12.5;">
+                                             <children>
+                                                <VBox alignment="CENTER" spacing="2.5">
+                                                   <children>
+                                                      <Label fx:id="labelCategory6" text="Exterior" textFill="WHITE">
+                                                         <font>
+                                                            <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label fx:id="labelCategoryItem6" text="0 item" textFill="WHITE">
+                                                         <font>
+                                                            <Font name="Arial" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </VBox>
+                                                <Button mnemonicParsing="false" onAction="#handleCategoryExterior" opacity="0.0" prefHeight="109.0" prefWidth="206.0" text="exterior" />
+                                             </children>
+                                          </StackPane>
+                                          <StackPane layoutX="843.0" layoutY="10.0" prefHeight="135.0" prefWidth="234.0" style="-fx-background-color: #0095FF; -fx-background-radius: 12.5;">
+                                             <children>
+                                                <VBox alignment="CENTER" spacing="2.5">
+                                                   <children>
+                                                      <Label fx:id="labelCategory7" text="Electrical " textFill="WHITE">
+                                                         <font>
+                                                            <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label fx:id="labelCategoryItem7" text="0 Item" textFill="WHITE">
+                                                         <font>
+                                                            <Font name="Arial" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </VBox>
+                                                <Button mnemonicParsing="false" onAction="#handleCategoryElectrical" opacity="0.0" prefHeight="109.0" prefWidth="206.0" text="Electrical" />
+                                             </children>
+                                          </StackPane>
+                                          <StackPane layoutX="1479.0" layoutY="10.0" prefHeight="135.0" prefWidth="234.0" style="-fx-background-color: #0095FF; -fx-background-radius: 12.5;">
+                                             <children>
+                                                <VBox alignment="CENTER" prefHeight="139.0" prefWidth="138.0">
+                                                   <children>
+                                                      <Label fx:id="labelCategory8" text="Transmission " textFill="WHITE">
+                                                         <font>
+                                                            <Font name="Berlin Sans FB Demi Bold" size="24.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label fx:id="labelCategoryItem8" text="0 Item" textFill="WHITE">
+                                                         <font>
+                                                            <Font name="Arial" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </VBox>
+                                                <Button mnemonicParsing="false" onAction="#handleCategoryTransmission" opacity="0.0" prefHeight="109.0" prefWidth="206.0" text="transmission" />
+                                             </children>
+                                          </StackPane>
                                        </children>
                                     </HBox>
-                                 </children>
-                              </StackPane>
+                                 </content>
+                                 <VBox.margin>
+                                    <Insets left="25.0" right="25.0" />
+                                 </VBox.margin>
+                              </ScrollPane>
                            </children>
                         </VBox>
                      </children>
