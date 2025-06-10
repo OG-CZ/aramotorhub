@@ -88,7 +88,21 @@ public class ProfileController {
     public void initialize() {
         loadCategoryData();
         setupCategoryComboBox();
+        loadUserInfo();
+    }
 
+    private void loadUserInfo() {
+        User currentUser = UserSession.getCurrentUser();
+        if (currentUser == null) {
+            System.err.println("No user is logged in.");
+            return;
+        }
+
+        String fullName = currentUser.getFirstName() + " " + currentUser.getLastName();
+        firstLastNameLabel.setText(fullName);
+        emailLabel.setText(currentUser.getEmail());
+        addressLabel.setText(currentUser.getAddress());
+        barangayLabel.setText(currentUser.getBarangay());
     }
 
     private void setupCategoryComboBox() {

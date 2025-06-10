@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
@@ -12,8 +14,11 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
@@ -262,7 +267,7 @@
       </VBox>
    </left>
    <center>
-      <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: rgba(206, 206, 206, 0.3);" BorderPane.alignment="CENTER">
+      <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: rgba(206, 206, 206, 0.0);" BorderPane.alignment="CENTER">
          <children>
             <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-border-width: 1px;">
                <children>
@@ -281,7 +286,7 @@
                                  </children>
                               </StackPane>
                               <Region layoutX="11.0" layoutY="11.0" prefHeight="15.0" prefWidth="769.0" />
-                              <HBox prefHeight="90.0" prefWidth="200.0" spacing="10.0">
+                              <HBox prefHeight="90.0" prefWidth="729.0" spacing="10.0">
                                  <children>
                                     <StackPane maxHeight="90.0" minHeight="90.0" prefHeight="90.0" prefWidth="194.0" style="-fx-background-color: #96AFE5; -fx-background-radius: 9;">
                                        <children>
@@ -308,7 +313,7 @@
                                                                   <Font name="Arial Rounded MT Bold" size="18.0" />
                                                                </font>
                                                             </Label>
-                                                            <Label prefHeight="18.0" prefWidth="80.0" text="42,000" HBox.hgrow="ALWAYS">
+                                                            <Label fx:id="labelTodayRevenue" prefHeight="18.0" prefWidth="80.0" text="42,000" HBox.hgrow="ALWAYS">
                                                                <font>
                                                                   <Font name="Arial Rounded MT Bold" size="14.0" />
                                                                </font>
@@ -343,14 +348,14 @@
                                                    <children>
                                                       <HBox alignment="CENTER_LEFT">
                                                          <children>
-                                                            <Label prefHeight="18.0" prefWidth="80.0" text="83" HBox.hgrow="ALWAYS">
+                                                            <Label fx:id="labelTodayCompleteOrder" prefHeight="18.0" prefWidth="80.0" text="83" HBox.hgrow="ALWAYS">
                                                                <font>
                                                                   <Font name="Arial Rounded MT Bold" size="14.0" />
                                                                </font>
                                                             </Label>
                                                          </children>
                                                       </HBox>
-                                                      <Label text="Totay Complete ">
+                                                      <Label text="Today Complete ">
                                                          <font>
                                                             <Font name="Arial Rounded MT Bold" size="8.0" />
                                                          </font>
@@ -383,7 +388,7 @@
                                                    <children>
                                                       <HBox alignment="CENTER_LEFT">
                                                          <children>
-                                                            <Label prefHeight="18.0" prefWidth="80.0" text="3" HBox.hgrow="ALWAYS">
+                                                            <Label fx:id="labelPendingOrder" prefHeight="18.0" prefWidth="80.0" text="3" HBox.hgrow="ALWAYS">
                                                                <font>
                                                                   <Font name="Arial Rounded MT Bold" size="14.0" />
                                                                </font>
@@ -418,7 +423,7 @@
                                                    <children>
                                                       <HBox alignment="CENTER_LEFT">
                                                          <children>
-                                                            <Label prefHeight="18.0" prefWidth="80.0" text="123" HBox.hgrow="ALWAYS">
+                                                            <Label fx:id="labelTodayCustomer" prefHeight="18.0" prefWidth="80.0" text="123" HBox.hgrow="ALWAYS">
                                                                <font>
                                                                   <Font name="Arial Rounded MT Bold" size="14.0" />
                                                                </font>
@@ -441,6 +446,136 @@
                                     <Insets left="20.0" right="20.0" />
                                  </VBox.margin>
                               </HBox>
+                              <HBox prefHeight="39.0" prefWidth="729.0">
+                                 <children>
+                                    <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="427.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label text="Order List">
+                                             <font>
+                                                <Font name="Arial Rounded MT Bold" size="14.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets bottom="5.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="10.0" prefHeight="39.0" prefWidth="309.0">
+                                       <children>
+                                          <Button alignment="BOTTOM_LEFT" layoutX="216.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleViewAllOrder" prefHeight="39.0" prefWidth="95.0" style="-fx-background-color: transparent; -fx-underline: true;" text="All Orders">
+                                             <font>
+                                                <Font name="Arial Rounded MT Bold" size="14.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </Button>
+                                          <Button alignment="BOTTOM_LEFT" layoutX="209.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleViewPendingOrder" prefHeight="39.0" prefWidth="84.0" style="-fx-background-color: transparent; -fx-underline: true;" text="Pending">
+                                             <font>
+                                                <Font name="Arial Rounded MT Bold" size="14.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </Button>
+                                          <Button alignment="BOTTOM_LEFT" layoutX="209.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleViewCompletedOrder" prefHeight="39.0" prefWidth="102.0" style="-fx-background-color: transparent; -fx-underline: true;" text="Completed">
+                                             <font>
+                                                <Font name="Arial Rounded MT Bold" size="14.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </Button>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets left="20.0" right="20.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <Region prefHeight="5.0" prefWidth="769.0" />
+                              <HBox prefHeight="35.0" prefWidth="712.0" style="-fx-background-color: F3F3F3; -fx-background-radius: 5;">
+                                 <VBox.margin>
+                                    <Insets left="20.0" right="20.0" />
+                                 </VBox.margin>
+                                 <children>
+                                    <GridPane alignment="CENTER" prefWidth="671.0" HBox.hgrow="ALWAYS">
+                                      <columnConstraints>
+                                        <ColumnConstraints fillWidth="false" halignment="CENTER" hgrow="SOMETIMES" maxWidth="71.20001220703125" minWidth="10.0" prefWidth="46.40003662109375" />
+                                        <ColumnConstraints fillWidth="false" halignment="LEFT" hgrow="SOMETIMES" maxWidth="102.60001220703127" minWidth="10.0" prefWidth="102.60001220703127" />
+                                          <ColumnConstraints fillWidth="false" halignment="LEFT" hgrow="SOMETIMES" maxWidth="149.60001220703126" minWidth="10.0" prefWidth="149.60001220703126" />
+                                          <ColumnConstraints fillWidth="false" halignment="LEFT" hgrow="SOMETIMES" maxWidth="113.59996337890624" minWidth="6.5999603271484375" prefWidth="113.59996337890624" />
+                                          <ColumnConstraints fillWidth="false" halignment="LEFT" hgrow="SOMETIMES" maxWidth="153.6000244140625" minWidth="10.0" prefWidth="86.99997558593748" />
+                                          <ColumnConstraints fillWidth="false" halignment="LEFT" hgrow="SOMETIMES" maxWidth="197.39999999999998" minWidth="10.0" prefWidth="68.60004882812495" />
+                                          <ColumnConstraints fillWidth="false" halignment="CENTER" hgrow="SOMETIMES" maxWidth="208.60003662109375" minWidth="10.0" prefWidth="88.59995117187498" />
+                                          <ColumnConstraints fillWidth="false" halignment="CENTER" hgrow="SOMETIMES" maxWidth="160.5999755859375" minWidth="10.0" prefWidth="49.39993896484373" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                       <children>
+                                          <Label layoutX="10.0" layoutY="18.0" opacity="0.7" text="Id">
+                                             <font>
+                                                <Font name="Arial" size="11.0" />
+                                             </font>
+                                          </Label>
+                                          <Label opacity="0.7" text="Name" GridPane.columnIndex="1">
+                                             <font>
+                                                <Font name="Arial" size="11.0" />
+                                             </font>
+                                          </Label>
+                                          <Label opacity="0.7" text="Address" GridPane.columnIndex="2">
+                                             <font>
+                                                <Font name="Arial" size="11.0" />
+                                             </font>
+                                          </Label>
+                                          <Label opacity="0.7" text="Date" GridPane.columnIndex="3">
+                                             <font>
+                                                <Font name="Arial" size="11.0" />
+                                             </font>
+                                          </Label>
+                                          <Label opacity="0.7" text="Price" GridPane.columnIndex="4">
+                                             <font>
+                                                <Font name="Arial" size="11.0" />
+                                             </font>
+                                          </Label>
+                                          <Label opacity="0.7" text="Quantity" GridPane.columnIndex="5">
+                                             <font>
+                                                <Font name="Arial" size="11.0" />
+                                             </font>
+                                          </Label>
+                                          <Label opacity="0.7" text="Status" GridPane.columnIndex="6">
+                                             <font>
+                                                <Font name="Arial" size="11.0" />
+                                             </font>
+                                          </Label>
+                                          <Label opacity="0.7" text="Action" GridPane.columnIndex="7">
+                                             <font>
+                                                <Font name="Arial" size="11.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </GridPane>
+                                 </children>
+                              </HBox>
+                              <ScrollPane prefHeight="286.0" prefWidth="749.0" stylesheets="@../../css/scroll-pane.css">
+                                <content>
+                                    <VBox fx:id="dashboardContainer" prefHeight="2000.0" prefWidth="727.0">
+                                       <padding>
+                                          <Insets top="5.0" />
+                                       </padding></VBox>
+                                </content>
+                                 <VBox.margin>
+                                    <Insets left="20.0" top="2.0" />
+                                 </VBox.margin>
+                                 <styleClass>
+                                    <String fx:value="scroll-pane" />
+                                    <String fx:value="scroll-bar" />
+                                 </styleClass>
+                              </ScrollPane>
                            </children>
                         </VBox>
                      </children>

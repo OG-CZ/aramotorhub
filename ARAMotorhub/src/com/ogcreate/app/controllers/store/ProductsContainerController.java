@@ -9,8 +9,6 @@ import javafx.scene.image.ImageView;
 
 public class ProductsContainerController {
 
-    private boolean isShopMode = false;
-
     @FXML
     private ImageView productImage;
 
@@ -22,31 +20,28 @@ public class ProductsContainerController {
 
     @FXML
     private Label storeName;
+
     public void setData(Products product) {
         productName.setText(product.getProductName());
         productPrice.setText(product.getProductPrice());
         storeName.setText(product.getStoreName()); // full name of seller
+    
     }
 
     public void setShopMode(boolean isShopMode) {
-        this.isShopMode = isShopMode;
     }
 
     @FXML
     void addToCartHandle(ActionEvent event) {
-        if (isShopMode) {
-            showAlert("You can't add your own products to the cart.");
-            return;
-        }
+
+        showAlert("You can't add your own products to the cart.");
 
     }
 
     @FXML
     void quickViewHandle(ActionEvent event) {
-        if (isShopMode) {
-            showAlert("Quick View is disabled in seller mode.");
-            return;
-        }
+
+        showAlert("Quick View is disabled in seller mode.");
 
     }
 

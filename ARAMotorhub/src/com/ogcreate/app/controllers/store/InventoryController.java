@@ -16,12 +16,101 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 public class InventoryController {
 
     @FXML
     private ComboBox categoryComboBox;
+
+    @FXML
+    private Label labelCategory1;
+
+    @FXML
+    private Label labelCategory2;
+
+    @FXML
+    private Label labelCategory3;
+
+    @FXML
+    private Label labelCategory4;
+
+    @FXML
+    private Label labelCategory5;
+
+    @FXML
+    private Label labelCategory6;
+
+    @FXML
+    private Label labelCategory7;
+
+    @FXML
+    private Label labelCategory8;
+
+    @FXML
+    private Label labelCategoryItem1;
+
+    @FXML
+    private Label labelCategoryItem2;
+
+    @FXML
+    private Label labelCategoryItem3;
+
+    @FXML
+    private Label labelCategoryItem4;
+
+    @FXML
+    private Label labelCategoryItem5;
+
+    @FXML
+    private Label labelCategoryItem6;
+
+    @FXML
+    private Label labelCategoryItem7;
+
+    @FXML
+    private Label labelCategoryItem8;
+
+    @FXML
+    void handleCategoryBolts(ActionEvent event) {
+
+    }
+
+    @FXML
+    void handleCategoryElectrical(ActionEvent event) {
+
+    }
+
+    @FXML
+    void handleCategoryEngine(ActionEvent event) {
+
+    }
+
+    @FXML
+    void handleCategoryExterior(ActionEvent event) {
+
+    }
+
+    @FXML
+    void handleCategoryOil(ActionEvent event) {
+
+    }
+
+    @FXML
+    void handleCategorySuspension(ActionEvent event) {
+
+    }
+
+    @FXML
+    void handleCategoryTransmission(ActionEvent event) {
+
+    }
+
+    @FXML
+    void handleCategoryWheels(ActionEvent event) {
+
+    }
 
     @FXML
     public void initialize() {

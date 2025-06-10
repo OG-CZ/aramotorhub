@@ -15,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -50,11 +51,9 @@ public class ProductsContainerController {
         int productId = product.getProductId();
         int quantity = 1;
 
-        // ✅ Use actual logged-in user ID
         int currentUserId = UserSession.getCurrentUser().getUserId();
 
         try (Connection conn = DatabaseConnection.connect()) {
-            // Step 1: Get or create cart for the current user
             String findCartSql = "SELECT cart_id FROM cart WHERE customer_id = ? ORDER BY created_at DESC LIMIT 1";
             PreparedStatement findCartStmt = conn.prepareStatement(findCartSql);
             findCartStmt.setInt(1, currentUserId);
@@ -76,7 +75,6 @@ public class ProductsContainerController {
                 }
             }
 
-            // Step 2: Add or update cart_item
             String checkSql = "SELECT cart_item_id, quantity FROM cart_item WHERE cart_id = ? AND product_id = ?";
             PreparedStatement checkStmt = conn.prepareStatement(checkSql);
             checkStmt.setInt(1, cartId);
@@ -100,11 +98,19 @@ public class ProductsContainerController {
                 insertStmt.executeUpdate();
             }
 
-            System.out.println("✅ Product added/updated in cart successfully!");
+            System.out.println("Product added/updated in cart successfully!");
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("ARA Motorhub");
+            alert.setContentText("Product added in the cart successfully!");
+            alert.setHeaderText(null);
+            Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+            stage.getIcons().add(new Image(this.getClass().getResource("/resources/assets/z_favicon.png").toString()));
+            alert.showAndWait();
 
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("❌ Failed to add product to cart.");
+            System.out.println("Failed to add product to cart.");
         }
     }
 

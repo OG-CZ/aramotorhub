@@ -1,4 +1,3 @@
-// CategoriesController.java
 package com.ogcreate.app.controllers.customer;
 
 import com.ogcreate.app.SettingsWindowHelper;
@@ -7,7 +6,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -35,7 +33,7 @@ public class CategoriesController implements Initializable {
     @FXML
     private GridPane productsContainer;
 
-    private static final int TOTAL_WIDTH = 705;
+    private static final int TOTAL_WIDTH = 715;
     private static final int COLUMN_COUNT = 5;
     private static final int COLUMN_WIDTH = TOTAL_WIDTH / COLUMN_COUNT;
 
@@ -107,14 +105,13 @@ public class CategoriesController implements Initializable {
 
         productsContainer.getChildren().clear();
         productsContainer.getColumnConstraints().clear();
+        productsContainer.setMaxWidth(200);
+        productsContainer.setMinWidth(200);
 
         for (int i = 0; i < COLUMN_COUNT; i++) {
             ColumnConstraints column = new ColumnConstraints(COLUMN_WIDTH);
             productsContainer.getColumnConstraints().add(column);
         }
-
-        productsContainer.setHgap(10);
-        productsContainer.setVgap(15);
 
         int column = 0;
         int row = 0;
@@ -133,7 +130,8 @@ public class CategoriesController implements Initializable {
                 controller.setData(product);
 
                 productsContainer.add(productBox, column, row);
-                GridPane.setMargin(productBox, new Insets(10));
+                /// GridPane.setMargin(productBox, new Insets()); // consistent with
+                /// ProductsController
 
                 column++;
                 if (column >= COLUMN_COUNT) {
@@ -144,7 +142,6 @@ public class CategoriesController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     // Navigation Handlers

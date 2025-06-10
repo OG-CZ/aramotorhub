@@ -7,12 +7,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.NumberFormat;
 import java.util.Locale;
-
 import com.ogcreate.app.SettingsWindowHelper;
 import com.ogcreate.app.database.DatabaseConnection;
 import com.ogcreate.app.database.UserSession;
 import com.ogcreate.app.database.User;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

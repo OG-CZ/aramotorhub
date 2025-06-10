@@ -57,7 +57,7 @@ public class ShopsCardLayoutController {
 
             Stage stage = (Stage) quickViewButton.getScene().getWindow();
             stage.setScene(new Scene(root));
-            stage.setTitle("Shop Quick View");
+            stage.setTitle("ARA Motorhub");
 
             stage.show();
 

@@ -37,18 +37,17 @@ public class ProductsController implements Initializable {
     @FXML
     private List<Products> showProducts;
 
-    private static final int TOTAL_WIDTH = 705;
+    private static final int TOTAL_WIDTH = 715;
     private static final int COLUMN_COUNT = 5;
     private static final int COLUMN_WIDTH = TOTAL_WIDTH / COLUMN_COUNT; // 141px
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // 🔁 Load categories into ComboBox
         categoryComboBox.setPromptText("Category");
 
         try (Connection conn = DatabaseConnection.connect();
-             PreparedStatement stmt = conn.prepareStatement("SELECT name FROM category");
-             ResultSet rs = stmt.executeQuery()) {
+                PreparedStatement stmt = conn.prepareStatement("SELECT name FROM category");
+                ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
                 categoryComboBox.getItems().add(rs.getString("name"));
@@ -64,7 +63,6 @@ public class ProductsController implements Initializable {
             }
         });
 
-        // 🔁 Load products
         showProducts = getAllAvailableProducts();
 
         productsContainer.getColumnConstraints().clear();
@@ -76,8 +74,8 @@ public class ProductsController implements Initializable {
             productsContainer.getColumnConstraints().add(column);
         }
 
-        productsContainer.setHgap(0);
-        productsContainer.setVgap(0);
+        productsContainer.setMaxWidth(200);
+        productsContainer.setMinWidth(200);
 
         int column = 0;
         int row = 1;
@@ -128,16 +126,16 @@ public class ProductsController implements Initializable {
     public List<Products> getAllAvailableProducts() {
         List<Products> productsList = new ArrayList<>();
         String sql = "SELECT DISTINCT p.product_id, p.name, p.price, p.seller_id, u.first_name, u.last_name " +
-                     "FROM product p " +
-                     "JOIN user u ON p.seller_id = u.user_id " +
-                     "WHERE p.status = 'AVAILABLE' " +
-                     "ORDER BY p.name ASC";
+                "FROM product p " +
+                "JOIN user u ON p.seller_id = u.user_id " +
+                "WHERE p.status = 'AVAILABLE' " +
+                "ORDER BY p.name ASC";
 
         Set<String> productNamesSet = new HashSet<>();
 
         try (Connection conn = DatabaseConnection.connect();
-             PreparedStatement stmt = conn.prepareStatement(sql);
-             ResultSet rs = stmt.executeQuery()) {
+                PreparedStatement stmt = conn.prepareStatement(sql);
+                ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
                 String productName = rs.getString("name");

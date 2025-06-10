@@ -20,6 +20,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class ShopsQuickViewController {
@@ -98,6 +99,8 @@ public class ShopsQuickViewController {
 
     @FXML
     private Label sellerBarangay;
+    @FXML
+    private GridPane productsContainer;
 
     @FXML
     void handleCategoryEngine(ActionEvent event) {
@@ -169,6 +172,7 @@ public class ShopsQuickViewController {
             }
         });
     }
+    
 
     private void openCategoryView(String categoryName) {
         try {

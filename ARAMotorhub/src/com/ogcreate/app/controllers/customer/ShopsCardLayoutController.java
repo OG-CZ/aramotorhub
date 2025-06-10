@@ -24,10 +24,11 @@ public class ShopsCardLayoutController {
     @FXML
     private Button quickViewButton;
 
-    private Shops currentShop; 
+    private Shops currentShop;
 
     public void setData(Shops shop) {
-        this.currentShop = shop; 
+        this.currentShop = shop;
+        System.out.println("SetData called with shop: " + shop.getShopName()); // ✅
         shopName.setText(shop.getShopName());
         shopDistance.setText(shop.getShopDistance());
     }
@@ -57,7 +58,7 @@ public class ShopsCardLayoutController {
 
             Stage stage = (Stage) quickViewButton.getScene().getWindow();
             stage.setScene(new Scene(root));
-            stage.setTitle("Shop Quick View");
+            stage.setTitle("ARA Motorhub");
 
             stage.show();
 
@@ -66,5 +67,4 @@ public class ShopsCardLayoutController {
         }
     }
 
-    
 }

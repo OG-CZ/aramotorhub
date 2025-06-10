@@ -111,7 +111,7 @@ public class ShopsController implements Initializable {
                 shop.setShopEmail(rs.getString("email"));
                 shop.setShopAddress(rs.getString("address"));
                 shop.setShopBarangay(rs.getString("barangay"));
-                shop.setShopDistance("N/A");
+                shop.setShopDistance(rs.getString("barangay"));
                 shopsList.add(shop);
             }
 

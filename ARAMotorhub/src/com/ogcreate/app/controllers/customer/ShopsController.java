@@ -11,8 +11,6 @@ import java.util.*;
 import com.ogcreate.app.SettingsWindowHelper;
 import com.ogcreate.app.database.Shops;
 import com.ogcreate.app.database.DatabaseConnection;
-import com.ogcreate.app.database.UserSession;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -32,12 +30,13 @@ public class ShopsController implements Initializable {
 
     @FXML
     private ComboBox<String> categoryComboBox;
+
     private List<Shops> nearestShop;
 
     private void openCategoriesPage(String category) {
         System.out.println("Opening category: " + category);
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/store/Categories.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/customer/Categories.fxml"));
             Parent newRoot = loader.load();
 
             CategoriesController controller = loader.getController();
@@ -56,10 +55,18 @@ public class ShopsController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         nearestShop = fetchShopsFromDB();
 
+        // Sort shops by barangay numerically (e.g., Barangay 1, 2, 10)
+        nearestShop.sort(Comparator.comparingInt(shop -> {
+            try {
+                return Integer.parseInt(shop.getShopBarangay().replaceAll("\\D+", ""));
+            } catch (NumberFormatException e) {
+                return Integer.MAX_VALUE;
+            }
+        }));
+
         categoryComboBox.setPromptText("Category");
 
-        try {
-            Connection conn = DatabaseConnection.connect();
+        try (Connection conn = DatabaseConnection.connect()) {
             if (conn == null) {
                 System.out.println("Database connection failed.");
                 return;
@@ -74,7 +81,6 @@ public class ShopsController implements Initializable {
 
             rs.close();
             stmt.close();
-            conn.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -85,15 +91,6 @@ public class ShopsController implements Initializable {
                 openCategoriesPage(selectedCategory);
             }
         });
-
-        // Sort by proximity
-        nearestShop.sort(Comparator.comparingInt(shop -> {
-            try {
-                return Integer.parseInt(shop.getShopDistance().replaceAll("\\D+", ""));
-            } catch (NumberFormatException e) {
-                return Integer.MAX_VALUE;
-            }
-        }));
 
         try {
             for (Shops shop : nearestShop) {
@@ -118,27 +115,20 @@ public class ShopsController implements Initializable {
                 "WHERE role = 'SELLER' AND first_name IS NOT NULL AND last_name IS NOT NULL " +
                 "AND first_name <> '' AND last_name <> '';";
 
-        int userBarangay = parseBarangayNumber(UserSession.getCurrentUser().getBarangay());
-
         try (Connection conn = DatabaseConnection.connect();
                 PreparedStatement ps = conn.prepareStatement(sql);
                 ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
                 Shops shop = new Shops();
+                shop.setShopId(rs.getInt("user_id"));
                 shop.setShopName(rs.getString("first_name") + " " + rs.getString("last_name"));
                 shop.setShopEmail(rs.getString("email"));
                 shop.setShopAddress(rs.getString("address"));
                 shop.setShopBarangay(rs.getString("barangay"));
 
-                int shopBarangay = parseBarangayNumber(rs.getString("barangay"));
-
-                if (shopBarangay == -1 || userBarangay == -1) {
-                    shop.setShopDistance("Unknown");
-                } else {
-                    int distance = Math.abs(shopBarangay - userBarangay);
-                    shop.setShopDistance(distance + "");
-                }
+                // No more distance calculation – just display barangay directly
+                shop.setShopDistance(rs.getString("barangay"));
 
                 shopsList.add(shop);
             }
@@ -148,17 +138,6 @@ public class ShopsController implements Initializable {
         }
 
         return shopsList;
-    }
-
-    private int parseBarangayNumber(String barangayString) {
-        if (barangayString == null)
-            return -1;
-
-        try {
-            return Integer.parseInt(barangayString.replaceAll("\\D+", ""));
-        } catch (NumberFormatException e) {
-            return -1;
-        }
     }
 
     @FXML

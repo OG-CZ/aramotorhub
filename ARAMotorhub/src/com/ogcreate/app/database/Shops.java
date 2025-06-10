@@ -12,6 +12,17 @@ public class Shops {
         this.shopId = shopId;
     }
 
+    @Override
+    public String toString() {
+        return "Shops{" +
+                "id=" + shopId +
+                ", name='" + shopName + '\'' +
+                ", email='" + shopEmail + '\'' +
+                ", address='" + shopAddress + '\'' +
+                ", barangay='" + shopBarangay + '\'' +
+                '}';
+    }
+
     private String shopDistance;
     private String shopName;
     private String shopEmail;
