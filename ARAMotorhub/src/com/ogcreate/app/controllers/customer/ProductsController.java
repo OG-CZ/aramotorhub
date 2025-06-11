@@ -28,6 +28,7 @@ import javafx.stage.Stage;
 
 public class ProductsController implements Initializable {
 
+    
     @FXML
     private GridPane productsContainer;
 

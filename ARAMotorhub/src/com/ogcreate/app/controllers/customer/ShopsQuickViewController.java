@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import com.ogcreate.app.SettingsWindowHelper;
+import com.ogcreate.app.database.DatabaseConnection;
 import com.ogcreate.app.database.Shops;
 
 import javafx.event.ActionEvent;
@@ -20,119 +21,46 @@ import javafx.stage.Stage;
 public class ShopsQuickViewController {
 
     @FXML
-    private Label labelCategory1;
-
+    private Label labelCategory1, labelCategory2, labelCategory3, labelCategory4;
     @FXML
-    private Label labelCategory2;
-
+    private Label labelCategory5, labelCategory6, labelCategory7, labelCategory8;
     @FXML
-    private Label labelCategory3;
-
+    private Label labelCategoryItem1, labelCategoryItem2, labelCategoryItem3, labelCategoryItem4;
     @FXML
-    private Label labelCategory4;
-
+    private Label labelCategoryItem5, labelCategoryItem6, labelCategoryItem7, labelCategoryItem8;
     @FXML
-    private Label labelCategory5;
+    private Label sellerAddress, sellerEmail, sellerName, sellerBarangay;
 
-    @FXML
-    private Label labelCategory6;
-
-    @FXML
-    private Label labelCategory7;
-
-    @FXML
-    private Label labelCategory8;
-
-    @FXML
-    private Label labelCategoryItem1;
-
-    @FXML
-    private Label labelCategoryItem2;
-
-    @FXML
-    private Label labelCategoryItem3;
-
-    @FXML
-    private Label labelCategoryItem4;
-
-    @FXML
-    private Label labelCategoryItem5;
-
-    @FXML
-    private Label labelCategoryItem6;
-
-    @FXML
-    private Label labelCategoryItem7;
-
-    @FXML
-    private Label labelCategoryItem8;
-
-    @FXML
-    private Label sellerAddress;
-
-    @FXML
-    private Label sellerEmail;
-
-    @FXML
-    private Label sellerName;
-
-    @FXML
-    private Label sellerBarangay;
-
-    @FXML
-    void handleCategoryBolts(ActionEvent event) {
-
-    }
-
-    @FXML
-    void handleCategoryElectrical(ActionEvent event) {
-
-    }
-
-    @FXML
-    void handleCategoryEngine(ActionEvent event) {
-
-    }
-
-    @FXML
-    void handleCategoryExterior(ActionEvent event) {
-
-    }
-
-    @FXML
-    void handleCategoryOil(ActionEvent event) {
-
-    }
-
-    @FXML
-    void handleCategorySuspension(ActionEvent event) {
-
-    }
-
-    @FXML
-    void handleCategoryTransmission(ActionEvent event) {
-
-    }
-
-    @FXML
-    void handleCategoryWheels(ActionEvent event) {
-
-    }
-
-    @FXML
-    public void initialize() {
-        System.out.println("ShopsQuickViewController loaded!");
-    }
+    private Shops shop;
 
     public void setShopDetails(Shops shop) {
-        System.out.println("Shop passed to setShopDetails:");
-        System.out.println("ID: " + shop.getShopId());
-        System.out.println("Name: " + shop.getShopName());
-        System.out.println("Email: " + shop.getShopEmail());
-        System.out.println("Address: " + shop.getShopAddress());
-        System.out.println("Barangay: " + shop.getShopBarangay());
+        if (shop == null) {
+            System.err.println("ERROR: Shop passed to setShopDetails is null!");
+            return;
+        }
 
-        sellerName.setText(shop.getShopName() != null ? shop.getShopName() : "N/A");
+        this.shop = shop;
+        
+        // Fetch full name from user table using seller_id
+        try (Connection conn = DatabaseConnection.connect();
+                PreparedStatement stmt = conn.prepareStatement(
+                        "SELECT first_name, last_name FROM user WHERE user_id = ?")) {
+
+            stmt.setInt(1, shop.getShopId());
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                String fullName = rs.getString("first_name") + " " + rs.getString("last_name");
+                sellerName.setText(fullName);
+            } else {
+                sellerName.setText("Unknown Seller");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            sellerName.setText("Error");
+        }
+
         sellerEmail.setText(shop.getShopEmail() != null ? shop.getShopEmail() : "N/A");
         sellerAddress.setText(shop.getShopAddress() != null ? shop.getShopAddress() : "N/A");
         sellerBarangay.setText(shop.getShopBarangay() != null ? shop.getShopBarangay() : "N/A");
@@ -142,17 +70,75 @@ public class ShopsQuickViewController {
         }
     }
 
+    private void navigateToCategory(String categoryName, ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/resources/fxml/customer/ShopsQuickViewCategory.fxml"));
+            Parent newRoot = loader.load();
+
+            ShopsQuickViewCategoryController controller = loader.getController();
+            controller.setShopDetails(shop);
+            controller.filterByCategory(categoryName, sellerName); // Pass category to filter
+
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            currentStage.setScene(new Scene(newRoot));
+            currentStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void handleCategoryBolts(ActionEvent event) {
+        navigateToCategory("Bolts", event);
+    }
+
+    @FXML
+    void handleCategoryElectrical(ActionEvent event) {
+        navigateToCategory("Electrical", event);
+    }
+
+    @FXML
+    void handleCategoryEngine(ActionEvent event) {
+        navigateToCategory("Engine", event);
+    }
+
+    @FXML
+    void handleCategoryExterior(ActionEvent event) {
+        navigateToCategory("Exterior", event);
+    }
+
+    @FXML
+    void handleCategoryOil(ActionEvent event) {
+        navigateToCategory("Oil", event);
+    }
+
+    @FXML
+    void handleCategorySuspension(ActionEvent event) {
+        navigateToCategory("Suspension", event);
+    }
+
+    @FXML
+    void handleCategoryTransmission(ActionEvent event) {
+        navigateToCategory("Transmission", event);
+    }
+
+    @FXML
+    void handleCategoryWheels(ActionEvent event) {
+        navigateToCategory("Wheels", event);
+    }
+
     private void loadCategoryData(int sellerId) {
         String query = """
-                SELECT c.name AS category_name, COUNT(p.product_id) AS product_count
-                FROM category c
-                JOIN product p ON c.category_id = p.category_id
-                WHERE p.seller_id = ? AND p.status = 'AVAILABLE'
-                GROUP BY c.category_id, c.name
-                ORDER BY c.category_id ASC
+                    SELECT c.name AS category_name, COUNT(p.product_id) AS product_count
+                    FROM category c
+                    JOIN product p ON c.category_id = p.category_id
+                    WHERE p.seller_id = ? AND p.status = 'AVAILABLE'
+                    GROUP BY c.category_id, c.name
+                    ORDER BY c.category_id ASC
                 """;
 
-        try (Connection conn = com.ogcreate.app.database.DatabaseConnection.connect();
+        try (Connection conn = DatabaseConnection.connect();
                 PreparedStatement stmt = conn.prepareStatement(query)) {
 
             stmt.setInt(1, sellerId);
@@ -161,43 +147,42 @@ public class ShopsQuickViewController {
             int index = 1;
             while (rs.next() && index <= 8) {
                 String category = rs.getString("category_name");
-                int productCount = rs.getInt("product_count");
+                int count = rs.getInt("product_count");
 
                 switch (index) {
                     case 1 -> {
                         labelCategory1.setText(category);
-                        labelCategoryItem1.setText(productCount + " items");
+                        labelCategoryItem1.setText(count + " items");
                     }
                     case 2 -> {
                         labelCategory2.setText(category);
-                        labelCategoryItem2.setText(productCount + " items");
+                        labelCategoryItem2.setText(count + " items");
                     }
                     case 3 -> {
                         labelCategory3.setText(category);
-                        labelCategoryItem3.setText(productCount + " items");
+                        labelCategoryItem3.setText(count + " items");
                     }
                     case 4 -> {
                         labelCategory4.setText(category);
-                        labelCategoryItem4.setText(productCount + " items");
+                        labelCategoryItem4.setText(count + " items");
                     }
                     case 5 -> {
                         labelCategory5.setText(category);
-                        labelCategoryItem5.setText(productCount + " items");
+                        labelCategoryItem5.setText(count + " items");
                     }
                     case 6 -> {
                         labelCategory6.setText(category);
-                        labelCategoryItem6.setText(productCount + " items");
+                        labelCategoryItem6.setText(count + " items");
                     }
                     case 7 -> {
                         labelCategory7.setText(category);
-                        labelCategoryItem7.setText(productCount + " items");
+                        labelCategoryItem7.setText(count + " items");
                     }
                     case 8 -> {
                         labelCategory8.setText(category);
-                        labelCategoryItem8.setText(productCount + " items");
+                        labelCategoryItem8.setText(count + " items");
                     }
                 }
-
                 index++;
             }
 
@@ -206,17 +191,54 @@ public class ShopsQuickViewController {
         }
     }
 
+    // NAVIGATION HANDLERS
+    @FXML
+    void handleHomeButton(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/customer/HomeMain.fxml"));
+            Parent newRoot = loader.load();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(newRoot));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void handleProductsClick(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/customer/Products.fxml"));
+            Parent newRoot = loader.load();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(newRoot));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void handleShopsClick(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/customer/Shops.fxml"));
+            Parent newRoot = loader.load();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(newRoot));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     @FXML
     void handleCartClick(ActionEvent event) {
-        System.out.println("handleCartClick triggered");
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/customer/Cart.fxml"));
             Parent newRoot = loader.load();
-
-            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            currentStage.setScene(new Scene(newRoot));
-            currentStage.show();
-
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(newRoot));
+            stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -224,41 +246,15 @@ public class ShopsQuickViewController {
 
     @FXML
     void handleFavoriteClick(ActionEvent event) {
-        System.out.println("handleFavoriteClick triggered");
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/customer/Favorite.fxml"));
             Parent newRoot = loader.load();
-
-            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            currentStage.setScene(new Scene(newRoot));
-            currentStage.show();
-
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(newRoot));
+            stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    @FXML
-    void handleHomeButton(ActionEvent event) {
-        System.out.println("handleHomeButton triggered");
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/customer/HomeMain.fxml"));
-            Parent newRoot = loader.load();
-
-            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            currentStage.setScene(new Scene(newRoot));
-            currentStage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
-    void handleLogOutButton(ActionEvent event) {
-        System.out.println("Logout clicked");
-        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        SettingsWindowHelper.logout(currentStage);
     }
 
     @FXML
@@ -267,34 +263,8 @@ public class ShopsQuickViewController {
     }
 
     @FXML
-    void handleProductsClick(ActionEvent event) {
-        System.out.println("handleProductsClick triggered");
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/customer/Products.fxml"));
-            Parent newRoot = loader.load();
-
-            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            currentStage.setScene(new Scene(newRoot));
-            currentStage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
-    void handleShopsClick(ActionEvent event) {
-        System.out.println("handleShopsClick triggered");
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/customer/Shops.fxml"));
-            Parent newRoot = loader.load();
-
-            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            currentStage.setScene(new Scene(newRoot));
-            currentStage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    void handleLogOutButton(ActionEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        SettingsWindowHelper.logout(stage);
     }
 }

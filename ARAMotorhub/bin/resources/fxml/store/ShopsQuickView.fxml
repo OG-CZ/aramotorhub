@@ -627,7 +627,7 @@
                      </VBox.margin>
                   </HBox>
                   <Region prefHeight="10.0" prefWidth="770.0" />
-                  <ScrollPane prefHeight="222.0" prefWidth="721.0">
+                  <ScrollPane prefHeight="222.0" prefWidth="721.0" style="-fx-padding: 0; -fx-focus-color: 0; -fx-faint-focus-color: transparent; -fx-border-color: #9BA1A6;" stylesheets="@../../css/scroll-pane.css">
                      <VBox.margin>
                         <Insets left="20.0" right="20.0" />
                      </VBox.margin>

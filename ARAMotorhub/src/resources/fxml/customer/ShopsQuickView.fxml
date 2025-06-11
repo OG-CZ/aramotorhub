@@ -618,6 +618,22 @@
                         <Insets left="20.0" right="20.0" />
                      </VBox.margin>
                   </HBox>
+                  <Region prefHeight="10.0" prefWidth="770.0" />
+                  <StackPane prefHeight="150.0" prefWidth="770.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <ImageView fitHeight="129.0" fitWidth="680.0">
+                           <image>
+                              <Image url="@../../assets/c2_footer.png" />
+                           </image>
+                           <StackPane.margin>
+                              <Insets bottom="20.0" />
+                           </StackPane.margin>
+                        </ImageView>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </StackPane>
                </children></VBox>
          </children>
       </StackPane>

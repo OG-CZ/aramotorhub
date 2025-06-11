@@ -28,8 +28,7 @@ public class ProductsContainerController {
     
     }
 
-    public void setShopMode(boolean isShopMode) {
-    }
+  
 
     @FXML
     void addToCartHandle(ActionEvent event) {

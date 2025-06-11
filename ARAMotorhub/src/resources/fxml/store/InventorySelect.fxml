@@ -279,12 +279,16 @@
                                           <Font name="Arial Rounded MT Bold" size="24.0" />
                                        </font>
                                     </Label>
-                                    <ImageView fitHeight="24.0" fitWidth="40.0" layoutY="4.0">
-                                       <image>
-                                          <Image url="@../../assets/j_totalrevenue.png" />
-                                       </image>
-                                    </ImageView>
-                                    <Button layoutY="3.0" mnemonicParsing="false" onAction="#handleProfileClick" opacity="0.0" prefHeight="26.0" prefWidth="44.0" text="Button" />
+                                    <Group layoutY="3.0">
+                                       <children>
+                                          <ImageView fitHeight="24.0" fitWidth="40.0" layoutY="1.0">
+                                             <image>
+                                                <Image url="@../../assets/j_totalrevenue.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Button mnemonicParsing="false" onAction="#handleProfileClick" opacity="0.0" prefHeight="26.0" prefWidth="44.0" text="Button" />
+                                       </children>
+                                    </Group>
                                  </children>
                                  <VBox.margin>
                                     <Insets left="20.0" right="20.0" />

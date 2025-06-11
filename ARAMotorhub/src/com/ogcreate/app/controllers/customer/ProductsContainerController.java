@@ -42,6 +42,7 @@ public class ProductsContainerController {
         productName.setText(product.getProductName());
         productPrice.setText(product.getProductPrice());
         storeName.setText(product.getStoreName());
+        
     }
 
     @FXML

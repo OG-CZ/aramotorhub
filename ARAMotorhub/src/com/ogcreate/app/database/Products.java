@@ -6,6 +6,16 @@ import java.util.List;
 
 public class Products {
 
+    private String categoryName;
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
     private int productId;
     private String productPrice;
     private String productName;
@@ -55,80 +65,119 @@ public class Products {
     }
 
     public static List<Products> getProductsByCategory(String categoryName) {
-    List<Products> productsList = new ArrayList<>();
-    String sql = "SELECT DISTINCT p.product_id, p.name, p.price, p.seller_id, u.first_name, u.last_name " +
-                 "FROM product p " +
-                 "JOIN category c ON p.category_id = c.category_id " +
-                 "JOIN user u ON p.seller_id = u.user_id " +
-                 "WHERE c.name = ? AND p.status = 'AVAILABLE'";
+        List<Products> productsList = new ArrayList<>();
+        String sql = "SELECT DISTINCT p.product_id, p.name, p.price, p.seller_id, u.first_name, u.last_name " +
+                "FROM product p " +
+                "JOIN category c ON p.category_id = c.category_id " +
+                "JOIN user u ON p.seller_id = u.user_id " +
+                "WHERE c.name = ? AND p.status = 'AVAILABLE'";
 
-    try (Connection conn = DatabaseConnection.connect();
-         PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = DatabaseConnection.connect();
+                PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-        stmt.setString(1, categoryName);
-        ResultSet rs = stmt.executeQuery();
+            stmt.setString(1, categoryName);
+            ResultSet rs = stmt.executeQuery();
 
-        while (rs.next()) {
-            Products p = new Products();
-            p.setProductId(rs.getInt("product_id"));
-            p.setProductName(rs.getString("name"));
-            p.setProductPrice(rs.getString("price"));
-            String sellerName = rs.getString("first_name") + " " + rs.getString("last_name");
-            p.setStoreName(sellerName.trim());
-            p.setSellerId(rs.getInt("seller_id"));
-            productsList.add(p);
+            while (rs.next()) {
+                Products p = new Products();
+                p.setProductId(rs.getInt("product_id"));
+                p.setProductName(rs.getString("name"));
+                p.setProductPrice(rs.getString("price"));
+                String sellerName = rs.getString("first_name") + " " + rs.getString("last_name");
+                p.setStoreName(sellerName.trim());
+                p.setSellerId(rs.getInt("seller_id"));
+                productsList.add(p);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
 
-    } catch (SQLException e) {
-        e.printStackTrace();
+        return productsList;
     }
 
-    return productsList;
-}
+    public static List<Products> getProductsByCategory(String category, int limit) {
+        List<Products> list = new ArrayList<>();
 
-public static List<Products> getProductsByCategory(String category, int limit) {
-    List<Products> list = new ArrayList<>();
+        String sql = """
+                    SELECT
+                        p.product_id,
+                        p.name AS product_name,
+                        p.price,
+                        u.first_name,
+                        u.last_name
+                    FROM product p
+                    JOIN user u ON p.seller_id = u.user_id
+                    JOIN category c ON p.category_id = c.category_id
+                    WHERE c.name = ?
+                    ORDER BY p.name ASC
+                    LIMIT ?
+                """;
 
-    String sql = """
-        SELECT
-            p.product_id,
-            p.name AS product_name,
-            p.price,
-            u.first_name,
-            u.last_name
-        FROM product p
-        JOIN user u ON p.seller_id = u.user_id
-        JOIN category c ON p.category_id = c.category_id
-        WHERE c.name = ?
-        ORDER BY p.name ASC
-        LIMIT ?
-    """;
+        try (Connection conn = DatabaseConnection.connect();
+                PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-    try (Connection conn = DatabaseConnection.connect();
-         PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, category);
+            stmt.setInt(2, limit);
 
-        stmt.setString(1, category);
-        stmt.setInt(2, limit);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Products p = new Products();
+                p.setProductId(rs.getInt("product_id"));
+                p.setProductName(rs.getString("product_name"));
+                p.setProductPrice(rs.getString("price"));
 
-        ResultSet rs = stmt.executeQuery();
-        while (rs.next()) {
-            Products p = new Products();
-            p.setProductId(rs.getInt("product_id"));
-            p.setProductName(rs.getString("product_name"));
-            p.setProductPrice(rs.getString("price"));
+                String storeName = rs.getString("first_name") + " " + rs.getString("last_name");
+                p.setStoreName(storeName);
 
-            String storeName = rs.getString("first_name") + " " + rs.getString("last_name");
-            p.setStoreName(storeName);
+                list.add(p);
+            }
 
-            list.add(p);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
 
-    } catch (SQLException e) {
-        e.printStackTrace();
+        return list;
     }
 
-    return list;
-}
+    public static List<Products> getAllAvailableProducts() {
+        List<Products> productList = new ArrayList<>();
+        String sql = """
+                    SELECT
+                        p.product_id,
+                        p.name AS product_name,
+                        p.price,
+                        p.seller_id,
+                        u.first_name,
+                        u.last_name
+                    FROM product p
+                    JOIN user u ON p.seller_id = u.user_id
+                    WHERE p.status = 'AVAILABLE'
+                    ORDER BY p.name ASC
+                """;
 
+        try (Connection conn = DatabaseConnection.connect();
+                PreparedStatement stmt = conn.prepareStatement(sql);
+                ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                Products p = new Products();
+                p.setProductId(rs.getInt("product_id"));
+                p.setProductName(rs.getString("product_name"));
+                p.setProductPrice(rs.getString("price"));
+
+                String sellerName = rs.getString("first_name") + " " + rs.getString("last_name");
+                p.setStoreName(sellerName.trim());
+                p.setSellerId(rs.getInt("seller_id"));
+
+                productList.add(p);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return productList;
+    }
 
 }

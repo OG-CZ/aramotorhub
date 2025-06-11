@@ -93,7 +93,7 @@ public class CategoriesController implements Initializable {
                 product.setStoreName(storeName);
 
                 controller.setData(product);
-                controller.setShopMode(true);
+           //     controller.setShopMode(true);
 
                 // GridPane.setMargin(productCard, new Insets(0));
                 productsContainer.setMaxWidth(200);

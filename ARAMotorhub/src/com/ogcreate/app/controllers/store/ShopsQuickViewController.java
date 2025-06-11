@@ -99,8 +99,11 @@ public class ShopsQuickViewController {
 
     @FXML
     private Label sellerBarangay;
-    @FXML
+
+        @FXML
     private GridPane productsContainer;
+
+
 
     @FXML
     void handleCategoryEngine(ActionEvent event) {
@@ -172,7 +175,6 @@ public class ShopsQuickViewController {
             }
         });
     }
-    
 
     private void openCategoryView(String categoryName) {
         try {

@@ -8,8 +8,6 @@ import java.util.*;
 import com.ogcreate.app.SettingsWindowHelper;
 import com.ogcreate.app.database.DatabaseConnection;
 import com.ogcreate.app.database.Products;
-import com.ogcreate.app.database.UserSession;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.*;
 import javafx.scene.Node;
@@ -66,8 +64,8 @@ public class ProductsController implements Initializable {
                 ProductsContainerController controller = fxmlLoader.getController();
                 controller.setData(product);
 
-                boolean isOwnProduct = product.getSellerId() == UserSession.getCurrentUser().getUserId();
-                controller.setShopMode(isOwnProduct);
+             //   boolean isOwnProduct = product.getSellerId() == UserSession.getCurrentUser().getUserId();
+            //    controller.setShopMode(isOwnProduct);
 
                 productsContainer.setMaxWidth(200);
                 productsContainer.setMinWidth(200);
@@ -147,7 +145,7 @@ public class ProductsController implements Initializable {
 
                 ProductsContainerController controller = fxmlLoader.getController();
                 controller.setData(p);
-                controller.setShopMode(p.getSellerId() == UserSession.getCurrentUser().getUserId());
+              //  controller.setShopMode(p.getSellerId() == UserSession.getCurrentUser().getUserId());
 
                 if (column == COLUMN_COUNT) {
                     column = 0;
