@@ -6,29 +6,26 @@ import java.util.List;
 
 public class Products {
 
-    private String categoryName;
-
-    public String getCategoryName() {
-        return categoryName;
-    }
-
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
-    }
-
+    // --- Fields ---
     private int productId;
-    private String productPrice;
     private String productName;
-    private String storeName;
+    private String productPrice;
+    private int stock;
+    private int categoryId;
+    private String categoryName;
     private int sellerId;
+    private String storeName;
+    private String status;
+    private Timestamp createdAt;
+    private String description;
+
+    private String storeEmail;
+    private String storeAddress;
+    private String storeBarangay;
 
     // --- Getters ---
     public int getProductId() {
         return productId;
-    }
-
-    public int getSellerId() {
-        return sellerId;
     }
 
     public String getProductName() {
@@ -39,8 +36,44 @@ public class Products {
         return productPrice;
     }
 
+    public int getStock() {
+        return stock;
+    }
+
+    public int getCategoryId() {
+        return categoryId;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public int getSellerId() {
+        return sellerId;
+    }
+
     public String getStoreName() {
         return storeName;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public Timestamp getCreatedAt() {
+        return createdAt;
+    }
+
+    public String getStoreEmail() {
+        return storeEmail;
+    }
+
+    public String getStoreAddress() {
+        return storeAddress;
+    }
+
+    public String getStoreBarangay() {
+        return storeBarangay;
     }
 
     // --- Setters ---
@@ -56,13 +89,47 @@ public class Products {
         this.productPrice = productPrice;
     }
 
-    public void setStoreName(String storeName) {
-        this.storeName = storeName;
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 
     public void setSellerId(int sellerId) {
         this.sellerId = sellerId;
     }
+
+    public void setStoreName(String storeName) {
+        this.storeName = storeName;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setCreatedAt(Timestamp createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public void setStoreEmail(String storeEmail) {
+        this.storeEmail = storeEmail;
+    }
+
+    public void setStoreAddress(String storeAddress) {
+        this.storeAddress = storeAddress;
+    }
+
+    public void setStoreBarangay(String storeBarangay) {
+        this.storeBarangay = storeBarangay;
+    }
+
+    // --- Static Data Access Methods ---
 
     public static List<Products> getProductsByCategory(String categoryName) {
         List<Products> productsList = new ArrayList<>();
@@ -148,6 +215,10 @@ public class Products {
                         p.name AS product_name,
                         p.price,
                         p.seller_id,
+                        p.category_id,
+                        p.stock,
+                        p.status,
+                        p.created_at,
                         u.first_name,
                         u.last_name
                     FROM product p
@@ -165,10 +236,14 @@ public class Products {
                 p.setProductId(rs.getInt("product_id"));
                 p.setProductName(rs.getString("product_name"));
                 p.setProductPrice(rs.getString("price"));
+                p.setSellerId(rs.getInt("seller_id"));
+                p.setCategoryId(rs.getInt("category_id"));
+                p.setStock(rs.getInt("stock"));
+                p.setStatus(rs.getString("status"));
+                p.setCreatedAt(rs.getTimestamp("created_at"));
 
                 String sellerName = rs.getString("first_name") + " " + rs.getString("last_name");
                 p.setStoreName(sellerName.trim());
-                p.setSellerId(rs.getInt("seller_id"));
 
                 productList.add(p);
             }
@@ -180,4 +255,11 @@ public class Products {
         return productList;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }

@@ -1,13 +1,8 @@
 package com.ogcreate.app.controllers.store;
 
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
-import com.ogcreate.app.SettingsWindowHelper;
 import com.ogcreate.app.database.DatabaseConnection;
+import com.ogcreate.app.database.UserSession;
+import com.ogcreate.app.SettingsWindowHelper;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,195 +10,184 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.sql.*;
 
 public class InventoryController {
 
     @FXML
-    private ComboBox categoryComboBox;
-
+    private TextField productName;
     @FXML
-    private Label labelCategory1;
-
+    private TextField productDescription;
     @FXML
-    private Label labelCategory2;
-
+    private TextField productPrice;
     @FXML
-    private Label labelCategory3;
-
+    private TextField productStock;
     @FXML
-    private Label labelCategory4;
-
+    private SplitMenuButton productCategory;
     @FXML
-    private Label labelCategory5;
+    private Button submitButton;
 
-    @FXML
-    private Label labelCategory6;
-
-    @FXML
-    private Label labelCategory7;
-
-    @FXML
-    private Label labelCategory8;
-
-    @FXML
-    private Label labelCategoryItem1;
-
-    @FXML
-    private Label labelCategoryItem2;
-
-    @FXML
-    private Label labelCategoryItem3;
-
-    @FXML
-    private Label labelCategoryItem4;
-
-    @FXML
-    private Label labelCategoryItem5;
-
-    @FXML
-    private Label labelCategoryItem6;
-
-    @FXML
-    private Label labelCategoryItem7;
-
-    @FXML
-    private Label labelCategoryItem8;
-
-    @FXML
-    void handleCategoryBolts(ActionEvent event) {
-
-    }
-
-    @FXML
-    void handleCategoryElectrical(ActionEvent event) {
-
-    }
-
-    @FXML
-    void handleCategoryEngine(ActionEvent event) {
-
-    }
-
-    @FXML
-    void handleCategoryExterior(ActionEvent event) {
-
-    }
-
-    @FXML
-    void handleCategoryOil(ActionEvent event) {
-
-    }
-
-    @FXML
-    void handleCategorySuspension(ActionEvent event) {
-
-    }
-
-    @FXML
-    void handleCategoryTransmission(ActionEvent event) {
-
-    }
-
-    @FXML
-    void handleCategoryWheels(ActionEvent event) {
-
-    }
+    private String selectedCategoryName;
 
     @FXML
     public void initialize() {
-        setupCategoryComboBox();
-    }
-
-    private void setupCategoryComboBox() {
-        String sql = "SELECT name FROM category ORDER BY name ASC";
+        productCategory.setText("Select Category");
 
         try (Connection conn = DatabaseConnection.connect();
-                PreparedStatement stmt = conn.prepareStatement(sql);
+                PreparedStatement stmt = conn.prepareStatement("SELECT name FROM category");
                 ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
-                categoryComboBox.getItems().add(rs.getString("name"));
+                final String name = rs.getString("name");
+                MenuItem item = new MenuItem(name);
+                item.setOnAction(e -> {
+                    selectedCategoryName = name;
+                    productCategory.setText(name);
+                });
+                productCategory.getItems().add(item);
             }
+
+        } catch (SQLException e) {
+            showAlert("Error loading categories: " + e.getMessage(), Alert.AlertType.ERROR);
+        }
+    }
+
+    @FXML
+    void handleSubmitButton(ActionEvent event) {
+        String name = productName.getText();
+        String description = productDescription.getText();
+        String priceText = productPrice.getText();
+        String stockText = productStock.getText();
+        String categoryName = selectedCategoryName;
+
+        if (name.isEmpty() || description.isEmpty() || priceText.isEmpty() || stockText.isEmpty()
+                || categoryName == null) {
+            showAlert("Please fill in all fields.", Alert.AlertType.WARNING);
+            return;
+        }
+
+        try {
+            double price = Double.parseDouble(priceText);
+            int stock = Integer.parseInt(stockText);
+
+            int categoryId = getCategoryIdByName(categoryName);
+            if (categoryId == -1) {
+                showAlert("Category not found.", Alert.AlertType.ERROR);
+                return;
+            }
+
+            try (Connection conn = DatabaseConnection.connect();
+                    PreparedStatement stmt = conn.prepareStatement(
+                            "INSERT INTO product (name, description, price, stock, category_id, seller_id, status, created_at) "
+                                    +
+                                    "VALUES (?, ?, ?, ?, ?, ?, 'AVAILABLE', NOW())")) {
+                stmt.setString(1, name);
+                stmt.setString(2, description);
+                stmt.setDouble(3, price);
+                stmt.setInt(4, stock);
+                stmt.setInt(5, categoryId);
+                stmt.setInt(6, UserSession.getCurrentUser().getUserId());
+
+                int rows = stmt.executeUpdate();
+                if (rows > 0) {
+                    showAlert("Product added successfully.", Alert.AlertType.INFORMATION);
+                    clearFields();
+                } else {
+                    showAlert("Failed to add product.", Alert.AlertType.ERROR);
+                }
+            }
+
+        } catch (NumberFormatException e) {
+            showAlert("Invalid number format for price or stock.", Alert.AlertType.ERROR);
+        } catch (SQLException e) {
+            showAlert("Database error: " + e.getMessage(), Alert.AlertType.ERROR);
+        }
+    }
+
+    private int getCategoryIdByName(String name) {
+        try (Connection conn = DatabaseConnection.connect();
+                PreparedStatement stmt = conn.prepareStatement("SELECT category_id FROM category WHERE name = ?")) {
+
+            stmt.setString(1, name);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next())
+                return rs.getInt("category_id");
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-     
-        categoryComboBox.setOnAction(event -> {
-            String selectedCategory = (String) categoryComboBox.getValue();
-            if (selectedCategory != null) {
-                openCategoryView(selectedCategory);
-            }
-        });
+        return -1;
     }
 
-    private void openCategoryView(String categoryName) {
+    private void showAlert(String message, Alert.AlertType type) {
+        Alert alert = new Alert(type);
+        alert.setTitle("ARA Motorhub");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    private void clearFields() {
+        productName.clear();
+        productDescription.clear();
+        productPrice.clear();
+        productStock.clear();
+        productCategory.setText("Select Category");
+        selectedCategoryName = null;
+    }
+
+    // --- Navigation Handlers ---
+
+    @FXML
+    void handleDashboardClick(ActionEvent e) {
+        navigateTo(e, "/resources/fxml/store/Dashboard.fxml");
+    }
+
+    @FXML
+    void handleInventoryClick(ActionEvent e) {
+        navigateTo(e, "/resources/fxml/store/Inventory.fxml");
+    }
+
+    @FXML
+    void handleProductsClick(ActionEvent e) {
+        navigateTo(e, "/resources/fxml/store/Products.fxml");
+    }
+
+    @FXML
+    void handleProfileClick(ActionEvent e) {
+        navigateTo(e, "/resources/fxml/store/Profile.fxml");
+    }
+
+    @FXML
+    void handleShopsClick(ActionEvent e) {
+        navigateTo(e, "/resources/fxml/store/Shops.fxml");
+    }
+
+    @FXML
+    void handleHomeButton(ActionEvent e) {
+        /* Optional */ }
+
+    @FXML
+    void handleOpenSettings(ActionEvent e) {
+        SettingsWindowHelper.openSettings((Node) e.getSource());
+    }
+
+    @FXML
+    void handleLogOutButton(ActionEvent e) {
+        SettingsWindowHelper.logout((Stage) ((Node) e.getSource()).getScene().getWindow());
+    }
+
+    private void navigateTo(ActionEvent event, String fxmlPath) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/store/Categories.fxml"));
-            Parent root = loader.load();
-
-            CategoriesController controller = loader.getController();
-            controller.setSelectedCategory(categoryName); // This must exist in CategoriesController
-
-            Stage stage = (Stage) categoryComboBox.getScene().getWindow();
+            Parent root = FXMLLoader.load(getClass().getResource(fxmlPath));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
-            stage.show();
-
         } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
-    void handleDashboardClick(ActionEvent event) {
-        loadScene("/resources/fxml/store/Dashboard.fxml", event);
-    }
-
-    @FXML
-    void handleHomeButton(ActionEvent event) {
-        loadScene("/resources/fxml/store/Profile.fxml", event); // or Home.fxml if separate
-    }
-
-    @FXML
-    void handleLogOutButton(ActionEvent event) {
-        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        SettingsWindowHelper.logout(currentStage);
-    }
-
-    @FXML
-    void handleOpenSettings(ActionEvent event) {
-        SettingsWindowHelper.openSettings((Node) event.getSource());
-    }
-
-    @FXML
-    void handleProfileClick(ActionEvent event) {
-        loadScene("/resources/fxml/store/Profile.fxml", event);
-    }
-
-    @FXML
-    void handleProductsClick(ActionEvent event) {
-        loadScene("/resources/fxml/store/Products.fxml", event);
-    }
-
-    @FXML
-    void handleShopsClick(ActionEvent event) {
-        loadScene("/resources/fxml/store/Shops.fxml", event);
-    }
-
-    // ✅ Shared scene-loading helper
-    private void loadScene(String fxmlPath, ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
-            Parent newRoot = loader.load();
-            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            currentStage.setScene(new Scene(newRoot));
-            currentStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
+            showAlert("Cannot load: " + fxmlPath, Alert.AlertType.ERROR);
         }
     }
 }

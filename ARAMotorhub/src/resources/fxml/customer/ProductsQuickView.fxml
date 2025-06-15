@@ -50,7 +50,7 @@
                            <children>
                               <Label fx:id="nameLabel" text="Product  Name" textFill="#00528d">
                                  <font>
-                                    <Font name="Arial Rounded MT Bold" size="24.0" />
+                                    <Font name="Arial Rounded MT Bold" size="20.0" />
                                  </font>
                                  <VBox.margin>
                                     <Insets left="20.0" />

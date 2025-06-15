@@ -1,9 +1,11 @@
 package com.ogcreate.app.controllers.customer;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ResourceBundle;
 
 import com.ogcreate.app.SettingsWindowHelper;
 import com.ogcreate.app.database.DatabaseConnection;
@@ -12,13 +14,15 @@ import com.ogcreate.app.database.Shops;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
-public class ShopsQuickViewController {
+public class ShopsQuickViewController implements Initializable {
 
     @FXML
     private Label labelCategory1, labelCategory2, labelCategory3, labelCategory4;
@@ -33,15 +37,60 @@ public class ShopsQuickViewController {
 
     private Shops shop;
 
+    @FXML
+    private ComboBox<String> categoryComboBox;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        categoryComboBox.setPromptText("Category");
+
+        try (Connection conn = DatabaseConnection.connect();
+                PreparedStatement stmt = conn.prepareStatement("SELECT name FROM category");
+                ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                categoryComboBox.getItems().add(rs.getString("name"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        categoryComboBox.setOnAction(event -> {
+            String selectedCategory = categoryComboBox.getValue();
+            if (selectedCategory != null && !selectedCategory.isEmpty()) {
+                openCategoriesPage(selectedCategory);
+            }
+        });
+    }
+
+    private void openCategoriesPage(String category) {
+        System.out.println("Opening category: " + category);
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/customer/Categories.fxml"));
+            Parent newRoot = loader.load();
+
+            CategoriesController controller = loader.getController();
+            controller.setSelectedCategory(category);
+
+            Stage currentStage = (Stage) categoryComboBox.getScene().getWindow();
+            currentStage.setScene(new Scene(newRoot));
+            currentStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     public void setShopDetails(Shops shop) {
+
         if (shop == null) {
             System.err.println("ERROR: Shop passed to setShopDetails is null!");
             return;
         }
+        System.out.println("🚀 Received shop ID: " + shop.getShopId());
 
         this.shop = shop;
-        
-        // Fetch full name from user table using seller_id
+
         try (Connection conn = DatabaseConnection.connect();
                 PreparedStatement stmt = conn.prepareStatement(
                         "SELECT first_name, last_name FROM user WHERE user_id = ?")) {
@@ -78,7 +127,7 @@ public class ShopsQuickViewController {
 
             ShopsQuickViewCategoryController controller = loader.getController();
             controller.setShopDetails(shop);
-            controller.filterByCategory(categoryName, sellerName); // Pass category to filter
+            controller.filterByCategory(categoryName, sellerName);
 
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             currentStage.setScene(new Scene(newRoot));

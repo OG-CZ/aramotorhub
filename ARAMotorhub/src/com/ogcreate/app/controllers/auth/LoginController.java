@@ -101,7 +101,7 @@ public class LoginController {
                     loader = new FXMLLoader(getClass().getResource("/resources/fxml/store/Profile.fxml"));
                     break;
                 case "admin":
-                    loader = new FXMLLoader(getClass().getResource("/resources/fxml/admin/Dashboard.fxml"));
+                    loader = new FXMLLoader(getClass().getResource("/resources/fxml/admin/Admin.fxml"));
                     break;
                 default:
                     showAlert("ARA Motorhub", "Unrecognized role.");

@@ -33,6 +33,9 @@ public class ShopsController implements Initializable {
 
     private List<Shops> nearestShop;
 
+    public void setShop(Shops shop) {
+    }
+
     private void openCategoriesPage(String category) {
         System.out.println("Opening category: " + category);
         try {

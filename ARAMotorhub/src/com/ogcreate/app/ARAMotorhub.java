@@ -3,6 +3,7 @@ package com.ogcreate.app;
 import java.sql.Connection;
 
 import com.ogcreate.app.database.DatabaseConnection;
+import com.ogcreate.app.database.UserSession;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -24,6 +25,8 @@ public class ARAMotorhub extends Application {
 
         @Override
         public void start(Stage primaryStage) throws Exception {
+
+            UserSession.setMainStage(primaryStage);
             primaryStage.setTitle("ARA Motorhub");
             primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/resources/assets/z_favicon.png")));
 
@@ -32,8 +35,8 @@ public class ARAMotorhub extends Application {
             
             scene.getRoot().setStyle("-fx-font-smoothing-type: lcd;");
 
-        //    Font.loadFont(getClass().getResourceAsStream("/resources/fonts/SF-Pro.ttf"), 12);
-           // Font.loadFont(getClass().getResourceAsStream("/resources/fonts/SF-Pro-Display-Medium.otf"), 12);
+            //Font.loadFont(getClass().getResourceAsStream("/resources/fonts/SF-Pro.ttf"), 12);
+            //Font.loadFont(getClass().getResourceAsStream("/resources/fonts/SF-Pro-Display-Medium.otf"), 12);
 
             /* 
             Font loadedFont = Font.loadFont(getClass().getResourceAsStream("/resources/fonts/SF-Pro.ttf"), 12);

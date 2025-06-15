@@ -1,8 +1,11 @@
 package com.ogcreate.app.database;
 
+import javafx.stage.Stage;
+
 public class UserSession {
     private static User currentUser;
     private static Integer activeCartId;
+    private static Stage mainStage;
 
     public static void setCurrentUser(User user) {
         currentUser = user;
@@ -23,5 +26,13 @@ public class UserSession {
 
     public static Integer getActiveCartId() {
         return activeCartId;
+    }
+
+    public static Stage getMainStage() {
+        return mainStage;
+    }
+
+    public static void setMainStage(Stage mainStage) {
+        UserSession.mainStage = mainStage;
     }
 }

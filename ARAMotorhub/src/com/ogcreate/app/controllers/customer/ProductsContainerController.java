@@ -125,6 +125,7 @@ public class ProductsContainerController {
             controller.setProductData(product);
 
             Stage stage = new Stage();
+            
             stage.setResizable(false);
             stage.getIcons().add(new Image(getClass().getResourceAsStream("/resources/assets/z_favicon.png")));
             stage.setTitle("ARA Motorhub: Quick View");

@@ -25,25 +25,18 @@ import com.ogcreate.app.database.DatabaseConnection;
 public class HomeMainController implements Initializable {
 
     @FXML
-    private Button boltsButton;
-
-    @FXML
     private ComboBox<String> categoryComboBox;
 
     @FXML
-    private Button exteriorBolts;
+    private Button electricalButton, engineButton, homeButton, nextButton, oilsButton, profileButton, shopButton,
+            suspensionButtom, wheelsButton;
 
     @FXML
-    private Button oilsButton;
-
-    @FXML
-    private Button searchButton;
-
-    @FXML
-    private Button suspensionBolts;
-
-    @FXML
-    private Button wheelsButton;
+    void handleCategoryButtonClick(ActionEvent event) {
+        Button clicked = (Button) event.getSource();
+        String categoryName = clicked.getText();
+        openCategoriesPage(categoryName);
+    }
 
     @FXML
     private void handleCartButton(ActionEvent event) {

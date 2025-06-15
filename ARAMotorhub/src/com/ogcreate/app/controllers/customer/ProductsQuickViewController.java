@@ -116,44 +116,50 @@ public class ProductsQuickViewController {
         }
     }
 
-    @FXML
-    void handleViewShop(ActionEvent event) {
-        if (selectedProduct == null)
-            return;
+ @FXML
+void handleViewShop(ActionEvent event) {
+    if (selectedProduct == null)
+        return;
 
-        int sellerId = selectedProduct.getSellerId();
+    int sellerId = selectedProduct.getSellerId();
 
-        try (Connection conn = DatabaseConnection.connect()) {
-            String sql = "SELECT first_name, last_name, email, address, barangay FROM user WHERE user_id = ?";
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, sellerId);
-            ResultSet rs = stmt.executeQuery();
+    try (Connection conn = DatabaseConnection.connect()) {
+        String sql = "SELECT first_name, last_name, email, address, barangay FROM user WHERE user_id = ?";
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        stmt.setInt(1, sellerId);
+        ResultSet rs = stmt.executeQuery();
 
-            if (rs.next()) {
-                Shops shop = new Shops();
-                shop.setShopName(rs.getString("first_name") + " " + rs.getString("last_name"));
-                shop.setShopEmail(rs.getString("email"));
-                shop.setShopAddress(rs.getString("address"));
-                shop.setShopBarangay(rs.getString("barangay"));
+        if (rs.next()) {
+            Shops shop = new Shops();
+              shop.setShopId(sellerId);
+            shop.setShopName(rs.getString("first_name") + " " + rs.getString("last_name"));
+            shop.setShopEmail(rs.getString("email"));
+            shop.setShopAddress(rs.getString("address"));
+            shop.setShopBarangay(rs.getString("barangay"));
+            Stage popupStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            popupStage.close();
 
-                FXMLLoader loader = new FXMLLoader(
-                        getClass().getResource("/resources/fxml/customer/ShopsQuickView.fxml"));
-                Parent shopRoot = loader.load();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/customer/ShopsQuickView.fxml"));
+            Parent root = loader.load();
 
-                ShopsQuickViewController controller = loader.getController();
-                controller.setShopDetails(shop);
+          ShopsQuickViewController controller = loader.getController();
+controller.setShopDetails(shop);  
 
-                Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                currentStage.setScene(new Scene(shopRoot));
-                currentStage.show();
-            } else {
-                System.out.println(" Seller not found with ID: " + sellerId);
-            }
+            Stage mainStage = UserSession.getMainStage();
+            mainStage.setScene(new Scene(root));
+            mainStage.show();
 
-        } catch (IOException | SQLException e) {
-            e.printStackTrace();
+        } else {
+            System.out.println("Seller not found with ID: " + sellerId);
         }
+
+    } catch (IOException | SQLException e) {
+        e.printStackTrace();
     }
+}
+
+
+
 
     public void setProductData(Products product) {
         this.selectedProduct = product;

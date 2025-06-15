@@ -1,10 +1,9 @@
 package com.ogcreate.app.controllers.store;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.net.URL;
+import java.sql.*;
+import java.util.ResourceBundle;
 
 import com.ogcreate.app.SettingsWindowHelper;
 import com.ogcreate.app.database.DatabaseConnection;
@@ -14,103 +13,59 @@ import com.ogcreate.app.database.UserSession;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-public class ProfileController {
+public class ProfileController implements Initializable {
+     @FXML void handleHomeButton(ActionEvent event) { }
 
-    @FXML
-    private Label firstLastNameLabel;
-    @FXML
-    private Label emailLabel;
-    @FXML
-    private Label addressLabel;
-    @FXML
-    private Label barangayLabel;
+/* 
+    private static final int TOTAL_WIDTH = 715;
+    private static final int COLUMN_COUNT = 5;
+    private static final int COLUMN_WIDTH = TOTAL_WIDTH / COLUMN_COUNT; */
 
-    @FXML
-    private ComboBox<String> categoryComboBox;
+    @FXML private Label firstLastNameLabel;
+    @FXML private Label emailLabel;
+    @FXML private Label addressLabel;
+    @FXML private Label barangayLabel;
 
-    @FXML
-    private Label labelCategory1, labelCategory2, labelCategory3, labelCategory4;
-    @FXML
-    private Label labelCategory5, labelCategory6, labelCategory7, labelCategory8;
-    @FXML
-    private Label labelCategoryItem1, labelCategoryItem2, labelCategoryItem3, labelCategoryItem4;
-    @FXML
-    private Label labelCategoryItem5, labelCategoryItem6, labelCategoryItem7, labelCategoryItem8;
+    @FXML private ComboBox<String> categoryComboBox;
+    @FXML private GridPane gridPane;
 
-    @FXML
-    void handleCategoryBolts(ActionEvent event) {
-        System.out.println("handleCategoryBolts");
-    }
+    @FXML private Label labelCategory1, labelCategory2, labelCategory3, labelCategory4;
+    @FXML private Label labelCategory5, labelCategory6, labelCategory7, labelCategory8;
+    @FXML private Label labelCategoryItem1, labelCategoryItem2, labelCategoryItem3, labelCategoryItem4;
+    @FXML private Label labelCategoryItem5, labelCategoryItem6, labelCategoryItem7, labelCategoryItem8;
 
-    @FXML
-    void handleCategoryElectrical(ActionEvent event) {
-        System.out.println("handleCategoryElectrical");
-    }
-
-    @FXML
-    void handleCategoryExterior(ActionEvent event) {
-        System.out.println("handleCategoryExterior");
-    }
-
-    @FXML
-    void handleCategoryOil(ActionEvent event) {
-        System.out.println("handleCategoryOil");
-    }
-
-    @FXML
-    void handleCategorySuspension(ActionEvent event) {
-        System.out.println("handleCategorySuspension");
-    }
-
-    @FXML
-    void handleCategoryEngine(ActionEvent event) {
-        System.out.println("handleCategoryEngine");
-    }
-
-    @FXML
-    void handleCategoryTransmission(ActionEvent event) {
-        System.out.println("handleCategoryTransmission");
-    }
-
-    @FXML
-    void handleCategoryWheels(ActionEvent event) {
-        System.out.println("handleCategoryWheels");
-    }
-
-    @FXML
-    public void initialize() {
-        loadCategoryData();
-        setupCategoryComboBox();
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
         loadUserInfo();
+        setupCategoryComboBox();
+        loadCategoryData();
     }
 
     private void loadUserInfo() {
         User currentUser = UserSession.getCurrentUser();
-        if (currentUser == null) {
-            System.err.println("No user is logged in.");
-            return;
+        if (currentUser != null) {
+            firstLastNameLabel.setText(currentUser.getFirstName() + " " + currentUser.getLastName());
+            emailLabel.setText(currentUser.getEmail());
+            addressLabel.setText(currentUser.getAddress());
+            barangayLabel.setText(currentUser.getBarangay());
         }
-
-        String fullName = currentUser.getFirstName() + " " + currentUser.getLastName();
-        firstLastNameLabel.setText(fullName);
-        emailLabel.setText(currentUser.getEmail());
-        addressLabel.setText(currentUser.getAddress());
-        barangayLabel.setText(currentUser.getBarangay());
     }
 
     private void setupCategoryComboBox() {
         String sql = "SELECT name FROM category ORDER BY name ASC";
 
         try (Connection conn = DatabaseConnection.connect();
-                PreparedStatement stmt = conn.prepareStatement(sql);
-                ResultSet rs = stmt.executeQuery()) {
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
                 categoryComboBox.getItems().add(rs.getString("name"));
@@ -128,24 +83,10 @@ public class ProfileController {
         });
     }
 
-    private void openCategoryView(String categoryName) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/store/Categories.fxml"));
-            Parent root = loader.load();
-
-            CategoriesController controller = loader.getController();
-            controller.setSelectedCategory(categoryName);
-
-            Stage stage = (Stage) categoryComboBox.getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     private void loadCategoryData() {
+        User currentUser = UserSession.getCurrentUser();
+        if (currentUser == null) return;
+
         String query = """
                 SELECT c.name AS category_name, COUNT(p.product_id) AS product_count
                 FROM category c
@@ -153,20 +94,12 @@ public class ProfileController {
                 WHERE p.seller_id = ? AND p.status = 'AVAILABLE'
                 GROUP BY c.category_id, c.name
                 ORDER BY c.category_id ASC
-                ;
                 """;
 
         try (Connection conn = DatabaseConnection.connect();
-                PreparedStatement stmt = conn.prepareStatement(query)) {
+             PreparedStatement stmt = conn.prepareStatement(query)) {
 
-            User currentUser = UserSession.getCurrentUser();
-            if (currentUser == null) {
-                System.err.println("No user is logged in.");
-                return;
-            }
-
-            int sellerId = currentUser.getUserId();
-            stmt.setInt(1, sellerId);
+            stmt.setInt(1, currentUser.getUserId());
             ResultSet rs = stmt.executeQuery();
 
             int index = 1;
@@ -216,54 +149,52 @@ public class ProfileController {
         }
     }
 
-    @FXML
-    void handleDashboardClick(ActionEvent event) {
-        loadScene(event, "/resources/fxml/store/Dashboard.fxml");
+    private void openCategoryView(String categoryName) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/store/ProfileCategory.fxml"));
+            Parent root = loader.load();
+
+            ProfileCategoryController controller = loader.getController();
+            controller.filterProductsByCategory(categoryName);  // Public method required
+
+            Stage stage = (Stage) categoryComboBox.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    @FXML
-    void handleHomeButton(ActionEvent event) {
-        System.out.println("handleHomeButton");
-        // Implement as needed
-    }
+    // Category Quick Access
+    @FXML void handleCategoryBolts(ActionEvent event) { openCategoryView("Bolts"); }
+    @FXML void handleCategoryElectrical(ActionEvent event) { openCategoryView("Electrical"); }
+    @FXML void handleCategoryEngine(ActionEvent event) { openCategoryView("Engine"); }
+    @FXML void handleCategoryExterior(ActionEvent event) { openCategoryView("Exterior"); }
+    @FXML void handleCategoryOil(ActionEvent event) { openCategoryView("Oil"); }
+    @FXML void handleCategorySuspension(ActionEvent event) { openCategoryView("Suspension"); }
+    @FXML void handleCategoryTransmission(ActionEvent event) { openCategoryView("Transmission"); }
+    @FXML void handleCategoryWheels(ActionEvent event) { openCategoryView("Wheels"); }
 
-    @FXML
-    void handleInventoryClick(ActionEvent event) {
-        loadScene(event, "/resources/fxml/store/Inventory.fxml");
-    }
+    // Navigation
+    @FXML void handleDashboardClick(ActionEvent event) { loadScene(event, "/resources/fxml/store/Dashboard.fxml"); }
+    @FXML void handleInventoryClick(ActionEvent event) { loadScene(event, "/resources/fxml/store/Inventory.fxml"); }
+    @FXML void handleProductsClick(ActionEvent event) { loadScene(event, "/resources/fxml/store/Products.fxml"); }
+    @FXML void handleShopsClick(ActionEvent event) { loadScene(event, "/resources/fxml/store/Shops.fxml"); }
+    @FXML void handleProfileClick(ActionEvent event) {loadScene(event,"/resources/fxml/store/Profile.fxml");}
 
-    @FXML
-    void handleLogOutButton(ActionEvent event) {
+    @FXML void handleLogOutButton(ActionEvent event) {
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         SettingsWindowHelper.logout(currentStage);
     }
-
-    @FXML
-    void handleOpenSettings(ActionEvent event) {
-        SettingsWindowHelper.openSettings((Node) event.getSource());
-    }
-
-    @FXML
-    void handleProductsClick(ActionEvent event) {
-        loadScene(event, "/resources/fxml/store/Products.fxml");
-    }
-
-    @FXML
-    void handleProfileClick(ActionEvent event) {
-        System.out.println("handleProfileClick");
-    }
-
-    @FXML
-    void handleShopsClick(ActionEvent event) {
-        loadScene(event, "/resources/fxml/store/Shops.fxml");
-    }
+    @FXML void handleOpenSettings(ActionEvent event) { SettingsWindowHelper.openSettings((Node) event.getSource()); }
 
     private void loadScene(ActionEvent event, String fxmlPath) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
-            Parent newRoot = loader.load();
+            Parent root = loader.load();
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            currentStage.setScene(new Scene(newRoot));
+            currentStage.setScene(new Scene(root));
             currentStage.show();
         } catch (IOException e) {
             e.printStackTrace();

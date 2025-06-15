@@ -1,9 +1,11 @@
 package com.ogcreate.app.controllers.customer;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ResourceBundle;
 
 import com.ogcreate.app.SettingsWindowHelper;
 import com.ogcreate.app.database.DatabaseConnection;
@@ -14,6 +16,7 @@ import com.ogcreate.app.controllers.customer.ShopsQuickViewCategoryController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -26,9 +29,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class ShopsQuickViewCategoryController {
-
-    private Shops shop;
+public class ShopsQuickViewCategoryController implements Initializable {
 
     private static final int TOTAL_WIDTH = 715;
     private static final int COLUMN_COUNT = 5;
@@ -49,7 +50,49 @@ public class ShopsQuickViewCategoryController {
     @FXML
     private Label labelCategoryItem5, labelCategoryItem6, labelCategoryItem7, labelCategoryItem8;
 
+    private Shops shop;
+
+
+     @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        categoryComboBox.setPromptText("Category");
+
+        try (Connection conn = DatabaseConnection.connect();
+                PreparedStatement stmt = conn.prepareStatement("SELECT name FROM category");
+                ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                categoryComboBox.getItems().add(rs.getString("name"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+          categoryComboBox.setOnAction(event -> {
+            String selectedCategory = categoryComboBox.getValue();
+            if (selectedCategory != null && !selectedCategory.isEmpty()) {
+                openCategoriesPage(selectedCategory);
+            }
+        });
+    }
+
+    private void openCategoriesPage(String category) {
+        System.out.println("Opening category: " + category);
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/customer/Categories.fxml"));
+            Parent newRoot = loader.load();
+
+            CategoriesController controller = loader.getController();
+            controller.setSelectedCategory(category);
+
+            Stage currentStage = (Stage) categoryComboBox.getScene().getWindow();
+            currentStage.setScene(new Scene(newRoot));
+            currentStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     
+    }
 
     public void setShopDetails(Shops shop) {
         this.shop = shop;
@@ -191,6 +234,8 @@ public class ShopsQuickViewCategoryController {
         }
     }
 
+    
+
     @FXML
     void handleBackToShop(ActionEvent event) {
         try {
@@ -209,44 +254,62 @@ public class ShopsQuickViewCategoryController {
         }
     }
 
-    @FXML
-    void handleCategoryBolts(ActionEvent event) {
+    private void navigateToCategory(String categoryName, ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/resources/fxml/customer/ShopsQuickViewCategory.fxml"));
+            Parent newRoot = loader.load();
 
+            ShopsQuickViewCategoryController controller = loader.getController();
+            controller.setShopDetails(shop);
+            controller.filterByCategory(categoryName, new Label(shop.getShopName()));
+
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            currentStage.setScene(new Scene(newRoot));
+            currentStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+     @FXML
+    void handleCategoryBolts(ActionEvent event) {
+        navigateToCategory("Bolts", event);
     }
 
     @FXML
     void handleCategoryElectrical(ActionEvent event) {
-
+        navigateToCategory("Electrical", event);
     }
 
     @FXML
     void handleCategoryEngine(ActionEvent event) {
-
+        navigateToCategory("Engine", event);
     }
 
     @FXML
     void handleCategoryExterior(ActionEvent event) {
-
+        navigateToCategory("Exterior", event);
     }
 
     @FXML
     void handleCategoryOil(ActionEvent event) {
-
+        navigateToCategory("Oil", event);
     }
 
     @FXML
     void handleCategorySuspension(ActionEvent event) {
-
+        navigateToCategory("Suspension", event);
     }
 
     @FXML
     void handleCategoryTransmission(ActionEvent event) {
-
+        navigateToCategory("Transmission", event);
     }
 
     @FXML
     void handleCategoryWheels(ActionEvent event) {
-
+        navigateToCategory("Wheels", event);
     }
 
     @FXML

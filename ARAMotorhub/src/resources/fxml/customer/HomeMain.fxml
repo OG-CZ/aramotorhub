@@ -50,11 +50,11 @@
                            </children>
                         </AnchorPane>
                         <Region layoutX="60.0" layoutY="10.0" prefHeight="50.0" prefWidth="27.0" />
-                        <AnchorPane layoutX="86.0" layoutY="10.0" maxHeight="48.11" maxWidth="48.11" minHeight="48.11" minWidth="48.11" prefHeight="48.11" prefWidth="48.11" style="-fx-background-color: rgba(255, 255, 255, 0.2); -fx-border-color: rgba(255, 255, 255, 1); -fx-border-width: 0.5px; -fx-background-radius: 100; -fx-border-radius: 100;">
+                        <AnchorPane layoutX="314.0" layoutY="10.0" maxHeight="48.11" maxWidth="48.11" minHeight="48.11" minWidth="48.11" prefHeight="48.11" prefWidth="48.11" style="-fx-background-color: rgba(255, 255, 255, 0.2); -fx-border-color: rgba(255, 255, 255, 1); -fx-border-width: 0.5px; -fx-background-radius: 100; -fx-border-radius: 100;">
                            <children>
-                              <ImageView fitHeight="25.56" fitWidth="25.56" layoutX="11.0" layoutY="11.0" opacity="0.7">
+                              <ImageView fitHeight="19.22" fitWidth="25.73" layoutX="11.0" layoutY="14.0" opacity="0.7">
                                  <image>
-                                    <Image url="@../../assets/c1_glassmorph_3.png" />
+                                    <Image url="@../../assets/c1_glassmorph_6.png" />
                                  </image>
                               </ImageView>
                            </children>
@@ -80,11 +80,11 @@
                            </children>
                         </AnchorPane>
                         <Region layoutX="287.0" layoutY="10.0" prefHeight="50.0" prefWidth="27.0" />
-                        <AnchorPane layoutX="314.0" layoutY="10.0" maxHeight="48.11" maxWidth="48.11" minHeight="48.11" minWidth="48.11" prefHeight="48.11" prefWidth="48.11" style="-fx-background-color: rgba(255, 255, 255, 0.2); -fx-border-color: rgba(255, 255, 255, 1); -fx-border-width: 0.5px; -fx-background-radius: 100; -fx-border-radius: 100;">
+                        <AnchorPane layoutX="86.0" layoutY="10.0" maxHeight="48.11" maxWidth="48.11" minHeight="48.11" minWidth="48.11" prefHeight="48.11" prefWidth="48.11" style="-fx-background-color: rgba(255, 255, 255, 0.2); -fx-border-color: rgba(255, 255, 255, 1); -fx-border-width: 0.5px; -fx-background-radius: 100; -fx-border-radius: 100;">
                            <children>
-                              <ImageView fitHeight="19.22" fitWidth="25.73" layoutX="11.0" layoutY="14.0" opacity="0.7">
+                              <ImageView fitHeight="25.56" fitWidth="25.56" layoutX="11.0" layoutY="11.0" opacity="0.7">
                                  <image>
-                                    <Image url="@../../assets/c1_glassmorph_6.png" />
+                                    <Image url="@../../assets/c1_glassmorph_3.png" />
                                  </image>
                               </ImageView>
                            </children>
@@ -161,31 +161,31 @@
             </AnchorPane>
             <HBox layoutX="186.0" layoutY="64.0">
                <children>
-                  <Button fx:id="wheelsButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-letter-spacing: 10px;" text="Wheels" textAlignment="CENTER" textFill="WHITE">
+                  <Button fx:id="wheelsButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleCategoryButtonClick" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-letter-spacing: 10px;" text="Wheels" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="12.0" />
                      </font>
                   </Button>
                   <Region layoutX="290.0" layoutY="10.0" minWidth="20.0" prefHeight="27.0" prefWidth="20.0" />
-                  <Button fx:id="oilsButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-letter-spacing: 10px;" text="Oils" textAlignment="CENTER" textFill="WHITE">
+                  <Button fx:id="oilsButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleCategoryButtonClick" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-letter-spacing: 10px;" text="Oils" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="12.0" />
                      </font>
                   </Button>
                   <Region layoutX="67.0" layoutY="10.0" minWidth="20.0" prefHeight="27.0" prefWidth="20.0" />
-                  <Button fx:id="boltsButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-letter-spacing: 10px;" text="Bolts" textAlignment="CENTER" textFill="WHITE">
+                  <Button fx:id="boltsButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleCategoryButtonClick" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-letter-spacing: 10px;" text="Bolts" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="12.0" />
                      </font>
                   </Button>
                   <Region layoutX="267.0" layoutY="10.0" minWidth="20.0" prefHeight="27.0" prefWidth="20.0" />
-                  <Button fx:id="suspensionBolts" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-letter-spacing: 10px;" text="Suspension" textAlignment="CENTER" textFill="WHITE">
+                  <Button fx:id="suspensionButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleCategoryButtonClick" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-letter-spacing: 10px;" text="Suspension" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="12.0" />
                      </font>
                   </Button>
                   <Region layoutX="124.0" layoutY="10.0" minWidth="20.0" prefHeight="27.0" prefWidth="20.0" />
-                  <Button fx:id="exteriorBolts" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-letter-spacing: 10px;" text="Exteriors" textAlignment="CENTER" textFill="WHITE">
+                  <Button fx:id="engineButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleCategoryButtonClick" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-letter-spacing: 10px;" text="Engine" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="12.0" />
                      </font>
@@ -196,6 +196,12 @@
             <Button layoutX="766.0" layoutY="61.0" mnemonicParsing="false" onAction="#handleOpenSettings" opacity="0.0" prefHeight="34.0" prefWidth="52.0" text="profile" />
             <Button layoutX="840.0" layoutY="51.0" mnemonicParsing="false" onAction="#handleCartButton" opacity="0.0" prefHeight="50.0" prefWidth="57.0" text="CartButton" />
             <Button fx:id="nextButton" layoutX="844.0" layoutY="515.0" mnemonicParsing="false" onMouseClicked="#handleImageClick" opacity="0.0" prefHeight="50.0" prefWidth="44.0" text="next" />
+            <Button fx:id="wheelsButton" layoutX="33.0" layoutY="509.0" mnemonicParsing="false" onAction="#handleCategoryButtonClick" opacity="0.0" prefHeight="60.0" prefWidth="52.0" text="Wheels" />
+            <Button fx:id="oilsButton" layoutX="97.0" layoutY="513.0" mnemonicParsing="false" onAction="#handleCategoryButtonClick" opacity="0.0" prefHeight="50.0" prefWidth="52.0" text="Oils" />
+            <Button fx:id="boltsButton" layoutX="167.0" layoutY="513.0" mnemonicParsing="false" onAction="#handleCategoryButtonClick" opacity="0.0" prefHeight="50.0" prefWidth="52.0" text="Bolts" />
+            <Button fx:id="suspensionButton" layoutX="234.0" layoutY="512.0" mnemonicParsing="false" onAction="#handleCategoryButtonClick" opacity="0.0" prefHeight="50.0" prefWidth="52.0" text="Suspension" />
+            <Button fx:id="electricalButton" layoutX="301.0" layoutY="508.0" mnemonicParsing="false" onAction="#handleCategoryButtonClick" opacity="0.0" prefHeight="60.0" prefWidth="52.0" text="Electrical" />
+            <Button fx:id="engineButton" layoutX="367.0" layoutY="507.0" mnemonicParsing="false" onAction="#handleCategoryButtonClick" opacity="0.0" prefHeight="60.0" prefWidth="58.0" text="Engine" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="726.0" layoutY="189.0" prefHeight="76.0" prefWidth="207.0" style="-fx-background-color: white; -fx-background-radius: 15 0 0 15;">

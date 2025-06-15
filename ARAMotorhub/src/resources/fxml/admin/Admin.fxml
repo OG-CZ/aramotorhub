@@ -8,6 +8,7 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -19,16 +20,9 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="609.23" prefWidth="938.32" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ogcreate.app.controllers.FavoriteController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="609.23" prefWidth="938.32" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ogcreate.app.controllers.admin.AdminController">
    <top>
       <HBox alignment="CENTER" maxHeight="63.29" minHeight="63.29" prefHeight="63.29" prefWidth="200.0" style="-fx-background-color: white; -fx-border-width: 0 0 1px 0;" BorderPane.alignment="CENTER">
-         <effect>
-            <DropShadow>
-               <color>
-                  <Color opacity="0.5" />
-               </color>
-            </DropShadow>
-         </effect>
          <children>
             <ImageView fitHeight="68.0" fitWidth="938.0">
                <image>
@@ -36,41 +30,69 @@
                </image>
             </ImageView>
          </children>
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color opacity="0.4513677656650543" />
+               </color>
+            </DropShadow>
+         </effect>
       </HBox>
    </top>
    <left>
       <VBox maxHeight="1.7976931348623157E308" maxWidth="168.0" minHeight="546.0" minWidth="168.0" prefHeight="546.0" prefWidth="168.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox maxWidth="180.0" prefHeight="452.0" prefWidth="168.0">
+            <VBox maxWidth="180.0" prefHeight="452.0" prefWidth="168.0" VBox.vgrow="ALWAYS">
                <children>
-                  <Label prefHeight="44.0" prefWidth="182.0" text="Admin">
-                     <font>
-                        <Font name="Berlin Sans FB" size="15.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets left="15.0" />
-                     </VBox.margin>
-                  </Label>
-                  <HBox alignment="CENTER_LEFT" prefHeight="32.06" prefWidth="200.0" styleClass="hover-box" stylesheets="@../../css/market.css">
+                  <VBox alignment="CENTER" VBox.vgrow="ALWAYS">
                      <children>
-                        <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleShopsClick" prefHeight="27.0" prefWidth="134.0" style="-fx-background-color: transparent;" text="Shops">
-                           <font>
-                              <Font name="Berlin Sans FB" size="15.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="30.0" />
-                           </HBox.margin>
-                        </Button>
+                        <VBox spacing="25.0">
+                           <children>
+                              <TextField>
+                                 <VBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <VBox alignment="CENTER" prefHeight="126.0" prefWidth="168.0" spacing="7.5">
+                                 <children>
+                                    <Button mnemonicParsing="false" onAction="#handleCreate" prefHeight="26.0" prefWidth="170.0" style="-fx-background-color: transparent; -fx-border-color: rgba(0, 0, 0, 0.5); -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6;" text="Create">
+                                       <font>
+                                          <Font name="Arial Bold" size="9.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets left="10.0" right="10.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                    <Button mnemonicParsing="false" onAction="#handleUpdate" prefHeight="25.0" prefWidth="170.0" style="-fx-background-color: transparent; -fx-border-color: rgba(0, 0, 0, 0.5); -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6;" text="Update">
+                                       <font>
+                                          <Font name="Arial Bold" size="9.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets left="10.0" right="10.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                    <Button mnemonicParsing="false" onAction="#handleDelete" prefHeight="25.0" prefWidth="170.0" style="-fx-background-color: transparent; -fx-border-color: rgba(0, 0, 0, 0.5); -fx-border-width: 1; -fx-border-radius: 6; -fx-background-radius: 6;" text="Delete">
+                                       <font>
+                                          <Font name="Arial Bold" size="9.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets left="10.0" right="10.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </VBox>
                      </children>
-                  </HBox>
+                  </VBox>
                </children>
             </VBox>
             <VBox layoutX="10.0" layoutY="11.0" maxHeight="155.0" minHeight="2.0" prefHeight="2.0" prefWidth="168.0" />
             <VBox layoutX="10.0" layoutY="211.0" maxHeight="1.7976931348623157E308" prefWidth="168.0" VBox.vgrow="ALWAYS">
                <children>
-                  <AnchorPane prefHeight="85.0" prefWidth="168.0" VBox.vgrow="ALWAYS">
+                  <AnchorPane prefHeight="12.0" prefWidth="168.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <Group layoutX="41.0" layoutY="42.0">
+                        <Group layoutX="41.0" layoutY="14.0">
                            <children>
                               <HBox alignment="CENTER" layoutX="3.0" layoutY="5.0">
                                  <children>
@@ -104,47 +126,91 @@
          <children>
             <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: transparent transparent transparent #D9D9D9; -fx-border-width: 1px; -fx-background-color: rgba(206, 206, 206, 0.2);">
                <children>
-                  <StackPane prefHeight="451.0" prefWidth="769.0">
+                  <StackPane prefHeight="546.0" prefWidth="769.0">
                      <children>
                         <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
                           <tabs>
-                            <Tab text="Untitled Tab 1">
+                            <Tab text="User">
                               <content>
-                                    <StackPane>
+                                    <StackPane prefWidth="769.0">
                                        <children>
-                                          <TableView prefHeight="200.0" prefWidth="850.0">
+                                          <TableView fx:id="usersTable" prefHeight="200.0" prefWidth="769.0">
                                             <columns>
-                                              <TableColumn prefWidth="75.0" text="C1" />
-                                              <TableColumn prefWidth="75.0" text="C2" />
+                                              <TableColumn fx:id="user_id" prefWidth="85.0" text="user_id" />
+                                              <TableColumn fx:id="firstNameColumn" prefWidth="85.0" text="first_name" />
+                                              <TableColumn fx:id="lastNameColumn" prefWidth="85.0" text="last_name" />
+                                              <TableColumn fx:id="emailColumn" prefWidth="85.0" text="email" />
+                                              <TableColumn fx:id="passwordColumn" prefWidth="85.0" text="password" />
+                                              <TableColumn fx:id="addressColumm" prefWidth="85.0" text="address" />
+                                              <TableColumn fx:id="districtColumn" prefWidth="85.0" text="district" />
+                                              <TableColumn fx:id="barangayColumn" prefWidth="85.0" text="barangay" />
+                                              <TableColumn fx:id="roleColumn" prefWidth="85.0" text="role" />
                                             </columns>
-                                             <StackPane.margin>
-                                                <Insets />
-                                             </StackPane.margin>
                                           </TableView>
                                        </children>
                                     </StackPane>
                               </content>
                             </Tab>
-                              <Tab text="Untitled Tab 1">
-                                 <content>
-                                    <StackPane>
-                                       <children>
-                                          <TableView prefHeight="200.0" prefWidth="200.0">
-                                             <columns>
-                                                <TableColumn prefWidth="75.0" text="C1" />
-                                                <TableColumn prefWidth="75.0" text="C2" />
-                                             </columns>
-                                          </TableView>
-                                       </children>
-                                    </StackPane>
-                                 </content>
-                              </Tab>
+                            <Tab text="Products">
+                              <content>
+                                <StackPane>
+                                  <children>
+                                    <TableView fx:id="productsTable" prefHeight="200.0" prefWidth="850.0">
+                                      <columns>
+                                        <TableColumn fx:id="productIdColumn" prefWidth="85.0" text="product_id" />
+                                        <TableColumn fx:id="sellerIdColumn" prefWidth="85.0" text="seller_id" />
+                                        <TableColumn fx:id="categoryIdProductsColumn" prefWidth="85.0" text="category_id" />
+                                        <TableColumn fx:id="productNameColumn" prefWidth="85.0" text="name" />
+                                        <TableColumn fx:id="descriptionColumn" prefWidth="85.0" text="description" />
+                                        <TableColumn fx:id="priceColumn" prefWidth="85.0" text="price" />
+                                        <TableColumn fx:id="stockColumn" prefWidth="85.0" text="stock" />
+                                        <TableColumn fx:id="statusColumn" prefWidth="85.0" text="status" />
+                                        <TableColumn fx:id="createdAtColumn" prefWidth="85.0" text="created_at" />
+                                      </columns>
+                                    </TableView>
+                                  </children>
+                                </StackPane>
+                              </content>
+                            </Tab>
+                            <Tab text="Category">
+                              <content>
+                                <StackPane>
+                                  <children>
+                                    <TableView fx:id="categoryTable" prefHeight="200.0" prefWidth="850.0">
+                                      <columns>
+                                        <TableColumn fx:id="categoryIdColumn" prefWidth="75.0" text="category_id" />
+                                        <TableColumn fx:id="categoryNameColumn" prefWidth="75.0" text="name" />
+                                      </columns>
+                                    </TableView>
+                                  </children>
+                                </StackPane>
+                              </content>
+                            </Tab>
+                            <Tab text="Order">
+                              <content>
+                                <StackPane>
+                                  <children>
+                                    <TableView fx:id="orderTable" prefHeight="200.0" prefWidth="850.0">
+                                      <columns>
+                                        <TableColumn fx:id="orderIdColumn" prefWidth="75.0" text="order_id" />
+                                        <TableColumn fx:id="customerIdColumn" prefWidth="75.0" text="customer_id" />
+                                        <TableColumn fx:id="orderAddressColumn" prefWidth="75.0" text="address" />
+                                        <TableColumn fx:id="orderStatusColumn" prefWidth="75.0" text="status" />
+                                        <TableColumn fx:id="totalPriceColumn" prefWidth="75.0" text="total_price" />
+                                        <TableColumn fx:id="orderCreatedAtColumn" prefWidth="75.0" text="created_at" />
+                                      </columns>
+                                    </TableView>
+                                  </children>
+                                </StackPane>
+                              </content>
+                            </Tab>
                           </tabs>
                         </TabPane>
                      </children>
                   </StackPane>
-                  <StackPane layoutX="11.0" layoutY="11.0" prefHeight="85.0" prefWidth="769.0" VBox.vgrow="ALWAYS" />
-               </children></VBox>
+                  <HBox spacing="100.0" />
+               </children>
+            </VBox>
          </children>
       </StackPane>
    </center>
