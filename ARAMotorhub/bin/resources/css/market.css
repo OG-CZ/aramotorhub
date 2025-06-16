@@ -7,7 +7,13 @@
     -fx-cursor: hand; /* optional, changes cursor on hover */
 }
 
-
+.table-view {
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-padding: 5;
+    -fx-border-color: #ccc;
+    -fx-background-color: white;
+}
 
 
 

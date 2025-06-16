@@ -13,7 +13,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -27,18 +26,25 @@ import javafx.stage.Stage;
 
 public class ProfileCategoryController implements Initializable {
 
-    private static final int TOTAL_WIDTH = 715;
+    private static final int TOTAL_WIDTH = 755;
     private static final int COLUMN_COUNT = 5;
     private static final int COLUMN_WIDTH = TOTAL_WIDTH / COLUMN_COUNT;
 
-    @FXML private ComboBox<String> categoryComboBox;
-    @FXML private GridPane gridPane;
-    @FXML private ScrollPane scrollPane;
+    @FXML
+    private ComboBox<String> categoryComboBox;
+    @FXML
+    private GridPane gridPane;
+    @FXML
+    private ScrollPane scrollPane;
 
-    @FXML private Label labelCategory1, labelCategory2, labelCategory3, labelCategory4;
-    @FXML private Label labelCategory5, labelCategory6, labelCategory7, labelCategory8;
-    @FXML private Label labelCategoryItem1, labelCategoryItem2, labelCategoryItem3, labelCategoryItem4;
-    @FXML private Label labelCategoryItem5, labelCategoryItem6, labelCategoryItem7, labelCategoryItem8;
+    @FXML
+    private Label labelCategory1, labelCategory2, labelCategory3, labelCategory4;
+    @FXML
+    private Label labelCategory5, labelCategory6, labelCategory7, labelCategory8;
+    @FXML
+    private Label labelCategoryItem1, labelCategoryItem2, labelCategoryItem3, labelCategoryItem4;
+    @FXML
+    private Label labelCategoryItem5, labelCategoryItem6, labelCategoryItem7, labelCategoryItem8;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -50,8 +56,8 @@ public class ProfileCategoryController implements Initializable {
         categoryComboBox.setPromptText("Category");
 
         try (Connection conn = DatabaseConnection.connect();
-             PreparedStatement stmt = conn.prepareStatement("SELECT name FROM category ORDER BY name ASC");
-             ResultSet rs = stmt.executeQuery()) {
+                PreparedStatement stmt = conn.prepareStatement("SELECT name FROM category ORDER BY name ASC");
+                ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
                 categoryComboBox.getItems().add(rs.getString("name"));
@@ -72,16 +78,16 @@ public class ProfileCategoryController implements Initializable {
     private void loadCategoryStats() {
         int sellerId = UserSession.getCurrentUser().getUserId();
         String query = """
-            SELECT c.name AS category_name, COUNT(p.product_id) AS product_count
-            FROM category c
-            JOIN product p ON c.category_id = p.category_id
-            WHERE p.seller_id = ? AND p.status = 'AVAILABLE'
-            GROUP BY c.category_id, c.name
-            ORDER BY c.category_id ASC
-        """;
+                    SELECT c.name AS category_name, COUNT(p.product_id) AS product_count
+                    FROM category c
+                    JOIN product p ON c.category_id = p.category_id
+                    WHERE p.seller_id = ? AND p.status = 'AVAILABLE'
+                    GROUP BY c.category_id, c.name
+                    ORDER BY c.category_id ASC
+                """;
 
         try (Connection conn = DatabaseConnection.connect();
-             PreparedStatement stmt = conn.prepareStatement(query)) {
+                PreparedStatement stmt = conn.prepareStatement(query)) {
 
             stmt.setInt(1, sellerId);
             ResultSet rs = stmt.executeQuery();
@@ -142,15 +148,18 @@ public class ProfileCategoryController implements Initializable {
         gridPane.getColumnConstraints().add(column);
     }
 
+    gridPane.setHgap(0);
+    gridPane.setVgap(0);
+
     int sellerId = UserSession.getCurrentUser().getUserId();
     String query = """
-        SELECT p.product_id, p.name AS product_name, p.price, u.first_name || ' ' || u.last_name AS seller_name
-        FROM product p
-        JOIN category c ON p.category_id = c.category_id
-        JOIN user u ON p.seller_id = u.user_id
-        WHERE p.seller_id = ? AND c.name = ? AND p.status = 'AVAILABLE'
-        ORDER BY p.created_at DESC
-    """;
+                SELECT p.product_id, p.name AS product_name, p.price, u.first_name, u.last_name
+                FROM product p
+                JOIN category c ON p.category_id = c.category_id
+                JOIN user u ON p.seller_id = u.user_id
+                WHERE p.seller_id = ? AND c.name = ? AND p.status = 'AVAILABLE'
+                ORDER BY p.created_at DESC
+            """;
 
     try (Connection conn = DatabaseConnection.connect();
          PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -163,22 +172,25 @@ public class ProfileCategoryController implements Initializable {
         int row = 1;
 
         while (rs.next()) {
-            // Build product object
             Products product = new Products();
+
+         
             product.setProductId(rs.getInt("product_id"));
             product.setProductName(rs.getString("product_name"));
-            product.setProductPrice("₱" + rs.getDouble("price"));
-            product.setStoreName(rs.getString("seller_name"));
+            product.setProductPrice(String.valueOf(rs.getInt("price"))); 
+            product.setStoreName(rs.getString("first_name") + " " + rs.getString("last_name"));
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/store/ProductsContainer.fxml"));
             VBox productBox = loader.load();
+
+            productBox.setPrefWidth(COLUMN_WIDTH);
+            productBox.setMaxWidth(COLUMN_WIDTH);
+            productBox.setMinWidth(COLUMN_WIDTH);
 
             ProductsContainerController controller = loader.getController();
             controller.setData(product);
 
             gridPane.add(productBox, column++, row);
-            GridPane.setMargin(productBox, new Insets(0));
-
             if (column == COLUMN_COUNT) {
                 column = 0;
                 row++;
@@ -190,32 +202,92 @@ public class ProfileCategoryController implements Initializable {
     }
 }
 
-
     // Category Quick Access
-    @FXML void handleCategoryBolts(ActionEvent event) { filterProductsByCategory("Bolts"); }
-    @FXML void handleCategoryElectrical(ActionEvent event) { filterProductsByCategory("Electrical"); }
-    @FXML void handleCategoryEngine(ActionEvent event) { filterProductsByCategory("Engine"); }
-    @FXML void handleCategoryExterior(ActionEvent event) { filterProductsByCategory("Exterior"); }
-    @FXML void handleCategoryOil(ActionEvent event) { filterProductsByCategory("Oil"); }
-    @FXML void handleCategorySuspension(ActionEvent event) { filterProductsByCategory("Suspension"); }
-    @FXML void handleCategoryTransmission(ActionEvent event) { filterProductsByCategory("Transmission"); }
-    @FXML void handleCategoryWheels(ActionEvent event) { filterProductsByCategory("Wheels"); }
+    @FXML
+    void handleCategoryBolts(ActionEvent event) {
+        filterProductsByCategory("Bolts");
+    }
+
+    @FXML
+    void handleCategoryElectrical(ActionEvent event) {
+        filterProductsByCategory("Electrical");
+    }
+
+    @FXML
+    void handleCategoryEngine(ActionEvent event) {
+        filterProductsByCategory("Engine");
+    }
+
+    @FXML
+    void handleCategoryExterior(ActionEvent event) {
+        filterProductsByCategory("Exterior");
+    }
+
+    @FXML
+    void handleCategoryOil(ActionEvent event) {
+        filterProductsByCategory("Oil");
+    }
+
+    @FXML
+    void handleCategorySuspension(ActionEvent event) {
+        filterProductsByCategory("Suspension");
+    }
+
+    @FXML
+    void handleCategoryTransmission(ActionEvent event) {
+        filterProductsByCategory("Transmission");
+    }
+
+    @FXML
+    void handleCategoryWheels(ActionEvent event) {
+        filterProductsByCategory("Wheels");
+    }
 
     // Navigation
-    @FXML void handleBackToShop(ActionEvent event) { navigateTo("/resources/fxml/store/Profile.fxml", event); }
-    @FXML void handleProfileClick(ActionEvent event) {navigateTo("/resources/fxml/store/Profile.fxml", event);}
-    @FXML void handleCartClick(ActionEvent event) { navigateTo("/resources/fxml/store/Cart.fxml", event); }
-    @FXML void handleFavoriteClick(ActionEvent event) { navigateTo("/resources/fxml/store/Favorite.fxml", event); }
-    @FXML void handleHomeButton(ActionEvent event) { }
-    @FXML void handleLogOutButton(ActionEvent event) {
+    @FXML
+    void handleBackToShop(ActionEvent event) {
+        navigateTo("/resources/fxml/store/Profile.fxml", event);
+    }
+
+    @FXML
+    void handleProfileClick(ActionEvent event) {
+        navigateTo("/resources/fxml/store/Profile.fxml", event);
+    }
+
+    @FXML
+    void handleDashboardClick(ActionEvent event) {
+        navigateTo("/resources/fxml/store/Dashboard.fxml", event);
+    }
+
+    @FXML
+    void handleInventoryClick(ActionEvent event) {
+        navigateTo("/resources/fxml/store/Inventory.fxml", event);
+    }
+
+    @FXML
+    void handleHomeButton(ActionEvent event) {
+    }
+
+    @FXML
+    void handleLogOutButton(ActionEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         SettingsWindowHelper.logout(stage);
     }
-    @FXML void handleOpenSettings(ActionEvent event) {
+
+    @FXML
+    void handleOpenSettings(ActionEvent event) {
         SettingsWindowHelper.openSettings((Node) event.getSource());
     }
-    @FXML void handleProductsClick(ActionEvent event) { navigateTo("/resources/fxml/store/Products.fxml", event); }
-    @FXML void handleShopsClick(ActionEvent event) { navigateTo("/resources/fxml/store/Shops.fxml", event); }
+
+    @FXML
+    void handleProductsClick(ActionEvent event) {
+        navigateTo("/resources/fxml/store/Products.fxml", event);
+    }
+
+    @FXML
+    void handleShopsClick(ActionEvent event) {
+        navigateTo("/resources/fxml/store/Shops.fxml", event);
+    }
 
     private void navigateTo(String fxmlPath, ActionEvent event) {
         try {

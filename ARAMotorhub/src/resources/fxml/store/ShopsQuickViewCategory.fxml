@@ -22,7 +22,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="609.23" prefWidth="938.32" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ogcreate.app.controllers.customer.ShopsQuickViewCategoryController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="609.23" prefWidth="938.32" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ogcreate.app.controllers.store.ShopsQuickViewCategoryController">
    <top>
       <HBox alignment="CENTER" maxHeight="63.29" minHeight="63.29" prefHeight="63.29" prefWidth="200.0" style="-fx-background-color: white; -fx-border-width: 0 0 1px 0;" BorderPane.alignment="CENTER">
          <children>
@@ -203,7 +203,7 @@
                   </VBox>
                   <VBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="51.0" prefHeight="32.06" prefWidth="100.0" styleClass="hover-box" stylesheets="@../../css/market.css">
                      <children>
-                        <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleCartClick" prefHeight="27.0" prefWidth="150.0" style="-fx-background-color: transparent;" text="Cart">
+                        <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleDashboardClick" prefHeight="27.0" prefWidth="150.0" style="-fx-background-color: transparent;" text="Dashboard">
                            <font>
                               <Font name="Berlin Sans FB" size="15.0" />
                            </font>
@@ -215,7 +215,7 @@
                   </VBox>
                   <VBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="84.0" prefHeight="32.06" prefWidth="168.0" styleClass="hover-box" stylesheets="@../../css/market.css" VBox.vgrow="ALWAYS">
                      <children>
-                        <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleFavoriteClick" prefHeight="27.0" prefWidth="164.0" style="-fx-background-color: transparent;" text="Favorite">
+                        <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleInventoryClick" prefHeight="27.0" prefWidth="164.0" style="-fx-background-color: transparent;" text="Inventory">
                            <font>
                               <Font name="Berlin Sans FB" size="15.0" />
                            </font>
@@ -293,7 +293,7 @@
                         <Insets left="20.0" right="20.0" />
                      </VBox.margin>
                   </AnchorPane>
-                  <HBox alignment="CENTER" prefHeight="125.0" prefWidth="729.0" style="-fx-background-color: #D9D9D9; -fx-border-color: #9BA1A6; -fx-border-width: 1.5;">
+                  <HBox alignment="CENTER" prefHeight="125.0" prefWidth="729.0" style="-fx-background-color: #D9D9D9; -fx-border-color: #9BA1A6; -fx-border-width: 1;">
                      <children>
                         <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="4.0" style="-fx-background-color: white;">
                            <HBox.margin>

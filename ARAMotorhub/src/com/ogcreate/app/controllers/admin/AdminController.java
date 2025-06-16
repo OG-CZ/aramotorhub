@@ -3,283 +3,227 @@ package com.ogcreate.app.controllers.admin;
 import com.ogcreate.app.SettingsWindowHelper;
 import com.ogcreate.app.database.DatabaseConnection;
 import com.ogcreate.app.database.User;
-import com.ogcreate.app.database.Products;
+import com.ogcreate.app.database.UserSession;
 
-import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.sql.*;
 
 public class AdminController {
 
-    @FXML private TableView<User> usersTable;
-    @FXML private TableColumn<User, Integer> user_id;
-    @FXML private TableColumn<User, String> emailColumn;
-    @FXML private TableColumn<User, String> firstNameColumn;
-    @FXML private TableColumn<User, String> lastNameColumn;
-    @FXML private TableColumn<User, String> passwordColumn;
-    @FXML private TableColumn<User, String> addressColumm;
-    @FXML private TableColumn<User, String> districtColumn;
-    @FXML private TableColumn<User, String> barangayColumn;
-    @FXML private TableColumn<User, String> roleColumn;
+    @FXML
+    private TableView<User> userAdmin;
 
-    @FXML private TableView<Products> productsTable;
-    @FXML private TableColumn<Products, Integer> productIdColumn;
-    @FXML private TableColumn<Products, Integer> sellerIdColumn;
-    @FXML private TableColumn<Products, Integer> categoryIdProductsColumn;
-    @FXML private TableColumn<Products, String> productNameColumn;
-    @FXML private TableColumn<Products, String> descriptionColumn;
-    @FXML private TableColumn<Products, String> priceColumn;
-    @FXML private TableColumn<Products, Integer> stockColumn;
-    @FXML private TableColumn<Products, String> statusColumn;
-    @FXML private TableColumn<Products, Timestamp> createdAtColumn;
+    @FXML
+    private TableColumn<User, String> username;
 
-    @FXML private TableView<Object[]> orderTable;
-    @FXML private TableColumn<Object[], Integer> orderIdColumn;
-    @FXML private TableColumn<Object[], Integer> customerIdColumn;
-    @FXML private TableColumn<Object[], String> orderAddressColumn;
-    @FXML private TableColumn<Object[], String> orderStatusColumn;
-    @FXML private TableColumn<Object[], Double> totalPriceColumn;
-    @FXML private TableColumn<Object[], Timestamp> orderCreatedAtColumn;
+    @FXML
+    private TableColumn<User, String> password;
 
-    @FXML private TableView<Object[]> categoryTable;
-    @FXML private TableColumn<Object[], Integer> categoryIdColumn;
-    @FXML private TableColumn<Object[], String> categoryNameColumn;
+    @FXML
+    private TextField usernameTextField;
 
-    private final ObservableList<User> userList = FXCollections.observableArrayList();
+    @FXML
+    private TextField passwordTextField;
+
+    @FXML
+    private Button createButton;
+
+    @FXML
+    private Button deleteButton;
+
+    @FXML
+    private Button updateButton;
+
+    @FXML
+    private Label adminName;
+
+    private final ObservableList<User> adminUsers = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() {
-        usersTable.setEditable(true);
+        username.setCellValueFactory(new PropertyValueFactory<>("email"));
+        password.setCellValueFactory(new PropertyValueFactory<>("password"));
 
-        emailColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        passwordColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        firstNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        lastNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        addressColumm.setCellFactory(TextFieldTableCell.forTableColumn());
-        districtColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        barangayColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        roleColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        userAdmin.setEditable(true);
+        username.setCellFactory(TextFieldTableCell.forTableColumn());
+        password.setCellFactory(TextFieldTableCell.forTableColumn());
 
-        emailColumn.setOnEditCommit(event -> event.getRowValue().setEmail(event.getNewValue()));
-        passwordColumn.setOnEditCommit(event -> event.getRowValue().setPassword(event.getNewValue()));
-        firstNameColumn.setOnEditCommit(event -> event.getRowValue().setFirstName(event.getNewValue()));
-        lastNameColumn.setOnEditCommit(event -> event.getRowValue().setLastName(event.getNewValue()));
-        addressColumm.setOnEditCommit(event -> event.getRowValue().setAddress(event.getNewValue()));
-        districtColumn.setOnEditCommit(event -> event.getRowValue().setDistrict(event.getNewValue()));
-        barangayColumn.setOnEditCommit(event -> event.getRowValue().setBarangay(event.getNewValue()));
-        roleColumn.setOnEditCommit(event -> event.getRowValue().setRole(event.getNewValue()));
+        username.setOnEditCommit(this::onEmailEditCommit);
+        password.setOnEditCommit(this::onPasswordEditCommit);
 
-        loadUsers();
-        loadProducts();
-        loadOrders();
-        loadCategories();
-    }
+        userAdmin.setItems(adminUsers);
+        loadAdminsFromDatabase();
 
-    private void loadUsers() {
-        userList.clear();
-        try (Connection conn = DatabaseConnection.connect()) {
-            String query = "SELECT * FROM user";
-            PreparedStatement stmt = conn.prepareStatement(query);
-            ResultSet rs = stmt.executeQuery();
-
-            while (rs.next()) {
-                User user = new User(
-                    rs.getInt("user_id"),
-                    rs.getString("email"),
-                    rs.getString("password"),
-                    rs.getString("first_name"),
-                    rs.getString("last_name"),
-                    rs.getString("address"),
-                    rs.getString("district"),
-                    rs.getString("barangay"),
-                    rs.getString("role")
-                );
-                userList.add(user);
-            }
-
-            user_id.setCellValueFactory(new PropertyValueFactory<>("userId"));
-            emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
-            passwordColumn.setCellValueFactory(new PropertyValueFactory<>("password"));
-            firstNameColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-            lastNameColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
-            addressColumm.setCellValueFactory(new PropertyValueFactory<>("address"));
-            districtColumn.setCellValueFactory(new PropertyValueFactory<>("district"));
-            barangayColumn.setCellValueFactory(new PropertyValueFactory<>("barangay"));
-            roleColumn.setCellValueFactory(new PropertyValueFactory<>("role"));
-
-            usersTable.setItems(userList);
-        } catch (SQLException e) {
-            System.out.println("Error loading users: " + e.getMessage());
+        if (UserSession.getCurrentUser() != null) {
+            adminName.setText(UserSession.getCurrentUser().getEmail());
         }
     }
 
-    private void loadProducts() {
-        try (Connection conn = DatabaseConnection.connect()) {
-            String query = "SELECT * FROM product";
-            PreparedStatement stmt = conn.prepareStatement(query);
-            ResultSet rs = stmt.executeQuery();
-
-            ObservableList<Products> productData = FXCollections.observableArrayList();
+    private void loadAdminsFromDatabase() {
+        adminUsers.clear();
+        try (Connection conn = DatabaseConnection.connect();
+             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM user WHERE role = 'admin'");
+             ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
-                Products p = new Products();
-                p.setProductId(rs.getInt("product_id"));
-                p.setSellerId(rs.getInt("seller_id"));
-                p.setCategoryId(rs.getInt("category_id"));
-                p.setProductName(rs.getString("name"));
-                p.setDescription(rs.getString("description"));
-                p.setProductPrice(String.valueOf(rs.getDouble("price")));
-                p.setStock(rs.getInt("stock"));
-                p.setStatus(rs.getString("status"));
-                p.setCreatedAt(rs.getTimestamp("created_at"));
-
-                productData.add(p);
+                adminUsers.add(new User(
+                        rs.getInt("user_id"),
+                        rs.getString("email"),
+                        rs.getString("password"),
+                        rs.getString("first_name"),
+                        rs.getString("last_name"),
+                        rs.getString("address"),
+                        rs.getString("district"),
+                        rs.getString("barangay"),
+                        rs.getString("role")
+                ));
             }
 
-            productIdColumn.setCellValueFactory(cell -> new ReadOnlyObjectWrapper<>(cell.getValue().getProductId()));
-            sellerIdColumn.setCellValueFactory(cell -> new ReadOnlyObjectWrapper<>(cell.getValue().getSellerId()));
-            categoryIdProductsColumn.setCellValueFactory(cell -> new ReadOnlyObjectWrapper<>(cell.getValue().getCategoryId()));
-            productNameColumn.setCellValueFactory(cell -> new ReadOnlyObjectWrapper<>(cell.getValue().getProductName()));
-            descriptionColumn.setCellValueFactory(cell -> new ReadOnlyObjectWrapper<>(cell.getValue().getDescription()));
-            priceColumn.setCellValueFactory(cell -> new ReadOnlyObjectWrapper<>(cell.getValue().getProductPrice()));
-            stockColumn.setCellValueFactory(cell -> new ReadOnlyObjectWrapper<>(cell.getValue().getStock()));
-            statusColumn.setCellValueFactory(cell -> new ReadOnlyObjectWrapper<>(cell.getValue().getStatus()));
-            createdAtColumn.setCellValueFactory(cell -> new ReadOnlyObjectWrapper<>(cell.getValue().getCreatedAt()));
-
-            productsTable.setItems(productData);
         } catch (SQLException e) {
-            System.out.println("Error loading products: " + e.getMessage());
-        }
-    }
-
-    private void loadOrders() {
-        try (Connection conn = DatabaseConnection.connect()) {
-            String query = "SELECT * FROM `order`";
-            PreparedStatement stmt = conn.prepareStatement(query);
-            ResultSet rs = stmt.executeQuery();
-
-            ObservableList<Object[]> orderData = FXCollections.observableArrayList();
-
-            while (rs.next()) {
-                orderData.add(new Object[] {
-                    rs.getInt("order_id"),
-                    rs.getInt("customer_id"),
-                    rs.getString("address"),
-                    rs.getString("status"),
-                    rs.getDouble("total_price"),
-                    rs.getTimestamp("created_at")
-                });
-            }
-
-            orderIdColumn.setCellValueFactory(cell -> new ReadOnlyObjectWrapper<>((Integer) cell.getValue()[0]));
-            customerIdColumn.setCellValueFactory(cell -> new ReadOnlyObjectWrapper<>((Integer) cell.getValue()[1]));
-            orderAddressColumn.setCellValueFactory(cell -> new ReadOnlyObjectWrapper<>((String) cell.getValue()[2]));
-            orderStatusColumn.setCellValueFactory(cell -> new ReadOnlyObjectWrapper<>((String) cell.getValue()[3]));
-            totalPriceColumn.setCellValueFactory(cell -> new ReadOnlyObjectWrapper<>((Double) cell.getValue()[4]));
-            orderCreatedAtColumn.setCellValueFactory(cell -> new ReadOnlyObjectWrapper<>((Timestamp) cell.getValue()[5]));
-
-            orderTable.setItems(orderData);
-        } catch (SQLException e) {
-            System.out.println("Error loading orders: " + e.getMessage());
+            e.printStackTrace();
+            showAlert("ARA Motorhub", "Failed to load admin users: " + e.getMessage());
         }
     }
 
     @FXML
-    private void handleCreate(ActionEvent event) {
-        User newUser = new User(0, "", "", "", "", "", "", "", "CUSTOMER");
-        userList.add(newUser);
-        usersTable.getSelectionModel().select(newUser);
-    }
+    void handleCreate(ActionEvent event) {
+        String email = usernameTextField.getText();
+        String pass = passwordTextField.getText();
 
-    @FXML
-    private void handleUpdate(ActionEvent event) {
-        for (User user : usersTable.getItems()) {
-            try (Connection conn = DatabaseConnection.connect()) {
-                if (user.getUserId() == 0) {
-                    String insert = "INSERT INTO user (email, password, first_name, last_name, address, district, barangay, role) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-                    PreparedStatement stmt = conn.prepareStatement(insert);
-                    stmt.setString(1, user.getEmail());
-                    stmt.setString(2, user.getPassword());
-                    stmt.setString(3, user.getFirstName());
-                    stmt.setString(4, user.getLastName());
-                    stmt.setString(5, user.getAddress());
-                    stmt.setString(6, user.getDistrict());
-                    stmt.setString(7, user.getBarangay());
-                    stmt.setString(8, user.getRole());
-                    stmt.executeUpdate();
-                } else {
-                    String update = "UPDATE user SET email = ?, password = ?, first_name = ?, last_name = ?, address = ?, district = ?, barangay = ?, role = ? WHERE user_id = ?";
-                    PreparedStatement stmt = conn.prepareStatement(update);
-                    stmt.setString(1, user.getEmail());
-                    stmt.setString(2, user.getPassword());
-                    stmt.setString(3, user.getFirstName());
-                    stmt.setString(4, user.getLastName());
-                    stmt.setString(5, user.getAddress());
-                    stmt.setString(6, user.getDistrict());
-                    stmt.setString(7, user.getBarangay());
-                    stmt.setString(8, user.getRole());
-                    stmt.setInt(9, user.getUserId());
-                    stmt.executeUpdate();
-                }
-            } catch (SQLException e) {
-                System.out.println("Error saving user: " + e.getMessage());
-            }
+        if (email.isEmpty() || pass.isEmpty()) {
+            showAlert("ARA Motorhub", "Please enter both email and password.");
+            return;
         }
-        loadUsers();
+
+        try (Connection conn = DatabaseConnection.connect();
+             PreparedStatement stmt = conn.prepareStatement(
+                     "INSERT INTO user (email, password, first_name, last_name, address, district, barangay, role) VALUES (?, ?, '', '', '', '', '', 'admin')")) {
+            stmt.setString(1, email);
+            stmt.setString(2, pass);
+            stmt.executeUpdate();
+
+            showAlert("ARA Motorhub", "Admin created successfully.");
+
+            usernameTextField.clear();
+            passwordTextField.clear();
+            loadAdminsFromDatabase();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            showAlert("ARA Motorhub", "Could not create admin: " + e.getMessage());
+        }
     }
 
     @FXML
-    private void handleDelete(ActionEvent event) {
-        User selected = usersTable.getSelectionModel().getSelectedItem();
-        if (selected != null) {
-            try (Connection conn = DatabaseConnection.connect()) {
-                String delete = "DELETE FROM user WHERE user_id = ?";
-                PreparedStatement stmt = conn.prepareStatement(delete);
-                stmt.setInt(1, selected.getUserId());
+    void handleDelete(ActionEvent event) {
+        User selected = userAdmin.getSelectionModel().getSelectedItem();
+        if (selected == null) {
+            showAlert("ARA Motorhub", "Please select an admin to delete.");
+            return;
+        }
+
+        try (Connection conn = DatabaseConnection.connect();
+             PreparedStatement stmt = conn.prepareStatement("DELETE FROM user WHERE user_id = ?")) {
+            stmt.setInt(1, selected.getUserId());
+            stmt.executeUpdate();
+
+            showAlert("ARA Motorhub", "Admin deleted successfully.");
+            loadAdminsFromDatabase();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            showAlert("ARA Motorhub", "Could not delete admin: " + e.getMessage());
+        }
+    }
+
+    @FXML
+    void handleUpdate(ActionEvent event) {
+        for (User user : adminUsers) {
+            try (Connection conn = DatabaseConnection.connect();
+                 PreparedStatement stmt = conn.prepareStatement("UPDATE user SET email = ?, password = ? WHERE user_id = ?")) {
+                stmt.setString(1, user.getEmail());
+                stmt.setString(2, user.getPassword());
+                stmt.setInt(3, user.getUserId());
                 stmt.executeUpdate();
-                userList.remove(selected);
             } catch (SQLException e) {
-                System.out.println("Error deleting user: " + e.getMessage());
+                showAlert("ARA Motorhub", "Could not update admin: " + e.getMessage());
+                return;
             }
         }
+
+        showAlert("ARA Motorhub", "All changes saved successfully.");
+        loadAdminsFromDatabase();
     }
 
-    private void loadCategories() {
-        try (Connection conn = DatabaseConnection.connect()) {
-            String query = "SELECT * FROM category";
-            PreparedStatement stmt = conn.prepareStatement(query);
-            ResultSet rs = stmt.executeQuery();
+    @FXML
+    public void onEmailEditCommit(TableColumn.CellEditEvent<User, String> event) {
+        User user = event.getRowValue();
+        user.setEmail(event.getNewValue());
+    }
 
-            ObservableList<Object[]> categoryData = FXCollections.observableArrayList();
+    @FXML
+    public void onPasswordEditCommit(TableColumn.CellEditEvent<User, String> event) {
+        User user = event.getRowValue();
+        user.setPassword(event.getNewValue());
+    }
 
-            while (rs.next()) {
-                categoryData.add(new Object[] {
-                    rs.getInt("category_id"),
-                    rs.getString("name")
-                });
-            }
-
-            categoryIdColumn.setCellValueFactory(cell -> new ReadOnlyObjectWrapper<>((Integer) cell.getValue()[0]));
-            categoryNameColumn.setCellValueFactory(cell -> new ReadOnlyObjectWrapper<>((String) cell.getValue()[1]));
-
-            categoryTable.setItems(categoryData);
-        } catch (SQLException e) {
-            System.out.println("Error loading categories: " + e.getMessage());
-        }
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
     @FXML
     void handleLogOutButton(ActionEvent event) {
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         SettingsWindowHelper.logout(currentStage);
+    }
+
+    // Optional navigation stubs
+    @FXML
+    void handleUserClick(ActionEvent e) {
+       switchScene(e, "/resources/fxml/admin/AdminUsers.fxml");
+    }
+
+    @FXML
+    void handleProductsClick(ActionEvent e) {
+          switchScene(e, "/resources/fxml/admin/AdminProduct.fxml");
+    }
+
+    @FXML
+    void handleOrderClick(ActionEvent e) {
+          switchScene(e, "/resources/fxml/admin/AdminOrder.fxml");
+    }
+
+    @FXML
+    void handleCategoryClick(ActionEvent e) {
+          switchScene(e, "/resources/fxml/admin/AdminCategory.fxml");
+    }
+
+    private void switchScene(ActionEvent event, String fxmlPath) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+            Parent newRoot = loader.load();
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            currentStage.setScene(new Scene(newRoot));
+            currentStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

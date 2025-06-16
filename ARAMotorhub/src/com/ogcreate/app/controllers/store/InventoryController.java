@@ -1,193 +1,251 @@
 package com.ogcreate.app.controllers.store;
 
-import com.ogcreate.app.database.DatabaseConnection;
-import com.ogcreate.app.database.UserSession;
+import java.io.IOException;
+import java.net.URL;
+import java.sql.*;
+import java.util.ResourceBundle;
+
 import com.ogcreate.app.SettingsWindowHelper;
+import com.ogcreate.app.database.DatabaseConnection;
+import com.ogcreate.app.database.User;
+import com.ogcreate.app.database.UserSession;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-import java.sql.*;
-
-public class InventoryController {
+public class InventoryController implements Initializable {
 
     @FXML
-    private TextField productName;
-    @FXML
-    private TextField productDescription;
-    @FXML
-    private TextField productPrice;
-    @FXML
-    private TextField productStock;
-    @FXML
-    private SplitMenuButton productCategory;
-    @FXML
-    private Button submitButton;
-
-    private String selectedCategoryName;
+    private ComboBox<String> categoryComboBox;
 
     @FXML
-    public void initialize() {
-        productCategory.setText("Select Category");
+    private Label labelCategory1, labelCategory2, labelCategory3, labelCategory4;
+    @FXML
+    private Label labelCategory5, labelCategory6, labelCategory7, labelCategory8;
+    @FXML
+    private Label labelCategoryItem1, labelCategoryItem2, labelCategoryItem3, labelCategoryItem4;
+    @FXML
+    private Label labelCategoryItem5, labelCategoryItem6, labelCategoryItem7, labelCategoryItem8;
+
+    @FXML
+    void handleUploadProduct(ActionEvent event) {
+        System.out.println("handleUploadProduct");
+        loadScene(event, "/resources/fxml/store/InventoryUpload.fxml");
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        setupCategoryComboBox();
+        loadCategoryData();
+    }
+
+    private void setupCategoryComboBox() {
+        String sql = """
+                    SELECT DISTINCT c.name
+                    FROM category c
+                    JOIN product p ON c.category_id = p.category_id
+                    ORDER BY c.name ASC
+                """;
 
         try (Connection conn = DatabaseConnection.connect();
-                PreparedStatement stmt = conn.prepareStatement("SELECT name FROM category");
+                PreparedStatement stmt = conn.prepareStatement(sql);
                 ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
-                final String name = rs.getString("name");
-                MenuItem item = new MenuItem(name);
-                item.setOnAction(e -> {
-                    selectedCategoryName = name;
-                    productCategory.setText(name);
-                });
-                productCategory.getItems().add(item);
+                categoryComboBox.getItems().add(rs.getString("name"));
             }
-
-        } catch (SQLException e) {
-            showAlert("Error loading categories: " + e.getMessage(), Alert.AlertType.ERROR);
-        }
-    }
-
-    @FXML
-    void handleSubmitButton(ActionEvent event) {
-        String name = productName.getText();
-        String description = productDescription.getText();
-        String priceText = productPrice.getText();
-        String stockText = productStock.getText();
-        String categoryName = selectedCategoryName;
-
-        if (name.isEmpty() || description.isEmpty() || priceText.isEmpty() || stockText.isEmpty()
-                || categoryName == null) {
-            showAlert("Please fill in all fields.", Alert.AlertType.WARNING);
-            return;
-        }
-
-        try {
-            double price = Double.parseDouble(priceText);
-            int stock = Integer.parseInt(stockText);
-
-            int categoryId = getCategoryIdByName(categoryName);
-            if (categoryId == -1) {
-                showAlert("Category not found.", Alert.AlertType.ERROR);
-                return;
-            }
-
-            try (Connection conn = DatabaseConnection.connect();
-                    PreparedStatement stmt = conn.prepareStatement(
-                            "INSERT INTO product (name, description, price, stock, category_id, seller_id, status, created_at) "
-                                    +
-                                    "VALUES (?, ?, ?, ?, ?, ?, 'AVAILABLE', NOW())")) {
-                stmt.setString(1, name);
-                stmt.setString(2, description);
-                stmt.setDouble(3, price);
-                stmt.setInt(4, stock);
-                stmt.setInt(5, categoryId);
-                stmt.setInt(6, UserSession.getCurrentUser().getUserId());
-
-                int rows = stmt.executeUpdate();
-                if (rows > 0) {
-                    showAlert("Product added successfully.", Alert.AlertType.INFORMATION);
-                    clearFields();
-                } else {
-                    showAlert("Failed to add product.", Alert.AlertType.ERROR);
-                }
-            }
-
-        } catch (NumberFormatException e) {
-            showAlert("Invalid number format for price or stock.", Alert.AlertType.ERROR);
-        } catch (SQLException e) {
-            showAlert("Database error: " + e.getMessage(), Alert.AlertType.ERROR);
-        }
-    }
-
-    private int getCategoryIdByName(String name) {
-        try (Connection conn = DatabaseConnection.connect();
-                PreparedStatement stmt = conn.prepareStatement("SELECT category_id FROM category WHERE name = ?")) {
-
-            stmt.setString(1, name);
-            ResultSet rs = stmt.executeQuery();
-            if (rs.next())
-                return rs.getInt("category_id");
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return -1;
+
+        categoryComboBox.setOnAction(event -> {
+            String selectedCategory = categoryComboBox.getValue();
+            if (selectedCategory != null) {
+                openCategoryView(selectedCategory);
+            }
+        });
     }
 
-    private void showAlert(String message, Alert.AlertType type) {
-        Alert alert = new Alert(type);
-        alert.setTitle("ARA Motorhub");
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
+    private void loadCategoryData() {
+        User currentUser = UserSession.getCurrentUser();
+        if (currentUser == null)
+            return;
+
+        String query = """
+                    SELECT c.name AS category_name, COUNT(p.product_id) AS product_count
+                    FROM category c
+                    JOIN product p ON c.category_id = p.category_id
+                    WHERE p.seller_id = ? AND p.status = 'AVAILABLE'
+                    GROUP BY c.category_id, c.name
+                    ORDER BY c.category_id ASC
+                """;
+
+        try (Connection conn = DatabaseConnection.connect();
+                PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            stmt.setInt(1, currentUser.getUserId());
+            ResultSet rs = stmt.executeQuery();
+
+            int index = 1;
+            while (rs.next() && index <= 8) {
+                String category = rs.getString("category_name");
+                int count = rs.getInt("product_count");
+
+                switch (index) {
+                    case 1 -> {
+                        labelCategory1.setText(category);
+                        labelCategoryItem1.setText(count + " items");
+                    }
+                    case 2 -> {
+                        labelCategory2.setText(category);
+                        labelCategoryItem2.setText(count + " items");
+                    }
+                    case 3 -> {
+                        labelCategory3.setText(category);
+                        labelCategoryItem3.setText(count + " items");
+                    }
+                    case 4 -> {
+                        labelCategory4.setText(category);
+                        labelCategoryItem4.setText(count + " items");
+                    }
+                    case 5 -> {
+                        labelCategory5.setText(category);
+                        labelCategoryItem5.setText(count + " items");
+                    }
+                    case 6 -> {
+                        labelCategory6.setText(category);
+                        labelCategoryItem6.setText(count + " items");
+                    }
+                    case 7 -> {
+                        labelCategory7.setText(category);
+                        labelCategoryItem7.setText(count + " items");
+                    }
+                    case 8 -> {
+                        labelCategory8.setText(category);
+                        labelCategoryItem8.setText(count + " items");
+                    }
+                }
+
+                index++;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
-    private void clearFields() {
-        productName.clear();
-        productDescription.clear();
-        productPrice.clear();
-        productStock.clear();
-        productCategory.setText("Select Category");
-        selectedCategoryName = null;
-    }
-
-    // --- Navigation Handlers ---
-
-    @FXML
-    void handleDashboardClick(ActionEvent e) {
-        navigateTo(e, "/resources/fxml/store/Dashboard.fxml");
-    }
-
-    @FXML
-    void handleInventoryClick(ActionEvent e) {
-        navigateTo(e, "/resources/fxml/store/Inventory.fxml");
-    }
-
-    @FXML
-    void handleProductsClick(ActionEvent e) {
-        navigateTo(e, "/resources/fxml/store/Products.fxml");
-    }
-
-    @FXML
-    void handleProfileClick(ActionEvent e) {
-        navigateTo(e, "/resources/fxml/store/Profile.fxml");
-    }
-
-    @FXML
-    void handleShopsClick(ActionEvent e) {
-        navigateTo(e, "/resources/fxml/store/Shops.fxml");
-    }
-
-    @FXML
-    void handleHomeButton(ActionEvent e) {
-        /* Optional */ }
-
-    @FXML
-    void handleOpenSettings(ActionEvent e) {
-        SettingsWindowHelper.openSettings((Node) e.getSource());
-    }
-
-    @FXML
-    void handleLogOutButton(ActionEvent e) {
-        SettingsWindowHelper.logout((Stage) ((Node) e.getSource()).getScene().getWindow());
-    }
-
-    private void navigateTo(ActionEvent event, String fxmlPath) {
+    private void openCategoryView(String categoryName) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource(fxmlPath));
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/store/InventorySelect.fxml"));
+            Parent root = loader.load();
+
+            InventorySelectController controller = loader.getController();
+            controller.setCategory(categoryName); // 🔁 pass the selected category
+
+            Stage stage = (Stage) categoryComboBox.getScene().getWindow();
             stage.setScene(new Scene(root));
+            stage.show();
         } catch (IOException e) {
-            showAlert("Cannot load: " + fxmlPath, Alert.AlertType.ERROR);
+            e.printStackTrace();
+        }
+    }
+
+    // Optional: Quick access handlers if needed
+    @FXML
+    void handleCategoryBolts(ActionEvent event) {
+        openCategoryView("Bolts");
+    }
+
+    @FXML
+    void handleCategoryElectrical(ActionEvent event) {
+        openCategoryView("Electrical");
+    }
+
+    @FXML
+    void handleCategoryEngine(ActionEvent event) {
+        openCategoryView("Engine");
+    }
+
+    @FXML
+    void handleCategoryExterior(ActionEvent event) {
+        openCategoryView("Exterior");
+    }
+
+    @FXML
+    void handleCategoryOil(ActionEvent event) {
+        openCategoryView("Oil");
+    }
+
+    @FXML
+    void handleCategorySuspension(ActionEvent event) {
+        openCategoryView("Suspension");
+    }
+
+    @FXML
+    void handleCategoryTransmission(ActionEvent event) {
+        openCategoryView("Transmission");
+    }
+
+    @FXML
+    void handleCategoryWheels(ActionEvent event) {
+        openCategoryView("Wheels");
+    }
+
+    // Navigation
+    @FXML
+    void handleDashboardClick(ActionEvent event) {
+        loadScene(event, "/resources/fxml/store/Dashboard.fxml");
+    }
+
+    @FXML
+    void handleHomeButton(ActionEvent event) {
+        loadScene(event, "/resources/fxml/store/Profile.fxml");
+    }
+
+    @FXML
+    void handleProductsClick(ActionEvent event) {
+        loadScene(event, "/resources/fxml/store/Products.fxml");
+    }
+
+    @FXML
+    void handleShopsClick(ActionEvent event) {
+        loadScene(event, "/resources/fxml/store/Shops.fxml");
+    }
+
+    @FXML
+    void handleProfileClick(ActionEvent event) {
+        loadScene(event, "/resources/fxml/store/Profile.fxml");
+    }
+
+    @FXML
+    void handleLogOutButton(ActionEvent event) {
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        SettingsWindowHelper.logout(currentStage);
+    }
+
+    @FXML
+    void handleOpenSettings(ActionEvent event) {
+        SettingsWindowHelper.openSettings((Node) event.getSource());
+    }
+
+    private void loadScene(ActionEvent event, String fxmlPath) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+            Parent root = loader.load();
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            currentStage.setScene(new Scene(root));
+            currentStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

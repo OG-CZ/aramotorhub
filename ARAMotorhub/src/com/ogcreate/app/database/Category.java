@@ -17,4 +17,12 @@ public class Category {
     public String toString() {
         return name; // so ComboBox shows the name
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

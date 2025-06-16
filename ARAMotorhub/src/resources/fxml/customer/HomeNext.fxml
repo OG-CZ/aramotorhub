@@ -16,14 +16,7 @@
             <Image url="@../../assets/c2_background1.png" />
          </image>
       </ImageView>
-      <AnchorPane fx:id="anchorPaneFooter" layoutY="305.0" maxHeight="307.0" maxWidth="938.0" minHeight="300.0" minWidth="938.0" prefHeight="307.0" prefWidth="938.0" style="-fx-background-color: #F2F2F2;" stylesheets="@../../css/style.css">
-         <children>
-            <ImageView fitHeight="141.05" fitWidth="571.2" layoutX="183.0" layoutY="20.0">
-               <image>
-                  <Image url="@../../assets/c2_footer2.png" />
-               </image>
-            </ImageView>
-         </children></AnchorPane>
+      <AnchorPane fx:id="anchorPaneFooter" layoutY="305.0" maxHeight="307.0" maxWidth="938.0" minHeight="300.0" minWidth="938.0" prefHeight="307.0" prefWidth="938.0" style="-fx-background-color: #F2F2F2;" stylesheets="@../../css/style.css" />
       <ImageView fitHeight="33.75" fitWidth="753.52" layoutX="33.75" layoutY="21.1">
          <image>
             <Image url="@../../assets/c2_topmenu.png" />

@@ -271,6 +271,11 @@
    <center>
       <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
+            <ImageView fitHeight="545.0" fitWidth="771.0" opacity="0.0">
+               <image>
+                  <Image url="@../../assets/d_bgPane.png" />
+               </image>
+            </ImageView>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
                   <StackPane prefHeight="544.0" prefWidth="770.0">

@@ -31,7 +31,7 @@ public class ProductsController implements Initializable {
     @FXML
     private ScrollPane scrollPane;
 
-    private static final int TOTAL_WIDTH = 705;
+    private static final int TOTAL_WIDTH = 715;
     private static final int COLUMN_COUNT = 5;
     private static final int COLUMN_WIDTH = TOTAL_WIDTH / COLUMN_COUNT;
 

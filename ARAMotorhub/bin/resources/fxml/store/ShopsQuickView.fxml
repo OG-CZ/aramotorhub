@@ -352,7 +352,7 @@
                         <Insets left="20.0" />
                      </padding>
                   </Label>
-                  <HBox alignment="CENTER" prefHeight="125.0" prefWidth="729.0" style="-fx-background-color: #D9D9D9; -fx-border-color: #9BA1A6; -fx-border-width: 1.5;">
+                  <HBox alignment="CENTER" prefHeight="125.0" prefWidth="729.0" style="-fx-background-color: #D9D9D9; -fx-border-color: #9BA1A6; -fx-border-width: 1;">
                      <children>
                         <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="4.0" style="-fx-background-color: white;">
                            <HBox.margin>

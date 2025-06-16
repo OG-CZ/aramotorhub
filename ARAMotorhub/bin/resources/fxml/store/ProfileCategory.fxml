@@ -131,7 +131,7 @@
                         <Insets left="15.0" />
                      </VBox.margin>
                   </Label>
-                  <HBox alignment="CENTER_LEFT" prefHeight="32.06" prefWidth="200.0" style="-fx-background-color: #D9D9D9;" styleClass="hover-box" stylesheets="@../../css/market.css">
+                  <HBox alignment="CENTER_LEFT" prefHeight="32.06" prefWidth="200.0" styleClass="hover-box" stylesheets="@../../css/market.css">
                      <children>
                         <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleShopsClick" prefHeight="27.0" prefWidth="134.0" style="-fx-background-color: transparent;" text="Shops">
                            <font>
@@ -189,7 +189,7 @@
                         </Label>
                      </children>
                   </VBox>
-                  <VBox alignment="CENTER_LEFT" prefHeight="32.06" prefWidth="168.0" styleClass="hover-box" stylesheets="@../../css/market.css">
+                  <VBox alignment="CENTER_LEFT" prefHeight="32.06" prefWidth="168.0" style="-fx-background-color: #D9D9D9;" styleClass="hover-box" stylesheets="@../../css/market.css">
                      <children>
                         <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="27.0" prefWidth="155.0" style="-fx-background-color: transparent;" text="Profile">
                            <font>
@@ -203,7 +203,7 @@
                   </VBox>
                   <VBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="51.0" prefHeight="32.06" prefWidth="100.0" styleClass="hover-box" stylesheets="@../../css/market.css">
                      <children>
-                        <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleCartClick" prefHeight="27.0" prefWidth="150.0" style="-fx-background-color: transparent;" text="Cart">
+                        <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleDashboardClick" prefHeight="27.0" prefWidth="150.0" style="-fx-background-color: transparent;" text="Dashboard">
                            <font>
                               <Font name="Berlin Sans FB" size="15.0" />
                            </font>
@@ -215,7 +215,7 @@
                   </VBox>
                   <VBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="84.0" prefHeight="32.06" prefWidth="168.0" styleClass="hover-box" stylesheets="@../../css/market.css" VBox.vgrow="ALWAYS">
                      <children>
-                        <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleFavoriteClick" prefHeight="27.0" prefWidth="164.0" style="-fx-background-color: transparent;" text="Favorite">
+                        <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleInventoryClick" prefHeight="27.0" prefWidth="164.0" style="-fx-background-color: transparent;" text="Inventory">
                            <font>
                               <Font name="Berlin Sans FB" size="15.0" />
                            </font>
@@ -235,24 +235,28 @@
                <children>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <HBox alignment="CENTER" layoutX="46.0" layoutY="172.0">
+                        <Group layoutX="41.0" layoutY="161.0">
                            <children>
-                              <ImageView fitHeight="24.0" fitWidth="24.0">
-                                 <image>
-                                    <Image url="@../../assets/d_logout.png" />
-                                 </image>
-                              </ImageView>
-                              <Label alignment="CENTER" text="Log Out">
-                                 <font>
-                                    <Font name="Berlin Sans FB" size="14.0" />
-                                 </font>
-                                 <padding>
-                                    <Insets left="5.0" />
-                                 </padding>
-                              </Label>
+                              <HBox alignment="CENTER" layoutX="3.0" layoutY="5.0">
+                                 <children>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0">
+                                       <image>
+                                          <Image url="@../../assets/d_logout.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label alignment="CENTER" text="Log Out">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="14.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="5.0" />
+                                       </padding>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <Button mnemonicParsing="false" onAction="#handleLogOutButton" opacity="0.0" prefHeight="34.0" prefWidth="86.0" text="Log out" />
                            </children>
-                        </HBox>
-                        <Button layoutX="43.0" layoutY="167.0" mnemonicParsing="false" onAction="#handleLogOutButton" opacity="0.0" prefHeight="34.0" prefWidth="86.0" text="Log out" />
+                        </Group>
                      </children>
                   </AnchorPane>
                </children>
@@ -293,7 +297,7 @@
                         <Insets left="20.0" right="20.0" />
                      </VBox.margin>
                   </AnchorPane>
-                  <HBox alignment="CENTER" prefHeight="125.0" prefWidth="729.0" style="-fx-background-color: #D9D9D9; -fx-border-color: #9BA1A6; -fx-border-width: 1.5;">
+                  <HBox alignment="CENTER" prefHeight="125.0" prefWidth="729.0" style="-fx-background-color: #D9D9D9; -fx-border-color: #9BA1A6; -fx-border-width: 1;">
                      <children>
                         <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="4.0" style="-fx-background-color: white;">
                            <HBox.margin>

@@ -277,7 +277,7 @@
                   <Region prefHeight="25.0" prefWidth="770.0" />
                   <AnchorPane minHeight="124.88" prefHeight="126.0" prefWidth="128.0" style="-fx-background-color: #D9D9D9; -fx-border-color: #9BA1A6 #9BA1A6 transparent  #9BA1A6;">
                      <VBox.margin>
-                        <Insets left="25.0" right="25.0" />
+                        <Insets left="20.0" right="20.0" />
                      </VBox.margin>
                      <opaqueInsets>
                         <Insets />
@@ -285,7 +285,7 @@
                      <children>
                         <AnchorPane layoutY="98.0" prefHeight="28.0" prefWidth="640.0" style="-fx-background-color: white; -fx-border-color: #9BA1A6 transparent transparent transparent;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                            <children>
-                              <HBox layoutX="11.0" layoutY="6.0" spacing="110.0">
+                              <HBox layoutX="16.0" layoutY="7.0" spacing="110.0">
                                  <children>
                                     <Label text="Showing n to n of max(n)">
                                        <font>
@@ -404,7 +404,7 @@
                   </AnchorPane>
                   <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" prefHeight="365.0" prefWidth="721.0" style="-fx-background-color: transparent; -fx-padding: 0; -fx-focus-color: 0; -fx-faint-focus-color: transparent; -fx-border-color: #9BA1A6;">
                      <VBox.margin>
-                        <Insets left="25.0" right="25.0" />
+                        <Insets left="20.0" right="20.0" />
                      </VBox.margin>
                      <content>
                         <GridPane fx:id="productsContainer" prefHeight="0.0" prefWidth="0.0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">

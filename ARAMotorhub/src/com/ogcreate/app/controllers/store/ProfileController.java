@@ -25,10 +25,6 @@ import javafx.stage.Stage;
 public class ProfileController implements Initializable {
      @FXML void handleHomeButton(ActionEvent event) { }
 
-/* 
-    private static final int TOTAL_WIDTH = 715;
-    private static final int COLUMN_COUNT = 5;
-    private static final int COLUMN_WIDTH = TOTAL_WIDTH / COLUMN_COUNT; */
 
     @FXML private Label firstLastNameLabel;
     @FXML private Label emailLabel;
@@ -150,12 +146,13 @@ public class ProfileController implements Initializable {
     }
 
     private void openCategoryView(String categoryName) {
+        System.out.println("openCategoryView triggered");
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/store/ProfileCategory.fxml"));
             Parent root = loader.load();
 
             ProfileCategoryController controller = loader.getController();
-            controller.filterProductsByCategory(categoryName);  // Public method required
+            controller.filterProductsByCategory(categoryName); 
 
             Stage stage = (Stage) categoryComboBox.getScene().getWindow();
             stage.setScene(new Scene(root));
@@ -166,7 +163,6 @@ public class ProfileController implements Initializable {
         }
     }
 
-    // Category Quick Access
     @FXML void handleCategoryBolts(ActionEvent event) { openCategoryView("Bolts"); }
     @FXML void handleCategoryElectrical(ActionEvent event) { openCategoryView("Electrical"); }
     @FXML void handleCategoryEngine(ActionEvent event) { openCategoryView("Engine"); }

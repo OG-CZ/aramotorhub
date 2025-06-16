@@ -50,7 +50,7 @@ public class CategoriesController implements Initializable {
         productsContainer.getChildren().clear(); // Clear previous results
 
         productsContainer.getColumnConstraints().clear();
-        int TOTAL_WIDTH = 705;
+        int TOTAL_WIDTH = 715;
         int COLUMN_COUNT = 5;
         int COLUMN_WIDTH = TOTAL_WIDTH / COLUMN_COUNT;
 

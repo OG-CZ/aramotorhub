@@ -58,7 +58,6 @@ public class ShopsController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         nearestShop = fetchShopsFromDB();
 
-        // Sort shops by barangay numerically (e.g., Barangay 1, 2, 10)
         nearestShop.sort(Comparator.comparingInt(shop -> {
             try {
                 return Integer.parseInt(shop.getShopBarangay().replaceAll("\\D+", ""));
