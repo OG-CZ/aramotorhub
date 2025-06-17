@@ -19,6 +19,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class InventoryController implements Initializable {
@@ -36,8 +37,66 @@ public class InventoryController implements Initializable {
     private Label labelCategoryItem5, labelCategoryItem6, labelCategoryItem7, labelCategoryItem8;
 
     @FXML
+    private Label labelTotalAssetValue, labelTotalProduct, labelSoldStock;
+
+    @FXML
+    private Pane redPercent, greenPercent;
+
+    private void loadTotalProductStats() {
+        User currentUser = UserSession.getCurrentUser();
+        if (currentUser == null)
+            return;
+
+        String query = """
+                    SELECT
+                        COALESCE(SUM(CASE WHEN status = 'AVAILABLE' THEN stock ELSE 0 END), 0) AS available_stock,
+                        COALESCE(SUM(CASE WHEN status = 'OUT_OF_STOCK' THEN stock ELSE 0 END), 0) AS out_of_stock,
+                        COALESCE(SUM(CASE WHEN status = 'AVAILABLE' THEN price * stock ELSE 0 END), 0) AS total_value
+                    FROM product
+                    WHERE seller_id = ?
+                """;
+
+        try (Connection conn = DatabaseConnection.connect();
+                PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            stmt.setInt(1, currentUser.getUserId());
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                int available = rs.getInt("available_stock");
+                int outOfStock = rs.getInt("out_of_stock");
+                int total = available + outOfStock;
+                double totalValue = rs.getDouble("total_value");
+
+                labelTotalProduct.setText(total + " items");
+                labelSoldStock.setText(outOfStock + " sold");
+                labelTotalAssetValue.setText("₱" + String.format("%,.2f", totalValue));
+
+                updateStockPercentBar(outOfStock, total); // 👈 Visual bar update
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void updateStockPercentBar(int sold, int total) {
+        if (total <= 0) {
+            redPercent.setPrefWidth(0);
+            greenPercent.setPrefWidth(0);
+            return;
+        }
+
+        double redRatio = (double) sold / total;
+        double greenRatio = 1.0 - redRatio;
+
+        double totalWidth = 200.0; // Set to match HBox's width
+        redPercent.setPrefWidth(totalWidth * redRatio);
+        greenPercent.setPrefWidth(totalWidth * greenRatio);
+    }
+
+    @FXML
     void handleUploadProduct(ActionEvent event) {
-        System.out.println("handleUploadProduct");
         loadScene(event, "/resources/fxml/store/InventoryUpload.fxml");
     }
 
@@ -45,6 +104,7 @@ public class InventoryController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         setupCategoryComboBox();
         loadCategoryData();
+        loadTotalProductStats();
     }
 
     private void setupCategoryComboBox() {
@@ -70,7 +130,8 @@ public class InventoryController implements Initializable {
         categoryComboBox.setOnAction(event -> {
             String selectedCategory = categoryComboBox.getValue();
             if (selectedCategory != null) {
-                openCategoryView(selectedCategory);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                openCategoryView(selectedCategory, stage);
             }
         });
     }
@@ -143,64 +204,68 @@ public class InventoryController implements Initializable {
         }
     }
 
-    private void openCategoryView(String categoryName) {
+    private void openCategoryView(String categoryName, Stage currentStage) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/store/InventorySelect.fxml"));
             Parent root = loader.load();
 
             InventorySelectController controller = loader.getController();
-            controller.setCategory(categoryName); // 🔁 pass the selected category
 
-            Stage stage = (Stage) categoryComboBox.getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
+            User currentUser = UserSession.getCurrentUser();
+            if (currentUser != null) {
+                controller.setSellerId(currentUser.getUserId());
+            }
+
+            controller.loadProductsByCategory(categoryName);
+
+            currentStage.setScene(new Scene(root));
+            currentStage.show();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    // Optional: Quick access handlers if needed
     @FXML
     void handleCategoryBolts(ActionEvent event) {
-        openCategoryView("Bolts");
+        openCategoryView("Bolts", getStage(event));
     }
 
     @FXML
     void handleCategoryElectrical(ActionEvent event) {
-        openCategoryView("Electrical");
+        openCategoryView("Electrical", getStage(event));
     }
 
     @FXML
     void handleCategoryEngine(ActionEvent event) {
-        openCategoryView("Engine");
+        openCategoryView("Engine", getStage(event));
     }
 
     @FXML
     void handleCategoryExterior(ActionEvent event) {
-        openCategoryView("Exterior");
+        openCategoryView("Exterior", getStage(event));
     }
 
     @FXML
     void handleCategoryOil(ActionEvent event) {
-        openCategoryView("Oil");
+        openCategoryView("Oil", getStage(event));
     }
 
     @FXML
     void handleCategorySuspension(ActionEvent event) {
-        openCategoryView("Suspension");
+        openCategoryView("Suspension", getStage(event));
     }
 
     @FXML
     void handleCategoryTransmission(ActionEvent event) {
-        openCategoryView("Transmission");
+        openCategoryView("Transmission", getStage(event));
     }
 
     @FXML
     void handleCategoryWheels(ActionEvent event) {
-        openCategoryView("Wheels");
+        openCategoryView("Wheels", getStage(event));
     }
 
-    // Navigation
     @FXML
     void handleDashboardClick(ActionEvent event) {
         loadScene(event, "/resources/fxml/store/Dashboard.fxml");
@@ -247,5 +312,9 @@ public class InventoryController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private Stage getStage(ActionEvent event) {
+        return (Stage) ((Node) event.getSource()).getScene().getWindow();
     }
 }

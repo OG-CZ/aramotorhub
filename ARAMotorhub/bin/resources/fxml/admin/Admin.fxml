@@ -157,13 +157,13 @@
                               <Insets />
                            </HBox.margin>
                            <children>
-                              <VBox layoutX="-1.0" layoutY="73.0" prefHeight="142.0" prefWidth="262.0" spacing="10.0">
+                              <VBox layoutX="-1.0" layoutY="72.0" prefHeight="142.0" prefWidth="262.0" spacing="10.0">
                                  <children>
                                     <VBox spacing="2.0">
                                        <children>
                                           <Label text="Admin's Data" textFill="#b7b710">
                                              <font>
-                                                <Font name="Arial Rounded MT Bold" size="18.0" />
+                                                <Font name="Bauhaus 93" size="24.0" />
                                              </font>
                                              <VBox.margin>
                                                 <Insets bottom="5.0" />
@@ -174,7 +174,10 @@
                                                 <Font name="Arial" size="11.0" />
                                              </font>
                                           </Label>
-                                          <TextField fx:id="usernameTextField" prefHeight="28.0" prefWidth="209.0" promptText="Enter your username" style="-fx-background-radius: 5;" />
+                                          <TextField fx:id="usernameTextField" prefHeight="28.0" prefWidth="209.0" promptText="Enter your username" style="-fx-background-radius: 5;">
+                                             <font>
+                                                <Font name="Arial" size="10.0" />
+                                             </font></TextField>
                                        </children>
                                     </VBox>
                                     <VBox prefWidth="262.0" spacing="2.0">
@@ -184,24 +187,27 @@
                                                 <Font name="Arial" size="11.0" />
                                              </font>
                                           </Label>
-                                          <TextField fx:id="passwordTextField" prefHeight="28.0" prefWidth="262.0" promptText="Enter your password" style="-fx-background-radius: 5;" />
+                                          <TextField fx:id="passwordTextField" prefHeight="28.0" prefWidth="262.0" promptText="Enter your password" style="-fx-background-radius: 5;">
+                                             <font>
+                                                <Font name="Arial" size="10.0" />
+                                             </font></TextField>
                                        </children>
                                     </VBox>
                                  </children>
                               </VBox>
                               <HBox alignment="CENTER" layoutY="229.0" prefHeight="26.0" prefWidth="260.0" spacing="10.0">
                                  <children>
-                                    <Button fx:id="createButton" mnemonicParsing="false" onAction="#handleCreate" prefHeight="19.0" prefWidth="82.0" style="-fx-background-color: #b7b710;" text="Create" textFill="WHITE">
+                                    <Button fx:id="createButton" mnemonicParsing="false" onAction="#handleCreate" prefHeight="19.0" prefWidth="82.0" style="-fx-background-color: #b7b710; -fx-background-radius: 5;" text="Create" textFill="WHITE">
                                        <font>
                                           <Font name="Arial" size="12.0" />
                                        </font>
                                     </Button>
-                                    <Button fx:id="updateButton" layoutX="153.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleUpdate" prefHeight="19.0" prefWidth="82.0" style="-fx-background-color: #b7b710;" text="Update" textFill="WHITE">
+                                    <Button fx:id="updateButton" layoutX="153.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleUpdate" prefHeight="19.0" prefWidth="82.0" style="-fx-background-color: #b7b710; -fx-background-radius: 5;" text="Update" textFill="WHITE">
                                        <font>
                                           <Font name="Arial" size="12.0" />
                                        </font>
                                     </Button>
-                                    <Button fx:id="deleteButton" layoutX="52.0" layoutY="11.0" mnemonicParsing="false" onAction="#handleDelete" prefHeight="20.0" prefWidth="82.0" style="-fx-background-color: #b7b710;" text="Delete" textFill="WHITE">
+                                    <Button fx:id="deleteButton" layoutX="52.0" layoutY="11.0" mnemonicParsing="false" onAction="#handleDelete" prefHeight="20.0" prefWidth="82.0" style="-fx-background-color: #b7b710; -fx-background-radius: 5;" text="Delete" textFill="WHITE">
                                        <font>
                                           <Font name="Arial" size="12.0" />
                                        </font>
@@ -233,7 +239,7 @@
                   <StackPane layoutX="18.0" layoutY="56.0" opacity="0.0" prefHeight="2.0" prefWidth="735.0" style="-fx-background-color: #c9c9c9;" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" />
                   <HBox prefHeight="73.0" prefWidth="718.0">
                      <children>
-                        <Label prefHeight="78.0" prefWidth="197.0" text="Welcome Back," textFill="#b7b710" HBox.hgrow="ALWAYS">
+                        <Label prefHeight="74.0" prefWidth="230.0" text="Welcome Back," textFill="#b7b710" HBox.hgrow="ALWAYS">
                            <font>
                               <Font name="Bauhaus 93" size="24.0" />
                            </font>
@@ -241,7 +247,7 @@
                               <Insets left="20.0" />
                            </padding>
                         </Label>
-                        <Label fx:id="adminName" prefHeight="78.0" prefWidth="530.0" text="ogcreate" textFill="#b7b710" HBox.hgrow="ALWAYS">
+                        <Label fx:id="adminName" prefHeight="78.0" prefWidth="554.0" text="ogcreate" textFill="#b7b710" HBox.hgrow="ALWAYS">
                            <font>
                               <Font name="Bauhaus 93" size="24.0" />
                            </font>
@@ -255,10 +261,20 @@
             </AnchorPane>
             <HBox VBox.vgrow="ALWAYS">
                <children>
-                  <StackPane prefHeight="212.0" prefWidth="769.0">
+                  <StackPane alignment="TOP_CENTER" prefHeight="212.0" prefWidth="769.0">
                      <children>
-                        <ImageView fitHeight="228.0" fitWidth="700.0" pickOnBounds="true" preserveRatio="true" />
-                     </children></StackPane>
+                        <ImageView fitHeight="253.0" fitWidth="734.0">
+                           <image>
+                              <Image url="@../../assets/x_Billboards%20-%20Copy.png" />
+                           </image>
+                           <StackPane.margin>
+                              <Insets />
+                           </StackPane.margin>
+                        </ImageView>
+                     </children>
+                     <HBox.margin>
+                        <Insets top="5.0" />
+                     </HBox.margin></StackPane>
                </children>
             </HBox>
          </children>

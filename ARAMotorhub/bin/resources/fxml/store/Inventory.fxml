@@ -307,11 +307,15 @@
                                                 <Font name="Arial" size="10.0" />
                                              </font>
                                           </Label>
-                                          <Label text="₱12,000,311" textFill="#000000cc">
-                                             <font>
-                                                <Font name="Arial Rounded MT Bold" size="18.0" />
-                                             </font>
-                                          </Label>
+                                          <HBox>
+                                             <children>
+                                                <Label fx:id="labelTotalAssetValue" text="123123" textFill="#000000cc">
+                                                   <font>
+                                                      <Font name="Arial Rounded MT Bold" size="18.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
                                        </children>
                                        <HBox.margin>
                                           <Insets />
@@ -324,7 +328,7 @@
                                        <children>
                                           <HBox>
                                              <children>
-                                                <Label text="2339 " textFill="#000000cc">
+                                                <Label fx:id="labelTotalProduct" text="2339 " textFill="#000000cc">
                                                    <font>
                                                       <Font name="Arial Rounded MT Bold" size="12.0" />
                                                    </font>
@@ -341,9 +345,8 @@
                                           </HBox>
                                           <HBox spacing="4.0">
                                              <children>
-                                                <Pane prefHeight="7.0" prefWidth="399.0" style="-fx-background-color: #4BBC7D; -fx-background-radius: 5;" />
-                                                <Pane prefHeight="7.0" prefWidth="240.0" style="-fx-background-color: #FDC669; -fx-background-radius: 5;" />
-                                                <Pane prefHeight="7.0" prefWidth="190.0" style="-fx-background-color: #C70C00; -fx-background-radius: 5;" />
+                                                <Pane fx:id="greenPercent" prefHeight="7.0" prefWidth="399.0" style="-fx-background-color: #4BBC7D; -fx-background-radius: 5;" />
+                                                <Pane fx:id="redPercent" prefHeight="7.0" prefWidth="190.0" style="-fx-background-color: #C70C00; -fx-background-radius: 5;" />
                                              </children>
                                           </HBox>
                                           <HBox alignment="CENTER_LEFT" layoutX="30.0" layoutY="54.0" spacing="4.0">
@@ -354,7 +357,7 @@
                                                       <Font name="Arial" size="7.0" />
                                                    </font>
                                                 </Label>
-                                                <Label layoutX="20.0" layoutY="10.0" text="1452">
+                                                <Label fx:id="labelTotalProduct" layoutX="20.0" layoutY="10.0" text="1452">
                                                    <font>
                                                       <Font name="Arial Rounded MT Bold" size="9.0" />
                                                    </font>
@@ -362,28 +365,28 @@
                                                       <Insets left="-2.0" />
                                                    </HBox.margin>
                                                 </Label>
-                                                <Pane prefHeight="7.0" prefWidth="5.0" style="-fx-background-color: #FDC669; -fx-background-radius: 5;">
+                                                <Pane prefHeight="7.0" prefWidth="5.0" style="-fx-background-color: #C70C00; -fx-background-radius: 5;">
                                                    <padding>
                                                       <Insets left="5.0" />
                                                    </padding>
                                                 </Pane>
-                                                <Label layoutX="20.0" layoutY="10.0" text="In stock:" textFill="#00000080">
+                                                <Label layoutX="20.0" layoutY="10.0" text="Out of Stock" textFill="#00000080">
                                                    <font>
                                                       <Font name="Arial" size="7.0" />
                                                    </font>
                                                 </Label>
-                                                <Label layoutX="20.0" layoutY="10.0" text="355">
+                                                <Label fx:id="labelSoldStock" layoutX="20.0" layoutY="10.0" text="355">
                                                    <font>
                                                       <Font name="Arial Rounded MT Bold" size="9.0" />
                                                    </font>
                                                 </Label>
-                                                <Pane prefHeight="10.0" prefWidth="5.0" style="-fx-background-color: #C70C00; -fx-background-radius: 5;" />
-                                                <Label layoutX="61.0" layoutY="10.0" text="In stock:" textFill="#00000080">
+                                                <Pane opacity="0.0" prefHeight="10.0" prefWidth="5.0" style="-fx-background-color: #C70C00; -fx-background-radius: 5;" />
+                                                <Label layoutX="61.0" layoutY="10.0" opacity="0.0" text="In stock:" textFill="#00000080">
                                                    <font>
                                                       <Font name="Arial" size="7.0" />
                                                    </font>
                                                 </Label>
-                                                <Label layoutX="56.0" layoutY="10.0" text="186">
+                                                <Label layoutX="56.0" layoutY="10.0" opacity="0.0" text="186">
                                                    <font>
                                                       <Font name="Arial Rounded MT Bold" size="9.0" />
                                                    </font>
@@ -691,13 +694,10 @@
                               </HBox>
                               <StackPane prefHeight="226.0" prefWidth="769.0" VBox.vgrow="ALWAYS">
                                  <children>
-                                    <ImageView fitHeight="129.0" fitWidth="680.0" StackPane.alignment="CENTER">
+                                    <ImageView fitHeight="201.0" fitWidth="585.0">
                                        <image>
-                                          <Image url="@../../assets/c2_footer.png" />
+                                          <Image url="@../../assets/x_Billboards%20-%20Copy.png" />
                                        </image>
-                                       <StackPane.margin>
-                                          <Insets bottom="20.0" />
-                                       </StackPane.margin>
                                     </ImageView>
                                  </children>
                               </StackPane>

@@ -341,16 +341,11 @@
                      </children>
                   </HBox>
                   <Region prefHeight="10.0" prefWidth="200.0" />
-                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="40.0" VBox.vgrow="ALWAYS">
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="40.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <ImageView fitHeight="185.0" fitWidth="770.0">
+                        <ImageView fitHeight="253.0" fitWidth="736.0">
                            <image>
-                              <Image url="@../../assets/c2_background1.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="119.0" fitWidth="629.0">
-                           <image>
-                              <Image url="@../../assets/c2_footer.png" />
+                              <Image url="@../../assets/x_Billboards%20-%20Copy.png" />
                            </image>
                         </ImageView>
                      </children>

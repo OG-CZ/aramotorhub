@@ -653,13 +653,10 @@
                               </HBox>
                               <StackPane prefHeight="255.0" prefWidth="770.0">
                                  <children>
-                                    <ImageView fitHeight="129.0" fitWidth="680.0" StackPane.alignment="CENTER">
+                                    <ImageView fitHeight="201.0" fitWidth="585.0">
                                        <image>
-                                          <Image url="@../../assets/c2_footer.png" />
+                                          <Image url="@../../assets/x_Billboards%20-%20Copy.png" />
                                        </image>
-                                       <StackPane.margin>
-                                          <Insets bottom="20.0" />
-                                       </StackPane.margin>
                                     </ImageView>
                                  </children>
                               </StackPane>

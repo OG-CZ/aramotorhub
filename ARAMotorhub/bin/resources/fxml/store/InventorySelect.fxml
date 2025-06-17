@@ -18,7 +18,6 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
@@ -169,7 +168,7 @@
                               <Insets bottom="-5.0" left="29.0" />
                            </VBox.margin>
                         </Button>
-                        <ComboBox fx:id="categoryComboBox" maxHeight="25.66" maxWidth="148.07" minHeight="25.66" minWidth="148.07" prefHeight="25.66" prefWidth="148.07" promptText="Category" style="-fx-background-color: #ffffff; -fx-border-color: #ccc; -fx-background-radius: 5px; -fx-border-radius: 5px; -fx-opacity: 0.8;">
+                        <ComboBox fx:id="categoryComboBox" disable="true" maxHeight="25.66" maxWidth="148.07" minHeight="25.66" minWidth="148.07" prefHeight="25.66" prefWidth="148.07" promptText="Category" style="-fx-background-color: #ffffff; -fx-border-color: #ccc; -fx-background-radius: 5px; -fx-border-radius: 5px; -fx-opacity: 0.8;">
                            <VBox.margin>
                               <Insets bottom="8.0" left="10.0" top="7.5" />
                            </VBox.margin>
@@ -219,7 +218,7 @@
                   </VBox>
                   <VBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="84.0" prefHeight="32.06" prefWidth="168.0" style="-fx-background-color: #d9d9d9;" styleClass="hover-box" stylesheets="@../../css/market.css" VBox.vgrow="ALWAYS">
                      <children>
-                        <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="27.0" prefWidth="164.0" style="-fx-background-color: transparent;" text="Inventory">
+                        <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleInventoryClick" prefHeight="27.0" prefWidth="164.0" style="-fx-background-color: transparent;" text="Inventory">
                            <font>
                               <Font name="Berlin Sans FB" size="15.0" />
                            </font>
@@ -269,7 +268,7 @@
       </VBox>
    </left>
    <center>
-      <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: rgba(206, 206, 206, 0.2);" BorderPane.alignment="CENTER">
          <children>
             <ImageView fitHeight="545.0" fitWidth="771.0" opacity="0.0">
                <image>
@@ -297,7 +296,7 @@
                                                 <Image url="@../../assets/j_totalrevenue.png" />
                                              </image>
                                           </ImageView>
-                                          <Button mnemonicParsing="false" onAction="#handleProfileClick" opacity="0.0" prefHeight="26.0" prefWidth="44.0" text="Button" />
+                                          <Button mnemonicParsing="false" onAction="#handleInventoryClick" opacity="0.0" prefHeight="26.0" prefWidth="44.0" text="Button" />
                                        </children>
                                     </Group>
                                  </children>
@@ -306,116 +305,276 @@
                                  </VBox.margin>
                               </AnchorPane>
                               <Region layoutX="11.0" layoutY="11.0" prefHeight="10.0" prefWidth="769.0" />
-                              <HBox prefHeight="83.0" prefWidth="767.0" style="-fx-border-color: #9BA1A6; -fx-border-width: 1.5;">
+                              <HBox alignment="CENTER" prefHeight="125.0" prefWidth="729.0" style="-fx-background-color: #D9D9D9; -fx-border-color: #9BA1A6; -fx-border-width: 1;">
+                                 <children>
+                                    <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="4.0" style="-fx-background-color: white;">
+                                       <HBox.margin>
+                                          <Insets left="5.0" right="2.5" />
+                                       </HBox.margin>
+                                       <children>
+                                          <Button mnemonicParsing="false" onAction="#handleCategoryEngine" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #B7B710; -fx-background-radius: 100;">
+                                             <VBox.margin>
+                                                <Insets bottom="4.0" />
+                                             </VBox.margin>
+                                          </Button>
+                                          <VBox alignment="CENTER" spacing="2.5">
+                                             <children>
+                                                <Label fx:id="labelCategory1" text="Engine Part">
+                                                   <font>
+                                                      <Font name="Arial Rounded MT Bold" size="8.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label fx:id="labelCategoryItem1" text="0 Item" textFill="#00000080">
+                                                   <font>
+                                                      <Font name="Arial" size="8.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="10.0" />
+                                       </padding>
+                                    </VBox>
+                                    <VBox alignment="BOTTOM_CENTER" layoutX="324.0" layoutY="12.0" prefHeight="200.0" prefWidth="100.0" spacing="4.0" style="-fx-background-color: white;">
+                                       <HBox.margin>
+                                          <Insets left="5.0" right="2.5" />
+                                       </HBox.margin>
+                                       <children>
+                                          <VBox alignment="CENTER" spacing="2.5">
+                                             <children>
+                                                <Button mnemonicParsing="false" onAction="#handleCategorySuspension" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #B7B710; -fx-background-radius: 100;">
+                                                   <VBox.margin>
+                                                      <Insets bottom="4.0" />
+                                                   </VBox.margin>
+                                                </Button>
+                                                <Label fx:id="labelCategory2" text="Suspension">
+                                                   <font>
+                                                      <Font name="Arial Rounded MT Bold" size="8.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label fx:id="labelCategoryItem2" text="0 Item" textFill="#00000080">
+                                                   <font>
+                                                      <Font name="Arial" size="8.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="10.0" />
+                                       </padding>
+                                    </VBox>
+                                    <VBox alignment="BOTTOM_CENTER" layoutX="375.0" layoutY="12.0" prefHeight="200.0" prefWidth="100.0" spacing="4.0" style="-fx-background-color: white;">
+                                       <HBox.margin>
+                                          <Insets left="5.0" right="2.5" />
+                                       </HBox.margin>
+                                       <children>
+                                          <Button mnemonicParsing="false" onAction="#handleCategoryWheels" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #B7B710; -fx-background-radius: 100;">
+                                             <VBox.margin>
+                                                <Insets bottom="4.0" />
+                                             </VBox.margin>
+                                          </Button>
+                                          <VBox alignment="CENTER" spacing="2.5">
+                                             <children>
+                                                <Label fx:id="labelCategory3" text="Wheels">
+                                                   <font>
+                                                      <Font name="Arial Rounded MT Bold" size="8.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label fx:id="labelCategoryItem3" text="0 Item" textFill="#00000080">
+                                                   <font>
+                                                      <Font name="Arial" size="8.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="10.0" />
+                                       </padding>
+                                    </VBox>
+                                    <VBox alignment="BOTTOM_CENTER" layoutX="424.0" layoutY="12.0" prefHeight="200.0" prefWidth="100.0" spacing="4.0" style="-fx-background-color: white;">
+                                       <HBox.margin>
+                                          <Insets left="5.0" right="2.5" />
+                                       </HBox.margin>
+                                       <children>
+                                          <Button mnemonicParsing="false" onAction="#handleCategoryOil" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #B7B710; -fx-background-radius: 100;">
+                                             <VBox.margin>
+                                                <Insets bottom="4.0" />
+                                             </VBox.margin>
+                                          </Button>
+                                          <VBox alignment="CENTER" spacing="2.5">
+                                             <children>
+                                                <Label fx:id="labelCategory4" text="Oil">
+                                                   <font>
+                                                      <Font name="Arial Rounded MT Bold" size="8.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label fx:id="labelCategoryItem4" text="0 Item" textFill="#00000080">
+                                                   <font>
+                                                      <Font name="Arial" size="8.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="10.0" />
+                                       </padding>
+                                    </VBox>
+                                    <VBox alignment="BOTTOM_CENTER" layoutX="174.0" layoutY="12.0" prefHeight="200.0" prefWidth="100.0" spacing="4.0" style="-fx-background-color: white;">
+                                       <HBox.margin>
+                                          <Insets left="5.0" right="2.5" />
+                                       </HBox.margin>
+                                       <children>
+                                          <Button mnemonicParsing="false" onAction="#handleCategoryBolts" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #B7B710; -fx-background-radius: 100;">
+                                             <VBox.margin>
+                                                <Insets bottom="4.0" />
+                                             </VBox.margin>
+                                          </Button>
+                                          <VBox alignment="CENTER" spacing="2.5">
+                                             <children>
+                                                <Label fx:id="labelCategory5" text="Bolts">
+                                                   <font>
+                                                      <Font name="Arial Rounded MT Bold" size="8.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label fx:id="labelCategoryItem5" text="0 Item" textFill="#00000080">
+                                                   <font>
+                                                      <Font name="Arial" size="8.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="10.0" />
+                                       </padding>
+                                    </VBox>
+                                    <VBox alignment="BOTTOM_CENTER" layoutX="275.0" layoutY="12.0" prefHeight="200.0" prefWidth="100.0" spacing="4.0" style="-fx-background-color: white;">
+                                       <HBox.margin>
+                                          <Insets left="5.0" right="2.5" />
+                                       </HBox.margin>
+                                       <children>
+                                          <Button mnemonicParsing="false" onAction="#handleCategoryExterior" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #B7B710; -fx-background-radius: 100;">
+                                             <VBox.margin>
+                                                <Insets bottom="4.0" />
+                                             </VBox.margin>
+                                          </Button>
+                                          <VBox alignment="CENTER" spacing="2.5">
+                                             <children>
+                                                <Label fx:id="labelCategory6" text="Exterior">
+                                                   <font>
+                                                      <Font name="Arial Rounded MT Bold" size="8.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label fx:id="labelCategoryItem6" text="0 item" textFill="#00000080">
+                                                   <font>
+                                                      <Font name="Arial" size="8.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="10.0" />
+                                       </padding>
+                                    </VBox>
+                                    <VBox alignment="BOTTOM_CENTER" layoutX="375.0" layoutY="12.0" prefHeight="200.0" prefWidth="100.0" spacing="4.0" style="-fx-background-color: white;">
+                                       <HBox.margin>
+                                          <Insets left="5.0" right="2.5" />
+                                       </HBox.margin>
+                                       <children>
+                                          <Button mnemonicParsing="false" onAction="#handleCategoryElectrical" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #B7B710; -fx-background-radius: 100;">
+                                             <VBox.margin>
+                                                <Insets bottom="4.0" />
+                                             </VBox.margin>
+                                          </Button>
+                                          <VBox alignment="CENTER" spacing="2.5">
+                                             <children>
+                                                <Label fx:id="labelCategory7" text="Electrical ">
+                                                   <font>
+                                                      <Font name="Arial Rounded MT Bold" size="8.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label fx:id="labelCategoryItem7" text="0 Item" textFill="#00000080">
+                                                   <font>
+                                                      <Font name="Arial" size="8.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="10.0" />
+                                       </padding>
+                                    </VBox>
+                                    <VBox alignment="CENTER" layoutX="475.0" layoutY="12.0" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: white;">
+                                       <HBox.margin>
+                                          <Insets left="5.0" right="2.5" />
+                                       </HBox.margin>
+                                       <children>
+                                          <VBox alignment="BOTTOM_CENTER" prefHeight="139.0" prefWidth="138.0" spacing="4.0">
+                                             <children>
+                                                <Button mnemonicParsing="false" onAction="#handleCategoryTransmission" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #B7B710; -fx-background-radius: 100;">
+                                                   <VBox.margin>
+                                                      <Insets bottom="4.0" />
+                                                   </VBox.margin>
+                                                </Button>
+                                                <Label fx:id="labelCategory8" text="Transmission ">
+                                                   <font>
+                                                      <Font name="Arial Rounded MT Bold" size="8.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label fx:id="labelCategoryItem8" text="0 Item" textFill="#00000080">
+                                                   <font>
+                                                      <Font name="Arial" size="8.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="10.0" />
+                                             </padding>
+                                          </VBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="CENTER" layoutX="107.0" layoutY="12.0" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: white;">
+                                       <HBox.margin>
+                                          <Insets left="5.0" right="2.5" />
+                                       </HBox.margin>
+                                       <children>
+                                          <VBox alignment="BOTTOM_CENTER" prefHeight="139.0" prefWidth="138.0" spacing="4.0">
+                                             <children>
+                                                <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #B7B710; -fx-background-radius: 100;">
+                                                   <VBox.margin>
+                                                      <Insets bottom="4.0" />
+                                                   </VBox.margin>
+                                                </Button>
+                                                <Label text="Accessories">
+                                                   <font>
+                                                      <Font name="Arial Rounded MT Bold" size="8.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="0 Item" textFill="#00000080">
+                                                   <font>
+                                                      <Font name="Arial" size="8.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="10.0" />
+                                             </padding>
+                                          </VBox>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="7.5" left="7.5" right="7.5" top="7.5" />
+                                 </padding>
                                  <VBox.margin>
                                     <Insets left="20.0" right="20.0" />
                                  </VBox.margin>
-                                 <children>
-                                    <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="195.0" spacing="2.0" style="-fx-background-color: #D9D9D9; -fx-border-color: transparent #9BA1A6 transparent transparent; -fx-border-width: 1.5;">
-                                       <children>
-                                          <Label text="Total Asset Value">
-                                             <font>
-                                                <Font name="Arial" size="10.0" />
-                                             </font>
-                                          </Label>
-                                          <Label text="₱12,000,311" textFill="#000000cc">
-                                             <font>
-                                                <Font name="Arial Rounded MT Bold" size="18.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                       <HBox.margin>
-                                          <Insets />
-                                       </HBox.margin>
-                                       <padding>
-                                          <Insets left="20.0" />
-                                       </padding>
-                                    </VBox>
-                                    <VBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="80.0" prefWidth="526.0" spacing="7.0" style="-fx-background-color: #F1F1F1;" HBox.hgrow="ALWAYS">
-                                       <children>
-                                          <HBox>
-                                             <children>
-                                                <Label text="2339 " textFill="#000000cc">
-                                                   <font>
-                                                      <Font name="Arial Rounded MT Bold" size="12.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label text="Product " textFill="#000000cc">
-                                                   <font>
-                                                      <Font name="Arial Rounded MT Bold" size="12.0" />
-                                                   </font>
-                                                </Label>
-                                             </children>
-                                             <VBox.margin>
-                                                <Insets bottom="-2.0" />
-                                             </VBox.margin>
-                                          </HBox>
-                                          <HBox spacing="4.0">
-                                             <children>
-                                                <Pane prefHeight="7.0" prefWidth="399.0" style="-fx-background-color: #4BBC7D; -fx-background-radius: 5;" />
-                                                <Pane prefHeight="7.0" prefWidth="240.0" style="-fx-background-color: #FDC669; -fx-background-radius: 5;" />
-                                                <Pane prefHeight="7.0" prefWidth="190.0" style="-fx-background-color: #C70C00; -fx-background-radius: 5;" />
-                                             </children>
-                                          </HBox>
-                                          <HBox alignment="CENTER_LEFT" layoutX="30.0" layoutY="54.0" spacing="4.0">
-                                             <children>
-                                                <Pane prefHeight="0.0" prefWidth="5.0" style="-fx-background-color: #4BBC7D; -fx-background-radius: 5;" />
-                                                <Label text="In stock:" textFill="#00000080">
-                                                   <font>
-                                                      <Font name="Arial" size="7.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label layoutX="20.0" layoutY="10.0" text="1452">
-                                                   <font>
-                                                      <Font name="Arial Rounded MT Bold" size="9.0" />
-                                                   </font>
-                                                   <HBox.margin>
-                                                      <Insets left="-2.0" />
-                                                   </HBox.margin>
-                                                </Label>
-                                                <Pane prefHeight="7.0" prefWidth="5.0" style="-fx-background-color: #FDC669; -fx-background-radius: 5;">
-                                                   <padding>
-                                                      <Insets left="5.0" />
-                                                   </padding>
-                                                </Pane>
-                                                <Label layoutX="20.0" layoutY="10.0" text="In stock:" textFill="#00000080">
-                                                   <font>
-                                                      <Font name="Arial" size="7.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label layoutX="20.0" layoutY="10.0" text="355">
-                                                   <font>
-                                                      <Font name="Arial Rounded MT Bold" size="9.0" />
-                                                   </font>
-                                                </Label>
-                                                <Pane prefHeight="10.0" prefWidth="5.0" style="-fx-background-color: #C70C00; -fx-background-radius: 5;" />
-                                                <Label layoutX="61.0" layoutY="10.0" text="In stock:" textFill="#00000080">
-                                                   <font>
-                                                      <Font name="Arial" size="7.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label layoutX="56.0" layoutY="10.0" text="186">
-                                                   <font>
-                                                      <Font name="Arial Rounded MT Bold" size="9.0" />
-                                                   </font>
-                                                   <HBox.margin>
-                                                      <Insets left="-2.0" />
-                                                   </HBox.margin>
-                                                </Label>
-                                             </children>
-                                             <VBox.margin>
-                                                <Insets />
-                                             </VBox.margin>
-                                          </HBox>
-                                       </children>
-                                       <HBox.margin>
-                                          <Insets />
-                                       </HBox.margin>
-                                       <padding>
-                                          <Insets left="20.0" right="150.0" />
-                                       </padding>
-                                    </VBox>
-                                 </children>
                               </HBox>
                               <Label prefHeight="30.0" prefWidth="130.0" text="Results" VBox.vgrow="ALWAYS">
                                  <font>
@@ -425,7 +584,7 @@
                                     <Insets left="20.0" />
                                  </padding>
                               </Label>
-                              <HBox prefHeight="35.0" prefWidth="712.0" style="-fx-background-color: F3F3F3; -fx-background-radius: 5;">
+                              <HBox prefHeight="35.0" prefWidth="712.0" style="-fx-background-color: rgba(206, 206, 206, 0.5); -fx-border-color: #9BA1A6; -fx-border-radius: 5; -fx-background-radius: 5;">
                                  <children>
                                     <GridPane alignment="CENTER" prefWidth="671.0" HBox.hgrow="ALWAYS">
                                        <columnConstraints>
@@ -482,9 +641,9 @@
                                     <Insets left="20.0" right="20.0" />
                                  </VBox.margin>
                               </HBox>
-                              <ScrollPane prefHeight="305.0" prefWidth="749.0" stylesheets="@../../css/scroll-pane.css">
+                              <ScrollPane prefHeight="270.0" prefWidth="750.0" stylesheets="@../../css/scroll-pane.css">
                                  <content>
-                                    <VBox fx:id="inventoryContainer" prefHeight="2000.0" prefWidth="727.0">
+                                    <VBox fx:id="inventoryContainer" prefHeight="2000.0" prefWidth="727.0" spacing="5.0">
                                        <padding>
                                           <Insets top="5.0" />
                                        </padding>
@@ -495,7 +654,7 @@
                                     <String fx:value="scroll-bar" />
                                  </styleClass>
                                  <VBox.margin>
-                                    <Insets left="20.0" top="2.5" />
+                                    <Insets left="20.0" top="-1.0" />
                                  </VBox.margin>
                               </ScrollPane>
                            </children>

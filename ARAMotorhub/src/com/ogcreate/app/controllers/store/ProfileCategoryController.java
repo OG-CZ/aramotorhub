@@ -26,7 +26,7 @@ import javafx.stage.Stage;
 
 public class ProfileCategoryController implements Initializable {
 
-    private static final int TOTAL_WIDTH = 755;
+    private static final int TOTAL_WIDTH = 714;
     private static final int COLUMN_COUNT = 5;
     private static final int COLUMN_WIDTH = TOTAL_WIDTH / COLUMN_COUNT;
 
