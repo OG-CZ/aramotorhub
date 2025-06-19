@@ -5,40 +5,52 @@ import java.sql.PreparedStatement;
 
 public class UserService {
 
-    public boolean deleteUser(int userId) {
-        String deleteCartItemsSql = "DELETE FROM cart_item WHERE cart_id IN (SELECT cart_id FROM cart WHERE customer_id = ?)";
-        String deleteCartSql = "DELETE FROM cart WHERE customer_id = ?";
-        String deleteUserSql = "DELETE FROM user WHERE user_id = ?";
+public boolean deleteUser(int userId) {
+    String deleteCartItemsSQL = "DELETE FROM cart_item WHERE cart_id IN (SELECT cart_id FROM cart WHERE customer_id = ?)";
+    String deleteCartsSQL = "DELETE FROM cart WHERE customer_id = ?";
+    String deleteOrderItemsSQL = "DELETE FROM order_item WHERE order_id IN (SELECT order_id FROM `order` WHERE customer_id = ?)";
+    String deleteOrdersSQL = "DELETE FROM `order` WHERE customer_id = ?";
+    String deleteUserSQL = "DELETE FROM user WHERE user_id = ?";
 
-        try (Connection conn = DatabaseConnection.connect()) {
-            conn.setAutoCommit(false); // Start transaction
+    try (Connection conn = DatabaseConnection.connect()) {
+        conn.setAutoCommit(false); 
+        try (
+            PreparedStatement deleteCartItemsStmt = conn.prepareStatement(deleteCartItemsSQL);
+            PreparedStatement deleteCartsStmt = conn.prepareStatement(deleteCartsSQL);
+            PreparedStatement deleteOrderItemsStmt = conn.prepareStatement(deleteOrderItemsSQL);
+            PreparedStatement deleteOrdersStmt = conn.prepareStatement(deleteOrdersSQL);
+            PreparedStatement deleteUserStmt = conn.prepareStatement(deleteUserSQL)
+        ) {
+            
+            deleteCartItemsStmt.setInt(1, userId);
+            deleteCartItemsStmt.executeUpdate();
 
-            try (
-                    PreparedStatement deleteCartItemsStmt = conn.prepareStatement(deleteCartItemsSql);
-                    PreparedStatement deleteCartStmt = conn.prepareStatement(deleteCartSql);
-                    PreparedStatement deleteUserStmt = conn.prepareStatement(deleteUserSql)) {
-                deleteCartItemsStmt.setInt(1, userId);
-                deleteCartItemsStmt.executeUpdate();
+           
+            deleteCartsStmt.setInt(1, userId);
+            deleteCartsStmt.executeUpdate();
 
-                deleteCartStmt.setInt(1, userId);
-                deleteCartStmt.executeUpdate();
+            deleteOrderItemsStmt.setInt(1, userId);
+            deleteOrderItemsStmt.executeUpdate();
 
-                deleteUserStmt.setInt(1, userId);
-                int rowsDeleted = deleteUserStmt.executeUpdate();
+            deleteOrdersStmt.setInt(1, userId);
+            deleteOrdersStmt.executeUpdate();
 
-                conn.commit();
-                return rowsDeleted > 0;
-            } catch (Exception e) {
-                conn.rollback();
-                e.printStackTrace();
-                return false;
-            }
+            deleteUserStmt.setInt(1, userId);
+            int rowsDeleted = deleteUserStmt.executeUpdate();
 
+            conn.commit(); 
+            return rowsDeleted > 0;
         } catch (Exception e) {
+            conn.rollback(); 
             e.printStackTrace();
             return false;
         }
+
+    } catch (Exception e) {
+        e.printStackTrace();
+        return false;
     }
+}
 
     public boolean updateUser(User user) {
         String sql = "UPDATE user SET email = ?, password = ?, first_name = ?, last_name = ?, "
