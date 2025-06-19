@@ -163,7 +163,7 @@
                                        <children>
                                           <Label text="Admin's Data" textFill="#b7b710">
                                              <font>
-                                                <Font name="Bauhaus 93" size="24.0" />
+                                                <Font name="Bauhaus 93" size="18.0" />
                                              </font>
                                              <VBox.margin>
                                                 <Insets bottom="5.0" />
@@ -176,7 +176,7 @@
                                           </Label>
                                           <TextField fx:id="usernameTextField" prefHeight="28.0" prefWidth="209.0" promptText="Enter your username" style="-fx-background-radius: 5;">
                                              <font>
-                                                <Font name="Arial" size="10.0" />
+                                                <Font name="Arial" size="11.0" />
                                              </font></TextField>
                                        </children>
                                     </VBox>
@@ -189,7 +189,7 @@
                                           </Label>
                                           <TextField fx:id="passwordTextField" prefHeight="28.0" prefWidth="262.0" promptText="Enter your password" style="-fx-background-radius: 5;">
                                              <font>
-                                                <Font name="Arial" size="10.0" />
+                                                <Font name="Arial" size="11.0" />
                                              </font></TextField>
                                        </children>
                                     </VBox>
@@ -239,9 +239,9 @@
                   <StackPane layoutX="18.0" layoutY="56.0" opacity="0.0" prefHeight="2.0" prefWidth="735.0" style="-fx-background-color: #c9c9c9;" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" />
                   <HBox prefHeight="73.0" prefWidth="718.0">
                      <children>
-                        <Label prefHeight="74.0" prefWidth="230.0" text="Welcome Back," textFill="#b7b710" HBox.hgrow="ALWAYS">
+                        <Label prefHeight="74.0" prefWidth="281.0" text="Welcome Back," textFill="#b7b710" HBox.hgrow="ALWAYS">
                            <font>
-                              <Font name="Bauhaus 93" size="24.0" />
+                              <Font name="Bauhaus 93" size="28.0" />
                            </font>
                            <padding>
                               <Insets left="20.0" />
@@ -249,7 +249,7 @@
                         </Label>
                         <Label fx:id="adminName" prefHeight="78.0" prefWidth="554.0" text="ogcreate" textFill="#b7b710" HBox.hgrow="ALWAYS">
                            <font>
-                              <Font name="Bauhaus 93" size="24.0" />
+                              <Font name="Bauhaus 93" size="28.0" />
                            </font>
                            <padding>
                               <Insets left="-2.5" />

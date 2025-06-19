@@ -373,6 +373,21 @@ public class ShopsQuickViewCategoryController implements Initializable {
     }
 
     @FXML
+    void handleProfileClick(ActionEvent event) {
+           try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/fxml/customer/Profile.fxml"));
+            Parent newRoot = loader.load();
+
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            currentStage.setScene(new Scene(newRoot));
+            currentStage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
     void handleProductsClick(ActionEvent event) {
         System.out.println("handleProductsClick triggered");
         try {

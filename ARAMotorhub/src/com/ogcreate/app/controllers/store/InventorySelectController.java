@@ -219,15 +219,11 @@ public class InventorySelectController implements Initializable {
         openCategoryView("Wheels", getStage(event));
     }
 
-    //
-
     @FXML
     private ComboBox<String> categoryComboBox;
 
     @FXML
     private VBox inventoryContainer;
-
-    private String selectedCategory;
 
     private int sellerId;
 
@@ -256,12 +252,10 @@ public class InventorySelectController implements Initializable {
     }
 
     public void setCategory(String category) {
-        this.selectedCategory = category;
-        categoryComboBox.setValue(category); // Optional: show in ComboBox
+        categoryComboBox.setValue(category);
     }
 
     public void loadProductsByCategory(String category) {
-        this.selectedCategory = category;
         categoryComboBox.setValue(category);
         inventoryContainer.getChildren().clear();
 

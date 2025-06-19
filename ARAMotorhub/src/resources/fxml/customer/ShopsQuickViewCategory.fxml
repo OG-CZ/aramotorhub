@@ -191,7 +191,7 @@
                   </VBox>
                   <VBox alignment="CENTER_LEFT" prefHeight="32.06" prefWidth="168.0" styleClass="hover-box" stylesheets="@../../css/market.css">
                      <children>
-                        <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="27.0" prefWidth="155.0" style="-fx-background-color: transparent;" text="Profile">
+                        <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleProfileClick" prefHeight="27.0" prefWidth="155.0" style="-fx-background-color: transparent;" text="Profile">
                            <font>
                               <Font name="Berlin Sans FB" size="15.0" />
                            </font>

@@ -35,13 +35,13 @@ public class DeleteAccountController {
     private Button logOutButton;
 
     private Alert alert;
+
     User currentUser = UserSession.getCurrentUser();
 
     void showAlert(String title, String message) {
         alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle(title);
         alert.setContentText(message);
-
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
         stage.getIcons().add(new Image(this.getClass().getResource("/resources/assets/z_favicon.png").toString()));
         alert.showAndWait();
@@ -52,6 +52,7 @@ public class DeleteAccountController {
         if (currentUser == null) {
             Alert errorAlert = new Alert(Alert.AlertType.ERROR);
             errorAlert.setTitle("ARA Motorhub");
+            errorAlert.setHeaderText(null);
             errorAlert.setContentText("No logged in user found. Please log in again.");
             errorAlert.showAndWait();
             return;
@@ -59,7 +60,8 @@ public class DeleteAccountController {
 
         Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
         confirmAlert.setTitle("ARA Motorhub");
-        confirmAlert.setContentText("Pressing OK will permanently delete your account and all associated data");
+        confirmAlert.setHeaderText("Are you sure?");
+        confirmAlert.setContentText("Pressing OK will permanently delete your account and all associated data.");
         Stage stage = (Stage) confirmAlert.getDialogPane().getScene().getWindow();
         stage.getIcons().add(new Image(this.getClass().getResource("/resources/assets/z_favicon.png").toString()));
 
@@ -69,21 +71,23 @@ public class DeleteAccountController {
                 boolean deleted = userService.deleteUser(currentUser.getUserId());
 
                 if (deleted) {
+                    UserSession.setCurrentUser(null);
 
                     Alert infoAlert = new Alert(Alert.AlertType.INFORMATION);
                     infoAlert.setTitle("ARA Motorhub");
-                    infoAlert.setContentText("Account deleted successfully.");
                     infoAlert.setHeaderText(null);
+                    infoAlert.setContentText("Account deleted successfully.");
                     Stage infoStage = (Stage) infoAlert.getDialogPane().getScene().getWindow();
                     infoStage.getIcons()
                             .add(new Image(this.getClass().getResource("/resources/assets/z_favicon.png").toString()));
                     infoAlert.showAndWait();
+
                     SettingsWindowHelper.logout((Stage) ((Node) event.getSource()).getScene().getWindow());
                 } else {
                     Alert errorAlert = new Alert(Alert.AlertType.ERROR);
                     errorAlert.setTitle("ARA Motorhub");
-                    errorAlert.setContentText("Failed to delete account. Please try again.");
                     errorAlert.setHeaderText(null);
+                    errorAlert.setContentText("Failed to delete account. Please try again.");
                     Stage errorStage = (Stage) errorAlert.getDialogPane().getScene().getWindow();
                     errorStage.getIcons()
                             .add(new Image(this.getClass().getResource("/resources/assets/z_favicon.png").toString()));
@@ -93,7 +97,7 @@ public class DeleteAccountController {
         });
     }
 
-    // switching scene dont touch
+    // Switching scenes - Do not modify
     @FXML
     void switchToDeleteAccount(ActionEvent event) {
         loadFXMLScene("/resources/fxml/settings/DeleteAccount.fxml", event);
@@ -120,5 +124,4 @@ public class DeleteAccountController {
             e.printStackTrace();
         }
     }
-
 }

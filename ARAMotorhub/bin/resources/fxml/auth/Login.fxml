@@ -70,7 +70,7 @@
                         <Font size="8.0" />
                      </font>
                   </Label>
-                  <Button fx:id="signupButton" layoutX="271.0" layoutY="410.0" mnemonicParsing="false" onMouseClicked="#handleSignUpClick" opacity="0.0" prefHeight="16.0" prefWidth="30.0" text="Sign Up" />
+                  <Button fx:id="signupButton" layoutX="271.0" layoutY="401.0" mnemonicParsing="false" onMouseClicked="#handleSignUpClick" opacity="0.0" prefHeight="55.0" prefWidth="30.0" text="Sign Up" />
                   <HBox alignment="CENTER" layoutX="125.0" layoutY="416.0" prefHeight="8.0" prefWidth="208.0">
                      <children>
                         <Text fill="#313957" strokeType="OUTSIDE" strokeWidth="0.0" text="Don't you have an account? ">

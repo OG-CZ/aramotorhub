@@ -51,7 +51,7 @@
                <children>
                   <VBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="18.0" prefHeight="142.0" prefWidth="440.0">
                      <children>
-                        <Label text="Log Out of Your Account" textFill="#28141480" />
+                        <Label text="Log Out of Your Account" textFill="#24261380" />
                         <Label text="⚠ Are you sure you want to log out?" textFill="#00000080" />
                         <Label text="You’ll be signed out of your account and redirected to the login page." textFill="#00000080" />
                         <Label text=" You can log back in anytime to resume where you left off." textFill="#00000080" />

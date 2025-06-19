@@ -6,15 +6,33 @@ import java.sql.PreparedStatement;
 public class UserService {
 
     public boolean deleteUser(int userId) {
-        String sql = "DELETE FROM user WHERE user_id = ?";
+        String deleteCartItemsSql = "DELETE FROM cart_item WHERE cart_id IN (SELECT cart_id FROM cart WHERE customer_id = ?)";
+        String deleteCartSql = "DELETE FROM cart WHERE customer_id = ?";
+        String deleteUserSql = "DELETE FROM user WHERE user_id = ?";
 
-        try (Connection conn = DatabaseConnection.connect();
-                PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = DatabaseConnection.connect()) {
+            conn.setAutoCommit(false); // Start transaction
 
-            stmt.setInt(1, userId);
-            int rowsDeleted = stmt.executeUpdate();
+            try (
+                    PreparedStatement deleteCartItemsStmt = conn.prepareStatement(deleteCartItemsSql);
+                    PreparedStatement deleteCartStmt = conn.prepareStatement(deleteCartSql);
+                    PreparedStatement deleteUserStmt = conn.prepareStatement(deleteUserSql)) {
+                deleteCartItemsStmt.setInt(1, userId);
+                deleteCartItemsStmt.executeUpdate();
 
-            return rowsDeleted > 0;
+                deleteCartStmt.setInt(1, userId);
+                deleteCartStmt.executeUpdate();
+
+                deleteUserStmt.setInt(1, userId);
+                int rowsDeleted = deleteUserStmt.executeUpdate();
+
+                conn.commit();
+                return rowsDeleted > 0;
+            } catch (Exception e) {
+                conn.rollback();
+                e.printStackTrace();
+                return false;
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
