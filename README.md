@@ -99,3 +99,4 @@
 For inquiries, suggestions, or support, please contact:
 
 - **Instagram**: [@_ogcz](https://www.instagram.com/_ogcz/)
+- credits to @leon for this readme format
