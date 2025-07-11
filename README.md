@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="readme/main-logo.png" alt="ARA Motorhub Logo"/>
+  <img src="sql/readme/main-logo.png" alt="ARA Motorhub Logo"/>
 </div>
 
 ---
@@ -16,6 +16,7 @@
   - [🎯 User Side](#-user-side)
 - [📸 Screenshots](#-screenshots)
 - [🤝 Developer](#-developer)
+- [🏗️ Project Structure](#️-project-structure)
 - [📬 Contact / Support](#-contact--support)
 
 ---
@@ -23,6 +24,8 @@
 ## 🚀 Project Overview
 
 **ARA Motorhub** A desktop application for managing motorcycle parts inventory. Customers can browse parts, request items, and check availability across multiple stores. Includes dedicated admin and seller dashboards for efficient stock control. Backed by a MySQL database server via XAMPP and phpMyAdmin.
+
+This was our finals in Advanced Database Class
 
 ---
 
@@ -52,27 +55,27 @@
 <br>
 
 <div align="center">
-  <img src="readme/aragif.gif" alt="Infinity Quest Animated Logo" width="300"/>
+  <img src="sql/readme/aragif.gif" alt="Infinity Quest Animated Logo" width="300"/>
 </div>
 
 <br>
 
 <div align="center">
-  <img src="readme/1.png" alt="ARA Motorhub UI/UX Showcase" width="800"/>
-</div>
-
-<br>
-<br>
-
-<div align="center">
-  <img src="readme/2.png" alt="ARA Motorhub Seller Showcase" width="800"/>
+  <img src="sql/readme/1.png" alt="ARA Motorhub UI/UX Showcase" width="800"/>
 </div>
 
 <br>
 <br>
 
 <div align="center">
-  <img src="readme/3.png" alt="ARA Motorhub Admin Showcase" width="800"/>
+  <img src="sql/readme/2.png" alt="ARA Motorhub Seller Showcase" width="800"/>
+</div>
+
+<br>
+<br>
+
+<div align="center">
+  <img src="sql/readme/3.png" alt="ARA Motorhub Admin Showcase" width="800"/>
 </div>
 
 ---
@@ -83,7 +86,7 @@
   <table>
     <tr>
       <td width="200" align="center" valign="top">
-        <img src="readme/ogcz.png" alt="Carl Zeus Anastacio" width="120" style="border-radius:50%;"/>
+        <img src="sql/readme/ogcz.png" alt="Carl Zeus Anastacio" width="120" style="border-radius:50%;"/>
         <p>
           <strong>Carl Zeus Anastacio</strong><br/>
           <em>Project Lead • Project Manager • UI/UX Designer • Front-end Developer • Back-end Developer • Documentation • Database Designer</em>
@@ -94,8 +97,65 @@
 
 ---
 
+## 🏗️ Project Structure
+
+<pre> <code>
+ogcreate-aramotorhub/
+├── README.md
+├── ARAMotorhub/
+│   ├── bin/
+│   │   ├── com/
+│   │   │   └── ogcreate/
+│   │   │       └── app/
+│   │   │           ├── controllers/
+│   │   │           │   ├── admin/
+│   │   │           │   ├── auth/
+│   │   │           │   ├── customer/
+│   │   │           │   ├── settings/
+│   │   │           │   └── store/
+│   │   │           └── database/
+│   │   └── resources/
+│   │       ├── assets/
+│   │       ├── css/
+│   │       ├── fonts/
+│   │       └── fxml/
+│   │           ├── admin/
+│   │           ├── auth/
+│   │           ├── customer/
+│   │           ├── settings/
+│   │           └── store/
+│   ├── lib/
+│   ├── src/
+│   │   ├── com/
+│   │   │   └── ogcreate/
+│   │   │       └── app/
+│   │   │           ├── controllers/
+│   │   │           │   ├── admin/
+│   │   │           │   ├── auth/
+│   │   │           │   ├── customer/
+│   │   │           │   ├── settings/
+│   │   │           │   └── store/
+│   │   │           └── database/
+│   └── resources/
+│       ├── assets/
+│       ├── css/
+│       ├── fonts/
+│       └── fxml/
+│           ├── admin/
+│           ├── auth/
+│           ├── customer/
+│           ├── settings/
+│           └── store/
+│   └── .vscode/
+├── readme/
+└── sql-database/
+</code> </pre>
+
+---
+
 ## 📬 Contact / Support
 
 For inquiries, suggestions, or support, please contact:
 
 - **Instagram**: [@_ogcz](https://www.instagram.com/_ogcz/)
+- Credits to @Leon for this README Format
