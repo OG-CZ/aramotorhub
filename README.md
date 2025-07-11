@@ -158,4 +158,3 @@ ogcreate-aramotorhub/
 For inquiries, suggestions, or support, please contact:
 
 - **Instagram**: [@_ogcz](https://www.instagram.com/_ogcz/)
-- Credits to @Leon for this README Format
