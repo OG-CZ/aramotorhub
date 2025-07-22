@@ -9,6 +9,7 @@
 
 ## Table of Contents
 
+<<<<<<< HEAD
 - 🚀 [Project Overview](#-project-overview)
 - 🛠️ [How to Run](#️-how-to-run)
 - ⚙️ [Technologies Used](#-technologies-used)
@@ -19,12 +20,27 @@
 - 📸 [Screenshots](#-screenshots)
 - 🤝 [Developer](#-developer)
 - 📬 [Contact / Support](#-contact--support)
+=======
+- [Table of Contents](#table-of-contents)
+- [🚀 Project Overview](#-project-overview)
+- [⚙️ Technologies Used](#️-technologies-used)
+- [✨ Features](#-features)
+  - [🔧 Admin Side](#-admin-side)
+  - [🎯 User Side](#-user-side)
+- [📸 Screenshots](#-screenshots)
+- [🤝 Developer](#-developer)
+- [🏗️ Project Structure](#️-project-structure)
+- [📬 Contact / Support](#-contact--support)
+
+
+>>>>>>> de4ebe3d639d9d399a8e4095182e6d584c2b366d
 ---
 
 ## 🚀 Project Overview
 
 **ARA Motorhub** A desktop application for managing motorcycle parts inventory. Customers can browse parts, request items, and check availability across multiple stores. Includes dedicated admin and seller dashboards for efficient stock control. Backed by a MySQL database server via XAMPP and phpMyAdmin.
 
+<<<<<<< HEAD
 🎓 *This project was created as a final requirement in our Advanced Database Systems course.*
 ---
 
@@ -71,6 +87,20 @@
 - 🛠️ SceneBuilder (for designing UI visually)
 - 🗃️ MySQL (Database)
 - 🧪 XAMPP with phpMyAdmin (Local DB Server)
+=======
+This was our finals in Advanced Database Class.
+
+> ⚙️ **Built using the JavaFX framework** a modern GUI toolkit for Java that provides structure, reusable components, and declarative UI design. Think of it as a structured environment (a framework) that gives you both flexibility and power to create rich desktop apps.
+
+
+## ⚙️ Technologies Used
+
+- Java Language
+- JavaFX UI Framework
+- Scenebuilder (for desinging UI Visually)
+- FXML (for declarative UI design)
+- CSS
+>>>>>>> de4ebe3d639d9d399a8e4095182e6d584c2b366d
 
 ---
 
