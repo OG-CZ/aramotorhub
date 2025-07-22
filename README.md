@@ -49,10 +49,10 @@
 3. **Configure Database Connection:**
 - Open DatabaseConnection.java under:
   ```bash
-  src/com/ogcreate/app/database/DatabaseConnection.java
+  src/com/ogcz/app/database/DatabaseConnection.java
 - Update with your local database credentials (host, db name, user, password).
 
-4. **Run the app using Maven in the terminal:**
+4. **Run the app using Maven:**
    ```bash
     mvn clean javafx:run
 
