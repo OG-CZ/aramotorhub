@@ -1,0 +1,29 @@
+# Maven output
+/target/
+
+# IntelliJ IDEA
+.idea/
+/*.iml
+
+# Eclipse
+.project
+.classpath
+.settings/
+
+# VS Code
+.vscode/
+
+# OS-specific
+.DS_Store        # macOS
+Thumbs.db        # Windows
+
+# Logs
+*.log
+
+# Local environment files
+*.env
+*.db
+*.sql
+
+# Java compiled classes (if ever outside target/)
+*.class
