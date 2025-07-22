@@ -25,7 +25,7 @@
 
 **ARA Motorhub** is a full-featured desktop application designed to streamline motorcycle parts inventory and order management. Built using **JavaFX** and managed with **Maven**, it offers customers a modern UI to browse and request parts, while providing sellers and admins with robust tools for managing products, users, and store data. The system runs on a **local MySQL database** powered by **XAMPP** and **phpMyAdmin.
 
-🎓 *This project was created as a final requirement in our Advanced Database Systems course.*
+> 🎓 *Created as a final requirement for my Advanced Database Systems course.*
 ---
 
 ## 🛠️ How to Run
@@ -49,10 +49,10 @@
 3. **Configure Database Connection:**
 - Open DatabaseConnection.java under:
   ```bash
-  src/com/ogcreate/app/database/DatabaseConnection.java
+  src/com/ogcz/app/database/DatabaseConnection.java
 - Update with your local database credentials (host, db name, user, password).
 
-4. **Run the app using Maven in the terminal:**
+4. **Run the app using Maven:**
    ```bash
     mvn clean javafx:run
 
