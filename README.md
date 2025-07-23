@@ -9,16 +9,19 @@
 
 ## Table of Contents
 
-- 🚀 [Project Overview](#-project-overview)
-- 🛠️ [How to Run](#️-how-to-run)
-- ⚙️ [Technologies Used](#-technologies-used)
-- ✨ [Features](#-features)
-  - 🔧 [Admin Side](#-admin-side)
-  - 🎯 [User Side](#-user-side)
-- 📦 [Project Structure](#-project-structure)
-- 📸 [Screenshots](#-screenshots)
-- 🤝 [Developer](#-developer)
-- 📬 [Contact / Support](#-contact--support)
+- 🚀 [Project Overview](#project-overview)
+- 🛠️ [How to Run](#how-to-run)
+- ⚙️ [Technologies Used](#technologies-used)
+- ✨ [Features](#features)
+  - 🔧 [Admin Side](#admin-side)
+  - 🎯 [Customer Side](#customer-side)
+  - 🛍️ [Seller Side](#seller-side)
+  - ⚙️ [User Settings](#user-settings)
+- 📦 [Project Structure](#project-structure)
+- 📸 [Screenshots](#screenshots)
+- 🤝 [Developer](#developer)
+- 📬 [Contact / Support](#contact--support)
+
 ---
 
 ## 🚀 Project Overview
@@ -82,7 +85,7 @@
   - Manage Inventory, Products, Categories
 - 🗃️ Stock Management: No Stock, Available, Cart, etc.
 
-### 🎯 User Side
+### 🎯 Customer Side
 - 📝 Step 1 & 2 Registration
 - 🏠 Customer Home Pages
 - 🛒 Buying Process:
@@ -90,6 +93,19 @@
   - Add to Cart (with Spinner Quantity)
   - View Seller Shops
   - Checkout with Card Payment
+ 
+### 🛒 Seller Side
+- 🔎 Search & Filter Own Products
+- 📊 Sales Dashboard (Informative Analytics)
+- 📦 Manage Inventory
+- ⬆️ Upload & Edit Products
+- 👀 View Other Products & Shops (for reference only)
+- 🚫 Cannot Purchase Products (seller account restricted from buying)
+
+### ⚙️ User Settings
+- 🧾 Edit Profile Information
+- ❌ Delete Account
+- 🚪 Log Out
 
 ---
 
