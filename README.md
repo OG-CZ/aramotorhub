@@ -41,7 +41,7 @@
 1. **Clone the repository:**
    ```bash
    git clone https://github.com/OG-CZ/aramotorhub.git
-   cd ogcreate-aramotorhub
+   cd aramotorhub
 
 2. **Setup Database:**
 - Import the SQL file from /sql-database/ into phpMyAdmin or MySQL Workbench.
