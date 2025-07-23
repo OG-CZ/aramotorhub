@@ -159,42 +159,23 @@
 ## 🏗️ Project Structure
 
 <pre> <code>
-ogcreate-aramotorhub/
-├── README.md
-├── ARAMotorhub/
-│   ├── bin/
-│   │   ├── com/
-│   │   │   └── ogcreate/
-│   │   │       └── app/
-│   │   │           ├── controllers/
-│   │   │           │   ├── admin/
-│   │   │           │   ├── auth/
-│   │   │           │   ├── customer/
-│   │   │           │   ├── settings/
-│   │   │           │   └── store/
-│   │   │           └── database/
-│   │   └── resources/
-│   │       ├── assets/
-│   │       ├── css/
-│   │       ├── fonts/
-│   │       └── fxml/
-│   │           ├── admin/
-│   │           ├── auth/
-│   │           ├── customer/
-│   │           ├── settings/
-│   │           └── store/
-│   ├── lib/
-│   ├── src/
-│   │   ├── com/
-│   │   │   └── ogcreate/
-│   │   │       └── app/
-│   │   │           ├── controllers/
-│   │   │           │   ├── admin/
-│   │   │           │   ├── auth/
-│   │   │           │   ├── customer/
-│   │   │           │   ├── settings/
-│   │   │           │   └── store/
-│   │   │           └── database/
+Repository: og-cz/aramotorhub
+Files analyzed: 153
+
+Estimated tokens: 364.2k
+  
+og-cz-aramotorhub/
+├── bin/
+│   ├── com/
+│   │   └── ogcreate/
+│   │       └── app/
+│   │           ├── controllers/
+│   │           │   ├── admin/
+│   │           │   ├── auth/
+│   │           │   ├── customer/
+│   │           │   ├── settings/
+│   │           │   └── store/
+│   │           └── database/
 │   └── resources/
 │       ├── assets/
 │       ├── css/
@@ -205,9 +186,33 @@ ogcreate-aramotorhub/
 │           ├── customer/
 │           ├── settings/
 │           └── store/
-│   └── .vscode/
-├── readme/
-└── sql-database/
+├── lib/
+├── sql/
+│   └── readme/
+└── src/
+    └── main/
+        ├── java/
+        │   └── com/
+        │       └── ogcz/
+        │           └── app/
+        │               ├── controllers/
+        │               │   ├── admin/
+        │               │   ├── auth/
+        │               │   ├── customer/
+        │               │   ├── settings/
+        │               │   └── store/
+        │               └── database/
+        └── resources/
+            ├── assets/
+            ├── css/
+            ├── fonts/
+            └── fxml/
+                ├── admin/
+                ├── auth/
+                ├── customer/
+                ├── settings/
+                └── store/
+
 </code> </pre>
 
 ---
