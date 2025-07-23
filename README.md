@@ -3,8 +3,10 @@
 </div>
 
 ---
->**find** your  
->motor **needs.**
+
+> **find** your  
+> motor **needs.**
+
 ---
 
 ## Table of Contents
@@ -26,9 +28,10 @@
 
 ## 🚀 Project Overview
 
-**ARA Motorhub** is a full-featured desktop application designed to streamline motorcycle parts inventory and order management. Built using **JavaFX** and managed with **Maven**, it offers customers a modern UI to browse and request parts, while providing sellers and admins with robust tools for managing products, users, and store data. The system runs on a **local MySQL database** powered by **XAMPP** and **phpMyAdmin.
+**ARA Motorhub** is a full-featured desktop application designed to streamline motorcycle parts inventory and order management. Built using **JavaFX** and managed with **Maven**, it offers customers a modern UI to browse and request parts, while providing sellers and admins with robust tools for managing products, users, and store data. The system runs on a **local MySQL database** powered by **XAMPP** and phpMyAdmin.
 
-> 🎓 *Created as a final requirement for my Advanced Database Systems class.*
+> 🎓 Created as a final requirement for my Advanced Database Systems course
+
 ---
 
 ## 🛠️ How to Run
@@ -36,31 +39,39 @@
 > 🔔 **Note:** Make sure Java 17+ and Maven are installed. JavaFX libraries are automatically handled by Maven.
 
 ### ✅ Prerequisites:
+
 - Java JDK 17+
 - Apache Maven (i have maven 8.9.11)
 - MySQL Server / XAMPP
 
 ### 📦 Steps to Run:
+
 1. **Clone the repository:**
+
    ```bash
    git clone https://github.com/OG-CZ/aramotorhub.git
    cd aramotorhub
+   ```
 
 2. **Setup Database:**
+
 - Import the SQL file from /sql-database/ into phpMyAdmin or MySQL Workbench.
 
 3. **Configure Database Connection:**
+
 - Open DatabaseConnection.java under:
   ```bash
   src/com/ogcz/app/database/DatabaseConnection.java
+  ```
 - Update with your local database credentials (host, db name, user, password).
 
 4. **Run the app using Maven:**
+
    ```bash
     mvn clean javafx:run
+   ```
 
 5. **✅ Enjoy!**
-
 
 ---
 
@@ -80,12 +91,14 @@
 ## ✨ Features
 
 ### 🔧 Admin Side
+
 - 🔁 Full CRUD operations:
   - Manage Admins, Users, Stores
   - Manage Inventory, Products, Categories
 - 🗃️ Stock Management: No Stock, Available, Cart, etc.
 
-### 🎯 Customer Side
+### 🎯 User Side
+
 - 📝 Step 1 & 2 Registration
 - 🏠 Customer Home Pages
 - 🛒 Buying Process:
@@ -93,8 +106,9 @@
   - Add to Cart (with Spinner Quantity)
   - View Seller Shops
   - Checkout with Card Payment
- 
+
 ### 🛒 Seller Side
+
 - 🔎 Search & Filter Own Products
 - 📊 Sales Dashboard (Informative Analytics)
 - 📦 Manage Inventory
@@ -103,6 +117,7 @@
 - 🚫 Cannot Purchase Products (seller account restricted from buying)
 
 ### ⚙️ User Settings
+
 - 🧾 Edit Profile Information
 - ❌ Delete Account
 - 🚪 Log Out
@@ -221,9 +236,10 @@ og-cz-aramotorhub/
 
 For inquiries, suggestions, or support, please contact:
 
-- **Instagram**: [@_ogcz](https://www.instagram.com/_ogcz/)
-  
---- 
+- **Instagram**: [@\_ogcz](https://www.instagram.com/_ogcz/)
+- credits to @leon for this readme format
+
+---
 
 Let me know if you want this auto-formatted and placed directly into your repo’s `README.md`, or if you'd like additional badges or license section (MIT, etc.) added.
 
