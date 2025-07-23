@@ -15,7 +15,7 @@
 - ✨ [Features](#features)
   - 🔧 [Admin Side](#admin-side)
   - 🎯 [Customer Side](#customer-side)
-  - 🛍️ [Seller Side](#seller-side)
+  - 🛒 [Seller Side](#seller-side)
   - ⚙️ [User Settings](#user-settings)
 - 📦 [Project Structure](#project-structure)
 - 📸 [Screenshots](#screenshots)
