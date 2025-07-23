@@ -201,8 +201,7 @@ ogcreate-aramotorhub/
 For inquiries, suggestions, or support, please contact:
 
 - **Instagram**: [@_ogcz](https://www.instagram.com/_ogcz/)
-- credits to @leon for this readme format
-
+  
 --- 
 
 Let me know if you want this auto-formatted and placed directly into your repo’s `README.md`, or if you'd like additional badges or license section (MIT, etc.) added.
