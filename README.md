@@ -31,7 +31,7 @@
 
 **ARA Motorhub** is a full-featured desktop application designed to streamline motorcycle parts inventory and order management. Built using **JavaFX** and managed with **Maven**, it offers customers a modern UI to browse and request parts, while providing sellers and admins with robust tools for managing products, users, and store data. The system runs on a **local MySQL database** powered by **XAMPP** and phpMyAdmin.
 
-> 🎓 Created as a final requirement for my Advanced Database Systems course
+> 🎓 Created as a final requirement for my Advanced Database Systems class
 
 ---
 
@@ -98,7 +98,7 @@
   - Manage Inventory, Products, Categories
 - 🗃️ Stock Management: No Stock, Available, Cart, etc.
 
-<h3 id="user-side">🎯 User Side</h3>
+### 🎯 User Side
 
 - 📝 Step 1 & 2 Registration
 - 🏠 Customer Home Pages
