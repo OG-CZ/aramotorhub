@@ -11,18 +11,18 @@
 
 ## Table of Contents
 
-- [🚀 Project Overview](#🚀-project-overview)
-- [🛠️ How to Run](#🛠️-how-to-run)
-- [⚙️ Technologies Used](#⚙️-technologies-used)
-- [✨ Features](#✨-features)
-  - [🔧 Admin Side](#🔧-admin-side)
-  - [🎯 User Side](#🎯-user-side)
-  - [🛒 Seller Side](#🛒-seller-side)
-  - [⚙️ User Settings](#⚙️-user-settings)
-- [📦 Project Structure](#📦-project-structure)
-- [📸 Screenshots](#📸-screenshots)
-- [🤝 Developer](#🤝-developer)
-- [📬 Contact / Support](#📬-contact--support)
+- 🚀 [Project Overview](#project-overview)
+- 🛠️ [How to Run](#how-to-run)
+- ⚙️ [Technologies Used](#technologies-used)
+- ✨ [Features](#features)
+  - 🔧 [Admin Side](#admin-side)
+  - 🎯 [Customer Side](#customer-side)
+  - 🛒 [Seller Side](#seller-side)
+  - ⚙️ [User Settings](#user-settings)
+- 📦 [Project Structure](#project-structure)
+- 📸 [Screenshots](#screenshots)
+- 🤝 [Developer](#developer)
+- 📬 [Contact / Support](#contact--support)
 
 
 ---
@@ -98,7 +98,7 @@
   - Manage Inventory, Products, Categories
 - 🗃️ Stock Management: No Stock, Available, Cart, etc.
 
-### 🎯 User Side
+<h3 id="user-side">🎯 User Side</h3>
 
 - 📝 Step 1 & 2 Registration
 - 🏠 Customer Home Pages
