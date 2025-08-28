@@ -163,7 +163,7 @@
       <td width="200" align="center" valign="top">
         <img src="sql/readme/ogcz.png" alt="Carl Zeus Anastacio" width="120" style="border-radius:50%;"/>
         <p>
-          <strong>Carl Zeus Anastacio</strong><br/>
+          <strong>OGCZ</strong><br/>
           <em>Project Lead • Project Manager • UI/UX Designer • Front-end Developer • Back-end Developer • Documentation • Database Designer</em>
         </p>
       </td>
